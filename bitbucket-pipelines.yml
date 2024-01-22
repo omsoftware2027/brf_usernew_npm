@@ -1,0 +1,21 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: node:16.14.0
+pipelines:
+  default:
+  - step:
+     name: Build
+     size: 2x
+     caches:
+       - node
+     script: # Modify the commands below to build your repository.
+       - echo "$(ls -la)"
+       - npm install
+       - npm install -g @angular/cli@~16.2.0 -g
+       - ng config -g cli.warnings.versionMismatch false
+       - ng build --configuration production
+       - echo "$(ls -la dist/)"
+       - scp -r dist/ ubuntu@103.27.234.244:/var/www/brfoodmain

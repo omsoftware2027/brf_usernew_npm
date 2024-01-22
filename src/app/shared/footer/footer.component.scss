@@ -1,0 +1,162 @@
+footer{
+  position: relative;
+
+	bottom: 0;
+
+	left: 0;
+
+	right: 0;
+
+	// background: #ffffff;
+
+	// border-top: 1px solid #cccbcb;
+
+	padding: 8px 15px;
+
+	font-size: 13px;
+
+	text-align: center;
+
+	// margin-left: 240px;
+
+	transition: all .3s ease-out;
+
+	z-index: 100;
+  text-align: left;
+  overflow: auto;
+
+}
+
+.container p a {
+  color: #999;
+  text-align: left;
+}
+
+// .myclass {
+//   padding: 10px;
+//   margin: 8px;
+
+// }
+
+label {
+  width: 75px;
+}
+
+.myclass i {
+  color: #ffff;
+  border-radius: 100%;
+  background-color: hwb(349 25% 11%);
+  height: 30px;
+  width: 30px;
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  margin-right: 5px;
+}
+
+
+// .footer p {
+//     color: #FFF;
+//     font-family: Noto Sans;
+//     font-size: 14px;
+//     font-style: normal;
+//     font-weight: 500;
+//     line-height: normal;
+// }
+// .footer {
+//   margin-left: 0px !important;
+//   background-color: #262626;
+//   color: #fff;
+//   position: relative;
+//   // bottom: 0;
+//   left: 0;
+//   right: 0;
+//   z-index: 10;
+// }
+
+// .footer ul {
+//   display: flex;
+//   list-style: none;
+//   left: 0;
+//   right: 0;
+// }
+
+// .footer ul li{
+//   padding: 13px;
+//   // padding-left: 40px;
+//   text-align: left;
+// }
+
+// .footer ul li h5{
+//   width: 200px;
+//   padding-left: 0;
+// }
+
+// .footer li a{
+//      display: block;
+//      color: #999;
+//      font-size: 12px;
+//      margin-bottom: 4px;
+//     padding-top: 15px;
+//     width: 150px;
+//     text-align: left;
+//    }
+  
+
+//   .footer ul li span{
+//       padding-left: 25px;
+//       color: #999;
+//       align-items: baseline;
+//       justify-content: first baseline;
+//      flex-direction: column;
+//      display: flex 1;
+     
+//  }
+
+//  .footer ul li p {
+//   display: flexbox;
+//   color: #999;
+
+//  }
+
+// .footer-side{
+//    display: flex;
+//    margin-top: -10px;
+//    margin-bottom: -21px;
+// }
+
+// .footer-side label{
+//   padding-top: 20px;
+//   width: 80px;
+// }
+
+// .footer-side p{
+//   padding-top: 20px;
+//   padding-left: 15px;
+//   color: #999;
+
+// }
+
+// .myclass{
+//   padding-left: 50px;
+//   // margin-left: 20px;
+// }
+//  .myclass i {
+//   color: #ffff;
+//   border-radius: 100%;
+//   background-color: hwb(349 25% 11%);
+//   height: 30px;
+//   width: 30px;
+//   align-items: center;
+//   justify-content: center;
+//   display: inline-flex;
+//   margin-right: 10px;
+// }
+
+// @media screen and (max-width: 768px) {
+//   .content-footer{
+//     // text-align: center;
+//     margin-left: 500px;
+//     position: relative;
+//   }
+// }

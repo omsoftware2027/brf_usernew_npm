@@ -1,0 +1,1052 @@
+<div class="container" style="margin-top:145px">
+    <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+    
+        <div class="ps-3">
+            <nav aria-label="breadcrumb" >
+                <ol class="breadcrumb mb-0 p-0">
+                    <li style="cursor:pointer;" class="breadcrumb-item">
+                        <a 
+                            href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
+                            <i class='bx bx-home-alt'></i>
+                        </a>
+                    </li>
+                    <li style="cursor:pointer;" class="breadcrumb-item active" routerLink="/system-settings/x-ray-type" aria-current="page">My Cart</li>
+                  
+                </ol>
+            </nav>
+        </div>
+      </div>
+    <div class="col-md-12 d-flex  ">
+        <div class="col-md-3 card p-3 cartDiv">
+        <div class="d-flex" (click)="showSignInForm()">
+            <span class=""><i class="bx bxs-user m-2 "></i></span>
+            <h6 class="m-1">My Profile</h6>
+            
+        </div>
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
+        <div  class="d-flex" (click)="showpassword()">
+            <span class=""><i class="bx bxs-lock m-2"></i></span>
+            <h6 class="m-1">Change Password</h6>
+        </div>
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
+        <div class="d-flex"(click)="myorder()">
+            <span class=""><i class="bx bxs-heart m-2"></i></span>
+            <h6 class="m-1">My Order</h6>
+        </div>
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
+        <div class="d-flex" (click)="bulkorder()">
+            <span class=""><i class="bx bxs-heart m-2"></i></span>
+            <h6 class="m-1">Bulk Order</h6>
+        </div>
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
+        <div class="d-flex" (click)="orderguide()">
+            <span class=""><i class="bx bxs-user m-2"></i></span>
+            <h6 class="m-1">My Order Guide</h6>
+        </div>
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
+        
+        <div class="d-flex" (click)="mystaff()">
+            <span class=""><i class="bx bxs-user m-2"></i></span>
+            <h6 class="m-1">My Staff</h6>
+        </div>
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
+        <div class="d-flex" (click)="myaddress()">
+            <span class=""><i class="bx bxs-home m-2"></i></span>
+            <h6 class="m-1">My Address</h6>
+        </div>
+        </div>
+        <div class="col-md-9 ">
+            <div class="row">
+                <div class="col-xl-11 mx-auto">
+                    <div class="content-wrapper">
+                        <div class="card ">
+                            <div class="card-body p-4">
+                                <!-- <div class="card-title d-flex align-items-center">
+                                    <h5 class="mb-0 main-text">My Profile</h5>
+                                </div> -->
+                          
+                                <div class="col-md-12 " *ngIf="showmyprfile">
+                                    <div class="card-title d-flex align-items-center">
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Profile</h5>
+                                    </div>
+                                    <hr>
+                                    <form class="g-3"  [formGroup]="formGroup"    >
+                                     <div class="col-md-12 card" style="border-radius: 9px;">
+                                      <div class="row p-4" > 
+                                        <h5 style="font-weight:400;font-size:20px;line-height:28px; color:#000">User Details</h5>
+                                        <div class="col-md-6 mt-3 ">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">First Name </label>
+                                                <div class="input-group" >
+                                                    <input type="text" placeholder="" class="form-control">
+                                                </div>
+                              
+                                                <!-- <mat-error>
+                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                </mat-error> -->
+                              
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                          <div class="form-group">
+                                              <label for="" class="form-label">Last Name</label>
+                                              <div class="input-group" >
+                                                  <input type="text"  placeholder="" class="form-control">
+                                              </div>
+                              
+                                              <!-- <mat-error>
+                                                  <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                              </mat-error> -->
+                              
+                                              
+                                              
+                                          </div>
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Business Name</label>
+                                                <div class="input-group" >
+                                                    <input type="text"  placeholder="" class="form-control">
+                                                </div>
+                                
+                                                <!-- <mat-error>
+                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                </mat-error> -->
+                                
+                                                
+                                                
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Phone Number</label>
+                                                <div class="input-group" >
+                                                    <input type="text"  placeholder="" class="form-control">
+                                                </div>
+                                
+                                                <!-- <mat-error>
+                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                </mat-error> -->
+                                
+                                                
+                                                
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Email Address</label>
+                                                <div class="input-group" >
+                                                    <input type="text"  placeholder="" class="form-control">
+                                                </div>
+                                
+                                                <!-- <mat-error>
+                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                </mat-error> -->
+                                
+                                                
+                                                
+                                            </div>
+                                          </div>
+                                      </div>
+                                     </div>
+                                     
+                                     
+                                    </form>
+                                    <form class="g-3"  [formGroup]="formGroup"    >
+                                        <div class="col-md-12 card" style="border-radius: 9px;">
+                                         <div class="row p-4" > 
+                                            <h5  style="font-weight:400;font-size:20px;line-height:28px; color:#000">Default Address</h5>
+                                           <div class="col-md-6 mt-3 ">
+                                               <div class="form-group">
+                                                   <label for="" class="form-label">Street Address.1
+                                                    <span class="text-danger">*</span></label>
+                                                   <div class="input-group" >
+                                                       <input type="text" placeholder="" class="form-control">
+                                                   </div>
+                                 
+                                                   <!-- <mat-error>
+                                                       <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                   </mat-error> -->
+                                 
+                                                   
+                                                   
+                                               </div>
+                                           </div>
+                                           <div class="col-md-6 mt-3">
+                                             <div class="form-group">
+                                                 <label for="" class="form-label">Street Address.2
+                                                </label>
+                                                 <div class="input-group" >
+                                                     <input type="text"  placeholder="" class="form-control">
+                                                 </div>
+                                 
+                                                 <!-- <mat-error>
+                                                     <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                 </mat-error> -->
+                                 
+                                                 
+                                                 
+                                             </div>
+                                           </div>
+                                           <div class="col-md-6 ">
+                                               <div class="form-group">
+                                                   <label for="" class="form-label">City</label>
+                                                   <div class="input-group" >
+                                                       <input type="text"  placeholder="" class="form-control">
+                                                   </div>
+                                   
+                                                   <!-- <mat-error>
+                                                       <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                   </mat-error> -->
+                                   
+                                                   
+                                                   
+                                               </div>
+                                             </div>
+                                             <div class="col-md-6">
+                                               <div class="form-group">
+                                                   <label for="" class="form-label">State</label>
+                                                   <div class="input-group" >
+                                                       <input type="text"  placeholder="" class="form-control">
+                                                   </div>
+                                   
+                                                   <!-- <mat-error>
+                                                       <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                   </mat-error> -->
+                                   
+                                                   
+                                                   
+                                               </div>
+                                             </div>
+                                             <div class="col-md-6 ">
+                                               <div class="form-group">
+                                                   <label for="" class="form-label">Country</label>
+                                                   <div class="input-group" >
+                                                       <input type="text"  placeholder="" class="form-control">
+                                                   </div>
+                                   
+                                                   <!-- <mat-error>
+                                                       <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                   </mat-error> -->
+                                   
+                                                   
+                                                   
+                                               </div>
+                                             </div>
+                                             <div class="col-md-6 ">
+                                                <div class="form-group">
+                                                    <label for="" class="form-label">Pin Code</label>
+                                                    <div class="input-group" >
+                                                        <input type="text"  placeholder="" class="form-control">
+                                                    </div>
+                                    
+                                                    <!-- <mat-error>
+                                                        <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                    </mat-error> -->
+                                    
+                                                    
+                                                    
+                                                </div>
+                                              </div>
+                                         </div>
+                                        </div>
+                                        
+                                        
+                                   </form>
+                                   <form class="g-3"  [formGroup]="formGroup"    >
+                                    <div class="col-md-12 card" style="border-radius: 9px;">
+                                     <div class="row p-4" > 
+                                        <h5  style="font-weight:400;font-size:20px;line-height:28px; color:#000">Billing Address</h5>
+                                       <div class="col-md-6 mt-3 ">
+                                           <div class="form-group">
+                                               <label for="" class="form-label">Street Address.1
+                                                <span class="text-danger">*</span></label>
+                                               <div class="input-group" >
+                                                   <input type="text" placeholder="" class="form-control">
+                                               </div>
+                             
+                                               <!-- <mat-error>
+                                                   <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                               </mat-error> -->
+                             
+                                               
+                                               
+                                           </div>
+                                       </div>
+                                       <div class="col-md-6 mt-3">
+                                         <div class="form-group">
+                                             <label for="" class="form-label">Street Address.2
+                                            </label>
+                                             <div class="input-group" >
+                                                 <input type="text"  placeholder="" class="form-control">
+                                             </div>
+                             
+                                             <!-- <mat-error>
+                                                 <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                             </mat-error> -->
+                             
+                                             
+                                             
+                                         </div>
+                                       </div>
+                                       <div class="col-md-6 ">
+                                           <div class="form-group">
+                                               <label for="" class="form-label">City</label>
+                                               <div class="input-group" >
+                                                   <input type="text"  placeholder="" class="form-control">
+                                               </div>
+                               
+                                               <!-- <mat-error>
+                                                   <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                               </mat-error> -->
+                               
+                                               
+                                               
+                                           </div>
+                                         </div>
+                                         <div class="col-md-6">
+                                           <div class="form-group">
+                                               <label for="" class="form-label">State</label>
+                                               <div class="input-group" >
+                                                   <input type="text"  placeholder="" class="form-control">
+                                               </div>
+                               
+                                               <!-- <mat-error>
+                                                   <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                               </mat-error> -->
+                               
+                                               
+                                               
+                                           </div>
+                                         </div>
+                                         <div class="col-md-6 ">
+                                           <div class="form-group">
+                                               <label for="" class="form-label">Country</label>
+                                               <div class="input-group" >
+                                                   <input type="text"  placeholder="" class="form-control">
+                                               </div>
+                               
+                                               <!-- <mat-error>
+                                                   <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                               </mat-error> -->
+                               
+                                               
+                                               
+                                           </div>
+                                         </div>
+                                         <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Pin Code</label>
+                                                <div class="input-group" >
+                                                    <input type="text"  placeholder="" class="form-control">
+                                                </div>
+                                
+                                                <!-- <mat-error>
+                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                </mat-error> -->
+                                
+                                                
+                                                
+                                            </div>
+                                          </div>
+                                     </div>
+                                    </div>
+                                    
+                                    
+                                   </form>
+                                    <div class="col-md-8 text-end">
+                                        <button class="btn text-white" style="background-color:#F44C4C">SAVE DETAILS</button>
+                                    </div>
+                                
+                                 
+                                  </div>
+                                  
+
+                                  <div class="col-md-12 " *ngIf="showmypassword">
+                                    <div class="card-title d-flex align-items-center">
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">Change password</h5>
+                                    </div>
+                                    <hr>
+                                    <form class="g-3"  [formGroup]="formGroup"    >
+                                     <div class="col-md-12 card" style="border-radius: 9px;">
+                                      <div class="row p-4" > 
+                                        <!-- <h5>User Details</h5> -->
+                                        <div class="col-md-6 mt-3 ">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Old Password </label>
+                                                <div class="input-group" >
+                                                    <input type="text" placeholder="" class="form-control">
+                                                </div>
+                              
+                                                <!-- <mat-error>
+                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                </mat-error> -->
+                              
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                        
+                                        </div>
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">New Password</label>
+                                                <div class="input-group" >
+                                                    <input type="text"  placeholder="" class="form-control">
+                                                </div>
+                                
+                                                <!-- <mat-error>
+                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                </mat-error> -->
+                                
+                                                
+                                                
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="" class="form-label">Confirm Password</label>
+                                                <div class="input-group" >
+                                                    <input type="text"  placeholder="" class="form-control">
+                                                </div>
+                                
+                                                <!-- <mat-error>
+                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                </mat-error> -->
+                                
+                                                
+                                                
+                                            </div>
+                                          </div>
+                                       
+                                      </div>
+                                     </div>
+                                     
+                                     
+                                    </form>
+                                  
+                                    <div class="col-md-8 text-end">
+                                        <button class="btn text-white" style="background-color:#F44C4C">SAVE DETAILS</button>
+                                    </div>
+                                
+                                 
+                                  </div>
+
+                                  <div class="col-md-12  " *ngIf="showorder">
+                                    <div class="card-title d-flex align-items-center">
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Order</h5>
+                                    </div>
+                                    <hr>
+                                    <div class="col-md-12 card mt-4" style="border-radius: 9px;">
+                                        <h6 class="p-3" style="font-weight: 500;font-size: 20px;line-height: 24px;color:#000">My Order List </h6>
+                                        <div style="background-color: #F44C4C; height: 35px;" >
+                                        <div class="col-md-12 d-flex mt-2 container">
+                                            <div class="col-md-2 text-white">
+                                                <p>10 JAN ,2024</p>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                            <div class="col-md-1"><button class="btn1 text-white" style="background-color: #34BBD9;">Print</button></div>
+                                            <div class="col-md-3"><button class="btn2 text-white"  style="background-color: #3A51A2;">Reorder</button></div>
+                                            <div class="col-md-2">   <button class="btn3 text-white" style="background-color: #832727 ;margin-left: -20px;">#4G21QHUQ64FC7Y0</button></div>
+                                            
+                                        </div>
+                                      
+                                        
+                                        
+                                     
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">PRODUCTS</th>
+                                             
+                                                <th scope="col">ACTIONS</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">
+                                                    <div  class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0 me-2">
+                                                            <div>
+                                                                <img class="avatar-xs  customer-image-elem" alt=""
+                                                                    src="../../../assets/images/adverting page.png" style="width:62px;height:62px">
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1 p-3">
+                                                            <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
+                                                          <div class="d-flex">
+                                                            <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
+                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
+                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Total<span style="color:#475156">2087$</span></p></div>
+                                                          </div>
+                                                                    
+
+                
+                                                        </div>
+                                                    </div>
+                                
+                                                </th>
+                                               
+                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                                    ">View
+                                                      </button></td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">
+                                                    <div  class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0 me-2">
+                                                            <div>
+                                                                <img class="avatar-xs  customer-image-elem" alt=""
+                                                                    src="../../../assets/images/adverting page.png" style="width:62px;height:62px">
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1 p-3">
+                                                            <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
+                                                          <div class="d-flex">
+                                                            <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
+                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
+                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Total<span style="color:#475156">2087$</span></p></div>
+                                                          </div>
+                                                                    
+
+                
+                                                        </div>
+                                                    </div>
+                                
+                                                </th>
+                                               
+                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                                    ">View
+                                                      </button></td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">
+                                                    <div  class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0 me-2">
+                                                            <div>
+                                                                <img class="avatar-xs  customer-image-elem" alt=""
+                                                                    src="../../../assets/images/adverting page.png" style="width:62px;height:62px">
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1 p-3">
+                                                            <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
+                                                          <div class="d-flex">
+                                                            <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
+                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
+                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Total<span style="color:#475156">2087$</span></p></div>
+                                                          </div>
+                                                                    
+
+                
+                                                        </div>
+                                                    </div>
+                                
+                                                </th>
+                                               
+                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                                    ">View
+                                                      </button></td>
+                                              </tr>
+                                            
+                                            </tbody>
+                                          </table>
+                                          <div style="background-color: #F2F4F5; height: 35px;" class="mt-2 mb-3">
+                                            <div class="col-md-12 d-flex mt-2 container">
+                                                <div class="col-md-6 text-white">
+                                                    <p class="text-black">Delivery Date & Time : 11 JAN, 2024 , 07:00:00</p>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                             
+                                                
+                                            </div>
+                                          
+                                            
+                                            
+                                         
+                                            </div>
+
+                                            <div style="background-color: #F44C4C; height: 35px;" >
+                                                <div class="col-md-12 d-flex mt-2 container">
+                                                    <div class="col-md-2 text-white">
+                                                        <p>11 JAN ,2024</p>
+                                                    </div>
+                                                    <div class="col-md-4"></div>
+                                                    <div class="col-md-1"><button class="btn1 text-white" style="background-color: #34BBD9;">Print</button></div>
+                                                    <div class="col-md-3"><button class="btn2 text-white"  style="background-color: #3A51A2;">Reorder</button></div>
+                                                    <div class="col-md-2">   <button class="btn3 text-white" style="background-color: #832727 ;margin-left: -20px;">#4G21QHUQ64FC7Y0</button></div>
+                                                    
+                                                </div>
+                                              
+                                                
+                                                
+                                             
+                                                </div>
+                                                <table class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col">PRODUCTS</th>
+                                                     
+                                                        <th scope="col">ACTIONS</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr>
+                                                        <th scope="row">
+                                                            <div  class="d-flex align-items-center">
+                                                                <div class="flex-shrink-0 me-2">
+                                                                    <div>
+                                                                        <img class="avatar-xs  customer-image-elem" alt=""
+                                                                            src="../../../assets/images/adverting page.png" style="width:62px;height:62px">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-grow-1 p-3">
+                                                                    <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                            class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
+                                                                  <div class="d-flex">
+                                                                    <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
+                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
+                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Total<span style="color:#475156">2087$</span></p></div>
+                                                                  </div>
+                                                                            
+        
+                        
+                                                                </div>
+                                                            </div>
+                                        
+                                                        </th>
+                                                       
+                                                        <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                                            ">View
+                                                              </button></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th scope="row">
+                                                            <div  class="d-flex align-items-center">
+                                                                <div class="flex-shrink-0 me-2">
+                                                                    <div>
+                                                                        <img class="avatar-xs  customer-image-elem" alt=""
+                                                                            src="../../../assets/images/adverting page.png" style="width:62px;height:62px">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-grow-1 p-3">
+                                                                    <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                            class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
+                                                                  <div class="d-flex">
+                                                                    <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
+                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
+                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Total<span style="color:#475156">2087$</span></p></div>
+                                                                  </div>
+                                                                            
+        
+                        
+                                                                </div>
+                                                            </div>
+                                        
+                                                        </th>
+                                                       
+                                                        <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                                            ">View
+                                                              </button></td>
+                                                      </tr>
+                                                      <tr>
+                                                        <th scope="row">
+                                                            <div  class="d-flex align-items-center">
+                                                                <div class="flex-shrink-0 me-2">
+                                                                    <div>
+                                                                        <img class="avatar-xs  customer-image-elem" alt=""
+                                                                            src="../../../assets/images/adverting page.png" style="width:62px;height:62px">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-grow-1 p-3">
+                                                                    <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                            class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
+                                                                  <div class="d-flex">
+                                                                    <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
+                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
+                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Total<span style="color:#475156">2087$</span></p></div>
+                                                                  </div>
+                                                                            
+        
+                        
+                                                                </div>
+                                                            </div>
+                                        
+                                                        </th>
+                                                       
+                                                        <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                                            ">View
+                                                              </button></td>
+                                                      </tr>
+                                                    
+                                                    </tbody>
+                                                  </table>
+                                                  <div style="background-color: #F2F4F5; height: 35px;" class="mt-2 mb-3">
+                                                    <div class="col-md-12 d-flex mt-2 container">
+                                                        <div class="col-md-6 text-white">
+                                                            <p class="text-black">Delivery Date & Time : 11 JAN, 2024 , 07:00:00</p>
+                                                        </div>
+                                                        <div class="col-md-4"></div>
+                                                     
+                                                        
+                                                    </div>
+                                                  
+                                                    
+                                                    
+                                                 
+                                                    </div>
+                                    </div>
+                                
+                                  </div>
+                                 
+                                  <div class="col-md-12 " *ngIf="Bulkorder">
+                                    <div class="card-title d-flex align-items-center">
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Bulk Order Guide</h5>
+                                    </div>
+                                    <hr>
+                              
+                                    <div class="col-md-12 card" style="border-radius: 9px;">
+                                        <table class="table">
+                                            <thead >
+                                              <tr>
+                                                <th scope="col">PRODUCTS</th>
+                                                <th scope="col">UNIT</th>
+                                                <th scope="col">PRICE</th>
+                                                <th scope="col">QTY</th>
+                                                <th scope="col">ACTIONS</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">
+                                                    <div  class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0 me-2">
+                                                            <div>
+                                                                <img class="avatar-xs  customer-image-elem" alt=""
+                                                                    src="../../../assets/images/adverting page.png" style="width:62px;height:62px">
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h5 class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                    class="text-reset customer-name-elem">Ham Money</a></h5>
+                                                        </div>
+                                                    </div>
+                                
+                                                </th>
+                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS"></td>
+                                                <td>27.22$</td>
+                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80"></td>
+                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                    ">ADD TO CART
+                                                      </button></td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">
+                                                    <div  class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0 me-2">
+                                                            <div>
+                                                                <img class="avatar-xs  customer-image-elem" alt=""
+                                                                    src="../../../assets/images/adverting page.png" style="width:30px;height:30px">
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h5 class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                    class="text-reset customer-name-elem">Ham Money</a></h5>
+                                                        </div>
+                                                    </div>
+                                
+                                                </th>
+                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS"></td>
+                                                <td>27.22$</td>
+                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80"></td>
+                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                    ">ADD TO CART
+                                                      </button></td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">
+                                                    <div  class="d-flex align-items-center">
+                                                        <div class="flex-shrink-0 me-2">
+                                                            <div>
+                                                                <img class="avatar-xs  customer-image-elem" alt=""
+                                                                    src="../../../assets/images/adverting page.png" style="width:30px;height:30px">
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <h5 class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                    class="text-reset customer-name-elem">Ham Money</a></h5>
+                                                        </div>
+                                                    </div>
+                                
+                                                </th>
+                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS"></td>
+                                                <td>27.22$</td>
+                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80"></td>
+                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                    ">ADD TO CART
+                                                      </button></td>
+                                              </tr>
+                                            
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                 
+                                  </div>
+                                    <div class="col-md-12 " *ngIf="Orderguide">
+                                    <div class="card-title d-flex align-items-center">
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Order Guide</h5>
+                                    </div>
+                                    <hr>
+                                   <div class="col-md-12 card" style="border-radius: 9px;">
+                                    <div class="d-flex mt-3 p-3">
+                                     <div class="col-md-6">
+                                        <select id="" class="form-select" >
+                                            <option ></option>
+                                          </select>
+                                         
+                                     </div>
+                                     <div class="col-md-6 text-end">
+                                        <button class="btnn text-white" style="background-color: #3A51A2; ">Proceed to check out</button>
+                                         
+                                     </div>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">PRODUCTS</th>
+                                            <th scope="col">UNIT</th>
+                                            <th scope="col">PRICE</th>
+                                            <th scope="col">QTY</th>
+                                            <th scope="col">ACTIONS</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">
+                                                <div  class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0 me-2">
+                                                        <div>
+                                                            <img class="avatar-xs  customer-image-elem" alt=""
+                                                                src="../../../assets/images/adverting page.png" style="width:30px;height:30px">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                class="text-reset customer-name-elem">Ham Money</a></h5>
+                                                    </div>
+                                                </div>
+                            
+                                            </th>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS"></td>
+                                            <td>27.22$</td>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80"></td>
+                                            <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                ">ADD TO CART
+                                                  </button></td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div  class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0 me-2">
+                                                        <div>
+                                                            <img class="avatar-xs  customer-image-elem" alt=""
+                                                                src="../../../assets/images/adverting page.png" style="width:30px;height:30px">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                class="text-reset customer-name-elem">Ham Money</a></h5>
+                                                    </div>
+                                                </div>
+                            
+                                            </th>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS"></td>
+                                            <td>27.22$</td>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80"></td>
+                                            <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                ">ADD TO CART
+                                                  </button></td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row">
+                                                <div  class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0 me-2">
+                                                        <div>
+                                                            <img class="avatar-xs  customer-image-elem" alt=""
+                                                                src="../../../assets/images/adverting page.png" style="width:30px;height:30px">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                class="text-reset customer-name-elem">Ham Money</a></h5>
+                                                    </div>
+                                                </div>
+                            
+                                            </th>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS"></td>
+                                            <td>27.22$</td>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80"></td>
+                                            <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                ">ADD TO CART
+                                                  </button></td>
+                                          </tr>
+                                        
+                                        </tbody>
+                                      </table>
+
+                                      <div class="col-md-12 text-end mb-3 p-3">
+                                        <button class="btnn text-white" style="background-color: #F44C4C; ">Proceed to check out</button>
+                                         
+                                     </div>
+                                   </div>
+                                 
+                                  </div>
+                              
+                                  <div class="col-md-12 " *ngIf="Myaddress">
+                                    <div class="card-title d-flex align-items-center">
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Staff</h5>
+                                    </div>
+                                    <hr>
+                                   <div class="col-md-12 card" style="border-radius: 9px;">
+                                    <div class="d-flex">
+                                     <div class="col-md-6">
+                                       
+                                         
+                                     </div>
+                                     <div class="col-md-6 text-end mt-2 p-3">
+                                        <button class="btnn text-white" style="background-color: #3A51A2; " (click)="openeclinicAcessDialog()">Add  New Address</button>
+                                         
+                                     </div>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">ADDRESS</th>
+                                            <th scope="col">CITY</th>
+                                            <th scope="col">STATE</th>
+                                            <th scope="col">ACTIONS</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">
+                                                <div  class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0 me-2">
+                                                        <!-- <div>
+                                                            <img class="avatar-xs  customer-image-elem" alt=""
+                                                                src="../../../assets/images/adverting page.png" style="width:30px;height:30px">
+                                                        </div> -->
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                class="text-reset customer-name-elem">Rayna building 
+                                                                omsoftware411032,India</a></h5>
+                                                    </div>
+                                                </div>
+                            
+                                            </th>
+                                            <td>Pune</td>
+                                            <td>Maharshtra</td>
+                                          
+                                            <td>   
+                                                
+                                                <button type="button" class="btn mt-1" style="background-color: #3A51A2; color: white;width:124px;height: 33px;
+                                                ">EDIT
+                                                  </button><br>
+                                                  <button type="button" class="btn mt-1" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                ">REMOVE
+                                                  </button>
+                                                </td>
+                                          </tr>
+                                         
+                                    
+                                        
+                                        </tbody>
+                                      </table>
+
+                                     
+                                   </div>
+                                 
+                                  </div>
+                                 
+                                  <div class="col-md-12 " *ngIf="Mystaff">
+                                    <div class="card-title d-flex align-items-center">
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Staff</h5>
+                                    </div>
+                                    <hr>
+                                   <div class="col-md-12 card" style="border-radius: 9px;">
+                                    <div class="d-flex">
+                                     <div class="col-md-6">
+                                       
+                                         
+                                     </div>
+                                     <div class="col-md-6 text-end mt-2 p-3">
+                                        <button class="btnn text-white" style="background-color: #3A51A2; " (click)="openewuserdialog()">Add  New User</button>
+                                         
+                                     </div>
+                                    </div>
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">NAME</th>
+                                            <th scope="col">EMAIL</th>
+                                            <th scope="col">MOBILE</th>
+                                            <th scope="col">ACTIONS</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">
+                                                <div  class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0 me-2">
+                                                        <!-- <div>
+                                                            <img class="avatar-xs  customer-image-elem" alt=""
+                                                                src="../../../assets/images/adverting page.png" style="width:30px;height:30px">
+                                                        </div> -->
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h5 class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                class="text-reset customer-name-elem">abcd</a></h5>
+                                                    </div>
+                                                </div>
+                            
+                                            </th>
+                                            <td>abcd@gmail.com</td>
+                                            <td>988383839</td>
+                                          
+                                            <td>   
+                                                
+                                                <button type="button" class="btn mt-1" style="background-color: #3A51A2; color: white;width:124px;height: 33px;
+                                                ">EDIT
+                                                  </button><br>
+                                                  <button type="button" class="btn mt-1" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                ">REMOVE
+                                                  </button>
+                                                </td>
+                                          </tr>
+                                         
+                                    
+                                        
+                                        </tbody>
+                                      </table>
+
+                                     
+                                   </div>
+                                 
+                                  </div>
+                                 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

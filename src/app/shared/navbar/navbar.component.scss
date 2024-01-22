@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Qwitcher+Grypen&family=Ramabhadra&display=swap');
+@mixin font-fam($font-weight, $font-size) {
+    font-family: 'Poppins', sans-serif;
+    font-weight: $font-weight;
+    font-size: $font-size;
+  }
+  @mixin hover-drop(){
+    background-color: #fff;
+    color: #004183 !important;
+  }
+  @mixin text-wrap($left){
+    background: #004183;
+    position: absolute;
+    top: 49px;
+    left: $left;
+    border-radius: 0 12px 12px 12px;
+  }
+.recharge-wrapper .amount-btn .btn{
+    margin-right: 15px;
+}
+.recharge-wrapper .amount-btn .btn:last-child{
+    margin-right: 0px;
+}
+.left-topbar{
+    display: block!important;
+}
+.top-calendar{
+    font-size: 16px;
+    i{
+        font-size: 20px;
+        margin-right: 5px;
+        color: black;
+    }
+    .text-danger{
+        color: #FA088B;
+        font-weight: 500;
+    }
+    .text-violet{
+        color: #6B0BB7;
+        font-weight: 500;
+    }
+}
+.top-header{
+    width: 100% !important;
+    left: 0px !important;
+    right: -3px;
+    // top:6px;
+    // background: linear-gradient(90deg, #FFF 17.85%, #007ADD 48.77%, #008995 100%);
+    // box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.10);
+    .navbar{
+        // background-image: url("../../../assets/images/navbar-bg.png");
+        // background-repeat: no-repeat, repeat;
+        // background-size: cover;
+        .navbar-nav{
+            .btn-white{
+                background-color: #fff;
+                color: #2D769F;
+                font-size: 12px;
+                font-weight: 600;
+                line-height: normal;
+                height: 32px;
+                border-radius: 8px;
+                margin-top: 18px;
+            }
+            .t1{
+                color: #FFF;
+                font-size: 13px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin-top: 26px;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        }
+    }
+    .nav-pills{
+        height: 30px;
+        margin-top: 20px;
+        line-height: 15px;
+        .nav-item{
+        line-height: 15px;
+        border-right: 2px solid #ccc;
+        padding-right: 10px;
+        & a {
+          color: #506377;
+          @include font-fam(500, 20px);
+        }
+        & .active{
+            background: #004183 !important;
+            color: #fff !important;
+            @include font-fam(500, 20px) ;
+        }
+        }
+    }
+    li{
+        list-style: none;
+    }
+    .tab-wrapper1{
+      @include text-wrap(302px);
+        & .my-doc-hover,.med-rep-hover,.target-hover,.hed-q-hover{
+            color: #fff;
+            @include font-fam(500, 16px) ;
+
+        }
+        .icon-color-2{
+            color: #fff !important;
+
+        }
+
+    }
+    .tab-wrapper2{
+        @include text-wrap(411px);
+        & .doctor-hover{
+            color: #fff;
+            @include font-fam(500, 16px) ;
+
+        }
+        .icon-color-2{
+            color: #fff !important;
+        }
+    }
+    .alfa-wrapper:hover{
+        @include hover-drop();
+
+        .doctor-hover,.pharma-hover,.hos-hover{
+            color: #004183 !important;
+        }
+
+    }
+    .alfa-wrapper:hover .icon-color-2{
+        color: #004183 !important;
+    }
+    .my-doc-hover:hover{
+       @include hover-drop();
+        border-radius: 0px 0px 0px 11px;
+
+    }
+    .my-doc-hover:hover .icon-color-2 {
+        color: #004183 !important;
+      }
+      .pharma-hover:hover{
+        @include hover-drop();
+        border-radius: 0px 0px 0px 0px;
+      }
+      .pharma-hover:hover .icon-color-2{
+        color: #004183 !important;
+      }
+      .hos-hover:hover{
+        @include hover-drop();
+        border-radius: 0px 0px 0px 0px;
+      }
+      .hos-hover:hover .icon-color-2{
+        color: #004183 !important;
+      }
+    .med-rep-hover:hover{
+       @include hover-drop();
+    }
+
+    .med-rep-hover:hover .icon-color-2{
+        color: #004183 !important;
+    }
+    .target-hover:hover{
+        @include hover-drop();
+
+    }
+    .target-hover:hover .icon-color-2{
+        color: #004183 !important;
+    }
+    .hed-q-hover:hover{
+        @include hover-drop();
+        border-radius: 0px 0px 12px 0px;
+    }
+    .hed-q-hover:hover .icon-color-2{
+        color: #004183 !important;
+    }
+    .pharma-hover:hover{
+        @include hover-drop();
+    }
+    .pharma-hover:hover .icon-color-2{
+        color: #004183 !important;
+    }
+    .hos-hover:hover{
+        @include hover-drop();
+        border-radius: 0px 0px 12px 0px;
+    }
+    .hos-hover:hover .icon-color-2{
+        color: #004183 !important;
+    }
+    .pharma-hover,.hos-hover{
+        color: #fff !important;
+        @include font-fam(500, 16px) ;
+    }
+    .logo-icon-2{
+        width: 150px;
+    }
+    .tab-pane:not(.show) {
+        pointer-events: none;
+      }
+    .logo-text2{
+        position: absolute;
+        width: 144px;
+        left: -28px;
+        top: 15px;
+        .ft {
+            color: #000;
+            text-align: center;
+            font-family: Noto Sans;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: normal;
+            margin-bottom: 0px;
+        }
+        .st {
+            color: #CB6D2D;
+            font-family: Noto Sans;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            text-transform: capitalize;
+            margin-bottom: 0px;
+        }
+
+    }
+    .sidenav3{
+        width: 301.819px;
+        height: 301.819px;
+        transform: rotate(-31.797deg);
+        flex-shrink: 0;
+        position: absolute;
+        right: 0px;
+        top: -121px;
+        background: url('../../../assets/images/slogo-sidenav3.svg');
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+    }
+    .headRight {
+      float: right;
+      width: 89%;
+  }
+  .d-flex li {
+    display: inline;
+    white-space: nowrap;
+    margin-right: 10px; /* Optional: Add some spacing between items */
+  }
+  .headerd{
+     background-color: red;
+  }
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .topMenus {
+    // background-color: #e51937;
+    padding: 7px 0;
+    // margin-top: 18px;
+    background-color: #fff;
+}
+.catImg {
+  width: 28px;
+  margin-right: 7px;
+  margin-top: -3px;
+}
+.SerchText {
+  float: left;
+  height: 31px;
+  border-left: 2px solid #fff;
+  line-height: 32px;
+  padding-left: 16px;
+  color: #fff;
+  width: 16%;
+  margin-top: 7px;
+}
+.searchDiv {
+  width: 84%;
+  position: relative;
+  float: right;
+  margin-top: -12px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .headRight{
+    flex: 0 0 auto;
+    width: 25%;
+}
+}
+.dropdown-item:hover{
+    background-color: #F44C4C;
+    color: white;
+ }
+ .dropdown-item.active, .dropdown-item:active{
+   background-color: #F44C4C;
+   ;
+}
+.cartDiv{
+  cursor: pointer;  
+}
+.headRight{
+    cursor: pointer;
+}
+}

@@ -1,0 +1,52 @@
+.text-pink{
+    color: #E50065;
+}
+.btn-blue{
+    background-color: #0A66C2!important;
+    border-color: #0A66C2!important;
+    color: #fff!important;
+    border-radius: 10px;
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.text-blue{
+    color: #0A66C2;
+    font-family: Noto Sans;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.form-label{
+    color: #000;
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+ 
+@media (min-width: 1200px){
+   .login-bg{
+       height: 582px;
+   }
+}
+@media (min-width: 1400px){
+    .login-bg{
+        // height: 85vh;
+        // width: 85vw;
+        height: 100%;
+        width: 100%;
+    }
+ }
+ .user_icon{
+    img{
+     border-radius: 50%;
+    box-shadow: 0 0.1rem 0.7rem #0000001a;
+
+    }
+ }

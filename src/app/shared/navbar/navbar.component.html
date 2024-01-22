@@ -1,0 +1,367 @@
+<!--header-->
+<header class="top-header">
+	<nav class="navbar navbar-expand" style="background-color: #fff;">
+		<div class="container">
+      <div class="top-calendar">
+        <div class="d-flex col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+          <img
+          src="../../../assets/images/logo (2).png"
+          class="logo-icon-2"
+          alt=""/>
+        </div>
+         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
+         <div class="headRight">
+          <ul class="d-flex">
+          <li>
+            <a>Our statement</a>
+          </li>
+          <li>
+             |
+          </li>
+          <li>
+            <a>Meat markets & large facilities,special discounts</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li>
+            <a>Email Sign-Up</a>
+          </li>
+          <li>
+            <a>|</a>
+          </li>
+          <li>
+            <p [routerLink]="['/dashboard/account-detail']">My Account</p>
+          </li>
+          <li>
+            <a>|</a>
+          </li>
+          <li>
+            <a style="color:#F44C4C" >SIGN IN OR REGISTER</a>
+          </li>
+          </ul>
+         </div>
+         </div>
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+	</nav>
+  <div class="topMenus">
+    <div class="container">
+      <div class="d-flex col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <!-- <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mt-0">
+        <img src="/assets/images/categoryicon.png" class="catImg">
+        <span class="text-white">All Category</span>
+      </div> -->
+       <div class="col-lg-6 col-md-7 col-sm-6 col-xs-6 mt-3">
+        <!-- <span class="SerchText">Search</span> -->
+        <div class="searchDiv d-flex" style="margin-right:16%" >
+          <!--             
+                      <input placeholder="Search by Product Name" name="search_param" id="search-box" value="" autocomplete="off" style="height:34px" class="form-control">
+                      <i class="ri-search-line search-icon"></i> 
+                     -->
+          
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" 
+                        aria-expanded="false"  style="background-color: #F3F3F3;height: 40px">All Categories</a>
+                        <div class="dropdown-menu mt-4" style="border-radius: 1px;border-radius: 0px">
+                          <!-- <a class="dropdown-item"  style="border: none; color:#F44C4C;">All Categories</a> -->
+
+                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Pork</span>  </a>
+                         
+                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Pork</span>  </a>
+                         
+                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Pork</span>  </a>
+                         
+                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Pork</span>  </a>
+                          
+                        </div>
+                      </div>
+                      <!-- <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name"> -->
+                      <input class="form-control" type="search" id="example-search-input" placeholder="  | Search for item " style="background-color: #F3F3F3;border:none">
+                      <span class="input-group-append" style="background-color: #F44C4C;">
+                        <button class="btn pb-0 custom-red-button" type="button">
+                          <i class="ri-search-line search-icon"></i> 
+                        </button>
+                      </span>
+                    </div>
+          
+                   </div> 
+       </div>
+       <div class="col-lg-6 col-md-3 col-sm-5 col-xs-5" style="text-align: end;">
+      <div class="cartDiv">
+       <a style="color:#fff">
+        <img src="/assets/images/wishlist icon.png" class="catImg">
+        <span class="text-black" [routerLink]="['/dashboard/add-wishlist']"> Wishlist</span>
+
+       </a>
+       <a style="color:#fff ; margin-left:70px">
+        <img src="/assets/images/myCart icon.png" class="catImg">
+        <span class="text-black" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
+        <!-- <a class="text-black">$240</a> -->
+       </a>
+       <!-- <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none;">
+        <img src="../../../assets/images/bsup.svg" alt="">
+         <a  class="text-black">A Supplier</a>
+    
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item">Sign Up</a>
+        <a class="dropdown-item">Sign In</a>
+      </div>
+      </a> -->
+      <a class="btn dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
+        <img src="../../../assets/images/bsup.svg" alt="">
+         <a href="" class="text-black">Sign In </a>
+    
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="border-radius: 2px;">
+      <div class="col-md-12 p-2 m-2 d-flex">
+        <div class="col-md-6" (click)="showSignInForm()">
+         <p>Sign In</p>
+        </div>
+        <div class="col-md-6" (click)="showSignUpForm()">
+          <p>Sign Up</p>
+        </div>
+        <hr>
+       
+      </div>
+      <div class="col-md-12 " *ngIf="showSignIn">
+        <form class="g-3"  [formGroup]="formGroup"    >
+          <div class="col-md-6 m-3">
+              <div class="form-group">
+                  <label for="" class="form-label">Email Address <span class="text-danger">*</span></label>
+                  <div class="input-group" style="width: 177%;">
+                      <input type="text" placeholder="" class="form-control">
+                  </div>
+
+                  <!-- <mat-error>
+                      <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                  </mat-error> -->
+
+                  
+                  
+              </div>
+          </div>
+          <div class="col-md-6 m-3">
+            <div class="form-group">
+                <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label>
+                <div class="input-group" style="width: 177%;">
+                    <input type="text"  placeholder="" class="form-control">
+                </div>
+
+                <!-- <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                </mat-error> -->
+
+                
+                
+            </div>
+          </div>
+         
+      </form>
+      <div class="col-md-12  m-3">
+        <div class="col-md-10">
+          <button type="submit" class="btn btn-info " style="width: 106%;background-color: #F44C4C;
+          border: aliceblue;">Sign up</button>
+        </div>
+       </div>
+       <hr>
+       <div class="col-md-10 m-3">
+        <div class="form-group">
+            <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
+            <div class="input-group" style="width: 177%;">
+              <div class="input-container">
+                  <input type="text" class="form-control">
+                  <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
+                  <p  style="margin-top: -49px;margin-left: 48px;">LogIn with Google</p>
+                  
+              </div>
+          </div>
+
+            <!-- <mat-error>
+                <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+            </mat-error> -->
+
+            
+            
+        </div>
+    </div>
+    <div class="col-md-10 m-3">
+      <div class="form-group">
+          <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
+          <div class="input-group" style="width: 177%;">
+            <div class="input-container">
+                <input type="text" class="form-control">
+                <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
+                <p  style="margin-top: -52px;margin-left: 47px;">LogIn with Apple</p>
+                
+            </div>
+        </div>
+
+          <!-- <mat-error>
+              <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+          </mat-error> -->
+
+          
+          
+      </div>
+    </div>
+      </div>
+      <div class="col-md-12 " *ngIf="showSignUp">
+        <form class="g-3"  [formGroup]="formGroup"    >
+          <div class="col-md-6 m-3">
+              <div class="form-group">
+                  <label for="" class="form-label">Name </label>
+                  <div class="input-group" style="width: 177%;">
+                      <input type="text" placeholder="" class="form-control">
+                  </div>
+
+                  <!-- <mat-error>
+                      <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                  </mat-error> -->
+
+                  
+                  
+              </div>
+          </div>
+          <div class="col-md-6 m-3">
+            <div class="form-group">
+                <label for="" class="form-label">Email Address</label>
+                <div class="input-group" style="width: 177%;">
+                    <input type="text"  placeholder="" class="form-control">
+                </div>
+
+                <!-- <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                </mat-error> -->
+
+                
+                
+            </div>
+          </div>
+          <div class="col-md-6 m-3">
+            <div class="form-group">
+                <label for="" class="form-label">Phone Number</label>
+                <div class="input-group" style="width: 177%;">
+                    <input type="text"  placeholder="" class="form-control">
+                </div>
+
+                <!-- <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                </mat-error> -->
+
+                
+                
+            </div>
+          </div>
+          <div class="col-md-6 m-3">
+            <div class="form-group">
+                <label for="" class="form-label">Password</label>
+                <div class="input-group" style="width: 177%;">
+                    <input type="text"  placeholder="8+ Characters" class="form-control">
+                </div>
+
+                <!-- <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                </mat-error> -->
+
+                
+                
+            </div>
+          </div>
+          <div class="col-md-6 m-3">
+            <div class="form-group">
+                <label for="" class="form-label">Confirm Password</label>
+                <div class="input-group" style="width: 177%;">
+                    <input type="text"  placeholder="" class="form-control">
+                </div>
+
+                <!-- <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                </mat-error> -->
+
+                
+                
+            </div>
+          </div>
+          <div class="col-md-6 m-3 d-flex">
+         <div class="col-md-1">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+           
+          </div>
+         </div>
+         <div class="col-md-5">
+          <P >Are you agree to Terms of Condition</P>
+         </div>
+          </div>
+          
+      </form>
+      <div class="col-md-12  m-3">
+        <div class="col-md-10">
+          <button type="submit" class="btn btn-info " style="width: 106%;background-color: #F44C4C;
+          border: aliceblue;">Sign up</button>
+        </div>
+       </div>
+       <hr>
+       <div class="col-md-12 m-3">
+       <div class="col-md-12">
+        <div class="form-group">
+          <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
+          <div class="input-group" style="width: 177%;">
+            <div class="input-container">
+                <input type="text" class="form-control" style="width: 126%;"> 
+                <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
+                <p  style="margin-top: -49px;margin-left: 48px;">LogIn with Google</p>
+                
+            </div>
+        </div>
+
+          <!-- <mat-error>
+              <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+          </mat-error> -->
+
+          
+          
+      </div>
+       </div>
+       <div class="col-md-12 ">
+        <div class="form-group">
+            <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
+            <div class="input-group" style="width: 177%;">
+              <div class="input-container">
+                  <input type="text" class="form-control" style="width: 126%;">
+                  <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
+                  <p  style="margin-top: -52px;margin-left: 47px;">LogIn with Apple</p>
+                  
+              </div>
+          </div>
+  
+            <!-- <mat-error>
+                <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+            </mat-error> -->
+  
+            
+            
+        </div>
+      </div>
+       </div>
+    
+      </div>
+      </div>
+      </a>
+      </div>
+       </div>
+      </div>
+     </div>
+  </div>
+
+</header>
+<!--end header-->
