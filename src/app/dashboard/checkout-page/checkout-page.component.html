@@ -7,11 +7,14 @@
                     <li style="cursor:pointer;" class="breadcrumb-item">
                         <a 
                             href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
-                            <i class='bx bx-home-alt'></i>
+                            <i class='bx bx-home-alt' style="color:#5F6C72"></i>
                         </a>
                     </li>
-                    <li style="cursor:pointer;" class="breadcrumb-item active" routerLink="/system-settings/x-ray-type" aria-current="page">My Cart</li>
-                  
+                    <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+                    ;line-height: 20px;" aria-current="page">My Cart</li>
+                     <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+                     ;line-height: 20px;" aria-current="page">checkout</li>
+                                    
                 </ol>
             </nav>
         </div>
@@ -23,8 +26,8 @@
                     <div class="col-md-6">
                         <h5 class="m-3  text-white">Shipping Address</h5>
                         </div>
-                        <div class="col-md-6">
-                         <button class="btn text-white mt-2" style="background-color: #3A51A2;" (click)="openeclinicAcessDialog()">Add New Address</button>
+                        <div class="col-md-6  text-end p-1">
+                         <button class="btnn text-white mt-1" style="background-color: #3A51A2;" (click)="openeclinicAcessDialog()">Add New Address</button>
                         </div>
                   </div>
                   <div class="col-md-12 p-3">
@@ -95,7 +98,7 @@
                     <div class="card" style="padding: 10px;     margin-left: 16px;
                     ">
                       <div class="align-items-center">
-                        <h5 class="font-weight-bold">Card Totals</h5>
+                        <h5 class="font-weight-bold">Order Summery</h5>
                         <div class="row">
                           <div class="d-flex justify-content-between p-2">
                             <span>Sub-totals</span>
@@ -107,7 +110,7 @@
                             <span class="font-weight-bold"> Free</span>
                           </div>
           
-                          <div class="d-flex justify-content-between py-2">
+                          <div class="d-flex justify-content-between p-2">
                              <a> Discount</a>
                              <span class="font-weight-bold"> $104</span>
                           </div><hr>

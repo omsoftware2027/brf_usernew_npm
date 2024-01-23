@@ -21,6 +21,16 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
 import { AddNewUserPopupComponent } from './add-new-user-popup/add-new-user-popup.component';
 import { StatementComponent } from './statement/statement.component';
 import { MeatMarketsComponent } from './meat-markets/meat-markets.component';
+import { BrFoodServicesComponent } from './br-food-services/br-food-services.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { CreditCardsComponent } from './credit-cards/credit-cards.component';
+import { LocationComponent } from './location/location.component';
+import { PrivacyRightComponent } from './privacy-right/privacy-right.component';
+import { ReturnPolicyComponent } from './return-policy/return-policy.component';
+import { OrderHoursComponent } from './order-hours/order-hours.component';
+import { GetRemindersComponent } from './get-reminders/get-reminders.component';
+import { SiteMapComponent } from './site-map/site-map.component';
+import { NewCustomersComponent } from './new-customers/new-customers.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +44,16 @@ import { MeatMarketsComponent } from './meat-markets/meat-markets.component';
     AddNewUserPopupComponent,
     StatementComponent,
     MeatMarketsComponent,
+    BrFoodServicesComponent,
+    PricingComponent,
+    CreditCardsComponent,
+    LocationComponent,
+    PrivacyRightComponent,
+    ReturnPolicyComponent,
+    OrderHoursComponent,
+    GetRemindersComponent,
+    SiteMapComponent,
+    NewCustomersComponent,
 
   ],
   imports: [

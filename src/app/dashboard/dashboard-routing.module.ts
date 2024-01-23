@@ -9,6 +9,16 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { StatementComponent } from './statement/statement.component';
 import { MeatMarketsComponent } from './meat-markets/meat-markets.component';
+import { BrFoodServicesComponent } from './br-food-services/br-food-services.component';
+import { PricingComponent } from './pricing/pricing.component';
+import { CreditCardsComponent } from './credit-cards/credit-cards.component';
+import { LocationComponent } from './location/location.component';
+import { PrivacyRightComponent } from './privacy-right/privacy-right.component';
+import { ReturnPolicyComponent } from './return-policy/return-policy.component';
+import { OrderHoursComponent } from './order-hours/order-hours.component';
+import { GetRemindersComponent } from './get-reminders/get-reminders.component';
+import { SiteMapComponent } from './site-map/site-map.component';
+import { NewCustomersComponent } from './new-customers/new-customers.component';
 
 
 const routes: Routes = [
@@ -77,6 +87,70 @@ const routes: Routes = [
         component: MeatMarketsComponent,
         data: {
           title: 'meat market'
+        }
+      },
+      {
+        path: 'br-food-services',
+        component: BrFoodServicesComponent,
+        data: {
+          title: 'br food service'
+        }
+      },
+      {
+        path: 'pricing',
+        component: PricingComponent,
+        data: {
+          title: 'pricing'
+        }
+      },
+      {
+        path: 'credit-cards',
+        component: CreditCardsComponent,
+        data: {
+          title: 'credit-cards'
+        }
+      },
+      
+      {
+        path: 'privacy-right',
+        component: PrivacyRightComponent,
+        data: {
+          title: 'privacy right'
+        }
+      },
+      {
+        path: 'return-policy',
+        component: ReturnPolicyComponent,
+        data: {
+          title: 'return policy'
+        }
+      },
+      {
+        path: 'order-hours',
+        component: OrderHoursComponent,
+        data: {
+          title: 'order hours'
+        }
+      },
+      {
+        path: 'get-reminders',
+        component: GetRemindersComponent,
+        data: {
+          title: 'get reminders'
+        }
+      },
+      {
+        path: 'site-map',
+        component: SiteMapComponent,
+        data: {
+          title: 'site map'
+        }
+      },
+      {
+        path: 'new-customers',
+        component: NewCustomersComponent,
+        data: {
+          title: 'new customers'
         }
       },
 
