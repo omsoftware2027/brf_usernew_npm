@@ -7,6 +7,8 @@ import { AddWishlistComponent } from './add-wishlist/add-wishlist.component';
 import { MyCartListComponent } from './my-cart-list/my-cart-list.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
+import { StatementComponent } from './statement/statement.component';
+import { MeatMarketsComponent } from './meat-markets/meat-markets.component';
 
 
 const routes: Routes = [
@@ -61,6 +63,20 @@ const routes: Routes = [
         component: AccountDetailComponent,
         data: {
           title: 'accountdetail'
+        }
+      },
+      {
+        path: 'statement',
+        component: StatementComponent,
+        data: {
+          title: 'statement'
+        }
+      },
+      {
+        path: 'meat-markets',
+        component: MeatMarketsComponent,
+        data: {
+          title: 'meat market'
         }
       },
 

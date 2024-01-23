@@ -13,13 +13,13 @@
          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
          <div class="headRight">
           <ul class="d-flex">
-          <li>
+          <li [routerLink]="['/dashboard/statement']">
             <a>Our statement</a>
           </li>
           <li>
              |
           </li>
-          <li>
+          <li [routerLink]="['/dashboard/meat-markets']">
             <a>Meat markets & large facilities,special discounts</a>
           </li>
           <li>
@@ -89,7 +89,7 @@
                       <input class="form-control" type="search" id="example-search-input" placeholder="  | Search for item " style="background-color: #F3F3F3;border:none">
                       <span class="input-group-append" style="background-color: #F44C4C;">
                         <button class="btn pb-0 custom-red-button" type="button">
-                          <i class="ri-search-line search-icon"></i> 
+                          <i class="ri-search-line search-icon" style="color:white;"></i> 
                         </button>
                       </span>
                     </div>

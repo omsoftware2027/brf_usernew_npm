@@ -19,6 +19,7 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 
 import * as $ from 'jquery';
 
+
 // const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 //   suppressScrollX: true,
 //   wheelPropagation: false
@@ -29,6 +30,7 @@ import * as $ from 'jquery';
     AppComponent,
     FullLayoutComponent,
     ContentLayoutComponent,
+   
   ],
   imports: [
     BrowserModule,

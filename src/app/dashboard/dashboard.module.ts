@@ -19,6 +19,8 @@ import { MyCartListComponent } from './my-cart-list/my-cart-list.component';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { AccountDetailComponent } from './account-detail/account-detail.component';
 import { AddNewUserPopupComponent } from './add-new-user-popup/add-new-user-popup.component';
+import { StatementComponent } from './statement/statement.component';
+import { MeatMarketsComponent } from './meat-markets/meat-markets.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { AddNewUserPopupComponent } from './add-new-user-popup/add-new-user-popu
     CheckoutPageComponent,
     AccountDetailComponent,
     AddNewUserPopupComponent,
+    StatementComponent,
+    MeatMarketsComponent,
 
   ],
   imports: [
