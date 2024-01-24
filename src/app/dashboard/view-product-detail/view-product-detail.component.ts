@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./view-product-detail.component.scss']
 })
 export class ViewProductDetailComponent {
+  currentValue: number = 22;
+  incrementValue() {
+    this.currentValue += 1;
+  }
 
+  decrementValue() {
+    this.currentValue -= 1;
+  }
 }

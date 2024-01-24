@@ -19,6 +19,7 @@ import { OrderHoursComponent } from './order-hours/order-hours.component';
 import { GetRemindersComponent } from './get-reminders/get-reminders.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { NewCustomersComponent } from './new-customers/new-customers.component';
+import { BlogComponent } from './blog/blog.component';
 
 
 const routes: Routes = [
@@ -67,7 +68,13 @@ const routes: Routes = [
           title: 'checkoutpage'
         }
       },
-
+      {
+        path: 'location',
+        component: LocationComponent,
+        data: {
+          title: 'location'
+        }
+      },
       {
         path: 'account-detail',
         component: AccountDetailComponent,
@@ -151,6 +158,14 @@ const routes: Routes = [
         component: NewCustomersComponent,
         data: {
           title: 'new customers'
+        }
+      },
+
+      {
+        path: 'blog',
+        component: BlogComponent,
+        data: {
+          title: 'blog'
         }
       },
 

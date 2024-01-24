@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-cart-list.component.scss']
 })
 export class MyCartListComponent {
+  currentValue: number = 22;
+  incrementValue() {
+    this.currentValue += 1;
+  }
 
+  decrementValue() {
+    this.currentValue -= 1;
+  }
 }

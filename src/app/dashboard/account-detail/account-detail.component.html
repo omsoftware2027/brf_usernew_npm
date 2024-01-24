@@ -1,67 +1,79 @@
-<div class="container" style="margin-top:145px">
-    <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+
+<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3" style="margin-top:144px;height: 72px;background-color: 
+#F2F4F5;">
+<div class="ps-4 container">
+    <nav aria-label="breadcrumb" >
+        <ol class="breadcrumb mb-0 p-0" >
+            <li style="cursor:pointer;" class="breadcrumb-item">
+                <a 
+                    href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
+                    <i class='bx bx-home-alt' style="color:#5F6C72"></i>
+                </a>
+            </li>
+            <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+            ;line-height: 20px;" aria-current="page">My Account
+             </li>
+             <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+             ;line-height: 20px;" aria-current="page">Account
+              </li>
+          
+        </ol>
+    </nav>
+</div>
+</div>
+
+<div class="container" >
     
-        <div class="ps-3">
-            <nav aria-label="breadcrumb" >
-                <ol class="breadcrumb mb-0 p-0">
-                    <li style="cursor:pointer;" class="breadcrumb-item">
-                        <a 
-                            href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
-                            <i class='bx bx-home-alt'style="color:#5F6C72"></i>
-                        </a>
-                    </li>
-                    <li style="cursor:pointer;" class="breadcrumb-item active" routerLink="/system-settings/x-ray-type"  style="color:#4C7C17;font-size: 14px;font-weight: 500
-                    ;line-height: 20px;"aria-current="page">Account Detail</li>
-                    <li style="cursor:pointer;" class="breadcrumb-item active" routerLink="/system-settings/x-ray-type" ari style="color:#4C7C17;font-size: 14px;font-weight: 500
-                    ;line-height: 20px;"a-current="page">My Profile</li>
-                </ol>
-            </nav>
-        </div>
-      </div>
     <div class="col-md-12 d-flex  ">
-        <div class="col-md-3 card p-3 cartDiv">
-        <div class="d-flex" (click)="showSignInForm()">
+        <div class="col-md-3 card p-3 cartDiv" style="border-radius: 10px;">
+        <div class="d-flex " (click)="showSignInForm()" [class.profile-open]="isProfileOpen" >
             <span class=""><i class="bx bxs-user m-2 "></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Profile</h6>
             
         </div>
-        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
-        <div  class="d-flex" (click)="showpassword()">
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+        border: 2px;">
+        <div  class="d-flex" (click)="showpassword()" [class.password-open]="isPasswordOpen">
             <span class=""><i class="bx bxs-lock m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">Change Password</h6>
         </div>
-        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
-        <div class="d-flex"(click)="myorder()">
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+        border: 2px;">
+        <div class="d-flex"(click)="myorder()" [class.password-open]="isorderOpen">
             <span class=""><i class="bx bxs-heart m-2"></i></span>
             <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
         </div>
-        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
-        <div class="d-flex" (click)="bulkorder()">
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+        border: 2px;">
+        <div class="d-flex" (click)="bulkorder()" [class.password-open]="isbulkOpen">
             <span class=""><i class="bx bxs-heart m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
         </div>
-        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
-        <div class="d-flex" (click)="orderguide()">
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+        border: 2px;">
+        <div class="d-flex" (click)="orderguide()" [class.password-open]="isguideOpen">
             <span class=""><i class="bx bxs-user m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
         </div>
-        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+        border: 2px;">
         
-        <div class="d-flex" (click)="mystaff()">
+        <div class="d-flex" (click)="mystaff()" [class.password-open]="staffOpen">
             <span class=""><i class="bx bxs-user m-2"></i></span>
             <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Staff</h6>
         </div>
-        <hr class="mt-1" style="border-radius:2px;color:#4C7C17">
-        <div class="d-flex" (click)="myaddress()">
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+        border: 2px;">
+        <div class="d-flex" (click)="myaddress()" [class.password-open]="addressOpen">
             <span class=""><i class="bx bxs-home m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Address</h6>
         </div>
         </div>
-        <div class="col-md-9 ">
+        <div class="col-md-9 " >
             <div class="row">
                 <div class="col-xl-11 mx-auto">
                     <div class="content-wrapper">
-                        <div class="card ">
+                        <div class="card "  style="border-radius: 16px;">
                             <div class="card-body p-4">
                                 <!-- <div class="card-title d-flex align-items-center">
                                     <h5 class="mb-0 main-text">My Profile</h5>
@@ -71,7 +83,7 @@
                                     <div class="card-title d-flex align-items-center">
                                         <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Profile</h5>
                                     </div>
-                                    <hr>
+                                    <hr style="height: 2px;color: #4C7C17;">
                                     <form class="g-3"  [formGroup]="formGroup"    >
                                      <div class="col-md-12 card" style="border-radius: 9px;">
                                       <div class="row p-4" > 
@@ -370,7 +382,7 @@
                                     <div class="card-title d-flex align-items-center">
                                         <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">Change password</h5>
                                     </div>
-                                    <hr>
+                                    <hr style="height: 2px;color: #4C7C17;">
                                     <form class="g-3"  [formGroup]="formGroup"    >
                                      <div class="col-md-12 card" style="border-radius: 9px;">
                                       <div class="row p-4" > 
@@ -441,7 +453,7 @@
                                     <div class="card-title d-flex align-items-center">
                                         <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Order</h5>
                                     </div>
-                                    <hr>
+                                    <hr style="height: 2px;color: #4C7C17;">
                                     <div class="col-md-12 card mt-4" style="border-radius: 9px;">
                                         <h6 class="p-3" style="font-weight: 500;font-size: 20px;line-height: 24px;color:#000">My Order List </h6>
                                         <div style="background-color: #F44C4C; height: 35px;" >
@@ -711,7 +723,7 @@
                                     <div class="card-title d-flex align-items-center">
                                         <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Bulk Order Guide</h5>
                                     </div>
-                                    <hr>
+                                    <hr style="height: 2px;color: #4C7C17;">
                               
                                     <div class="col-md-12 card" style="border-radius: 9px;">
                                         <table class="table">
@@ -804,7 +816,7 @@
                                     <div class="card-title d-flex align-items-center">
                                         <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Order Guide</h5>
                                     </div>
-                                    <hr>
+                                    <hr style="height: 2px;color: #4C7C17;">
                                    <div class="col-md-12 card" style="border-radius: 9px;">
                                     <div class="d-flex mt-3 p-3">
                                      <div class="col-md-6">
@@ -912,9 +924,9 @@
                               
                                   <div class="col-md-12 " *ngIf="Myaddress">
                                     <div class="card-title d-flex align-items-center">
-                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Staff</h5>
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Address</h5>
                                     </div>
-                                    <hr>
+                                    <hr style="height: 2px;color: #4C7C17;">
                                    <div class="col-md-12 card" style="border-radius: 9px;">
                                     <div class="d-flex">
                                      <div class="col-md-6">
@@ -981,7 +993,7 @@
                                     <div class="card-title d-flex align-items-center">
                                         <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Staff</h5>
                                     </div>
-                                    <hr>
+                                    <hr style="height: 2px;color: #4C7C17;">
                                    <div class="col-md-12 card" style="border-radius: 9px;">
                                     <div class="d-flex">
                                      <div class="col-md-6">
@@ -1024,8 +1036,7 @@
                                           
                                             <td>   
                                                 
-                                                <button type="button" class="btn mt-1" style="background-color: #3A51A2; color: white;width:124px;height: 33px;
-                                                 border-radius: 1px;   ">EDIT
+                                                <button type="button" class="btn mt-1" style="background-color: #3A51A2; color: white;width:124px;height: 33px;border-radius: 1px;   ">EDIT
                                                   </button><br>
                                                   <button type="button" class="btn mt-1" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
                                                    border-radius: 1px; ">REMOVE

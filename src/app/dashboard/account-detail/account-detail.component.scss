@@ -7,7 +7,9 @@
     font-size: 14px;
     // line-height: 37px;
     font-family: 'Prompt';
+    border-radius: 1px;
 }
+
 .btnn{
     width: 197px;
     height: 33px;
@@ -43,10 +45,10 @@
   height: 22px;
   margin-left: -20px;
   border-radius: 5px;
-  border: none;
   font-weight: 700;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 22px;  border: none;
+
 }
  thead{
     background-color:  #E4E7E9;
@@ -55,3 +57,12 @@
  .cartDiv{
     cursor: pointer;  
   }
+  .profile-open span i,
+  .profile-open h6 {
+      color: #F44C4C; /* Set your desired color */
+  }
+  .password-open span i,
+  .password-open h6 {
+      color: #F44C4C; /* Set your desired color */
+  }
+  
