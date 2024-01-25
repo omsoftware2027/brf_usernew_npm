@@ -66,3 +66,8 @@
       color: #F44C4C; /* Set your desired color */
   }
   
+  thead, tbody, tfoot, tr, td, th {
+    border-color: inherit ;
+   border-style: solid;
+    border-width: 0; 
+   }

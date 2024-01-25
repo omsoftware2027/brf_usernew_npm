@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent {
-
+  recentpos:boolean=true;
+  recentarchiv:boolean=false;
+ recentpost(){
+  this.recentpos=true;
+  this.recentarchiv=false;
+ }
+ recentarchives(){
+  this.recentpos=false;
+  this.recentarchiv=true;
+ }
 }

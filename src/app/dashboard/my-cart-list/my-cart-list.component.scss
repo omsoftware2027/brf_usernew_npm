@@ -4,3 +4,8 @@ thead{
     color: #475156;
     
  }
+ thead, tbody, tfoot, tr, td, th {
+    border-color: inherit ;
+   border-style: solid;
+    border-width: 0; 
+   }

@@ -54,7 +54,11 @@ label {
   margin-right: 5px;
 }
 
-
+.form-control{
+  width: 267px;
+  height: 57px;
+  border-radius: 2px;
+}
 // .footer p {
 //     color: #FFF;
 //     font-family: Noto Sans;
@@ -153,10 +157,10 @@ label {
 //   margin-right: 10px;
 // }
 
-// @media screen and (max-width: 768px) {
-//   .content-footer{
-//     // text-align: center;
-//     margin-left: 500px;
-//     position: relative;
-//   }
-// }
+@media screen and (max-width: 768px) {
+  .content-footer{
+    // text-align: center;
+    margin-left: 500px;
+    position: relative;
+  }
+}

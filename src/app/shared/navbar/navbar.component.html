@@ -2,16 +2,15 @@
 <header class="top-header">
 	<nav class="navbar navbar-expand" style="background-color: #fff;">
 		<div class="container">
-      <div class="top-calendar">
-        <div class="d-flex col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+      <div class="d-flex col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
           <img
           src="../../../assets/images/logo (2).png"
           class="logo-icon-2"
           alt=""/>
         </div>
-         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 ">
-         <div class="headRight">
+         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+         <div class="headRight mt-2">
           <ul class="d-flex">
           <li [routerLink]="['/dashboard/statement']">
             <a>Our statement</a>
@@ -38,15 +37,12 @@
             <a>|</a>
           </li>
           <li>
-            <a style="color:#F44C4C" >SIGN IN OR REGISTER</a>
+            <a style="color:#F44C4C" >Log Out</a>
           </li>
           </ul>
          </div>
          </div>
         </div>
-
-
-      </div>
 
 
     </div>
@@ -119,24 +115,25 @@
       </a> -->
       <a class="btn dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
         <img src="../../../assets/images/bsup.svg" alt="">
-         <a href="" class="text-black">Sign In </a>
+         <a  class="text-black">Sign In </a>
     
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="border-radius: 2px;">
-      <div class="col-md-12 p-2 m-2 d-flex">
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="border-radius: 2px; width: 424px;" >
+      <div class="col-md-12 ps-5 mt-3 d-flex">
         <div class="col-md-6" (click)="showSignInForm()">
-         <p>Sign In</p>
+         <p style="font-size: 20px;font-weight: 500;line-height: 28px;">Sign In</p>
+         
         </div>
         <div class="col-md-6" (click)="showSignUpForm()">
-          <p>Sign Up</p>
+          <p style="font-size: 20px;font-weight: 500;line-height: 28px;">Sign Up</p>
         </div>
-        <hr>
+        <hr >
        
       </div>
       <div class="col-md-12 " *ngIf="showSignIn">
         <form class="g-3"  [formGroup]="formGroup"    >
           <div class="col-md-6 m-3">
               <div class="form-group">
-                  <label for="" class="form-label">Email Address <span class="text-danger">*</span></label>
+                  <label for="" class="form-label">Email Address </label>
                   <div class="input-group" style="width: 177%;">
                       <input type="text" placeholder="" class="form-control">
                   </div>
@@ -151,7 +148,7 @@
           </div>
           <div class="col-md-6 m-3">
             <div class="form-group">
-                <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label>
+                <label for="" class="form-label">Password<span class="text-info" style="margin-left: 176px;">Forgot Password</span></label>
                 <div class="input-group" style="width: 177%;">
                     <input type="text"  placeholder="" class="form-control">
                 </div>
@@ -167,20 +164,23 @@
          
       </form>
       <div class="col-md-12  m-3">
-        <div class="col-md-10">
+        <div class="col-md-10 ">
           <button type="submit" class="btn btn-info " style="width: 106%;background-color: #F44C4C;
-          border: aliceblue;">Sign up</button>
+          border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
+                    font-size: 15px;
+                    line-height: 36px;">Sign In <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+           
         </div>
        </div>
        <hr>
-       <div class="col-md-10 m-3">
-        <div class="form-group">
+       <div class="col-md-12 ps-3">
+        <div class="col-md-11">
             <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
-            <div class="input-group" style="width: 177%;">
-              <div class="input-container">
+            <div class="col-md-12" >
+              <div class="col-md-12">
                   <input type="text" class="form-control">
                   <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
-                  <p  style="margin-top: -49px;margin-left: 48px;">LogIn with Google</p>
+                  <p  style="margin-top: -49px;margin-left: 114px;">LogIn with Google</p>
                   
               </div>
           </div>
@@ -193,14 +193,14 @@
             
         </div>
     </div>
-    <div class="col-md-10 m-3">
-      <div class="form-group">
+    <div class="col-md-12 ps-3">
+      <div class="col-md-11">
           <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
-          <div class="input-group" style="width: 177%;">
-            <div class="input-container">
+          <div class="col-md-12" >
+            <div class="col-md-12">
                 <input type="text" class="form-control">
                 <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
-                <p  style="margin-top: -52px;margin-left: 47px;">LogIn with Apple</p>
+                <p  style="margin-top: -52px;margin-left: 114px;">LogIn with Apple</p>
                 
             </div>
         </div>
@@ -299,7 +299,7 @@
           </div>
          </div>
          <div class="col-md-5">
-          <P >Are you agree to Terms of Condition</P>
+          <P  >Are you agree to <span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Terms of Condition</span> and <br><span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Privacy Policy</span>.</P>
          </div>
           </div>
           
@@ -307,19 +307,40 @@
       <div class="col-md-12  m-3">
         <div class="col-md-10">
           <button type="submit" class="btn btn-info " style="width: 106%;background-color: #F44C4C;
-          border: aliceblue;">Sign up</button>
+          border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
+                    font-size: 15px;
+                    line-height: 36px;">Sign In <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
         </div>
        </div>
        <hr>
-       <div class="col-md-12 m-3">
-       <div class="col-md-12">
-        <div class="form-group">
-          <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
-          <div class="input-group" style="width: 177%;">
-            <div class="input-container">
-                <input type="text" class="form-control" style="width: 126%;"> 
-                <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
-                <p  style="margin-top: -49px;margin-left: 48px;">LogIn with Google</p>
+       <div class="col-md-12 ps-3">
+        <div class="col-md-11">
+            <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
+            <div class="col-md-12" >
+              <div class="col-md-12">
+                  <input type="text" class="form-control">
+                  <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
+                  <p  style="margin-top: -49px;margin-left: 114px;">LogIn with Google</p>
+                  
+              </div>
+          </div>
+
+            <!-- <mat-error>
+                <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+            </mat-error> -->
+
+            
+            
+        </div>
+    </div>
+    <div class="col-md-12 ps-3">
+      <div class="col-md-11">
+          <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
+          <div class="col-md-12" >
+            <div class="col-md-12">
+                <input type="text" class="form-control">
+                <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
+                <p  style="margin-top: -52px;margin-left: 114px;">LogIn with Apple</p>
                 
             </div>
         </div>
@@ -331,28 +352,7 @@
           
           
       </div>
-       </div>
-       <div class="col-md-12 ">
-        <div class="form-group">
-            <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
-            <div class="input-group" style="width: 177%;">
-              <div class="input-container">
-                  <input type="text" class="form-control" style="width: 126%;">
-                  <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
-                  <p  style="margin-top: -52px;margin-left: 47px;">LogIn with Apple</p>
-                  
-              </div>
-          </div>
-  
-            <!-- <mat-error>
-                <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-            </mat-error> -->
-  
-            
-            
-        </div>
-      </div>
-       </div>
+    </div>
     
       </div>
       </div>
