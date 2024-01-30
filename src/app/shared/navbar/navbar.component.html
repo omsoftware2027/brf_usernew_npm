@@ -3,13 +3,13 @@
 	<nav class="navbar navbar-expand" style="background-color: #fff;">
 		<div class="container">
       <div class="d-flex col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 mt-3">
           <img
           src="../../../assets/images/logo (2).png"
           class="logo-icon-2"
           alt=""/>
         </div>
-         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 mt-3">
          <div class="headRight mt-2">
           <ul class="d-flex">
           <li [routerLink]="['/dashboard/statement']">
@@ -73,11 +73,11 @@
 
                           <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Pork</span>  </a>
                          
-                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Pork</span>  </a>
+                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Poultry</span>  </a>
                          
-                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Pork</span>  </a>
+                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">Turkey</span>  </a>
                          
-                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9A-Pork</span>  </a>
+                          <a class="dropdown-item" >  <img src="../../../assets/images/french fries.png" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">9D-Eggs</span>  </a>
                           
                         </div>
                       </div>
@@ -102,8 +102,9 @@
        <a style="color:#fff ; margin-left:70px">
         <img src="/assets/images/myCart icon.png" class="catImg">
         <span class="text-black" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
-        <!-- <a class="text-black">$240</a> -->
+        <!-- <a style="color:#F44C4C" >$2121</a> -->
        </a>
+       
        <!-- <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none;">
         <img src="../../../assets/images/bsup.svg" alt="">
          <a  class="text-black">A Supplier</a>
@@ -113,23 +114,26 @@
         <a class="dropdown-item">Sign In</a>
       </div>
       </a> -->
-      <a class="btn dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
+      <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
         <img src="../../../assets/images/bsup.svg" alt="">
-         <a  class="text-black">Sign In </a>
+         <a  class="text-black ms-1">Sign In </a>
     
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="border-radius: 2px; width: 424px;" >
+      <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink" style="border-radius: 2px; width: 424px;" >
       <div class="col-md-12 ps-5 mt-3 d-flex">
-        <div class="col-md-6" (click)="showSignInForm()">
+        <div class="col-md-6" (click)="showSignInForm($event)">
          <p style="font-size: 20px;font-weight: 500;line-height: 28px;">Sign In</p>
-         
+         <!-- <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+         border: 2px;"> -->
         </div>
-        <div class="col-md-6" (click)="showSignUpForm()">
+        <div class="col-md-6" (click)="showSignUpForm($event)">
           <p style="font-size: 20px;font-weight: 500;line-height: 28px;">Sign Up</p>
         </div>
-        <hr >
+        
        
       </div>
-      <div class="col-md-12 " *ngIf="showSignIn">
+      <hr class="mt-1" style="border-radius:2px;color:#7c1717;height: 2px;
+      border: 2px;">
+      <div class="col-md-12 p-3 " *ngIf="showSignIn">
         <form class="g-3"  [formGroup]="formGroup"    >
           <div class="col-md-6 m-3">
               <div class="form-group">
@@ -168,11 +172,11 @@
           <button type="submit" class="btn btn-info " style="width: 106%;background-color: #F44C4C;
           border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
                     font-size: 15px;
-                    line-height: 36px;">Sign In <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                    line-height: 36px;">SIGN  IN <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
            
         </div>
        </div>
-       <hr>
+       <!-- <hr> -->
        <div class="col-md-12 ps-3">
         <div class="col-md-11">
             <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
@@ -214,7 +218,7 @@
       </div>
     </div>
       </div>
-      <div class="col-md-12 " *ngIf="showSignUp">
+      <div class="col-md-12 p-3" *ngIf="showSignUp">
         <form class="g-3"  [formGroup]="formGroup"    >
           <div class="col-md-6 m-3">
               <div class="form-group">
@@ -309,10 +313,10 @@
           <button type="submit" class="btn btn-info " style="width: 106%;background-color: #F44C4C;
           border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
                     font-size: 15px;
-                    line-height: 36px;">Sign In <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                    line-height: 36px;">SIGN IN <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
         </div>
        </div>
-       <hr>
+       <!-- <hr> -->
        <div class="col-md-12 ps-3">
         <div class="col-md-11">
             <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->

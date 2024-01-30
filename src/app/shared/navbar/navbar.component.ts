@@ -155,12 +155,15 @@ export class NavbarComponent implements OnInit{
       ondropdownclick(){
         console.log('dropdownopen')
       }
-      showSignInForm() {
+      showSignInForm(event: Event) {
+        event.stopPropagation();
         this.showSignIn = true;
         this.showSignUp = false;
       }
     
-      showSignUpForm() {
+
+      showSignUpForm(event: Event) {
+        event.stopPropagation();
         this.showSignIn = false;
         this.showSignUp = true;
       }

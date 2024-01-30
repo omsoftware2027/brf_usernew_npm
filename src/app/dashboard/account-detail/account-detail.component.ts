@@ -71,7 +71,7 @@ showpassword() {
   this.Myaddress=false;
 }
 myorder() {
-  this.showmyprfile = false;
+  this.isProfileOpen = false;
   this.isPasswordOpen=false;
   this.addressOpen=false;
   this.staffOpen=false;
