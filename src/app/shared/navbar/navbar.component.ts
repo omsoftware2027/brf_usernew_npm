@@ -6,6 +6,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { SigninPopupComponent } from '../signin-popup/signin-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { LoginComponent } from 'src/app/auth/login/login.component';
+import { SignInComponent } from 'src/app/dashboard/sign-in/sign-in.component';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
@@ -166,5 +168,11 @@ export class NavbarComponent implements OnInit{
         event.stopPropagation();
         this.showSignIn = false;
         this.showSignUp = true;
+      }
+      logoutaccount(): void {
+        this.dialog.open(SignInComponent, {
+          width: '400px',
+         
+        });
       }
 }

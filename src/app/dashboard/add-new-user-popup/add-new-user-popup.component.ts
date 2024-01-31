@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-new-user-popup',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddNewUserPopupComponent {
   formGroup!:FormGroup
-  constructor( private formBuilder:FormBuilder){
+  constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<AddNewUserPopupComponent>){
 
   }
   ngOnInit(){
@@ -16,5 +17,11 @@ export class AddNewUserPopupComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
+
+
+  
+  }
+  closeDialog(){
+    this.dialogRef.close();
   }
 }

@@ -20,6 +20,7 @@ import { GetRemindersComponent } from './get-reminders/get-reminders.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { NewCustomersComponent } from './new-customers/new-customers.component';
 import { BlogComponent } from './blog/blog.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 const routes: Routes = [
@@ -166,6 +167,13 @@ const routes: Routes = [
         component: BlogComponent,
         data: {
           title: 'blog'
+        }
+      },
+      {
+        path: 'sign-in',
+        component: SignInComponent,
+        data: {
+          title: 'sign in '
         }
       },
 

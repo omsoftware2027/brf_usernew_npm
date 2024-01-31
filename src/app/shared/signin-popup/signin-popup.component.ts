@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-signin-popup',
@@ -8,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class SigninPopupComponent {
   formGroup!:FormGroup
-  constructor( private formBuilder:FormBuilder){
+  constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<SigninPopupComponent>){
 
   }
   ngOnInit(){
@@ -17,4 +18,7 @@ export class SigninPopupComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
+  closeDialog(){
+  this.dialogRef.close();
+}
 }

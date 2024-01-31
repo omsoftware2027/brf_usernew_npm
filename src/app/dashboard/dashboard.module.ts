@@ -32,6 +32,7 @@ import { GetRemindersComponent } from './get-reminders/get-reminders.component';
 import { SiteMapComponent } from './site-map/site-map.component';
 import { NewCustomersComponent } from './new-customers/new-customers.component';
 import { BlogComponent } from './blog/blog.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { BlogComponent } from './blog/blog.component';
     SiteMapComponent,
     NewCustomersComponent,
     BlogComponent,
+    SignInComponent,
 
   ],
   imports: [

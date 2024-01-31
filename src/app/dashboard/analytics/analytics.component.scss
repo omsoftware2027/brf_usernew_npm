@@ -20,3 +20,27 @@
 .category-card:hover {
     background-color: #bcdc98 !important;
 }
+.card {
+    .custom-image {
+      width: 130px;
+      height: 130px;
+      border: 2px solid #73A63B !important;
+      display: flex;
+      flex-shrink: 0;
+      // Add any other styling you want for the image here
+    }
+   
+    // Add any other styling for the card container if needed
+  }
+  .btnn{
+    background-color: #F44C4C !important;
+     color: white !important;
+      width:154px;
+      margin-left:-3px;
+      font-size: 11px;
+      line-height: 35px;
+      font-family: "Public Sans", sans-serif;
+      font-weight: 600;
+     border-radius: 1px;
+      border: white;
+  }

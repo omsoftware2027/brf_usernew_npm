@@ -3,9 +3,18 @@
         <div class="team-member-form content-wrapper">
             <div class="">
                 <div class="">
-                    <div class="card-title d-flex align-items-center" style="background-color: #F44C4C;height:60px;">
-                        <h5 class="mb-0 main-text text-white m-3">Add New User</h5>
-                    </div>
+                    <div class="d-flex" style="background-color: #F44C4C;height:60px;">
+                        <div class="col-md-12 d-flex">
+                          <div class="col-md-6">
+                              <h5 class="mb-0 main-text text-white m-3">Add New Address </h5>
+                          </div>
+                         <div class="col-md-6 " style="text-align: end;">
+                          <button class="close-icon btnn p-0" (click)="closeDialog()"> <i class="bx bx-x"></i></button>
+  
+                         </div>
+                        </div>
+  
+                      </div>
                 
              <div class="col-xl-12 p-5">
                 <form class="row g-3" [formGroup]="formGroup"  method="post" novalidate>
@@ -20,9 +29,9 @@
                   </div> -->
                   <div class="col-md-6 ">
                     <div class="form-group">
-                        <label for="" class="form-label">Frist Name</label>
+                        <label for="" class="form-label">First Name</label>
                         <div class="input-group">
-                            <input type="text" formControlName="manufacturerName" placeholder="City" class="form-control">
+                            <input type="text" formControlName="manufacturerName" placeholder="first name" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -39,7 +48,7 @@
                 <div class="form-group">
                     <label for="" class="form-label">Last name</label>
                     <div class="input-group">
-                        <input type="text" formControlName="medicinePackaging" placeholder="City" class="form-control">
+                        <input type="text" formControlName="medicinePackaging" placeholder="Last name" class="form-control">
                     </div>
                 </div>
             </div>
@@ -47,7 +56,7 @@
               <div class="form-group">
                   <label for="" class="form-label">Email address</label>
                   <div class="input-group">
-                      <input type="text" formControlName="composition" placeholder="Country" class="form-control">
+                      <input type="text" formControlName="composition" placeholder="email" class="form-control">
                   </div>
               </div>
           </div> 
@@ -57,7 +66,7 @@
               <div class="form-group">
                   <label for="" class="form-label">Phone Number</label>
                   <div class="input-group">
-                      <input type="text" formControlName="category" placeholder="pin Code" class="form-control">
+                      <input type="text" formControlName="category" placeholder="phone number" class="form-control">
                   </div>
               </div>
           </div>
