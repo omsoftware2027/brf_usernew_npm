@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class ViewProductDetailComponent {
   currentValue: number = 22;
-  firstIconDisabled: boolean = false;
-  secondIconDisabled: boolean = true;
+  firstIconDisabled: boolean = true;
+  secondIconDisabled: boolean = false;
   incrementValue() {
     this.currentValue += 1;
   }
