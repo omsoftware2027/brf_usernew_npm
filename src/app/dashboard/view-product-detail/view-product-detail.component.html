@@ -11,7 +11,11 @@
                     </a>
                 </li>
                 <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
-                ;line-height: 20px;" aria-current="page">Product Detail</li>
+                ;line-height: 20px;" aria-current="page">Category</li>
+                <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+                ;line-height: 20px;" aria-current="page">All Product</li>
+                  <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+                  ;line-height: 20px;" aria-current="page">View Product</li>
               
             </ol>
         </nav>
@@ -64,9 +68,13 @@
                    <button type="button" class="btn mt-3" style="width: 310px;" >ADD TO CARD
                        <img src="../../../assets/images/Add to cart.png" 
                        class="" style="width:24px;height: 24px;letter-spacing: 0.5px;"> </button>
-                    <div class="d-flex mt-4 ps-2 pt-2">
-                      <img src="../../../assets/images/add wishlist icon2 (1).png" style="width:25px;height:25px;">
-                      <p style="color:#475156;font-size:14px;letter-spacing: 0.5px;" class="">Add To Wishlist</p>
+                    <div class="d-flex mt-2 ps-2 pt-2">
+                      <!-- <img src="../../../assets/images/add wishlist icon2 (1).png" style="width:25px;height:25px;"> -->
+                      <div class="icon-container">
+                        <i class="ri-heart-line" style="font-size: 40px; cursor: pointer;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                        <i class="ri-heart-fill" style="font-size: 40px; color:red; cursor: pointer;" *ngIf="!firstIconDisabled" (click)="toggleIcons('second')"></i>
+                      </div>
+                      <p style="color:#475156;font-size:14px;letter-spacing: 0.5px;" class="mt-3">Add To Wishlist</p>
                     </div>
                       
                   </div>

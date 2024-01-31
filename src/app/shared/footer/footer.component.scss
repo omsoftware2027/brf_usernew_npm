@@ -24,3 +24,19 @@ label {
   display: inline-flex;
   margin-right: 5px;
 }
+footer{
+  position: relative;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	// background: #ffffff;
+	// border-top: 1px solid #cccbcb;
+	padding: 8px 15px;
+	font-size: 13px;
+	text-align: center;
+	// margin-left: 240px;
+	transition: all .3s ease-out;
+	z-index: 100;
+  text-align: left;
+  overflow: auto;
+}

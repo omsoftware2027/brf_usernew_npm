@@ -1,7 +1,27 @@
-
-<div class="container" style="margin-top:143px">
-  <div class="col-12" style="margin-top:11%">
-    <img src="../../../assets/images/advertise page1.png" style="width: 100%;">
+<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3" style="margin-top:144px;height: 72px;background-color: 
+#F2F4F5;">
+    
+    <div class="ps-4 container ">
+        <nav aria-label="breadcrumb" >
+            <ol class="breadcrumb mb-0 p-0" >
+                <li style="cursor:pointer;" class="breadcrumb-item">
+                    <a 
+                        href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
+                        <i class='bx bx-home-alt' style="color:#5F6C72"></i>
+                    </a>
+                </li>
+                <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+                ;line-height: 20px;" aria-current="page">Category </li>
+                  <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+                  ;line-height: 20px;" aria-current="page">product  </li>
+              
+            </ol>
+        </nav>
+    </div>
+  </div>
+<div class="container">
+  <div class="col-12" >
+    <!-- <img src="../../../assets/images/advertise page1.png" style="width: 100%;"> -->
 
  </div>
     <div class="mt-4">
@@ -42,7 +62,135 @@
               ">ADD TO CART
                   <img src="../../../assets/images/Add to cart.png" 
                   class="" style="width:15px;height: 15px;"> </button>
-                  <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1">
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+
+                 </div>
+
+                  <!-- <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1"> -->
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan2.png" style="width:90%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Breast ABF Halal 4/10LBS Avg 40LBS Case</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                 </div>
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan3.jpg" style="width:96%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">WINGS PARTY FIRST & SECOND JOINT LARGE 4X10</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                  <div class="ps-2 mt-3">
+                    <div class="icon-container">
+                      <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                    <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                    </div>
+                  </div>
+                </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan4.png" style="width:85%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Fryers 5up (CVP) Harrison Poultry 79 AVG </p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                </div>
              </div>          
            
              </div>
@@ -77,7 +225,135 @@
               ">ADD TO CART
                   <img src="../../../assets/images/Add to cart.png" 
                   class="" style="width:15px;height: 15px;"> </button>
-                  <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1">
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+
+                 </div>
+
+                  <!-- <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1"> -->
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan2.png" style="width:90%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Breast ABF Halal 4/10LBS Avg 40LBS Case</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                 </div>
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan3.jpg" style="width:96%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">WINGS PARTY FIRST & SECOND JOINT LARGE 4X10</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                  <div class="ps-2 mt-3">
+                    <div class="icon-container">
+                      <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                    <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                    </div>
+                  </div>
+                </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan4.png" style="width:85%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Fryers 5up (CVP) Harrison Poultry 79 AVG </p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                </div>
              </div>          
            
              </div>
@@ -112,7 +388,135 @@
               ">ADD TO CART
                   <img src="../../../assets/images/Add to cart.png" 
                   class="" style="width:15px;height: 15px;"> </button>
-                  <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1">
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+
+                 </div>
+
+                  <!-- <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1"> -->
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan2.png" style="width:90%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Breast ABF Halal 4/10LBS Avg 40LBS Case</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                 </div>
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan3.jpg" style="width:96%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">WINGS PARTY FIRST & SECOND JOINT LARGE 4X10</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                  <div class="ps-2 mt-3">
+                    <div class="icon-container">
+                      <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                    <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                    </div>
+                  </div>
+                </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan4.png" style="width:85%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Fryers 5up (CVP) Harrison Poultry 79 AVG </p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                </div>
              </div>          
            
              </div>
@@ -147,7 +551,298 @@
               ">ADD TO CART
                   <img src="../../../assets/images/Add to cart.png" 
                   class="" style="width:15px;height: 15px;"> </button>
-                  <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1">
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+
+                 </div>
+
+                  <!-- <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1"> -->
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan2.png" style="width:90%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Breast ABF Halal 4/10LBS Avg 40LBS Case</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                 </div>
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan3.jpg" style="width:96%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">WINGS PARTY FIRST & SECOND JOINT LARGE 4X10</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                  <div class="ps-2 mt-3">
+                    <div class="icon-container">
+                      <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                    <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                    </div>
+                  </div>
+                </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan4.png" style="width:85%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Fryers 5up (CVP) Harrison Poultry 79 AVG </p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                </div>
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chicken.png" style="width:100%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Breast ABF Halal 4/10LBS Avg 40LBS Case Boneless</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+
+                 </div>
+
+                  <!-- <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1"> -->
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan2.png" style="width:90%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Breast ABF Halal 4/10LBS Avg 40LBS Case</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                 <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                 </div>
+             </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan3.jpg" style="width:96%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">WINGS PARTY FIRST & SECOND JOINT LARGE 4X10</p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                  <div class="ps-2 mt-3">
+                    <div class="icon-container">
+                      <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                    <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                    </div>
+                  </div>
+                </div>          
+           
+             </div>
+           
+  
+               </div>
+         
+          
+       </div>
+              </div>
+         </div>
+          </div>
+          <div class="col-md-3 ">
+            <div class="card mt-2" >
+              <div class="card-contain container col-md-12">
+               <div class="col-md-12">
+                 <img src="../../../assets/images/chikan4.png" style="width:85%;margin-top: 24px;margin-left:3px;
+                 flex-shrink: 0;" class=""  	[routerLink]="['/dashboard/view-product-detail']">
+         
+             <div class="image-text mt-4">
+             <p style="margin-left: 10px; font-size:14px;">Chicken Fryers 5up (CVP) Harrison Poultry 79 AVG </p>
+            </div>
+            <div class="">
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
+              line-height: 20px;">$70/LBS
+              </a>
+            </div>
+            <div class="mb-3  justify-content-between">
+             <div class=" ps-2">
+             <div class="d-flex">
+              <button type="button" class="btnn mt-3" style="background-color: #F44C4C; color: white; width:124px ;margin-left:-3px
+              ">ADD TO CART
+                  <img src="../../../assets/images/Add to cart.png" 
+                  class="" style="width:15px;height: 15px;"> </button>
+                <div class="ps-2 mt-3">
+                  <div class="icon-container">
+                    <i class="ri-heart-fill p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"*ngIf="!firstIconDisabled" (click)="toggleIcons('second')"  ></i>
+                  <i class="ri-heart-line p-1" style="font-size: 25px; color:red; cursor: pointer;border: 1px solid #e6b2b2;" *ngIf="!secondIconDisabled" (click)="toggleIcons('first')"></i>
+                  </div>
+                </div>
              </div>          
            
              </div>
