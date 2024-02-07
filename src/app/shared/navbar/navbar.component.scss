@@ -192,7 +192,8 @@
         @include font-fam(500, 16px) ;
     }
     .logo-icon-2{
-        width: 150px;
+        width: 155px;
+        height: 55px;
     }
     .tab-pane:not(.show) {
         pointer-events: none;
@@ -301,5 +302,11 @@
 }
 .headRight{
     cursor: pointer;
+}
+
+
+.form-control:focus{
+    box-shadow: none!important;
+    border-color: #F44C4C;
 }
 }

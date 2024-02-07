@@ -3,7 +3,7 @@
     
     <div class="ps-4 container ">
         <nav aria-label="breadcrumb" >
-            <ol class="breadcrumb mb-0 p-0 mt-3" >
+            <ol class="breadcrumb mb-0 p-0 mt-4" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
                     <a 
                         href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
@@ -27,7 +27,7 @@
         </div>
         <table class="table">
             <thead>
-              <tr>
+              <tr >
                 <th scope="col" style=" color:#475156">Products</th>
                 <th scope="col" style=" color:#475156">Price</th>
                 <th scope="col" style=" color:#475156">Stock Status</th>
@@ -35,85 +35,33 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr *ngFor="let data of  wishlist">
                 <th scope="row">
                     <div  class="d-flex align-items-center">
                         <div class="flex-shrink-0 me-2">
                             <div>
                                 <img class="avatar-xs  customer-image-elem" alt=""
-                                    src="../../../assets/images/chicken.png" style="width:52px;height:52px">
+                                [src]="data.image|| 'assets/images/download (20).png'"  style="width:52px;height:52px">
                             </div>
                         </div>
                         <div class="flex-grow-1">
                             <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                    class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
+                                    class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156">{{data.productTitle}}</a></p>
                         </div>
                     </div>
 
                 </th>
-                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">1999</td>
-                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">In Stock</td>
-                <td  class="d-flex">   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white; width:160px ;height: 48px;
+                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{data.price}}</td>
+                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
+                <td  class="d-flex">   <button type="button" class="btn btn-primary mt-3" (click)="submitcart(data.productId,data.price)" style="background-color: #F44C4C; color: white; width:160px ;height: 48px;
                     border-radius: 2px;font-weight: 700;
     font-size: 14px;
     line-height: 35px;
                     ">ADD TO CART
                         <img src="../../../assets/images/Add to cart.png" 
-                        class="" style="width:24px;height: 24px;"> </button> <p class="p-4"><mat-icon style="color: #929FA5;">highlight_off</mat-icon></p></td>
+                        class="" style="width:24px;height: 24px;"> </button> <p class="p-4"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p></td>
               </tr>
-              <tr>
-                <th scope="row">
-                    <div  class="d-flex align-items-center">
-                        <div class="flex-shrink-0 me-2">
-                            <div>
-                                <img class="avatar-xs  customer-image-elem" alt=""
-                                    src="../../../assets/images/french fries.png" style="width:52px;height:52px">
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                    class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156">Hoffy Frank All Beef 4/1 Cooked 2.5LB 8 In a Case</a></p>
-                        </div>
-                    </div>
-
-                </th>
-                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">1999</td>
-                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">In Stock</td>
-                <td  class="d-flex">   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white; width:160px ;height: 48px;
-                    border-radius: 2px;font-weight: 700;
-    font-size: 14px;
-    line-height: 35px;
-                    ">ADD TO CART
-                        <img src="../../../assets/images/Add to cart.png" 
-                        class="" style="width:24px;height: 24px;"> </button> <p class="p-4"><mat-icon style="color: #929FA5;">highlight_off</mat-icon></p></td>
-              </tr>
-              <tr>
-                <th scope="row">
-                    <div  class="d-flex align-items-center">
-                        <div class="flex-shrink-0 me-2">
-                            <div>
-                                <img class="avatar-xs  customer-image-elem" alt=""
-                                    src="../../../assets/images/fresh seafood.png" style="width:52px;height:52px">
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                    class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
-                        </div>
-                    </div>
-
-                </th>
-                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">1999</td>
-                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">In Stock</td>
-                <td  class="d-flex">   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white; width:160px ;height: 48px;
-                    border-radius: 2px;font-weight: 700;
-    font-size: 14px;
-    line-height: 35px;
-                    ">ADD TO CART
-                        <img src="../../../assets/images/Add to cart.png" 
-                        class="" style="width:24px;height: 24px;"> </button> <p class="p-4"><mat-icon style="color: #929FA5;">highlight_off</mat-icon></p></td>
-              </tr>
-             
+            
             </tbody>
           </table>
     </div>

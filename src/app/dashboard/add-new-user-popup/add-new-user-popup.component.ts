@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DashboardService } from '../dashboard.service';
 
 @Component({
   selector: 'app-add-new-user-popup',
@@ -8,14 +10,16 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./add-new-user-popup.component.scss']
 })
 export class AddNewUserPopupComponent {
-  formGroup!:FormGroup
-  constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<AddNewUserPopupComponent>){
+  SignUpForm!:FormGroup
+  constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<AddNewUserPopupComponent>,private matsnackbar:MatSnackBar,private dashboardservice :DashboardService){
 
   }
   ngOnInit(){
-    this.formGroup = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+    this.SignUpForm = this.formBuilder.group({
+      email: [''],
+      firstName: [''],
+      lastName:[''],
+      mobile:['']
     });
 
 
@@ -23,5 +27,24 @@ export class AddNewUserPopupComponent {
   }
   closeDialog(){
     this.dialogRef.close();
+  }
+  submit(){
+     
+    let data = {
+      email: this.SignUpForm.value.email,
+      firstName: this.SignUpForm.value.firstName,
+      mobile:this.SignUpForm.value.mobile,
+      lastName:this.SignUpForm.value.mobile,
+    }
+    this.dashboardservice.signup(data).subscribe((res) => {
+      if (res.status == 0) {
+        this.matsnackbar.open("User Added ", 'x', { duration: 2000 });
+        this.dialogRef.close();
+      }
+      else {
+        this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });
+      }
+    })
+  
   }
 }

@@ -31,3 +31,11 @@ background-color: #F44C4C;
     pointer-events: none;
     opacity: 0.5;
   }
+  .btn-primary,.btn-primary:focus{
+    box-shadow: none!important;
+    border-color: #00923F;
+  }
+  .btn-secondary,.btn-secondary:focus{
+    box-shadow: none!important;
+    border-color: #F44C4C  ;
+  }

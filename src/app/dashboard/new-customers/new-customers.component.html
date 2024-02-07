@@ -3,7 +3,7 @@
     
     <div class="ps-4 container">
         <nav aria-label="breadcrumb" >
-            <ol class="breadcrumb mb-0 p-0" >
+            <ol class="breadcrumb mb-0 p-0 mt-3" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
                     <a 
                         href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
-                ;line-height: 20px;" aria-current="page">New Customers
+                ;line-height: 20px;" aria-current="page">{{cmsRes3.cmsTitle}}
 
 </li>
               
@@ -24,19 +24,20 @@
  <div class="col-md-12 p-5 mt-3">
     <div class="col-md-12 card " style="    border-radius: 9px;">
         <div class="card-title d-flex align-items-center">
-            <h5 class="mb-0 main-text p-3"  style="font-weight:600;font-size:20px;line-height:24px; color:
-            #191C1F;">New Customers
+            <h5 class="mb-0 main-text p-3"  style="font-weight:400;font-size:32px;line-height:24px; color:
+            #191C1F;">{{cmsRes3.cmsTitle}}
 
 </h5>
         </div>
        <div class="p-3">
        <div class="d-flex">
         <i class="las la-directions" style="color:#F44C4C; font-size: 36px;"> </i>
-        <p class="p-1">We are presenting the prices of our products, for you to have easy understanding of the real market value.It takes about 4-10 days to bring fresh domestic meat products, 7-21 days for Mexican, 7-90 days for the New-Zealand and Australian.
+        <p style="font-weight: 400;font-size: 20px;line-height: 28px; color: rgba(122, 122, 122, 1);" class="p-1" >{{cmsRes3.description}}</p>
+
       
        </div>
       
-       <div class="d-flex">
+       <!-- <div class="d-flex">
         <i class="las la-directions" style="color:#F44C4C; font-size: 36px;"> </i>
         <p class="p-1">We will need to know your quantities in advance.
       
@@ -49,7 +50,7 @@
         <i class="las la-directions" style="color:#F44C4C; font-size: 36px;"> </i>
         <p class="p-1">For that we created a simple formula: what we sold last week it's what we automatically order for the following week.      
        </div>
-      
+       -->
 
        </div>
     </div>

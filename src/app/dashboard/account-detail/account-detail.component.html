@@ -39,32 +39,32 @@
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
-        <div class="d-flex"(click)="myorder()" [class.password-open]="isorderOpen">
+        <div class="d-flex"(click)="myorder();getallorder()" [class.password-open]="isorderOpen">
             <span class=""><i class="bx bxs-heart m-2"></i></span>
             <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
-        <div class="d-flex" (click)="bulkorder()" [class.password-open]="isbulkOpen">
+        <div class="d-flex" (click)="bulkorder();getallbulkorder()" [class.password-open]="isbulkOpen">
             <span class=""><i class="bx bxs-heart m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
-        <div class="d-flex" (click)="orderguide()" [class.password-open]="isguideOpen">
+        <div class="d-flex" (click)="orderguide();getallcategory(0);getallbulkorder()" [class.password-open]="isguideOpen">
             <span class=""><i class="bx bxs-user m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
         
-        <div class="d-flex" (click)="mystaff()" [class.password-open]="staffOpen">
+        <div class="d-flex" (click)="mystaff();getallstaff()" [class.password-open]="staffOpen">
             <span class=""><i class="bx bxs-user m-2"></i></span>
             <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Staff</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
-        <div class="d-flex" (click)="myaddress()" [class.password-open]="addressOpen">
+        <div class="d-flex" (click)="myaddress();getalladdress()" [class.password-open]="addressOpen">
             <span class=""><i class="bx bxs-home m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Address</h6>
         </div>
@@ -92,7 +92,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">First Name </label>
                                                 <div class="input-group" >
-                                                    <input type="text" placeholder="" class="form-control">
+                                                    <input type="text" placeholder="" class="form-control"formControlName="firstName" >
                                                 </div>
                               
                                                 <!-- <mat-error>
@@ -107,7 +107,7 @@
                                           <div class="form-group">
                                               <label for="" class="form-label">Last Name</label>
                                               <div class="input-group" >
-                                                  <input type="text"  placeholder="" class="form-control">
+                                                  <input type="text"  placeholder="" class="form-control" formControlName="lastName" >
                                               </div>
                               
                                               <!-- <mat-error>
@@ -122,7 +122,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Business Name</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control">
+                                                    <input type="text"  placeholder="" class="form-control" formControlName="businessName" >
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -137,7 +137,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Phone Number</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control">
+                                                    <input type="text"  placeholder="" class="form-control" formControlName="mobile" >
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -152,7 +152,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Email Address</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control">
+                                                    <input type="text"  placeholder="" class="form-control" formControlName="email" >
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -177,7 +177,7 @@
                                                    <label for="" class="form-label">Street Address.1
                                                     <span class="text-danger">*</span></label>
                                                    <div class="input-group" >
-                                                       <input type="text" placeholder="" class="form-control">
+                                                       <input type="text" placeholder="" class="form-control" formControlName="addressLine1" >
                                                    </div>
                                  
                                                    <!-- <mat-error>
@@ -193,7 +193,7 @@
                                                  <label for="" class="form-label">Street Address.2
                                                 </label>
                                                  <div class="input-group" >
-                                                     <input type="text"  placeholder="" class="form-control">
+                                                     <input type="text"  placeholder="" class="form-control"formControlName="addressLine2" >
                                                  </div>
                                  
                                                  <!-- <mat-error>
@@ -208,7 +208,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">City</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control">
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="city" >
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -223,7 +223,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">State</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control">
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="state" >
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -238,7 +238,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">Country</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control">
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="country" >
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -253,7 +253,7 @@
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Pin Code</label>
                                                     <div class="input-group" >
-                                                        <input type="text"  placeholder="" class="form-control">
+                                                        <input type="text"  placeholder="" class="form-control"formControlName="pincode" >
                                                     </div>
                                     
                                                     <!-- <mat-error>
@@ -278,7 +278,7 @@
                                                <label for="" class="form-label">Street Address.1
                                                 <span class="text-danger">*</span></label>
                                                <div class="input-group" >
-                                                   <input type="text" placeholder="" class="form-control">
+                                                   <input type="text" placeholder="" class="form-control"formControlName="billingAddressLine1" >
                                                </div>
                              
                                                <!-- <mat-error>
@@ -294,7 +294,7 @@
                                              <label for="" class="form-label">Street Address.2
                                             </label>
                                              <div class="input-group" >
-                                                 <input type="text"  placeholder="" class="form-control">
+                                                 <input type="text"  placeholder="" class="form-control"formControlName="billingAddressLine2" >
                                              </div>
                              
                                              <!-- <mat-error>
@@ -309,7 +309,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">City</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control">
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCity" >
                                                </div>
                                
                                                <!-- <mat-error>
@@ -324,7 +324,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">State</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control">
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingState" >
                                                </div>
                                
                                                <!-- <mat-error>
@@ -339,7 +339,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">Country</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control">
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCountry" >
                                                </div>
                                
                                                <!-- <mat-error>
@@ -354,7 +354,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Pin Code</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control">
+                                                    <input type="text"  placeholder="" class="form-control"formControlName="billingPincode" >
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -371,7 +371,7 @@
                                     
                                    </form>
                                     <div class="col-md-8 text-end">
-                                        <button class="btn text-white" style="background-color:#F44C4C ;letter-spacing: 0.5px;">SAVE DETAILS</button>
+                                        <button class="btn btn-secondary text-white" style="background-color:#F44C4C ;letter-spacing: 0.5px;" (click)="submit()">SAVE DETAILS</button>
                                     </div>
                                 
                                  
@@ -383,7 +383,7 @@
                                         <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">Change password</h5>
                                     </div>
                                     <hr style="height: 2px;color: #4C7C17;">
-                                    <form class="g-3"  [formGroup]="formGroup"    >
+                                    <form class="g-3"  [formGroup]="changepasswordform"    >
                                      <div class="col-md-12 card" style="border-radius: 9px;">
                                       <div class="row p-4" > 
                                         <!-- <h5>User Details</h5> -->
@@ -391,7 +391,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Old Password </label>
                                                 <div class="input-group" >
-                                                    <input type="text" placeholder="" class="form-control">
+                                                    <input type="text" placeholder="old password" class="form-control" formControlName="oldPassword">
                                                 </div>
                               
                                                 <!-- <mat-error>
@@ -409,7 +409,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">New Password</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control">
+                                                    <input type="text"  placeholder="new password" class="form-control" formControlName="newPassword">
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -424,7 +424,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Confirm Password</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control">
+                                                    <input type="text"  placeholder="" class="form-control" formControlName="notes">
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -443,7 +443,7 @@
                                     </form>
                                   
                                     <div class="col-md-8 text-end">
-                                        <button class="btn text-white" style="background-color:#F44C4C;letter-spacing: 0.5px">SAVE DETAILS</button>
+                                        <button class="btn btn-secondary text-white" style="background-color:#F44C4C;letter-spacing: 0.5px" (click)="changepassword()">SAVE DETAILS</button>
                                     </div>
                                 
                                  
@@ -456,137 +456,82 @@
                                     <hr style="height: 2px;color: #4C7C17;">
                                     <div class="col-md-12 card mt-4" style="border-radius: 9px;">
                                         <h6 class="p-3" style="font-weight: 500;font-size: 20px;line-height: 24px;color:#000">My Order List </h6>
-                                        <div style="background-color: #F44C4C; height: 35px;" >
-                                        <div class="col-md-12 d-flex mt-2 container">
-                                            <div class="col-md-2 text-white">
-                                                <p>10 JAN ,2024</p>
-                                            </div>
-                                            <div class="col-md-3"></div>
-                                            <div class="col-md-1"><button class="btn1 text-white" style="background-color: #34BBD9;letter-spacing: 0.5px">PRINT</button></div>
-                                            <div class="col-md-3"><button class="btn2 text-white"  style="background-color: #3A51A2;">REORDER</button></div>
-                                            <div class="col-md-2">   <button class="btn3 text-white" style="background-color: #832727 ;margin-left: -20px;letter-spacing: 0.5px">#4G21QHUQ64FC7Y0</button></div>
-                                            
-                                        </div>
-                                      
-                                        
-                                        
-                                     
-                                        </div>
-                                        <table class="table">
-                                            <thead>
-                                              <tr>
-                                                <th scope="col" style=" color:#475156 !important">PRODUCTS</th>
-                                             
-                                                <th scope="col"style=" color:#475156 !important" >ACTIONS</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                <th scope="row">
-                                                    <div  class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <div>
-                                                                <img class="avatar-xs  customer-image-elem" alt=""
-                                                                    src="../../../assets/images/chicken.png" style="width:62px;height:62px">
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-grow-1 p-3">
-                                                            <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
-                                                          <div class="d-flex">
-                                                            <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
-                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
-                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Total:<span style="color:#475156">2087$</span></p></div>
-                                                          </div>
-                                                                    
-
-                
-                                                        </div>
-                                                    </div>
-                                
-                                                </th>
-                                               
-                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
-                                                   letter-spacing: 0.5px ">VIEW
-                                                      </button></td>
-                                              </tr>
-                                              <tr>
-                                                <th scope="row">
-                                                    <div  class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <div>
-                                                                <img class="avatar-xs  customer-image-elem" alt=""
-                                                                    src="../../../assets/images/french fries.png" style="width:62px;height:62px">
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-grow-1 p-3">
-                                                            <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
-                                                          <div class="d-flex">
-                                                            <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
-                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
-                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Total:<span style="color:#475156">2087$</span></p></div>
-                                                          </div>
-                                                                    
-
-                
-                                                        </div>
-                                                    </div>
-                                
-                                                </th>
-                                               
-                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
-                                                   letter-spacing: 0.5px ">VIEW
-                                                      </button></td>
-                                              </tr>
-                                              <tr>
-                                                <th scope="row">
-                                                    <div  class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <div>
-                                                                <img class="avatar-xs  customer-image-elem" alt=""
-                                                                    src="../../../assets/images/fresh seafood.png" style="width:62px;height:62px">
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-grow-1 p-3">
-                                                            <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
-                                                          <div class="d-flex">
-                                                            <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
-                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
-                                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Total:<span style="color:#475156">2087$</span></p></div>
-                                                          </div>
-                                                                    
-
-                
-                                                        </div>
-                                                    </div>
-                                
-                                                </th>
-                                               
-                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
-                                                    ">VIEW
-                                                      </button></td>
-                                              </tr>
-                                            
-                                            </tbody>
-                                          </table>
-                                          <div style="background-color: #F2F4F5; height: 35px;" class="mt-2 mb-3">
-                                            <div class="col-md-12 d-flex mt-2 container">
-                                                <div class="col-md-6 text-white">
-                                                    <p class="text-black">Delivery Date & Time : 11 JAN, 2024 , 07:00:00</p>
-                                                </div>
-                                                <div class="col-md-4"></div>
-                                             
-                                                
-                                            </div>
-                                          
-                                            
-                                            
-                                         
-                                            </div>
-
+                                        <div *ngFor="let orderdata of allorder">
                                             <div style="background-color: #F44C4C; height: 35px;" >
+                                                <div class="col-md-12 d-flex mt-2 container">
+                                                    <div class="col-md-2 text-white">
+                                                        <p>{{orderdata.shippingDate | date:'short'}}</p>
+                                                    </div>
+                                                    <div class="col-md-3"></div>
+                                                    <div class="col-md-1"><button class="btn1 text-white mt-1" style="background-color: #34BBD9;letter-spacing: 0.5px">PRINT</button></div>
+                                                    <div class="col-md-3"><button class="btn2 text-white mt-1"  style="background-color: #3A51A2;">REORDER</button></div>
+                                                    <div class="col-md-2">   <button class="btn3 text-white mt-1 " style="background-color: #832727 ;margin-left: -20px;letter-spacing: 0.5px">{{orderdata.transactionId}}</button></div>
+                                                    
+                                                </div>
+                                              
+                                                
+                                                
+                                             
+                                                </div>
+                                                <table class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th scope="col" style=" color:#475156 !important">PRODUCTS</th>
+                                                     
+                                                        <th scope="col"style=" color:#475156 !important" >ACTIONS</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let data of orderdata.productProjections">
+                                                            <th scope="row">
+                                                                <div  class="d-flex align-items-center">
+                                                                    <div class="flex-shrink-0 me-2">
+                                                                        <div>
+                                                                            <img class="avatar-xs  customer-image-elem" alt=""
+                                                                                [src]="data.productImage || 'assets/images/download (20).png' " style="width:62px;height:62px">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="flex-grow-1 p-3">
+                                                                        <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                                                                class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.title}}</a></p>
+                                                                      <div class="d-flex">
+                                                                        <div ><p style="color:#F44C4C">Price:<span style="color:#475156">{{data.price}}</span></p></div>
+                                                                        <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">{{data.quantity}}</span></p></div>
+                                                                        <div  style="margin-left: 38px"><p style="color:#F44C4C">Total:<span style="color:#475156">{{data.totalPrice}}$</span></p></div>
+                                                                      </div>
+                                                                                
+            
+                            
+                                                                    </div>
+                                                                </div>
+                                            
+                                                            </th>
+                                                           
+                                                            <td>   <button type="button btn-secondary " class="btn mt-3" [routerLink]="['/dashboard/view-product-detail',data.productId]" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                                                ">VIEW
+                                                                  </button></td>
+                                                          </tr>
+                                            
+                                                    
+                                                    </tbody>
+                                                  </table>
+                                                  <div style="background-color: #F2F4F5; height: 35px;" class="mt-2 mb-3">
+                                                    <div class="col-md-12 d-flex mt-2 container">
+                                                        <div class="col-md-6 text-white">
+                                                            <p class="text-black">Delivery Date & Time :{{orderdata.transactionDate | date:'short'}} </p>
+                                                        </div>
+                                                        <div class="col-md-4"></div>
+                                                     
+                                                        
+                                                    </div>
+                                                  
+                                                    
+                                                    
+                                                 
+                                                    </div>
+                                        </div>
+
+                                            <!-- <div style="background-color: #F44C4C; height: 35px;" >
                                                 <div class="col-md-12 d-flex mt-2 container">
                                                     <div class="col-md-2 text-white">
                                                         <p>11 JAN ,2024</p>
@@ -611,22 +556,22 @@
                                                       </tr>
                                                     </thead>
                                                     <tbody>
-                                                      <tr>
+                                                      <tr *ngFor="let data of allorder.productProjections">
                                                         <th scope="row">
                                                             <div  class="d-flex align-items-center">
                                                                 <div class="flex-shrink-0 me-2">
                                                                     <div>
                                                                         <img class="avatar-xs  customer-image-elem" alt=""
-                                                                            src="../../../assets/images/chicken.png" style="width:62px;height:62px">
+                                                                            [src]="data.productImage || 'assets/images/download (20).png' " style="width:62px;height:62px">
                                                                     </div>
                                                                 </div>
                                                                 <div class="flex-grow-1 p-3">
                                                                     <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                            class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case Hormel</a></p>
+                                                                            class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">{{data.title}}</a></p>
                                                                   <div class="d-flex">
-                                                                    <div ><p style="color:#F44C4C">Price:<span style="color:#475156">27.22$</span></p></div>
-                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">80</span></p></div>
-                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Total:<span style="color:#475156">2087$</span></p></div>
+                                                                    <div ><p style="color:#F44C4C">Price:<span style="color:#475156">{{data.price}}</span></p></div>
+                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">{{data.quantity}}</span></p></div>
+                                                                    <div  style="margin-left: 38px"><p style="color:#F44C4C">Total:<span style="color:#475156">{{data.totalPrice}}$</span></p></div>
                                                                   </div>
                                                                             
         
@@ -640,7 +585,7 @@
                                                             ">VIEW
                                                               </button></td>
                                                       </tr>
-                                                      <tr>
+                                                      <!-- <tr>
                                                         <th scope="row">
                                                             <div  class="d-flex align-items-center">
                                                                 <div class="flex-shrink-0 me-2">
@@ -697,7 +642,7 @@
                                                         <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
                                                            letter-spacing: 0.5px ">VIEW
                                                               </button></td>
-                                                      </tr>
+                                                      </tr> --
                                                     
                                                     </tbody>
                                                   </table>
@@ -714,7 +659,7 @@
                                                     
                                                     
                                                  
-                                                    </div>
+                                                    </div> -->
                                     </div>
                                 
                                   </div>
@@ -735,79 +680,36 @@
                                                 <th scope="col" style=" color:#475156 !important">QTY</th>
                                                 <th scope="col" style=" color:#475156 !important">ACTIONS</th>
                                               </tr>
-                                            </thead>
+                                            </thead>       
                                             <tbody>
-                                              <tr>
-                                                <th scope="row">
-                                                    <div  class="d-flex align-items-center">
+                                                <ng-container *ngFor="let categoryData of bulkorderguide">
+                                                  <tr style="background-color: #D9D9D9;">
+                                                    <th colspan="5" style="color: #F44C4C;">{{ categoryData.category }}</th>
+                                                  </tr>
+                                                  <tr *ngFor="let data1 of categoryData.bulkOrderResponses">
+                                                    <td>
+                                                      <div class="d-flex align-items-center">
                                                         <div class="flex-shrink-0 me-2">
-                                                            <div>
-                                                                <img class="avatar-xs  customer-image-elem" alt=""
-                                                                    src="../../../assets/images/chicken.png" style="width:62px;height:62px">
-                                                            </div>
+                                                          <div>
+                                                            <img class="avatar-xs customer-image-elem" alt="" [src]="data1.productImage || 'assets/images/download (20).png'" style="width:62px;height:62px">
+                                                          </div>
                                                         </div>
                                                         <div class="flex-grow-1">
-                                                            <h5 class="fs-base mb-0"><a 
-                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case</a></h5>
+                                                          <h5 class="fs-base mb-0">
+                                                            <a class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;" [routerLink]="['/dashboard/view-product-detail',data1.productId]">{{ data1.title }}</a>
+                                                          </h5>
                                                         </div>
-                                                    </div>
-                                
-                                                </th>
-                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS" readonly></td>
-                                                <td>27.22$</td>
-                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80" readonly></td>
-                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
-                                                       border-radius: 1px; ">ADD TO CART
-                                                      </button></td>
-                                              </tr>
-                                              <tr>
-                                                <th scope="row">
-                                                    <div  class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <div>
-                                                                <img class="avatar-xs  customer-image-elem" alt=""
-                                                                    src="../../../assets/images/french fries.png" style="width:62px;height:62px">
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-grow-1">
-                                                            <h5 class="fs-base mb-0"><a href="javascript:void(0);"style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;"
-                                                                    class="text-reset customer-name-elem" >Ham Honey Cred 2X11 LBS Case</a></h5>
-                                                        </div>
-                                                    </div>
-                                
-                                                </th>
-                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS" readonly></td>
-                                                <td>27.22$</td>
-                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80" readonly></td>
-                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
-                                                       border-radius: 1px; ">ADD TO CART
-                                                      </button></td>
-                                              </tr>
-                                              <tr>
-                                                <th scope="row">
-                                                    <div  class="d-flex align-items-center">
-                                                        <div class="flex-shrink-0 me-2">
-                                                            <div>
-                                                                <img class="avatar-xs  customer-image-elem" alt=""
-                                                                    src="../../../assets/images/fresh seafood.png" style="width:62px;height:62px">
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-grow-1">
-                                                            <h5 class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                    class="text-reset customer-name-elem"style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case</a></h5>
-                                                        </div>
-                                                    </div>
-                                
-                                                </th>
-                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS" readonly></td>
-                                                <td>27.22$</td>
-                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80" readonly></td>
-                                                <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
-                                                       border-radius: 1px; ">ADD TO CART
-                                                      </button></td>
-                                              </tr>
-                                            
-                                            </tbody>
+                                                      </div>
+                                                    </td>
+                                                    <td><input type="text" class="form-control" style="width:77px;height:29px;" [value]="data1.unit"></td>
+                                                    <td>${{ data1.price }}</td>
+                                                    <td><input type="text" class="form-control" style="width:77px;height:29px;" [value]="data1.quantity" readonly></td>
+                                                    <td>
+                                                      <button type="button" class="btn btn-secondary mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;border-radius: 1px;">ADD TO CART</button>
+                                                    </td>
+                                                  </tr>
+                                                </ng-container>
+                                              </tbody>
                                           </table>
                                     </div>
                                  
@@ -819,103 +721,84 @@
                                     <hr style="height: 2px;color: #4C7C17;">
                                    <div class="col-md-12 card" style="border-radius: 9px;">
                                     <div class="d-flex mt-3 p-3">
-                                     <div class="col-md-6">
-                                        <select id="" class="form-select" >
-                                            <option ></option>
-                                          </select>
-                                         
-                                     </div>
-                                     <div class="col-md-6 text-end">
-                                        <button class="btnn text-white" style="background-color: #3A51A2;letter-spacing: 0.5px ">PROCEED TO CHECK OUT</button>
-                                         
-                                     </div>
-                                    </div>
+                                        <div class="col-md-6">
+                                           <select id="" class="form-select"  (change)="getallbulkorder()" [(ngModel)]="selectcategoryid" >
+                                               <option *ngFor="let data of category" [value]="data.categoryId" style="border-radius: 1px;border-radius: 0px;height: 200px;overflow-x: auto;" >{{data.categoryName}}</option>
+                                             </select>
+                                            
+                                        </div>
+                                        <div class="col-md-6 text-end">
+                                           <button class="btnn  btn-primary text-white" style="background-color: #3A51A2;letter-spacing: 0.5px "[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECK OUT</button>
+                                            
+                                        </div>
+                                       </div>
                                     <table class="table">
                                         <thead>
                                           <tr>
                                             <th scope="col" style=" color:#475156 !important">PRODUCTS</th>
-                                            <th scope="col" style=" color:#475156 !important">UNIT</th>
-                                            <th scope="col" style=" color:#475156 !important">PRICE</th>
+                                            <!-- <th scope="col" style=" color:#475156 !important">UNIT</th> -->
                                             <th scope="col" style=" color:#475156 !important">QTY</th>
+                                            <th scope="col" style=" color:#475156 !important">PRICE</th>
+                                       
                                             <th scope="col" style=" color:#475156 !important">ACTIONS</th>
                                           </tr>
                                         </thead>
+                                        <!-- <thead>
+                                            <div class="mt-5">
+                                                <tr *ngFor="let data of bulkorderguide"> 
+                                                    <th style="font-weight: 500;font-size: 14px;line-height: 15px;" >
+                                                     {{data.category}}
+                                                    </th>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                  </tr>
+                                               </div>
+                                        </thead> -->
                                         <tbody>
-                                          <tr>
+                                            
+                                      <ng-container *ngFor="let bulkorder of bulkorderguide;">
+                                        <tr *ngFor="let data1 of bulkorder.bulkOrderResponses;">
                                             <th scope="row">
                                                 <div  class="d-flex align-items-center">
                                                     <div class="flex-shrink-0 me-2">
                                                         <div>
                                                             <img class="avatar-xs  customer-image-elem" alt=""
-                                                                src="../../../assets/images/french fries.png" style="width:62px;height:62px">
+                                                            [src]="data1.productImage || 'assets/images/download (20).png'" style="width:62px;height:62px">
                                                         </div>
                                                     </div>
                                                     <div class="flex-grow-1">
-                                                        <h5 class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                class="text-reset customer-name-elem"style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case</a></h5>
+                                                        <h5 class="fs-base mb-0"><a 
+                                                            class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;" [routerLink]="['/dashboard/view-product-detail',data1.productId]"> {{data1.title}}</a></h5>
                                                     </div>
                                                 </div>
                             
                                             </th>
-                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS" readonly></td>
-                                            <td>27.22$</td>
-                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80" readonly></td>
-                                            <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C;color: white;width:124px;height: 33px;
-                                                ">ADD TO CART
-                                                  </button></td>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;" [value]="data1.quantity">
+                                                <button class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:77px;height: 30px;font-size:8px">Add to cart</button> 
+                                             </td>
+                                            <!-- <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;" [value]="data1.unit"  ></td> -->
+                                            <td>${{data1.price}}</td>
+                                         
+                                            <td>   
+                                                  <button type="button" class="btn btn-primary mt-3" style="background-color: #3A51A2;color: white;width:124px;height: 33px;
+                                                  "[routerLink]="['/dashboard/view-product-detail',data1.productId]">View
+                                                    </button><br>
+                                                    <button type="button" (click)="deletewishlist(data1.wishlistId)" class="btn btn-secondary mt-3" style="background-color: #F44C4C;color: white;width:124px;height: 33px;">Remove
+                                                      </button>
+                                                </td>
                                           </tr>
-                                          <tr>
-                                            <th scope="row">
-                                                <div  class="d-flex align-items-center">
-                                                    <div class="flex-shrink-0 me-2">
-                                                        <div>
-                                                            <img class="avatar-xs  customer-image-elem" alt=""
-                                                                src="../../../assets/images/fresh seafood.png" style="width:62px;height:62px">
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <h5 class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                class="text-reset customer-name-elem"style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case</a></h5>
-                                                    </div>
-                                                </div>
-                            
-                                            </th>
-                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS" readonly></td>
-                                            <td>27.22$</td>
-                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80" readonly></td>
-                                            <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
-                                                border-radius: 1px;">ADD TO CART
-                                                  </button></td>
-                                          </tr>
-                                          <tr>
-                                            <th scope="row">
-                                                <div  class="d-flex align-items-center">
-                                                    <div class="flex-shrink-0 me-2">
-                                                        <div>
-                                                            <img class="avatar-xs  customer-image-elem" alt=""
-                                                                src="../../../assets/images/chicken.png" style="width:62px;height:62px">
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <h5 class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                class="text-reset customer-name-elem"style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Ham Honey Cred 2X11 LBS Case</a></h5>
-                                                    </div>
-                                                </div>
-                            
-                                            </th>
-                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="LBS" readonly></td>
-                                            <td>27.22$</td>
-                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  placeholder="80" readonly></td>
-                                            <td>   <button type="button" class="btn mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
-                                               border-radius: 1px; ">ADD TO CART
-                                                  </button></td>
-                                          </tr>
-                                        
+                                      </ng-container>
                                         </tbody>
                                       </table>
 
                                       <div class="col-md-12 text-end mb-3 p-3">
-                                        <button class="btnn text-white" style="background-color: #F44C4C;letter-spacing: 0.5px ">PROCEED TO CHECK OUT</button>
+                                        <button class="btnn text-white" style="background-color: #F44C4C;letter-spacing: 0.5px "[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECK OUT</button>
                                          
                                      </div>
                                    </div>
@@ -948,17 +831,17 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr>
-                                            <td style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">Rayna building omsoftware411032,India</td>
-                                            <td>Pune</td>
-                                            <td>Maharshtra</td>
+                                          <tr *ngFor="let data of address">
+                                            <td style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">{{data.address}}</td>
+                                            <td>{{data.city}}</td>
+                                            <td>{{data.state}}</td>
                                           
                                             <td>   
                                                 
-                                                <button type="button" class="btn mt-1" style="background-color: #3A51A2; color: white;width:124px;height: 33px;
+                                                <button type="button"  class="btn  btn-primary mt-1" style="background-color: #3A51A2; color: white;width:124px;height: 33px;
                                                 ">EDIT
                                                   </button><br>
-                                                  <button type="button" class="btn mt-1" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
+                                                  <button type="button" (click)="deleteshippingaddress(data.shippingAddressId)" class="btn btn-secondary mt-1" style="background-color: #F44C4C; color: white;width:124px;height: 33px;
                                                 ">REMOVE
                                                   </button>
                                                 </td>
@@ -1000,16 +883,16 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr>
-                                            <td style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">abcd</td>
-                                            <td>abcd@gmail.com</td>
-                                            <td>988383839</td>
+                                          <tr *ngFor="let data of getallstafff ">
+                                            <td style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">{{data.firstName}} + {{data.lastName}}  </td>
+                                            <td>{{data.email}}</td>
+                                            <td>{{data.mobile}}</td>
                                           
                                             <td>   
                                                 
-                                                <button type="button" class="btn mt-1" style="background-color: #3A51A2;letter-spacing: 0.5px; color: white;width:124px;height: 33px;border-radius: 1px;   ">EDIT
-                                                  </button><br>
-                                                  <button type="button" class="btn mt-1" style="background-color: #F44C4C;letter-spacing: 0.5px; color: white;width:124px;height: 33px;
+                                                <!-- <button type="button" class="btn btn-primary mt-1" style="background-color: #3A51A2;letter-spacing: 0.5px; color: white;width:124px;height: 33px;border-radius: 1px;   ">EDIT
+                                                  </button><br> -->
+                                                  <button type="button" (click)="deletestaff(data.userId)" class="btn btn-secondary mt-1" style="background-color: #F44C4C;letter-spacing: 0.5px; color: white;width:124px;height: 33px;
                                                    border-radius: 1px; ">REMOVE
                                                   </button>
                                                 </td>

@@ -1,0 +1,44 @@
+.card {
+    .custom-image {
+      width: 130px;
+      height: 130px;
+      border: 2px solid #73A63B !important;
+      display: flex;
+      flex-shrink: 0;
+      // Add any other styling you want for the image here
+    }
+   
+    // Add any other styling for the card container if needed
+  }
+  .btnn{
+    background-color: #F44C4C !important;
+     color: white !important;
+      width:154px;
+      margin-left:-3px;
+      font-size: 11px;
+      line-height: 35px;
+      font-family: "Public Sans", sans-serif;
+      font-weight: 600;
+     border-radius: 1px;
+      border: white;
+  }
+  .icon-container {
+    display: flex;
+    cursor: pointer;
+  }
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+//   .card:hover{
+//     transform: scale(1.05);
+//  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+//  }
+.btn-primary,.btn-primary:focus{
+  box-shadow: none!important;
+  border-color: #00923F;
+}
+.btn-secondary,.btn-secondary:focus{
+  box-shadow: none!important;
+  border-color: #F44C4C  ;
+}

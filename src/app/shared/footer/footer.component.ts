@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from 'src/app/dashboard/dashboard.service';
 
 @Component({
     selector: 'app-footer',
@@ -7,26 +8,74 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class FooterComponent implements OnInit{
+    cmsRes:any;
+    cmsRes1:any;
+    cmsRes2:any;
+    cmsRes3:any;
+    titlesAndIdsArray:any;
+    titlesAndIdsArray1:any;
+    cmsEnum ='GENERAL'
+    cmsEnum2 ='CUSTOMER'
+    cmsEnum3 ='ORDER'
+    cmsEnum4 ='DELIVERY'
 
+  constructor(private dashboardservice:DashboardService){
+
+  }
     ngOnInit() {
-       /* Back To Top */
+       this.getfootergeneral();
+       this.getfootercustomer();
+       this.getfooterorder();
+       this.getfooterdelivery();
 
-        // $(document).ready(function(){ 
-        //     $(window).on("scroll", function(){ 
-        //         if ($(this).scrollTop() > 300) { 
-        //             $('.back-to-top').fadeIn(); 
-        //         } else { 
-        //             $('.back-to-top').fadeOut(); 
-        //         } 
-        //     }); 
-
-        //     $('.back-to-top').on("click", function(){ 
-        //         $("html, body").animate({ scrollTop: 0 }, 600); 
-        //         return false; 
-        //     }); 
-        // });	   
-            
+      
     }
-	
+
+    getfootergeneral() {
+        this.dashboardservice.getallcmsdata(this.cmsEnum).subscribe((res) => {
+          if (res.status === 0 && res['response'].length > 0) {
+            this.titlesAndIdsArray1 = res['response'].map((item: { title: any; cmsId: any; }) => ({
+              title: item.title,
+              cmsId: item.cmsId
+            }));
+          }
+        });
+    
+    } 
+    getfootercustomer() {
+      this.dashboardservice.getallcmsdata(this.cmsEnum2).subscribe((res) => {
+        if (res.status === 0 && res['response'].length > 0) {
+          this.titlesAndIdsArray = res['response'].map((item: { title: any; cmsId: any; }) => ({
+            title: item.title,
+            cmsId: item.cmsId
+          }));
+        }
+      });
+    }
+    getfooterorder() {
+        this.dashboardservice.getallcmsdata(this.cmsEnum3).subscribe((res) => {
+          if (res.status === 0) {
+            this.cmsRes2 = res['response'];
+          
+          }
+        });
+    
+    } 
+    getfooterdelivery() {
+        this.dashboardservice.getallcmsdata(this.cmsEnum4).subscribe((res) => {
+          if (res.status === 0) {
+            this.cmsRes3 = res['response']; 
+          }
+        });
+    
+    } 
+    getfootergenralbyid(cmsId:any) {
+        this.dashboardservice.getallcmsdatabyid(cmsId).subscribe((res) => {
+          if (res.status === 0) {
+            this.cmsRes3 = res['response']
+          }
+        });
+    
+    } 
     
 }

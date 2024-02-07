@@ -3,7 +3,7 @@
     
     <div class="ps-4 container ">
         <nav aria-label="breadcrumb" >
-            <ol class="breadcrumb mb-0 p-0 mt-3" >
+            <ol class="breadcrumb mb-0 p-0 mt-4" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
                     <a 
                         href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
@@ -28,44 +28,44 @@
         <div class="card col-md-12" style="border-radius: 10px;">
           <div class=" col-md-12 d-flex">
             <div class="col-md-4 p-2"> 
-              <img src="../../../assets/images/chicken.png" class="img-fluid" style="width:100%;margin-top:5px;margin-left:12px; flex-shrink: 0;" class=""  	>
+              <img [src]="productRes.image|| 'assets/images/download (20).png'" class="img-fluid" style="width:100%;margin-top:5px;margin-left:12px; flex-shrink: 0;height: 62%;"   	>
           </div>
            <div class="col-md-8 p-4">
             <div >
-              <p style="font-size: 20px;">Chicken Breast Clipped Tenders Jumbo Halal Antibiotics Free Fresh 4/10# 40 LBS Case - Amick Farms</p>
+              <p style="font-size: 20px;">{{productRes.title}}</p>
            </div>
            <div class="col-md-12  d-flex">
             <div class="col-md-6">
-            <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Availability: <span style="color: #00923F;font-weight: 400;font-size: 14px;line-height: 20px;">In Stock</span>
+            <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Availability: <span style="color: #00923F;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.avaibeleStock}}</span>
            </p>
             </div>
             <div class="col-md-6">
-             <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Category: <span style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">9B-Poultry</span></p>
+             <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Category: <span style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.categoryName}}</span></p>
             </div>
             </div>
            
             <hr>
             <div class="col-md-12">
-              <p style="color:#2DA5F3;font-size: 24px;">$1.89</p>
+              <p style="color:#2DA5F3;font-size: 24px;">${{productRes.price}}</p>
               </div>
               <div class="col-md-12">
                 <div class="d-flex">
                   <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;">
                   
-                    <i class="ri-add-line ps-2 mt-2" (click)="incrementValue()" style="font-size: 22px;"></i>
-                    <input type="text" [(ngModel)]="currentValue" class="" style="width:75px;height: 48px;text-align: center;border: none;" />
-                    <i class="ri-subtract-line pe-2 mt-2" (click)="decrementValue()" style="font-size: 22px;"> </i>
+                    <i class="ri-add-line ps-2 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                    <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '0' }}</p>
+                    <i class="ri-subtract-line ps-4 " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
                  
                   </div>
                 </div>
               </div>
               <div class="col-md-12 mt-2">
-              <p style="font-weight: 300;font-size: 10px;line-height: 18px;">Chicken Breast Clipped Tenders Jumbo Halal Antibiotics Free Fresh 4/10# 40 LBS Case - Amick Farms **SOLD BY POUND**</p>
+              <p style="font-weight: 300;font-size: 10px;line-height: 18px;">{{productRes.metaDescription}}</p>
               </div>
               <div class="row">
                 <div class=" mb-3">
                   <div class=" d-flex">
-                   <button type="button" class="btn mt-3" style="width: 310px;" >ADD TO CARD
+                   <button type="button" class="btn btn-secondary mt-3" style="width: 310px;" (click)="submitcart(productRes.productId,productRes.price)">ADD TO CART
                        <img src="../../../assets/images/Add to cart.png" 
                        class="" style="width:24px;height: 24px;letter-spacing: 0.5px;"> </button>
                     <div class="d-flex mt-2 ps-2 pt-2">
@@ -108,11 +108,11 @@
           
   
           <mat-card-body style="padding: 20px;">
-            <div class="card" style="padding: 8px; border-radius: 10px; ">
+            <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
               <div class="d-flex align-items-center">
-                <img src="../../../assets/images/daily_product.png" style="width:74px; height: 74px; border-radius: 5px;">
-                <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">Hoffy Frank All Beef 4/1 Cooked 2.5LB 8 In a Case</p>
-                <p><mat-icon style="color: #929FA5;">highlight_off</mat-icon></p>
+                <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
+                <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">{{data.productTitle}}</p>
+                <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p>
               </div>
       
               <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
@@ -129,25 +129,25 @@
                 <div style="padding-left: 10px;">
                   <p style="font-size: 15px;
                   font-weight: 500;
-                  line-height: 14px;">SUBTOTAL</p>
+                  line-height: 14px;">SUB-TOTAL</p>
                 </div>
               </div>
       
               <div class="d-flex justify-content-between p-1 mb-2" style="padding-top: 0px;">
                 <div class="mt-2">
-                  <h5 style="margin-left:4px;">$70</h5>
+                  <h5 style="margin-left:4px;">${{data.price}}</h5>
                 </div>
                 <div class="d-flex">
                   <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;">
                   
-                    <i class="ri-add-line ps-2 " (click)="incrementValue()" style="font-size: 22px;"></i>
-                    <input type="text" [(ngModel)]="currentValue" class="" style="width:34px;height: 35px;text-align: center;border: none;" />
-                    <i class="ri-subtract-line pe-2 " (click)="decrementValue()" style="font-size: 22px;"> </i>
+                    <i class="ri-add-line ps-2 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                    <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '1' }}</p>
+                    <i class="ri-subtract-line ps-4 " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
                  
                   </div>
                 </div>
                 <div class="mt-2">
-                  <h5 style="margin-right:23px;">$70</h5>
+                  <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
                 </div>
               </div>
             </div>
@@ -158,32 +158,32 @@
                 <div class="row">
                   <div class="d-flex justify-content-between p-2">
                     <span  style="color: #5F6C72;">Sub-total</span>
-                    <span class="font-weight-bold">$2015.20</span>
+                    <span class="font-weight-bold">${{carttotal.subTotal}}</span>
                   </div>
                   
                   <div class="d-flex justify-content-between p-2">
                     <a  style="color: #5F6C72;"> Shipping</a>
-                    <span class="font-weight-bold"> Free</span>
+                    <span class="font-weight-bold"> {{carttotal.shipping}}</span>
                   </div>
   
                   <div class="d-flex justify-content-between p-2">
                      <a style="color: #5F6C72;"> Discount</a>
-                     <span class="font-weight-bold"> $104</span>
+                     <span class="font-weight-bold"> ${{carttotal.discount}}</span>
                   </div><hr>
   
                   <div class="d-flex justify-content-between p-2">
                     <span class="" style="color: #5F6C72;"> Total</span>
-                    <span  class="font-weight-bold">$2121 USD</span>
+                    <span  class="font-weight-bold">${{carttotal.total}} USD</span>
                   </div>
   
                   <div class="d-flex flex-column">
-                    <button type="button" class="btn mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
+                    <button type="button" class="btn btn-secondary mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
                     font-size: 15px;
-                    line-height: 42px;letter-spacing: 0.5px;"[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
+                    line-height: 42px;letter-spacing: 0.6px;"[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
                       <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                    <button type="button" class="btn w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
+                    <button type="button" class="btn  btn-primary w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
                     font-size: 15px;
-                    line-height: 42px;letter-spacing: 0.5px;">CONTINUE SHOPPING CART
+                    line-height: 42px;letter-spacing: 0.5px;" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
                       <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
                   </div>
                  

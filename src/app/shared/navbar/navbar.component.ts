@@ -8,18 +8,41 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { SignInComponent } from 'src/app/dashboard/sign-in/sign-in.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DashboardService } from 'src/app/dashboard/dashboard.service';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss']
 })
-
 export class NavbarComponent implements OnInit{
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+    titlesAndIdsArray2:any;
+    carttotal:any;
     showSignIn: boolean = true;
     showSignUp: boolean = false;
+    addOnUpdate:boolean=false;
+    totalrecordLength:any;
+    loginFormGroup!: FormGroup;
+    SignUpForm!:FormGroup;
+    searchproduct!:FormGroup;
+    retryError = false;
+    loginData:any;
+    id:any;
+    cmsEnum ='HEADER'
+    cmsRes4:any
+    submitted:boolean = false;
     name:any;
     data: any;
-    id:any;
+    category:any;
+    page: number = 0;
+    size: number = 30;
+   currentPage = 0;
+    pageSize = 500;
+   
     token: any;
     loginTime:any;
     sessionId:any;
@@ -60,7 +83,10 @@ export class NavbarComponent implements OnInit{
     private loggedIn = new BehaviorSubject<boolean>(false);
 
     constructor(private router: Router,
-        public sidebarservice: SidebarService,public dialog: MatDialog,private formBuilder: FormBuilder) {
+        public sidebarservice: SidebarService,public dialog: MatDialog,private formBuilder: FormBuilder,private matsnackbar:MatSnackBar,private dashboardservice:DashboardService,private route: ActivatedRoute) {
+          this.searchproduct = this.formBuilder.group({
+            name: [''],
+          });
             setInterval(() => {
                 this.currentDataTime = new Date();
               }, 1);
@@ -82,14 +108,24 @@ export class NavbarComponent implements OnInit{
 
     ngOnInit() {
         this.name = localStorage.getItem('name');
-        this.id = localStorage.getItem('Id');
+      
         this.token = localStorage.getItem('token');
         this.loginTime = localStorage.getItem('loginTime');
-        this.sessionId = localStorage.getItem('sessionId')
+        this.sessionId = localStorage.getItem('sessionId');
+        this.getfootergeneral();
         this.getTeams();
+        this.tabelLoad(0)
+        this.getallproduct()
         this.formGroup = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
+          });
+          this.SignUpForm = this.formBuilder.group({
+            email: ['', [Validators.required, Validators.email]],
+            firstName: [''],
+            mobile:[''],
+            lastName:['']
+
           });
         // if (!this.token) {
         //     localStorage.removeItem('Id');
@@ -175,4 +211,135 @@ export class NavbarComponent implements OnInit{
          
         });
       }
+      stopPropagation(event: Event): void {
+        event.stopPropagation();
+      }
+      onSubmit() {
+        // this.router.navigate(['/civantage'], { relativeTo: this.route.parent });
+        console.log('hi')
+    
+         const loginpayload ={
+          email: this.formGroup.value.email,
+          password: this.formGroup.value.password,
+  
+         };
+  
+         this.dashboardservice.login(loginpayload).subscribe(data => {
+           this.loginData = data;   
+           localStorage.setItem('id', this.loginData.response.id);
+           console.log(this.loginData.response.id,'loginData');
+           this.submitted = false;
+           // @ts-ignore
+           if (data && data.value === 'Not Authorized') {
+           this.matsnackbar.open('Wrong Username or Password Enter , try Again', '', {
+               duration: 3000,
+               panelClass: ['error-snackbar']
+            });
+             this.retryError = true;
+  
+           } else if(this.loginData && this.loginData.value  === 'Inactive'){
+            //  this.snackBar.open('User is Inactive , Contact To Your Admin and Activate Your Account', '', {
+            //    duration: 3000,
+            //    panelClass: ['error-snackbar']
+            //  });
+             this.retryError = true;
+           } else {
+             // @ts-ignore
+             if (data && data.value === 'Another User LoggedIn') {
+               this.matsnackbar.open('Another User LoggedIn', '', {
+                 duration: 3000,
+                 panelClass: ['error-snackbar']
+               });
+               } else {
+              //    this.snackBar.open('Login Successfully', '', {
+              //      duration: 3000,
+              //      panelClass: ['success-snackbar']
+              //  });
+               this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+  
+           }}
+         }, (error => {
+          this.matsnackbar.open('Please Enter correct details', '', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
+         }));
+     
+      }
+
+      submit(){
+     
+        let data = {
+          email: this.SignUpForm.value.email,
+          firstName: this.SignUpForm.value.firstName,
+          mobile:this.SignUpForm.value.mobile,
+          lastName:this.SignUpForm.value.mobile,
+        }
+        this.dashboardservice.signup(data).subscribe((res) => {
+          if (res.status == 0) {
+            this.matsnackbar.open("Sign Up  Successfully", 'x', { duration: 2000 });
+          
+          }
+          else {
+            this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });
+          }
+        })
+      
+      }
+      tabelLoad(page: number) {
+        this.dashboardservice.getAllcategoryy(this.currentPage, this.pageSize).subscribe(res => {
+          this.data =res;
+          if (this.data.status === 0) {
+            window.scrollTo(0, 0);
+    
+            this.totalrecordLength = this.data.response.totalElements;
+            this.category = this.data.response.dataSet;
+            setTimeout(() => {
+              this.paginator.pageIndex = this.currentPage;
+              this.paginator.length = this.totalrecordLength;
+            });
+          }
+          else {
+            this.matsnackbar.open("Something went wrong!", 'x', { duration: 2000 })
+          }
+        })
+      }
+      getfootergeneral() {
+        this.dashboardservice.getallcmsdata(this.cmsEnum).subscribe((res) => {
+          if (res.status === 0 && res['response'].length > 0) {
+            this.titlesAndIdsArray2 = res['response'].map((item: { title: any; cmsId: any; }) => ({
+              title: item.title,
+              cmsId: item.cmsId
+            }));
+          }
+        });
+    
+    }
+     getallproduct() {
+      const name = this.searchproduct.value.name || '';
+      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
+        this.data =res;
+        if (this.data.status === 0) {
+          this.carttotal = this.data.response.dataSet;
+          // this.router.navigate(['/dashboard/all-product']);
+        }
+        else {
+         
+        }
+      })
+    }
+    getallselectproduct() {
+      const name = this.searchproduct.value.name || '';
+      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
+        this.data =res;
+        if (this.data.status === 0) {
+          this.carttotal = this.data.response.dataSet;
+          this.router.navigate(['/dashboard/all-product',name]);
+        }
+        else {
+         
+        }
+      })
+    }
+
 }

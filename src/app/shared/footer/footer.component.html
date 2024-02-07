@@ -7,12 +7,13 @@
     <div class="row text-md-left">
       <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
         <h5 class="text-white font-weight-bold mt-3 mb-4">General Information</h5>
-        <p [routerLink]="['/dashboard/br-food-services']">
-          <a  style="text-decoration: none; color: 
-          #BBBBBB;">General Information B&R FOOD SERVICES COMPANY
-            OVERVIEW</a>
-        </p>
-        <p [routerLink]="['/dashboard/pricing']">
+        <div *ngFor="let item of titlesAndIdsArray1">
+          <p [routerLink]="['/dashboard/return-policy',item.cmsId]" style="color:
+          #BBBBBB;" >
+         {{ item.title}}
+          </p>
+         </div>
+        <!-- <p [routerLink]="['/dashboard/pricing']">
           <a class="text-left" style="text-decoration: none; color:
           #BBBBBB;">Pricing and payment</a>
         </p>
@@ -27,17 +28,19 @@
         <p [routerLink]="['/dashboard/location']">
           <a  class="text-left" style="text-decoration: none; color:
           #BBBBBB;">Location</a>
-        </p>
+        </p> -->
 
       </div>
 
       <div class="col-md-2 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Customer Service</h5>
-        <p [routerLink]="['/dashboard/return-policy']" style="color:
-        #BBBBBB;">
-        Return Policy
+       <div *ngFor="let item of titlesAndIdsArray">
+        <p [routerLink]="['/dashboard/return-policy',item.cmsId]" style="color:
+        #BBBBBB;" >
+       {{ item.title}}
         </p>
-        <p style="color:
+       </div>
+        <!-- <p style="color:
         #BBBBBB;" [routerLink]="['/dashboard/order-hours']">
         Order Hours
         </p>
@@ -45,27 +48,27 @@
         #BBBBBB;"  [routerLink]="['/dashboard/get-reminders']">
        Get Reminders from our
        Office
-        </p>
+        </p> -->
       </div>
 
       <div class="col-md-2 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Ordering Information</h5>
-        <p [routerLink]="['/dashboard/new-customers']">
+        <p [routerLink]="['/dashboard/new-customers',data.cmsId]"  *ngFor="let data of cmsRes2">
           <a  style="color:
-          #BBBBBB; text-decoration: none;">New Customers</a>
+          #BBBBBB; text-decoration: none;">{{data.title}}</a>
         </p>
   
       </div>
       <div class="col-md-2 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Delivery Information</h5>
-        <p [routerLink]="['/dashboard/site-map']">
+        <p [routerLink]="['/dashboard/site-map',data.cmsId]"*ngFor="let data of cmsRes3">
           <a  style="color:
-          #BBBBBB; text-decoration: none;">Site map</a>
+          #BBBBBB; text-decoration: none;">{{data.title}}</a>
         </p>
-        <p [routerLink]="['/dashboard/blog']" >
+        <!-- <p [routerLink]="['/dashboard/blog']" >
           <a  style="color: 
           #BBBBBB; text-decoration: none;">Blog</a>
-        </p>
+        </p> -->
       </div>
 
       <div class="col-md-3 col-lg-3 col-xl-3">

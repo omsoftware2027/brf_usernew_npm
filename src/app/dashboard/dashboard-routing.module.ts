@@ -21,6 +21,7 @@ import { SiteMapComponent } from './site-map/site-map.component';
 import { NewCustomersComponent } from './new-customers/new-customers.component';
 import { BlogComponent } from './blog/blog.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { AllProductComponent } from './all-product/all-product.component';
 
 
 const routes: Routes = [
@@ -35,14 +36,14 @@ const routes: Routes = [
         }
       },
       {
-        path: 'category-detail',
+        path: 'category-detail/:id',
         component: CategoryDetailComponent,
         data: {
           title: 'categorydetail'
         }
       },
       {
-        path: 'view-product-detail',
+        path: 'view-product-detail/:id',
         component: ViewProductDetailComponent,
         data: {
           title: 'viewcategorydetail'
@@ -84,7 +85,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'statement',
+        path: 'statement/:id',
         component: StatementComponent,
         data: {
           title: 'statement'
@@ -98,7 +99,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'br-food-services',
+        path: 'br-food-services/:id',
         component: BrFoodServicesComponent,
         data: {
           title: 'br food service'
@@ -127,7 +128,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'return-policy',
+        path: 'return-policy/:id',
         component: ReturnPolicyComponent,
         data: {
           title: 'return policy'
@@ -148,14 +149,14 @@ const routes: Routes = [
         }
       },
       {
-        path: 'site-map',
+        path: 'site-map/:id',
         component: SiteMapComponent,
         data: {
           title: 'site map'
         }
       },
       {
-        path: 'new-customers',
+        path: 'new-customers/:id',
         component: NewCustomersComponent,
         data: {
           title: 'new customers'
@@ -174,6 +175,20 @@ const routes: Routes = [
         component: SignInComponent,
         data: {
           title: 'sign in '
+        }
+      },
+      {
+        path: 'all-product/:name',
+        component: AllProductComponent,
+        data: {
+          title: 'all product'
+        }
+      },
+      {
+        path: 'all-product',
+        component: AllProductComponent,
+        data: {
+          title: 'all product'
         }
       },
 

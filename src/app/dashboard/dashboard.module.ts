@@ -33,6 +33,7 @@ import { SiteMapComponent } from './site-map/site-map.component';
 import { NewCustomersComponent } from './new-customers/new-customers.component';
 import { BlogComponent } from './blog/blog.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { AllProductComponent } from './all-product/all-product.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     NewCustomersComponent,
     BlogComponent,
     SignInComponent,
+    AllProductComponent,
 
   ],
   imports: [

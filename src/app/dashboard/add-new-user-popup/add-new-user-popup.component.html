@@ -17,7 +17,7 @@
                       </div>
                 
              <div class="col-xl-12 p-5">
-                <form class="row g-3" [formGroup]="formGroup"  method="post" novalidate>
+                <form class="row g-3" [formGroup]="SignUpForm"  method="post" novalidate>
                   
                     <!-- <div class="col-md-6">
                       <div class="form-group">
@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="" class="form-label">First Name</label>
                         <div class="input-group">
-                            <input type="text" formControlName="manufacturerName" placeholder="first name" class="form-control">
+                            <input type="text" formControlName="firstName" placeholder="first name" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="" class="form-label">Last name</label>
                     <div class="input-group">
-                        <input type="text" formControlName="medicinePackaging" placeholder="Last name" class="form-control">
+                        <input type="text" formControlName="lastName" placeholder="Last name" class="form-control">
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
               <div class="form-group">
                   <label for="" class="form-label">Email address</label>
                   <div class="input-group">
-                      <input type="text" formControlName="composition" placeholder="email" class="form-control">
+                      <input type="text" formControlName="email" placeholder="email" class="form-control">
                   </div>
               </div>
           </div> 
@@ -66,7 +66,7 @@
               <div class="form-group">
                   <label for="" class="form-label">Phone Number</label>
                   <div class="input-group">
-                      <input type="text" formControlName="category" placeholder="phone number" class="form-control">
+                      <input type="text" formControlName="mobile" placeholder="phone number" class="form-control">
                   </div>
               </div>
           </div>
@@ -81,10 +81,10 @@
           </div> -->
                   <div class="d-flex mt-5">
                     <div class="col-6  mt-5">
-                        <button type="submit" class="btn  px-5 text-white" style="background-color: #F44C4C; height: 56px;width:376px"  >Add User</button>
+                        <button type="submit" class="btn btn-secondary px-5 text-white" style="background-color: #F44C4C; height: 56px;width:376px" (click)="submit()"  >Add User</button>
                     </div>
                     <div class="col-6  mt-5"> 
-                        <button type="submit" class="btn  px-5 text-white" style="background-color: #3A51A2; height: 56px;width:376px"  >Cancle</button>
+                        <button type="submit" class="btn btn-primary  px-5 text-white" style="background-color: #3A51A2; height: 56px;width:376px"  >Cancle</button>
                     </div>
                   </div>
                 </form>

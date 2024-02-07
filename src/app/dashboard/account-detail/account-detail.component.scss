@@ -41,7 +41,7 @@
   line-height: 22px;
 }
 .btn3{
-  width:147px;
+  width:177px;
   height: 22px;
   margin-left: -20px;
   border-radius: 5px;
@@ -75,3 +75,11 @@
     color: #475156;
     line-height: 15px;
    }
+   .btn-secondary,.btn-secondary:focus{
+    box-shadow: none!important;
+    border-color: #F44C4C  ;
+  }
+  .btn-primary,.btn-primary:focus{
+    box-shadow: none!important;
+    border-color: #3A51A2  ;
+  }

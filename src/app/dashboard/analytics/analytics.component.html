@@ -16,22 +16,17 @@
 
       <div class="row">
         <div class="col-8  ">
-          <div class="row">
-            <div class="col-3 category">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
+          <div class="row mt-5" >
+            <div class=" col-3 category " *ngFor="let data of category ;let i = index" [ngStyle]="{'margin-top': i < 4 ? '-5%' : '16%'}">
+              <div class="category-card rounded-circle p-1 border bg-white" style="width:174px;height: 174px;border: 3px solid #669038 !important">
+               <img [src]="data.image|| 'assets/images/download (20).png'" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail',data.categoryId]">
+               <p class="mt-5" style="font-size: 23px;text-align: center;
+               font-weight: 500;
+               line-height: 27px;" >{{data.categoryName}}</p>
+             
               </div>
              </div>
-             <div class="col-3">
+             <!-- <div class="col-3">
               <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
               height: 174px;
             
@@ -538,7 +533,7 @@
                  line-height: 40px;" >9D-Eggs</a>
                 </div>
               </div>
-             </div>
+             </div> -->
              
 
           </div>
@@ -597,11 +592,11 @@
                
        
                <mat-card-body style="padding: 20px;">
-                 <div class="card" style="padding: 8px; border-radius: 10px; ">
+                 <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
                    <div class="d-flex align-items-center">
-                     <img src="../../../assets/images/daily_product.png" style="width:74px; height: 74px; border-radius: 5px;">
-                     <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">Hoffy Frank All Beef 4/1 Cooked 2.5LB 8 In a Case</p>
-                     <p><mat-icon style="color: #929FA5;">highlight_off</mat-icon></p>
+                     <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
+                     <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">{{data.productTitle}}</p>
+                     <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p>
                    </div>
            
                    <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
@@ -624,19 +619,19 @@
            
                    <div class="d-flex justify-content-between p-1 mb-2" style="padding-top: 0px;">
                      <div class="mt-2">
-                       <h5 style="margin-left:4px;">$70</h5>
+                       <h5 style="margin-left:4px;">${{data.price}}</h5>
                      </div>
                      <div class="d-flex">
                        <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;">
                        
-                         <i class="ri-add-line ps-2 " (click)="incrementValue()" style="font-size: 22px;"></i>
-                         <input type="text" [(ngModel)]="currentValue" class="" style="width:34px;height: 35px;text-align: center;border: none;" />
-                         <i class="ri-subtract-line pe-2 " (click)="decrementValue()" style="font-size: 22px;"> </i>
+                         <i class="ri-add-line ps-2 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                         <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '1' }}</p>
+                         <i class="ri-subtract-line ps-4 " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
                       
                        </div>
                      </div>
                      <div class="mt-2">
-                       <h5 style="margin-right:23px;">$70</h5>
+                       <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
                      </div>
                    </div>
                  </div>
@@ -647,32 +642,32 @@
                      <div class="row">
                        <div class="d-flex justify-content-between p-2">
                          <span  style="color: #5F6C72;">Sub-total</span>
-                         <span class="font-weight-bold">$2015.20</span>
+                         <span class="font-weight-bold">${{carttotal.subTotal}}</span>
                        </div>
                        
                        <div class="d-flex justify-content-between p-2">
                          <a  style="color: #5F6C72;"> Shipping</a>
-                         <span class="font-weight-bold"> Free</span>
+                         <span class="font-weight-bold"> {{carttotal.shipping}}</span>
                        </div>
        
                        <div class="d-flex justify-content-between p-2">
                           <a style="color: #5F6C72;"> Discount</a>
-                          <span class="font-weight-bold"> $104</span>
+                          <span class="font-weight-bold"> ${{carttotal.discount}}</span>
                        </div><hr>
        
                        <div class="d-flex justify-content-between p-2">
                          <span class="" style="color: #5F6C72;"> Total</span>
-                         <span  class="font-weight-bold">$2121 USD</span>
+                         <span  class="font-weight-bold">${{carttotal.total}} USD</span>
                        </div>
        
                        <div class="d-flex flex-column">
-                         <button type="button" class="btn mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
+                         <button type="button" class="btn btn-secondary mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
                          font-size: 15px;
                          line-height: 42px;letter-spacing: 0.6px;"[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
                            <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                         <button type="button" class="btn w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
+                         <button type="button" class="btn  btn-primary w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
                          font-size: 15px;
-                         line-height: 42px;letter-spacing: 0.5px;">CONTINUE SHOPPING CART
+                         line-height: 42px;letter-spacing: 0.5px;" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
                            <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
                        </div>
                       

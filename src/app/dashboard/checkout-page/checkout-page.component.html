@@ -3,7 +3,7 @@
     
     <div class="ps-4 container ">
         <nav aria-label="breadcrumb" >
-            <ol class="breadcrumb mb-0 p-0 mt-3" >
+            <ol class="breadcrumb mb-0 p-0 mt-4" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
                     <a 
                         href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
@@ -32,54 +32,144 @@
                          <button class="btnn text-white mt-1" style="background-color: #3A51A2;" (click)="openeclinicAcessDialog()">ADD NEW ADDRESS</button>
                         </div>
                   </div>
+                <form  [formGroup]="proccedaddressform">
                   <div class="col-md-12 p-3">
-                    <input type="text" readonly class="form-control" placeholder="Default Address">
+                    <input type="text" readonly class="form-control" placeholder="Default Address" >
                   </div>
-             <div class="card col-md-5  m-3 d-flex"  style="border-radius:11px">
-             <div class="col-md-12">
-                <div class="form-check" style="margin-top: 67px;margin-left: 8px;">
-                    <input class="form-check-input" type="radio" >
+                 <div class="card col-md-5  m-3 d-flex"  style="border-radius:11px" >
+                 <div class="col-md-12" >
+                 <div *ngFor="let data of shippingaddress">
+                  <div class="form-check" style="margin-top: 67px;margin-left: 8px;">
+                    <input class="form-check-input" type="radio" [value]="data.shippingAddressId" formControlName="shippingAddressId">
                     
                   </div>
                    <div style="margin-left: 19px;
                    margin-top: -80px;">
                     <ul>
                         <li>
-                          Address: Rayna building omsoftware,
+                          Address: {{data.address}},
                         </li>
                         <li>
-                          City: Pune
+                          City:  {{data.city}}
                         </li>
                         <li>
-                          State: Maharshtra
+                          State: {{data.state}}
                         </li>
                         <li>
-                          Country: India 
+                          Country:  {{data.country}}
                         </li>
                         <li>
-                          Pincode: 411032
+                          Pincode: {{data.pincode}}
                         </li>
                         </ul>
                    </div>
+                 </div>
                   <div>
                  
                   </div>
              </div>
              </div>
               <div class="col-md-12 p-3">
-                <input type="text" readonly class="form-control" placeholder="Order Delivery Date and Time">
+                <input type="datetime-local" class="form-control" placeholder="Order Delivery Date and Time" formControlName="dateTime">
               </div>
-              <div class="col-md-12 p-3">
+              <!-- <div class="col-md-12 p-3">
                 <input type="text"  class="form-control" placeholder="Select Time & Date">
-              </div>
+              </div> -->
               <div class="col-md-12 p-3  ">
-              <textarea class="form-control" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+              <textarea class="form-control" placeholder="Notes about your order, e.g. special notes for delivery" formControlName="notes"></textarea>
               </div>
               <div class="col-md-12 p-3 ">
-               <input type="text" readonly  placeholder="Make Payment" class="form-control">
+               <input type="text" readonly  placeholder="Make Payment" class="form-control" >
                 </div>
                 <div class="col-md-12 p-3 ">
-                <img src="../../../assets/images/Payment Option.png" style="width:100%;height: 138px;" >
+                  <div class="card " style="border-radius: 26px;">
+                      <div class="d-flex p-3">
+                        <div class="ps-3 mt-2">
+                          <div class="ps-4">
+                            <img src="../../../assets/images/cash & delivery icon.png" style="width:59%;height: 37px;" > 
+                           </div>     
+                           <div class="mt-1">
+                            <p style="font-weight: 600;font-size:18px;line-height:21px;">
+                              Cash On Delivery
+                            </p>
+                           </div>  
+                           <div class="ps-5">
+                          <input type="radio"  class="ps-3">
+                           </div>  
+                         </div> 
+                         <div class="ps-4 mt-2">
+                          <div>
+                            <img src="../../../assets/images/google wallet icon.png" style="width:100%;height: 37px;" > 
+                           </div>     
+                           <div class="mt-1">
+                            <p style="font-weight: 600;font-size:18px;line-height:21px;">
+                              Google Wallet
+                            </p>
+                           </div>  
+                           <div>
+                            <p>
+                             Comming Soon
+                            </p>
+                           </div>  
+                         </div>
+                      
+                         <div class="ps-4 mt-2">
+                          <div>
+                            <img src="../../../assets/images/paypal icon.png" style="width:59%;height: 37px;" > 
+                           </div>     
+                           <div class="mt-1">
+                            <p style="font-weight: 600;font-size:18px;line-height:21px;">
+                             Paypal
+                            </p>
+                           </div> 
+                           <div>
+                            <p>
+                             Comming Soon
+                            </p>
+                           </div>  
+                           <div>
+                      
+                           </div>  
+                         </div> 
+                         <div class="ps-4 mt-2">
+                          <div>
+                            <img src="../../../assets/images/amazon pay-icon.png" style="width:59%;height: 37px;"> 
+                           </div>     
+                           <div class="mt-1">
+                            <p style="font-weight: 600;font-size:18px;line-height:21px;">
+                           Amazon Pay
+                            </p>
+                           </div> 
+                           <div>
+                            <p>
+                          Commin Soon 
+                            </p>
+                           </div>  
+                           <div>
+                         
+                           </div>  
+                         </div> 
+                         <div class="ps-5 mt-2">
+                          <div>
+                            <img src="../../../assets/images/debitcredit icon.png"style="width:59%;height: 37px;" > 
+                           </div>     
+                           <div class="mt-1">
+                            <p style="font-weight: 600;font-size:18px;line-height:21px;">
+                         Debit/Credit Card
+                            </p>
+                           </div> 
+                           <div>
+                            <p>
+                          Commin Soon 
+                            </p>
+                           </div>  
+                           <div>
+                         
+                           </div>  
+                         </div>  
+                      </div>
+                  </div>
+                <!-- <img src="../../../assets/images/Payment Option.png" style="width:100%;height: 138px;" > -->
                 </div>
                 <div class="col-md-12 p-3">
                  <div class="card" style="border-radius: 14px;">
@@ -94,36 +184,40 @@
                       </ul>
                  </div>
                     </div>
+                    <!-- <div class="col-md-8  text-end mb-3">
+                      <button class="btnn text-white mt-1" style="background-color: #F44C4C;"  >Process and pay</button>
+                     </div> -->
+                </form>
                </div>
                <div class="col-xl-4 mt-3">
                 <mat-card-body style="padding: 20px;">
                     <div class="card p-4" style="padding: 10px;     margin-left: 16px;
                     ">
                       <div class="align-items-center">
-                        <h5 class="font-weight-bold">Order Summery</h5>
+                        <h5 class="font-weight-bold">Order Summary</h5>
                         <div class="row">
                           <div class="d-flex justify-content-between p-2">
                             <span>Sub-totals</span>
-                            <span class="font-weight-bold">$2015.20</span>
+                            <span class="font-weight-bold">${{carttotal.subTotal}}</span>
                           </div>
                           
                           <div class="d-flex justify-content-between p-2">
                             <a> Shipping</a>
-                            <span class="font-weight-bold"> Free</span>
+                            <span class="font-weight-bold">{{carttotal.shipping}}</span>
                           </div>
           
                           <div class="d-flex justify-content-between p-2">
                              <a> Discount</a>
-                             <span class="font-weight-bold"> $104</span>
+                             <span class="font-weight-bold"> ${{carttotal.discount}}</span>
                           </div><hr>
           
                           <div class="d-flex justify-content-between p-2">
                             <span class="font-weight-bold"> Total</span>
-                            <span  class="font-weight-bold">$2121 USD</span>
+                            <span  class="font-weight-bold">${{carttotal.total}} USD</span>
                           </div>
           
                           <div class="d-flex flex-column">
-                            <button type="button" class="btn mb-2 w-100" style="background-color: #F44C4C; color: white;"[routerLink]="['/dashboard/checkout-page']">PLACE OREDER
+                            <button type="button" class="btn mb-2 w-100" style="background-color: #F44C4C; color: white;"[routerLink]="['/dashboard/checkout-page']" (click)="orderplaced()">PLACE ORDER
                               <i class="ri-arrow-right-line"  ></i></button>
                           
                           </div>
