@@ -34,6 +34,7 @@ import { NewCustomersComponent } from './new-customers/new-customers.component';
 import { BlogComponent } from './blog/blog.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AllProductComponent } from './all-product/all-product.component';
+import { ManageCarttComponent } from './manage-cartt/manage-cartt.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { AllProductComponent } from './all-product/all-product.component';
     BlogComponent,
     SignInComponent,
     AllProductComponent,
+    ManageCarttComponent,
 
   ],
   imports: [

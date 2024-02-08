@@ -73,9 +73,12 @@
                         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" 
                         aria-expanded="false"  style="background-color: #F3F3F3;height: 40px">All Categories</a>
                         <div class="dropdown-menu mt-3" style="border-radius: 1px;border-radius: 0px;height: 200px;overflow-x: auto;">
-                          <!-- <a class="dropdown-item"  style="border: none; color:#F44C4C;">All Categories</a> -->
+                          
   
-                          <a class="dropdown-item"   *ngFor="let data of category">  <img [src]="data.image|| 'assets/images/download (20).png'" style="width:28px; height: 23px; border-radius: 1px;"><span class="p-3" style="font-size:16px;line-height: 28px;font-weight: 400;">{{data.categoryName}}</span>  </a>
+                          <a class="dropdown-item" (click)="getallselectcategory(data.categoryId)" *ngFor="let data of category" formControlName="categoryId">
+                            <img [src]="data.image || 'assets/images/download (20).png'" style="width: 28px; height: 23px; border-radius: 1px;">
+                            <span class="p-3" style="font-size: 16px; line-height: 28px; font-weight: 400;">{{data.categoryName}}</span>
+                          </a>
                          
                          
                           
@@ -83,9 +86,9 @@
                       </div>
                       <!-- <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name"> -->
                       <!-- <input class="form-select" type="search" id="example-search-input" placeholder="   Search for item "> -->
-                      <select (change)="getallselectproduct()"  class="form-select" formControlName="name" style="background-color: #F3F3F3;border:none">
-                       
-                        <option *ngFor="let data of carttotal"  [value]="data.productName">{{data.productName}}
+                       <select (change)="getallselectproduct()"  class="form-select " style=" box-shadow: none!important;" formControlName="name" style="background-color: #F3F3F3;border:none">
+                        <option disabled selected value="">Select a product</option>
+                        <option *ngFor="let data of carttotal"  [value]="data.productName" style="font-size:16px;line-height: 28px;font-weight: 400;">{{data.productName}}
                         </option>
                       </select>
                       <span class="input-group-append" style="background-color: #F44C4C;border-radius: 3px;">
@@ -93,6 +96,7 @@
                           <i class="ri-search-line search-icon" style="color:white;"></i> 
                         </button>
                       </span>
+                     
                     
                       </div>
             
@@ -169,7 +173,7 @@
       </form>
       <div class="col-md-12  m-3">
         <div class="col-md-10 ">
-          <button type="submit" class="btn btn-info " style="width: 106%;background-color: #F44C4C;
+          <button type="submit" class="btn btn-secondary btn-info " style="width: 106%;background-color: #F44C4C;
           border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
                     font-size: 15px;
                     line-height: 36px;letter-spacing: 0.5px;" (click)="onSubmit();stopPropagation($event)"  >SIGN  IN <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
@@ -266,14 +270,14 @@
             </div>
           </div>
          
-          <div class="col-md-6 m-3 d-flex">
+          <div class="col-md-6 m-3 d-flex"  (click)="stopPropagation($event)">
          <div class="col-md-1">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
            
           </div>
          </div>
-         <div class="col-md-5">
+         <div class="col-md-5"  (click)="stopPropagation($event)">
           <P  >Are you agree to <span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Terms of Condition</span> and <br><span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Privacy Policy</span>.</P>
          </div>
           </div>
@@ -281,14 +285,14 @@
       </form>
       <div class="col-md-12  m-3">
         <div class="col-md-10">
-          <button type="submit" class="btn btn-info " style="width: 106%;background-color: #F44C4C;
+          <button type="submit" class="btn btn-secondary btn-info " style="width: 106%;background-color: #F44C4C;
           border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
                     font-size: 15px;
-                    line-height: 36px;letter-spacing: 0.5px;" (click)="stopPropagation($event); submit()">SIGN IN <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                    line-height: 36px;letter-spacing: 0.5px;" (click)="stopPropagation($event); submit()">SIGN UP <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
         </div>
        </div>
        <!-- <hr> -->
-       <div class="col-md-12 ps-3">
+       <div class="col-md-12 ps-3"  (click)="stopPropagation($event)">
         <div class="col-md-11">
             <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
             <div class="col-md-12" >

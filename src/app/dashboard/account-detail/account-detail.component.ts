@@ -16,6 +16,8 @@ export class AccountDetailComponent {
   formGroup!:FormGroup;
   orderserach!:FormGroup;
   userid:any;
+  reorder:any;
+  quantity:any;
   bulkoderguide:any;
   bulkorderespons:any
   bulkorderguide:any;
@@ -47,6 +49,7 @@ export class AccountDetailComponent {
   currentPage = 0;
   pageSize = 100;
   address:any;
+  userId:any;
   changepasswordform!:FormGroup;
   Orderguide:boolean=false;
   Mystaff:boolean=false;
@@ -56,6 +59,14 @@ export class AccountDetailComponent {
   }
   ngOnInit() {
     this.getallbulkorder();
+    this.userId=localStorage.getItem('id');
+    console.log(this.userid,'userid')
+    if(this.userId != 0 ){
+      this.userid =this.userId;
+      this.getaccountdetailById();
+    }else{
+      this.userid=0
+    }
     this.formGroup = this.formBuilder.group({
       firstName: ['',],
       lastName: ['', ],
@@ -204,12 +215,17 @@ myaddress(){
   this.isProfileOpen=false
   this.isPasswordOpen=false;
 }
-openeclinicAcessDialog(): void {
+openeclinicAcessDialog(id:any): void {
   this.dialog.open(SigninPopupComponent, {
     width: '914px',
-    height:'584px'
-   
+    height:'584px',
+    data: {
+      id:id
+    }
+    
   });
+  console.log(id,'id')
+  
 }
 openewuserdialog(): void {
   this.dialog.open(AddNewUserPopupComponent, {
@@ -302,7 +318,7 @@ changepassword(){
 
 }
 getaccountdetailById(){
-  this.dashboardservice.getUserByUserId(this.id).subscribe((res)=>{
+  this.dashboardservice.getallsigupuserbyid(this.userid).subscribe((res:any)=>{
     if(res.status == 0){
       console.log(res,"Response");
       this.accountTypeRes = res.response
@@ -405,5 +421,37 @@ deletestaff(id:any) {
       }
     })
   }
+}
+submitcart(productId:any,price:any,quantity:any){
+     
+  let data = {
+    productId:productId,
+    userId: this.userid,
+    quantity:quantity || 0,
+    weight:0,
+    shipping:0,
+    price:price
+ 
+  }
+  this.dashboardservice.savewishcart(data).subscribe((res) => {
+    if (res.status == 0) {
+      this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+      this.getallbulkorder();
+    }
+    else {
+      this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+    }
+  })
+
+}
+getallreorder(orderid:any){
+  this.userid=localStorage.getItem('id');
+  this.dashboardservice.getallreorder(orderid,this.userid).subscribe((res:any)=>{
+    if(res.status ==0){
+    this.reorder=res.response
+    this.snackBar.open(res.response,'X', { duration: 2000 })
+    }
+  }
+  )
 }
 }

@@ -129,6 +129,25 @@ export class ViewProductDetailComponent {
       data.quantity -= 1;
     }
   }
+  incrementValue1(data: any): void {
+    if (data.quantity === undefined) {
+      // If quantity property doesn't exist, initialize it with 1
+      data.quantity = 1;
+    } else {
+      // Increment the quantity
+      data.quantity += 1;
+    }
+  }
+  
+  decrementValue1(data: any): void {
+    if (data.quantity === undefined || data.quantity <= 0) {
+      // If quantity property doesn't exist or is already 0, do nothing
+      return;
+    } else {
+      // Decrement the quantity
+      data.quantity -= 1;
+    }
+  }
   deletewishlist(id:any) {
     if (confirm("Are you sure wants to delete this Product?") == true) {
       this.dashboardservice.deletewishlist(id).subscribe(res => {

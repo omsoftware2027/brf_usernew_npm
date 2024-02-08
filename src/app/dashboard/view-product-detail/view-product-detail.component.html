@@ -52,9 +52,9 @@
                 <div class="d-flex">
                   <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;">
                   
-                    <i class="ri-add-line ps-2 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
-                    <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '0' }}</p>
-                    <i class="ri-subtract-line ps-4 " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
+                    <i class="ri-add-line ps-2 mt-2 " (click)="incrementValue1(productRes);savequantity(productRes.productId,productRes.quantity)" style="font-size: 22px;"></i>
+                    <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-3 ps-3">{{productRes.quantity || '0' }}</p>
+                    <i class="ri-subtract-line ps-4 mt-2" (click)="decrementValue1(productRes);savequantity(productRes.productId,productRes.quantity)" style="font-size: 22px;"> </i>
                  
                   </div>
                 </div>

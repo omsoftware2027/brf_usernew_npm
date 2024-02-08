@@ -464,7 +464,7 @@
                                                     </div>
                                                     <div class="col-md-3"></div>
                                                     <div class="col-md-1"><button class="btn1 text-white mt-1" style="background-color: #34BBD9;letter-spacing: 0.5px">PRINT</button></div>
-                                                    <div class="col-md-3"><button class="btn2 text-white mt-1"  style="background-color: #3A51A2;">REORDER</button></div>
+                                                    <div class="col-md-3"><button class="btn2 text-white mt-1"  style="background-color: #3A51A2;"[routerLink]="['/dashboard/my-cart-list',orderdata.orderId]" (click)="getallreorder(orderdata.orderId)">REORDER</button></div>
                                                     <div class="col-md-2">   <button class="btn3 text-white mt-1 " style="background-color: #832727 ;margin-left: -20px;letter-spacing: 0.5px">{{orderdata.transactionId}}</button></div>
                                                     
                                                 </div>
@@ -705,7 +705,7 @@
                                                     <td>${{ data1.price }}</td>
                                                     <td><input type="text" class="form-control" style="width:77px;height:29px;" [value]="data1.quantity" readonly></td>
                                                     <td>
-                                                      <button type="button" class="btn btn-secondary mt-3" style="background-color: #F44C4C; color: white;width:124px;height: 33px;border-radius: 1px;">ADD TO CART</button>
+                                                      <button type="button" class="btn btn-secondary mt-4" style="background-color: #F44C4C; color: white;width:124px;height: 33px;border-radius: 1px;">ADD TO CART</button>
                                                     </td>
                                                   </tr>
                                                 </ng-container>
@@ -722,9 +722,10 @@
                                    <div class="col-md-12 card" style="border-radius: 9px;">
                                     <div class="d-flex mt-3 p-3">
                                         <div class="col-md-6">
-                                           <select id="" class="form-select"  (change)="getallbulkorder()" [(ngModel)]="selectcategoryid" >
-                                               <option *ngFor="let data of category" [value]="data.categoryId" style="border-radius: 1px;border-radius: 0px;height: 200px;overflow-x: auto;" >{{data.categoryName}}</option>
-                                             </select>
+                                           <mat-select id="" class="form-select"  (change)="getallbulkorder()" [(ngModel)]="selectcategoryid" >
+                                            <mat-option disabled selected value="">Select a category</mat-option >
+                                               <mat-option *ngFor="let data of category" [value]="data.categoryId"  >{{data.categoryName}}</mat-option>
+                                             </mat-select>
                                             
                                         </div>
                                         <div class="col-md-6 text-end">
@@ -779,8 +780,9 @@
                                                 </div>
                             
                                             </th>
-                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;" [value]="data1.quantity">
-                                                <button class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:77px;height: 30px;font-size:8px">Add to cart</button> 
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;" [(ngModel)]="data1.quantity"  [value]="data1.quantity" >
+                                                <button *ngIf="data1.isCart == false" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">Add to cart</button> 
+                                                <button *ngIf="data1.isCart == true" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">update to cart</button>
                                              </td>
                                             <!-- <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;" [value]="data1.unit"  ></td> -->
                                             <td>${{data1.price}}</td>
@@ -817,7 +819,7 @@
                                          
                                      </div>
                                      <div class="col-md-6 text-end mt-2 p-3">
-                                        <button class="btnn text-white" style="background-color: #3A51A2;" (click)="openeclinicAcessDialog()">ADD  NEW ADDRESS</button>
+                                        <button class="btnn text-white" style="background-color: #3A51A2;" >ADD  NEW ADDRESS</button>
                                          
                                      </div>
                                     </div>
@@ -838,7 +840,7 @@
                                           
                                             <td>   
                                                 
-                                                <button type="button"  class="btn  btn-primary mt-1" style="background-color: #3A51A2; color: white;width:124px;height: 33px;
+                                                <button type="button" (click)="openeclinicAcessDialog(data.shippingAddressId)"  class="btn  btn-primary mt-1" style="background-color: #3A51A2; color: white;width:124px;height: 33px;
                                                 ">EDIT
                                                   </button><br>
                                                   <button type="button" (click)="deleteshippingaddress(data.shippingAddressId)" class="btn btn-secondary mt-1" style="background-color: #F44C4C; color: white;width:124px;height: 33px;

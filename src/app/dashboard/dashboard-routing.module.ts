@@ -22,6 +22,8 @@ import { NewCustomersComponent } from './new-customers/new-customers.component';
 import { BlogComponent } from './blog/blog.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AllProductComponent } from './all-product/all-product.component';
+import { ManageCarttComponent } from './manage-cartt/manage-cartt.component';
+
 
 
 const routes: Routes = [
@@ -189,6 +191,21 @@ const routes: Routes = [
         component: AllProductComponent,
         data: {
           title: 'all product'
+        }
+      },
+      {
+        path: 'manage-cartt/:id',
+        component:ManageCarttComponent,
+        data: {
+          title: 'manage cart'
+        }
+      },
+
+        {
+        path: 'my-cart-list/:id',
+        component: MyCartListComponent,
+        data: {
+          title: 'mycartlist'
         }
       },
 

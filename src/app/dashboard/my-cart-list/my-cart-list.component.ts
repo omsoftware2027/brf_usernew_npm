@@ -84,7 +84,7 @@ export class MyCartListComponent {
     this.userid=localStorage.getItem('id');
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
-        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+        this.matSnackBar.open("Qutantity Added", 'x', { duration: 2000 });
         this.getallcarttotal(0)
       }
       else {
@@ -95,7 +95,7 @@ export class MyCartListComponent {
   }
   deletewishlist(id:any) {
     if (confirm("Are you sure wants to delete this Product?") == true) {
-      this.dashboardservice.deletewishlist(id).subscribe(res => {
+      this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
           this.tabelLoad(0);
         }

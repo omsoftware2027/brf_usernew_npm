@@ -86,6 +86,7 @@ export class NavbarComponent implements OnInit{
         public sidebarservice: SidebarService,public dialog: MatDialog,private formBuilder: FormBuilder,private matsnackbar:MatSnackBar,private dashboardservice:DashboardService,private route: ActivatedRoute) {
           this.searchproduct = this.formBuilder.group({
             name: [''],
+            categoryId:['']
           });
             setInterval(() => {
                 this.currentDataTime = new Date();
@@ -341,5 +342,16 @@ export class NavbarComponent implements OnInit{
         }
       })
     }
+    getallselectcategory(categoryId: string) {
+      this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize, categoryId).subscribe(res => {
+          this.data = res;
+          if (this.data.status === 0) {
+              this.carttotal = this.data.response.dataSet;
+              this.router.navigate(['/dashboard/category-detail', categoryId]);
+          } else {
+              // Handle other cases if needed
+          }
+      });
+  }
 
 }
