@@ -16,6 +16,7 @@ export class AnalyticsComponent implements OnInit {
   category:any;
   carttotal:any;
   userid:any;
+  userId:any;
   data:any;
   wishlist:any;
   page: number = 0;
@@ -53,6 +54,11 @@ export class AnalyticsComponent implements OnInit {
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
+    if(this.userId != null ){
+      this.userid =this.userId
+    }else{
+      this.userid=0
+    }
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -64,7 +70,13 @@ export class AnalyticsComponent implements OnInit {
     })
   }
   cardload(page: number) {
-    this.userid=localStorage.getItem('id');
+    this.userId=localStorage.getItem('id');
+    if(this.userId != null ){
+      this.userid =this.userId
+    }else{
+      this.userid=0
+    }
+   
     console.log(this.userid,'userid')
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
