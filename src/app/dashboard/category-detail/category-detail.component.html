@@ -68,11 +68,11 @@
                  <div class="ps-2 mt-3">
                   <div class="icon-container">
                     <i class="ri-heart-fill p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
-                       *ngIf="!toggleStates[i]"
+                       *ngIf="toggleStates[i] && data.isWishlist ==true"
                         (click)="toggleIcons('second', i);submit(data.productId)"
                         ></i>
                         <i class="ri-heart-line p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
-                        *ngIf="toggleStates[i]"
+                        *ngIf="toggleStates[i] && data.isWishlist ==false"
                         (click)="toggleIcons('first', i);submit(data.productId)"
                         ></i>
                   </div>

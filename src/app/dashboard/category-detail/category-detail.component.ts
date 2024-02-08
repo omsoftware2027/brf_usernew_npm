@@ -53,7 +53,7 @@ export class CategoryDetailComponent {
     }
   }
   tabelLoad(page: number) {
-    this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,this.categoryid).subscribe(res => {
+    this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,this.categoryid,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
         window.scrollTo(0, 0);
@@ -93,8 +93,8 @@ export class CategoryDetailComponent {
     }
     this.dashboardservice.savewishlist(data).subscribe((res) => {
       if (res.status == 0) {
-        this.matSnackBar.open("Added To Wishlist", 'x', { duration: 2000 });
-      
+        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+        this.tabelLoad(0);
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });

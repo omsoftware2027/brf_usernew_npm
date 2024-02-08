@@ -60,7 +60,7 @@ export class AllProductComponent {
     }
   }
   tabelLoad(page: number) {
-    this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,this.categoryid).subscribe(res => {
+    this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,this.categoryid,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
         window.scrollTo(0, 0);

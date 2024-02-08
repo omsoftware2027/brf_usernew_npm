@@ -44,11 +44,11 @@ export class DashboardService {
   getAllcategoryy(no:any,size:any){
     return this.http.get<any>(`${environment.baseurl}/category/getAllCategory?pageNo=${no}&pageSize=${size}`)
   }
-  getAllProductByCategoryId(no:any,size:any,categoryId:any){
-    return this.http.get<any>(`${environment.baseurl}/category/getAllProductByCategoryId?pageNo=${no}&pageSize=${size}&categoryId=${categoryId}`)
+  getAllProductByCategoryId(no:any,size:any,categoryId:any,userId:any){
+    return this.http.get<any>(`${environment.baseurl}/category/getAllProductByCategoryId?pageNo=${no}&pageSize=${size}&categoryId=${categoryId}&userId=${userId}`)
   }
-  getProductByCategoryId(productId:any){
-    return this.http.get<any>(`${environment.baseurl}/product/getProductById?productId=${productId}`)
+  getProductByCategoryId(productId:any,userId:any){
+    return this.http.get<any>(`${environment.baseurl}/product/getProductById?productId=${productId}&userId=${userId}`)
   }
   getUserByUserId(userId:any){
     return this.http.get<any>(`${environment.baseurl}/user/getSignUpUserDataById?userId=${userId}`)

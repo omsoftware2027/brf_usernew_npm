@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit{
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
     titlesAndIdsArray2:any;
     carttotal:any;
+    userid:any;
     showSignIn: boolean = true;
     showSignUp: boolean = false;
     addOnUpdate:boolean=false;
@@ -343,7 +344,8 @@ export class NavbarComponent implements OnInit{
       })
     }
     getallselectcategory(categoryId: string) {
-      this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize, categoryId).subscribe(res => {
+      this.userid=localStorage.getItem('id');
+      this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize, categoryId,this.userid).subscribe(res => {
           this.data = res;
           if (this.data.status === 0) {
               this.carttotal = this.data.response.dataSet;

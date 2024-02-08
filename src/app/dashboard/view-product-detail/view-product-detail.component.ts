@@ -47,20 +47,21 @@ export class ViewProductDetailComponent {
     }
   }
   getproductById() {
-    this.dashboardservice.getProductByCategoryId(this.productid).subscribe((res) => {
+    this.dashboardservice.getProductByCategoryId(this.productid,this.userid).subscribe((res) => {
       if (res.status === 0) {
         this.productRes = res['response'];
+
       
       }
     });
 
   }
-  submitcart(productId:any,price:any){
+  submitcart(productId:any,price:any,qutantity:any){
      
     let data = {
       productId:productId,
       userId: this.userid,
-      quantity:0,
+      quantity:qutantity,
       weight:0,
       shipping:0,
       price:price
@@ -68,8 +69,8 @@ export class ViewProductDetailComponent {
     }
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
-        this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
-      
+        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+        this.getproductById();
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
@@ -77,7 +78,26 @@ export class ViewProductDetailComponent {
     })
   
   }
-
+  submit(productId:any){
+     
+    let data = {
+      productId:productId,
+      userId: this.userid,
+      wishlistId:0,
+   
+    }
+    this.dashboardservice.savewishlist(data).subscribe((res) => {
+      if (res.status == 0) {
+        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+        this.getproductById();
+      
+      }
+      else {
+        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+      }
+    })
+  
+  }
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
