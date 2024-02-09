@@ -63,14 +63,22 @@
                         </li>
                         </ul>
                    </div>
+                  
                  </div>
+             
                   <div>
-                 
+                   
                   </div>
              </div>
-             </div>
+             <mat-error>
+              <span *ngIf="(submitted && proccedaddressform.get('shippingAddressId')?.errors) || !proccedaddressform.get('shippingAddressId')?.valid && proccedaddressform.get('shippingAddressId')?.touched">Please select the address</span>
+          </mat-error>
+                   </div>
               <div class="col-md-12 p-3">
                 <input type="datetime-local" class="form-control" placeholder="Order Delivery Date and Time" formControlName="dateTime">
+                <mat-error>
+                  <span *ngIf="(submitted && proccedaddressform.get('dateTime')?.errors) || !proccedaddressform.get('dateTime')?.valid && proccedaddressform.get('dateTime')?.touched">Please select date and time </span>
+              </mat-error>
               </div>
               <!-- <div class="col-md-12 p-3">
                 <input type="text"  class="form-control" placeholder="Select Time & Date">
@@ -85,8 +93,8 @@
                   <div class="card " style="border-radius: 26px;">
                       <div class="d-flex p-3">
                         <div class="ps-3 mt-2">
-                          <div class="ps-4">
-                            <img src="../../../assets/images/cash & delivery icon.png" style="width:59%;height: 37px;" > 
+                          <div class="ps-1">
+                            <img src="../../../assets/images/cash & delivery icon.png" style="width:82%;height: 37px;" > 
                            </div>     
                            <div class="mt-1">
                             <p style="font-weight: 600;font-size:18px;line-height:21px;">
@@ -94,7 +102,7 @@
                             </p>
                            </div>  
                            <div class="ps-5">
-                          <input type="radio"  class="ps-3">
+                          <input class="form-check-input ps-3" type="radio" name="flexRadioDefault" id="flexRadioDefault2"  >
                            </div>  
                          </div> 
                          <div class="ps-4 mt-2">
@@ -108,7 +116,7 @@
                            </div>  
                            <div>
                             <p>
-                             Comming Soon
+                             Coming Soon
                             </p>
                            </div>  
                          </div>
@@ -124,7 +132,7 @@
                            </div> 
                            <div>
                             <p>
-                             Comming Soon
+                             Coming Soon
                             </p>
                            </div>  
                            <div>
@@ -133,7 +141,7 @@
                          </div> 
                          <div class="ps-4 mt-2">
                           <div>
-                            <img src="../../../assets/images/amazon pay-icon.png" style="width:59%;height: 37px;"> 
+                            <img src="../../../assets/images/amazon pay-icon.png" style="width:81%;height: 37px;" class="ps-3"> 
                            </div>     
                            <div class="mt-1">
                             <p style="font-weight: 600;font-size:18px;line-height:21px;">
@@ -142,7 +150,7 @@
                            </div> 
                            <div>
                             <p>
-                          Commin Soon 
+                          Coming Soon 
                             </p>
                            </div>  
                            <div>
@@ -160,7 +168,7 @@
                            </div> 
                            <div>
                             <p>
-                          Commin Soon 
+                          Coming Soon 
                             </p>
                            </div>  
                            <div>

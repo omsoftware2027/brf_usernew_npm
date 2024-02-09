@@ -666,8 +666,17 @@
                                  
                                   <div class="col-md-12 " *ngIf="Bulkorder">
                                     <div class="card-title d-flex align-items-center">
-                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Bulk Order Guide</h5>
+                                        <div class="col-md-12 col-lg-12 col-xl-12 d-flex">
+                                         <div class="col-md-6 col-lg-6 col-xl-6"> 
+                                            <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Bulk Order Guide</h5>
+                                         </div>
+                                         <div class="col-md-6 col-lg-6 col-xl-6 text-end"> 
+                                            <button class="btnn  btn-primary text-white" style="background-color: #3A51A2;letter-spacing: 0.5px " (click)="sumbiCart()">ADD TO CART</button>
+                                         </div>
+                                        </div>
+                                      
                                     </div>
+                                  
                                     <hr style="height: 2px;color: #4C7C17;">
                               
                                     <div class="col-md-12 card" style="border-radius: 9px;">
@@ -677,7 +686,7 @@
                                                 <th scope="col" style=" color:#475156 !important">PRODUCTS</th>
                                                 <th scope="col" style=" color:#475156 !important">UNIT</th>
                                                 <th scope="col" style=" color:#475156 !important">PRICE</th>
-                                                <th scope="col" style=" color:#475156 !important">QTY</th>
+                                                <th scope="col" style=" color:#475156 !important">QUANTITY</th>
                                                 <th scope="col" style=" color:#475156 !important">ACTIONS</th>
                                               </tr>
                                             </thead>       
@@ -703,9 +712,9 @@
                                                     </td>
                                                     <td><input type="text" class="form-control" style="width:77px;height:29px;" [value]="data1.unit"></td>
                                                     <td>${{ data1.price }}</td>
-                                                    <td><input type="text" class="form-control" style="width:77px;height:29px;" [value]="data1.quantity" readonly></td>
+                                                    <td><input type="text" class="form-control" style="width:77px;height:29px;"  [(ngModel)]="data1.quantity" ></td>
                                                     <td>
-                                                      <button type="button" class="btn btn-secondary mt-4" style="background-color: #F44C4C; color: white;width:124px;height: 33px;border-radius: 1px;">ADD TO CART</button>
+                                                      <button type="button" class="btn btn-secondary mt-2" style="background-color: #F44C4C; color: white;width:124px;height: 33px;border-radius: 1px;" (click)="addToCart(data1.productId,data1.isCart,data1.price,data1.quantity)">ADD TO CART</button>
                                                     </td>
                                                   </tr>
                                                 </ng-container>
@@ -722,10 +731,10 @@
                                    <div class="col-md-12 card" style="border-radius: 9px;">
                                     <div class="d-flex mt-3 p-3">
                                         <div class="col-md-6">
-                                           <mat-select id="" class="form-select"  (change)="getallbulkorder()" [(ngModel)]="selectcategoryid" >
-                                            <mat-option disabled selected value="">Select a category</mat-option >
-                                               <mat-option *ngFor="let data of category" [value]="data.categoryId"  >{{data.categoryName}}</mat-option>
-                                             </mat-select>
+                                            <select id="" class="form-select" (change)="getallbulkorder()" [(ngModel)]="selectcategoryid">
+                                                <option disabled selected value="">Please select category</option>
+                                                <option *ngFor="let data of category" [value]="data.categoryId">{{ data.categoryName }}</option>
+                                              </select>
                                             
                                         </div>
                                         <div class="col-md-6 text-end">
@@ -738,7 +747,7 @@
                                           <tr>
                                             <th scope="col" style=" color:#475156 !important">PRODUCTS</th>
                                             <!-- <th scope="col" style=" color:#475156 !important">UNIT</th> -->
-                                            <th scope="col" style=" color:#475156 !important">QTY</th>
+                                            <th scope="col" style=" color:#475156 !important">QUANTITY</th>
                                             <th scope="col" style=" color:#475156 !important">PRICE</th>
                                        
                                             <th scope="col" style=" color:#475156 !important">ACTIONS</th>
@@ -819,7 +828,7 @@
                                          
                                      </div>
                                      <div class="col-md-6 text-end mt-2 p-3">
-                                        <button class="btnn text-white" style="background-color: #3A51A2;" >ADD  NEW ADDRESS</button>
+                                        <button class="btnn text-white" style="background-color: #3A51A2;" (click)="openeAcessDialog()" >ADD  NEW ADDRESS</button>
                                          
                                      </div>
                                     </div>

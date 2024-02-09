@@ -11,6 +11,9 @@
 
         </a>
     </div>
+    <div class="mt-2 cardNA" *ngIf="!category.length">
+      <h5 class="mb-1">Data not Available</h5>
+    </div>
     <div class="row">
       <div class="col-12  mt-5 " >
 
@@ -593,12 +596,19 @@
        
                <mat-card-body style="padding: 20px;">
                  <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
-                   <div class="d-flex align-items-center">
-                     <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
-                     <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">{{data.productTitle}}</p>
-                     <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p>
-                   </div>
-           
+                 <div class="d-flex col-md-12 col-lg-12 col-xl-12">
+                  <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
+                    <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
+                   
+                  </div>
+                  <div class="col-md-9 col-lg-9 col-xl-9">
+                   <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">{{data.productTitle}}</p>
+                  </div>
+                  <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
+                   <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p>
+
+                  </div>
+                 </div>
                    <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
                      <div>
                        <p style="font-size: 15px;
@@ -617,11 +627,11 @@
                      </div>
                    </div>
            
-                   <div class="d-flex justify-content-between p-1 mb-2" style="padding-top: 0px;">
-                     <div class="mt-2">
+                   <div class="d-flex justify-content-between p-1 mb-2 col-md-12 col-lg-12 col-xl-12" style="padding-top: 0px;">
+                     <div class="mt-2  col-md-4 col-lg-4 col-xl-4">
                        <h5 >${{data.price}}</h5>
                      </div>
-                     <div class="d-flex" style="position: sticky;">
+                     <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
                        <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;">
                        
                          <i class="ri-add-line ps-2 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
@@ -630,7 +640,7 @@
                       
                        </div>
                      </div>
-                     <div class="mt-2">
+                     <div class="mt-2 col-md-4 col-lg-4 col-xl-4" style="text-align: end">
                        <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
                      </div>
                    </div>

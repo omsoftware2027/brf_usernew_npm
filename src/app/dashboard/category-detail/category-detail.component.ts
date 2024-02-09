@@ -56,7 +56,7 @@ export class CategoryDetailComponent {
     this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,this.categoryid,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
-        window.scrollTo(0, 0);
+
 
         this.totalrecordLength = this.data.response.totalElements;
         this.category = this.data.response.projectResponse.dataSet;

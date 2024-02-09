@@ -11,6 +11,8 @@ export class FooterComponent implements OnInit{
     cmsRes:any;
     cmsRes1:any;
     cmsRes2:any;
+    socialmedia:any;
+    contact:any;
     cmsRes3:any;
     titlesAndIdsArray:any;
     titlesAndIdsArray1:any;
@@ -27,6 +29,8 @@ export class FooterComponent implements OnInit{
        this.getfootercustomer();
        this.getfooterorder();
        this.getfooterdelivery();
+       this. getcustomercontact();
+       this. getsocialmediaurl();
 
       
     }
@@ -69,6 +73,20 @@ export class FooterComponent implements OnInit{
         });
     
     } 
+    getcustomercontact() {
+      this.dashboardservice.getcontactus().subscribe((res) => {
+        if (res.status === 0) {
+          this.contact = res['response']; 
+        }
+      });
+     } 
+     getsocialmediaurl() {
+      this.dashboardservice.getsocialmediaurl().subscribe((res) => {
+        if (res.status === 0) {
+          this.socialmedia = res['response']; 
+        }
+      });
+     } 
     getfootergenralbyid(cmsId:any) {
         this.dashboardservice.getallcmsdatabyid(cmsId).subscribe((res) => {
           if (res.status === 0) {
@@ -77,5 +95,8 @@ export class FooterComponent implements OnInit{
         });
     
     } 
+    openurl(url:any){
+      window.open(url, '_blank');
+    }
     
 }

@@ -35,6 +35,9 @@
               </tr>
             </thead>
             <tbody>
+                <div class="mt-2 cardNA" *ngIf="!wishlist.length">
+                    <h5 class="mb-1">Data not Available</h5>
+                  </div>
               <tr *ngFor="let data of  wishlist">
                 <th scope="row">
                     <div  class="d-flex align-items-center">

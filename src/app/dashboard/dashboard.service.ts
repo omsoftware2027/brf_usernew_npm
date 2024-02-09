@@ -122,6 +122,16 @@ export class DashboardService {
   }
   getshppingsddressbyid(shippingAddressId:any){
     // @ts-ignore
-return this.http.get<any>(`${environment.baseurl}/master/getShippingAddressByShippingAddressId?shippingAddressId=`+shippingAddressId)
-} 
+  return this.http.get<any>(`${environment.baseurl}/master/getShippingAddressByShippingAddressId?shippingAddressId=`+shippingAddressId)
+  } 
+  getcontactus(){
+  return this.http.get<any>(`${environment.baseurl}/master/getContactUs`);
+   }
+  getsocialmediaurl(){
+    return this.http.get<any>(`${environment.baseurl}/master/getSocialUrl`);
+  }
+  bulkcartadd(data:any){
+   // @ts-ignore
+  return this.http.post<any>(`${environment.baseurl}/wishlistCart/bulkAddToCart`, data)
+  }
 }

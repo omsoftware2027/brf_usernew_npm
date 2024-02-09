@@ -58,51 +58,54 @@
         <img src="/assets/images/categoryicon.png" class="catImg">
         <span class="text-white">All Category</span>
       </div> -->
-      <form class="form" [formGroup]="searchproduct" >
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
-          <!-- <span class="SerchText">Search</span> -->
-          <div class="searchDiv d-flex" style="margin-right:16%" >
-            <!--             
-                        <input placeholder="Search by Product Name" name="search_param" id="search-box" value="" autocomplete="off" style="height:34px" class="form-control">
-                        <i class="ri-search-line search-icon"></i> 
-                       -->
-            
-                      <div class="input-group mb-3 ">
-                  
-                      <div class="input-group-prepend">
-                        <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" 
-                        aria-expanded="false"  style="background-color: #F3F3F3;height: 40px">All Categories</a>
-                        <div class="dropdown-menu mt-3" style="border-radius: 1px;border-radius: 0px;height: 200px;overflow-x: auto;">
-                          
-  
-                          <a class="dropdown-item" (click)="getallselectcategory(data.categoryId)" *ngFor="let data of category" formControlName="categoryId">
-                            <img [src]="data.image || 'assets/images/download (20).png'" style="width: 28px; height: 23px; border-radius: 1px;">
-                            <span class="p-3" style="font-size: 16px; line-height: 28px; font-weight: 400;">{{data.categoryName}}</span>
-                          </a>
-                         
-                         
-                          
-                        </div>
-                      </div>
-                      <!-- <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name"> -->
-                      <!-- <input class="form-select" type="search" id="example-search-input" placeholder="   Search for item "> -->
-                       <select (change)="getallselectproduct()"  class="form-select " style=" box-shadow: none!important;" formControlName="name" style="background-color: #F3F3F3;border:none">
-                        <option disabled selected value="">Select a product</option>
-                        <option *ngFor="let data of carttotal"  [value]="data.productName" style="font-size:16px;line-height: 28px;font-weight: 400;">{{data.productName}}
-                        </option>
-                      </select>
-                      <span class="input-group-append" style="background-color: #F44C4C;border-radius: 3px;">
-                        <button class="btn pb-0 custom-red-button" type="button">
-                          <i class="ri-search-line search-icon" style="color:white;"></i> 
-                        </button>
-                      </span>
-                     
+      <div  class="col-lg-6 col-md-3 col-sm-5 col-xs-5" >
+        <form class="form" [formGroup]="searchproduct" >
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
+            <!-- <span class="SerchText">Search</span> -->
+            <div class="searchDiv d-flex" style="margin-right:16%" >
+              <!--             
+                          <input placeholder="Search by Product Name" name="search_param" id="search-box" value="" autocomplete="off" style="height:34px" class="form-control">
+                          <i class="ri-search-line search-icon"></i> 
+                         -->
+              
+                        <div class="input-group mb-3 ">
                     
-                      </div>
-            
-                     </div> 
-         </div>
-      </form>
+                        <div class="input-group-prepend">
+                          <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" 
+                          aria-expanded="false"  style="background-color: #F3F3F3;height: 40px">All Categories</a>
+                          <div class="dropdown-menu mt-3" style="border-radius: 1px;border-radius: 0px;height: 200px;overflow-x: auto;">
+                            
+    
+                            <a class="dropdown-item" (click)="getallselectcategory(data.categoryId)" *ngFor="let data of category" formControlName="categoryId">
+                              <img [src]="data.image || 'assets/images/download (20).png'" style="width: 28px; height: 23px; border-radius: 1px;">
+                              <span class="p-3" style="font-size: 16px; line-height: 28px; font-weight: 400;">{{data.categoryName}}</span>
+                            </a>
+                           
+                           
+                            
+                          </div>
+                        </div>
+                        <!-- <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name"> -->
+                        <!-- <input class="form-select" type="search" id="example-search-input" placeholder="   Search for item "> -->
+                         <select (change)="getallselectproduct()"  class="form-select " style=" box-shadow: none!important;" formControlName="name" style="background-color: #F3F3F3;border:none">
+                          <i class="las la-caret-down"></i>
+                          <option disabled selected value="">Select a product</option>
+                          <option *ngFor="let data of carttotal"  [value]="data.productName" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;">{{data.productName}}
+                          </option>
+                        </select>
+                        <span class="input-group-append" style="background-color: #F44C4C;border-radius: 3px;">
+                          <button class="btn pb-0 custom-red-button" type="button">
+                            <i class="ri-search-line search-icon" style="color:white;"></i> 
+                          </button>
+                        </span>
+                       
+                      
+                        </div>
+              
+                       </div> 
+           </div>
+        </form>
+      </div>
        <div class="col-lg-6 col-md-3 col-sm-5 col-xs-5" style="text-align: end;">
       <div class="cartDiv">
        <a style="color:#fff">
@@ -231,9 +234,9 @@
                       <input type="text" placeholder="" class="form-control" formControlName="firstName"  (click)="stopPropagation($event)">
                   </div>
 
-                  <!-- <mat-error>
-                      <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                  </mat-error> -->
+                  <mat-error>
+                      <span *ngIf="(submitted && SignUpForm.get('firstName')?.errors) || !SignUpForm.get('firstName')?.valid && SignUpForm.get('firstName')?.touched">Please enter  name </span>
+                  </mat-error>
 
                   
                   
@@ -246,9 +249,9 @@
                     <input type="text"  placeholder="" class="form-control" formControlName="email"  (click)="stopPropagation($event)">
                 </div>
 
-                <!-- <mat-error>
-                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                </mat-error> -->
+                <mat-error>
+                    <span *ngIf="(submitted && SignUpForm.get('email')?.errors) || !SignUpForm.get('email')?.valid && SignUpForm.get('email')?.touched">Please enter email</span>
+                </mat-error>
 
                 
                 
@@ -295,7 +298,7 @@
        <div class="col-md-12 ps-3"  (click)="stopPropagation($event)">
         <div class="col-md-11">
             <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
-            <div class="col-md-12" >
+            <div class="col-md-12" (click)="stopPropagation($event)">
               <div class="col-md-12">
                   <input type="text" class="form-control">
                   <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
@@ -315,7 +318,7 @@
     <div class="col-md-12 ps-3">
       <div class="col-md-11">
           <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
-          <div class="col-md-12" >
+          <div class="col-md-12" (click)="stopPropagation($event)">
             <div class="col-md-12">
                 <input type="text" class="form-control">
                 <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">

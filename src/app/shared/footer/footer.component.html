@@ -80,8 +80,7 @@
           margin-left: 11px;
       ">Address:</label>
           <p class="text-left mr-3" style="margin-left: 35px; color:
-          #BBBBBB"> Losangeles local food
-            distribution delivery company</p>
+          #BBBBBB"> {{contact.site_address}}</p>
        </div>
 
         
@@ -91,14 +90,14 @@
         <label style="
         margin-left: 10px; 
     ">Call Us:</label>
-        <p class="text-left mr-3" style="margin-left: 35px;color:#BBBBBB"> 1-323-366-0887. FAX-1-213-261-9899</p>
+        <p class="text-left mr-3" style="margin-left: 35px;color:#BBBBBB">{{contact.contact_no}}</p>
      </div>
        
       <div class="d-flex">
         <p class="d-flex mb-2">
           <i class="bx bx-envelope" style="color:#F44C4C;width:18px"></i>
           <label style="margin-left:12px">Email:</label>
-          <p class="text-left mr-3" style="margin-left: 34px;color:#BBBBBB"> customer.services@brfood.us</p>
+          <p class="text-left mr-3" style="margin-left: 34px;color:#BBBBBB"> {{contact.admin_email}}</p>
       </div>
        
 
@@ -109,15 +108,15 @@
         </div>
 
         <div class="d-flex" style="height: 40px; width: 40px; padding-top: 5px;">
-          <img src="/assets/images/iosApp.png">
-          <img src="/assets/images/androidApp.png">
+          <img src="/assets/images/iosApp.png" (click)="openurl(socialmedia.appleStoreUrl)">
+          <img src="/assets/images/androidApp.png"(click)="openurl(socialmedia.googlePlayStoreUrl)" >
         </div>
 
       </div>
     </div>
 
     <hr class="mb-2">
-    <div class="row align-items-center d-flex" style="margin-bottom: -30px;">
+    <div class="row align-i tems-center d-flex" style="margin-bottom: -30px;">
       <div class="col-md-7 col-lg-10 d-flex">
         <div class="text-white ps-5">© 2024 Wholesale Corporation all rights reserved </div>
         <div class="text-white" style="padding-left: 200px;">Delivery Instant Savings | Warehouse Instant Saving</div>
@@ -145,10 +144,10 @@
       <div class="col-md-2 lg-2">
         <div class="text-center text-md-right">
           <div class="myclass text-md-right">
-            <i class="fa fa-facebook-official" aria-hidden="true"></i>
-            <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-            <i class="fa fa-instagram" aria-hidden="true"></i>
-            <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            <i class="fa fa-facebook-official" aria-hidden="true" (click)="openurl(socialmedia.facebookUrl)"></i>
+            <i class="fa fa-linkedin-square" aria-hidden="true" (click)="openurl(socialmedia.linkedinUrl)"></i>
+            <i class="fa fa-instagram" aria-hidden="true" (click)="openurl(socialmedia.instagramUrl)"></i>
+            <i class="fa fa-twitter-square" aria-hidden="true" (click)="openurl(socialmedia.twitterUrl)"></i>
             <!-- <i class="fa fa-facebook" aria-hidden="true"></i> -->
 
           </div>

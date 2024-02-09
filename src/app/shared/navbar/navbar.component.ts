@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit{
     showSignUp: boolean = false;
     addOnUpdate:boolean=false;
     totalrecordLength:any;
+    submitted:boolean =false;
     loginFormGroup!: FormGroup;
     SignUpForm!:FormGroup;
     searchproduct!:FormGroup;
@@ -35,7 +36,7 @@ export class NavbarComponent implements OnInit{
     id:any;
     cmsEnum ='HEADER'
     cmsRes4:any
-    submitted:boolean = false;
+    // submitted:boolean = false;
     name:any;
     data: any;
     category:any;
@@ -124,7 +125,7 @@ export class NavbarComponent implements OnInit{
           });
           this.SignUpForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
-            firstName: [''],
+            firstName: ['',Validators.required],
             mobile:[''],
             lastName:['']
 
@@ -270,7 +271,8 @@ export class NavbarComponent implements OnInit{
       }
 
       submit(){
-     
+       this.submitted=true;
+       if(this.SignUpForm.valid){
         let data = {
           email: this.SignUpForm.value.email,
           firstName: this.SignUpForm.value.firstName,
@@ -286,6 +288,7 @@ export class NavbarComponent implements OnInit{
             this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });
           }
         })
+       }
       
       }
       tabelLoad(page: number) {
@@ -347,7 +350,7 @@ export class NavbarComponent implements OnInit{
       this.userid=localStorage.getItem('id');
       this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize, categoryId,this.userid).subscribe(res => {
           this.data = res;
-          if (this.data.status === 0) {
+          if (this.data.status === 0) {  
               this.carttotal = this.data.response.dataSet;
               this.router.navigate(['/dashboard/category-detail', categoryId]);
           } else {

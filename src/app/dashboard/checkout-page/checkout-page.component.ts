@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SigninPopupComponent } from 'src/app/shared/signin-popup/signin-popup.component';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout-page',
@@ -15,7 +15,8 @@ export class CheckoutPageComponent {
   data:any;
   userid:any;
   proccedaddressform!:FormGroup;
-  shippingaddress:any
+  shippingaddress:any;
+  submitted:boolean=false;
   currentPage=0;
   pageSize=30;
 constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder){
@@ -25,8 +26,8 @@ ngOnInit(): void {
   this.getallcarttotal(0);
   this.shippingcard(0);
   this.proccedaddressform = this.formBuilder.group({
-    shippingAddressId: [''],
-    dateTime: ['', []],
+    shippingAddressId: ['',Validators.required],
+    dateTime: ['', Validators.required],
     notes:[''],
     shippingAddressType:[''],
 
@@ -66,7 +67,8 @@ ngOnInit(): void {
     })
   }
   orderplaced(){
-     
+    this.submitted = true;
+   if( this.proccedaddressform.valid){
     let data = {
       userId: this.userid,
       shippingAddressId:this.proccedaddressform.value.shippingAddressId,
@@ -84,6 +86,7 @@ ngOnInit(): void {
         this.matSnackBar.open("Error while place the order", 'x', { duration: 2000 });
       }
     })
+   }
   
   }
 }

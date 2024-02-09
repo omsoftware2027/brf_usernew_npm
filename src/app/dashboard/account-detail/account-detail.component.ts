@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class AccountDetailComponent {
   formGroup!:FormGroup;
+  quantity1:any
   orderserach!:FormGroup;
   userid:any;
   reorder:any;
@@ -227,6 +228,16 @@ openeclinicAcessDialog(id:any): void {
   console.log(id,'id')
   
 }
+openeAcessDialog(): void {
+  this.dialog.open(SigninPopupComponent, {
+    width: '914px',
+    height:'584px',
+   
+    
+  });
+  
+  
+}
 openewuserdialog(): void {
   this.dialog.open(AddNewUserPopupComponent, {
     width: '914px',
@@ -237,28 +248,27 @@ openewuserdialog(): void {
 submit(){
      
   if (this.addOnUpdate) {
-    let data = {
-      userId:this.accountTypeRes.userId,
-      firstName: this.formGroup.value.firstName,
-      lastName: this.formGroup.value.lastName,
-      mobile: this.formGroup.value.mobile,
-      businessName: this.formGroup.value.businessName,
-      email: this.formGroup.value.email,
-      billingAddressLine1: this.formGroup.value.billingAddressLine1,
-      billingAddressLine2: this.formGroup.value.billingAddressLine2,
-      city: this.formGroup.value.city,
-      country: this.formGroup.value.country,
-      state: this.formGroup.value.state,
-      pincode: this.formGroup.value.pincode,
-      addressLine2:this.formGroup.value.addressLine2,
-      addressLine1:this.formGroup.value.addressLine1,
-      billingPincode:this.formGroup.value.billingPincode,
-      billingCity:this.formGroup.value.billingCity,
-      billingCountry:this.formGroup.value.billingCountry,
-      billingState:this.formGroup.value.billingState
-
-    }
-    this.dashboardservice.saveprofile(data).subscribe((res) => {
+    let formData: FormData = new FormData();
+    formData.append('userId',this.accountTypeRes.userId);
+    formData.append('firstName',this.formGroup.value.firstName);
+    formData.append('lastName',this.formGroup.value.lastName);
+    formData.append('mobile',this.formGroup.value.mobile);
+    formData.append('businessName',this.formGroup.value.businessName);
+    formData.append('email',this.formGroup.value.email);
+    formData.append('billingAddressLine1',this.formGroup.value.billingAddressLine1);
+    formData.append('billingAddressLine2',this.formGroup.value.billingAddressLine2);
+    formData.append('city',this.formGroup.value.city);
+    formData.append('country',this.formGroup.value.country);
+    formData.append('state',this.formGroup.value.state);
+    formData.append('pincode',this.formGroup.value.pincode);
+    formData.append('addressLine2',this.formGroup.value.addressLine2);
+    formData.append('addressLine1',this.formGroup.value.addressLine1);
+    formData.append('billingPincode',this.formGroup.value.billingPincode);
+    formData.append('billingCity',this.formGroup.value.billingCity);
+    formData.append('billingCountry',this.formGroup.value.billingCountry);
+    formData.append('billingState',this.formGroup.value.billingState);
+   
+    this.dashboardservice.saveprofile(formData).subscribe((res) => {
       if (res.status == 0) {
         this.snackBar.open("Updated Successfully", 'x', { duration: 2000 });
         this.route.navigate(['/system-settings/master-data'])
@@ -269,28 +279,28 @@ submit(){
     })
   }
   else {
-    let data = {
-      userId: 0,
-      firstName: this.formGroup.value.firstName,
-      lastName: this.formGroup.value.lastName,
-      mobile: this.formGroup.value.mobile,
-      businessName: this.formGroup.value.businessName,
-      email: this.formGroup.value.email,
-      billingAddressLine1: this.formGroup.value.billingAddressLine1,
-      billingAddressLine2: this.formGroup.value.billingAddressLine2,
-      city: this.formGroup.value.city,
-      country: this.formGroup.value.country,
-      state: this.formGroup.value.state,
-      pincode: this.formGroup.value.pincode,
-      addressLine2:this.formGroup.value.addressLine2,
-      addressLine1:this.formGroup.value.addressLine1,
-      billingPincode:this.formGroup.value.billingPincode,
-      billingCity:this.formGroup.value.billingCity,
-      billingCountry:this.formGroup.value.billingCountry,
-      billingState:this.formGroup.value.billingState
+    const formData: FormData = new FormData();
 
-    }
-    this.dashboardservice.saveprofile(data).subscribe((res) => {
+    formData.append('userId','0');
+    formData.append('firstName',this.formGroup.value.firstName);
+    formData.append('lastName',this.formGroup.value.lastName);
+    formData.append('mobile',this.formGroup.value.mobile);
+    formData.append('businessName',this.formGroup.value.businessName);
+    formData.append('email',this.formGroup.value.email);
+    formData.append('billingAddressLine1',this.formGroup.value.billingAddressLine1);
+    formData.append('billingAddressLine2',this.formGroup.value.billingAddressLine2);
+    formData.append('city',this.formGroup.value.city);
+    formData.append('country',this.formGroup.value.country);
+    formData.append('state',this.formGroup.value.state);
+    formData.append('pincode',this.formGroup.value.pincode);
+    formData.append('addressLine2',this.formGroup.value.addressLine2);
+    formData.append('addressLine1',this.formGroup.value.addressLine1);
+    formData.append('billingPincode',this.formGroup.value.billingPincode);
+    formData.append('billingCity',this.formGroup.value.billingCity);
+    formData.append('billingCountry',this.formGroup.value.billingCountry);
+    formData.append('billingState',this.formGroup.value.billingState);
+
+    this.dashboardservice.saveprofile(formData).subscribe((res) => {
       if (res.status == 0) {
         this.snackBar.open("Saved Successfully", 'x', { duration: 2000 });
         this.route.navigate(['/system-settings/master-data'])
@@ -302,6 +312,8 @@ submit(){
   }
 
 }
+
+
 changepassword(){ 
   let data = {
     newPassword:this.changepasswordform.value.newPassword,
@@ -454,4 +466,57 @@ getallreorder(orderid:any){
   }
   )
 }
+addToCart(productId: number,isCart:any,price:any,quantity:any) {
+  let data = {
+    bulkAdd: [
+      {
+        isCart: isCart, 
+        price: price, 
+        productId: productId,
+        quantity: quantity
+      }
+    ],
+    userId: this.userid
+  };
+
+  this.dashboardservice.bulkcartadd(data).subscribe((res) => {
+    if (res.status == 0) {
+      this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+      this.getallbulkorder();
+    } else {
+      this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+    }
+  });
+}
+sumbiCart() {
+  let bulkAddArray = [];
+
+  for (let categoryData of this.bulkorderguide) {
+    for (let data1 of categoryData.bulkOrderResponses) {
+      bulkAddArray.push({
+        price: data1.price,
+        quantity: data1.quantity,
+        productId:data1.productId,
+        isCart:data1.isCart
+      
+      });
+    }
+  }
+
+  let data = {
+    bulkAdd: bulkAddArray,
+    userId: this.userid
+  };
+
+  this.dashboardservice.bulkcartadd(data).subscribe((res) => {
+    if (res.status == 0) {
+      this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+      this.getallbulkorder();
+    } else {
+      this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+    }
+  });
+}
+
+
 }
