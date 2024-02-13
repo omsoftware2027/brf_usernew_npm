@@ -10,7 +10,8 @@ import { DashboardService } from '../dashboard.service';
   styleUrls: ['./add-new-user-popup.component.scss']
 })
 export class AddNewUserPopupComponent {
-  SignUpForm!:FormGroup
+  SignUpForm!:FormGroup;
+  userId:any;
   constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<AddNewUserPopupComponent>,private matsnackbar:MatSnackBar,private dashboardservice :DashboardService){
 
   }
@@ -19,7 +20,8 @@ export class AddNewUserPopupComponent {
       email: [''],
       firstName: [''],
       lastName:[''],
-      mobile:['']
+      mobile:[''],
+      parentId:['']
     });
 
 
@@ -29,12 +31,13 @@ export class AddNewUserPopupComponent {
     this.dialogRef.close();
   }
   submit(){
-     
+    this.userId=localStorage.getItem('id');
     let data = {
       email: this.SignUpForm.value.email,
       firstName: this.SignUpForm.value.firstName,
       mobile:this.SignUpForm.value.mobile,
       lastName:this.SignUpForm.value.mobile,
+      parentId: this.userId,
     }
     this.dashboardservice.signup(data).subscribe((res) => {
       if (res.status == 0) {

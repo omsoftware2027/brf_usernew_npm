@@ -44,10 +44,10 @@ export class AllProductComponent {
      this.categoryid = this.route.snapshot.params['id'];
      this.productname = this.route.snapshot.params['name'];
      this.userid=localStorage.getItem('id');
-    // this.tabelLoad(0);
+    this.tabelLoad(0);
     // this.getallcarttotal(0);
-    // this.cardload(0)
-    this.getallproduct() 
+     this.cardload(0)
+    // this.getallproduct() 
     
      // this.getAllcategoryproduct();
    }
@@ -60,7 +60,8 @@ export class AllProductComponent {
     }
   }
   tabelLoad(page: number) {
-    this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,this.categoryid,this.userid).subscribe(res => {
+   const categoryid=this.categoryid || '';
+    this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,categoryid,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
         window.scrollTo(0, 0);
@@ -69,6 +70,8 @@ export class AllProductComponent {
         this.category = this.data.response.projectResponse.dataSet;
         this.categoryname=this.data.response.category;
         this.toggleStates = new Array(this.category.length).fill(true);
+        this.getallcarttotal(0);
+        this.cardload(0);
         setTimeout(() => {
           this.paginator.pageIndex = this.currentPage;
           this.paginator.length = this.totalrecordLength;
@@ -197,8 +200,7 @@ export class AllProductComponent {
       this.data =res;
       if (this.data.status === 0) {
         this.carttotal = this.data.response.dataSet;
-        this.getallcarttotal(0);
-        this.cardload(0);
+      
       }
       else {
        

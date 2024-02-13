@@ -28,7 +28,10 @@
                 <h5 class="mb-0 main-text p-3"  style="font-weight:600;font-size:20px;line-height:24px; color:
                 #191C1F;">Shopping Cart</h5>
             </div>
-                <table class="table">
+            <div class="mt-2 cardNA mb-3" *ngIf="!wishlist.length">
+              <h5 class="mb-1">Data not Available</h5>
+            </div>
+                <table class="table" *ngIf="wishlist.length">
                     <thead>
                       <tr>
                         <th scope="col" style=" color:#475156;width: 60%;">Products</th>
@@ -38,9 +41,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <div class="mt-2 cardNA" *ngIf="!wishlist.length">
-                        <h5 class="mb-1">Data not Available</h5>
-                      </div>
+                     
                       <tr *ngFor="let data of wishlist">
                         <th scope="row">
                           <div class="d-flex align-items-center">

@@ -35,6 +35,8 @@ import { BlogComponent } from './blog/blog.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AllProductComponent } from './all-product/all-product.component';
 import { ManageCarttComponent } from './manage-cartt/manage-cartt.component';
+import { OrderDetailComplatedComponent } from './order-detail-complated/order-detail-complated.component';
+import { EmailSignupComponent } from './email-signup/email-signup.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { ManageCarttComponent } from './manage-cartt/manage-cartt.component';
     SignInComponent,
     AllProductComponent,
     ManageCarttComponent,
+    OrderDetailComplatedComponent,
+    EmailSignupComponent,
 
   ],
   imports: [

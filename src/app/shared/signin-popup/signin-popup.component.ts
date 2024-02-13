@@ -20,18 +20,19 @@ export class SigninPopupComponent {
 
   }
   ngOnInit(){
-    console.log(this.data.id,"id");
-    this.shippingAddressId=this.data.id;
-    if(this.shippingAddressId){
-      this.getaccountdetailById(this.shippingAddressId);
-    }
     this.formGroup = this.formBuilder.group({
       address: [''],
       city: [''],
       country:[''],
       pincode:[''],
-      state:['']
+      state:[''],
     });
+    console.log(this.data.id,"id");
+    this.shippingAddressId=this.data.id ;
+    if(this.shippingAddressId ){
+      this.getaccountdetailById(this.shippingAddressId);
+    }
+    
   }
   closeDialog(){
   this.dialogRef.close();

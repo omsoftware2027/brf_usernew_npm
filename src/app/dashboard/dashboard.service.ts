@@ -134,4 +134,13 @@ export class DashboardService {
    // @ts-ignore
   return this.http.post<any>(`${environment.baseurl}/wishlistCart/bulkAddToCart`, data)
   }
+  getorderbyid(userId:any){
+    return this.http.get<any>(`${environment.baseurl}/order/getOrderByOrderId?orderId=${userId}`)
+  }
+  getcountcart(userId:any){
+    return this.http.get<any>(`${environment.baseurl}/wishlistCart/getCountCartByUserId?userId=${userId}`)
+  }
+  getcartcount(userId:any){
+    return this.http.get<any>(`${environment.baseurl}/wishlistCart/getCoutWishlistByUserId?userId=${userId}`)
+  }
 }

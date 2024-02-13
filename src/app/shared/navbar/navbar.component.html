@@ -27,7 +27,7 @@
             |
           </li> -->
           <li>
-            <p class="ps-2">Email Sign-Up</p>
+            <p class="ps-2" [routerLink]="['/dashboard/email-signup']"  >Email Sign-Up</p>
           </li>
           <li>
             <a>|</a>
@@ -109,13 +109,15 @@
        <div class="col-lg-6 col-md-3 col-sm-5 col-xs-5" style="text-align: end;">
       <div class="cartDiv">
        <a style="color:#fff">
-        <img src="/assets/images/wishlist icon.png" class="catImg">
+        <i class="ri-heart-line" style="color:black ;font-size: 10px;"><span>{{wishlist}}</span></i>
+        <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
         <span class="text-black" [routerLink]="['/dashboard/add-wishlist']"> Wishlist</span>
 
        </a>
        <a style="color:#fff ; margin-left:70px">
-        <img src="/assets/images/myCart icon.png" class="catImg">
+        <img src="../../../assets/images/Add to cart.png" class="catImg">
         <span class="text-black" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
+        <span style="color:black">{{wishcart}}</span>
       
        </a>
        
@@ -124,220 +126,223 @@
         <img src="../../../assets/images/bsup.svg" alt="">
          <a  class="text-black ms-1">Sign In </a>
     
-      <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink" style="border-radius: 7px; width: 424px;" >
-      <div class="col-md-12 col-lg-12 col-xl-12 ps-5 mt-3 d-flex">
-        <div class="col-md-6" (click)="showSignInForm($event)">
-         <h5 style="font-size: 20px;font-weight: 500;line-height: 28px;">Sign In</h5>
-         <!-- <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
-         border: 2px;"> -->
+     
+        <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink" style="border-radius: 7px; width: 424px;"  >
+        <div >
+          <div class="col-md-12 col-lg-12 col-xl-12 ps-5 mt-3 d-flex">
+            <div class="col-md-6" (click)="showSignInForm($event)">
+             <h5 style="font-size: 20px;font-weight: 500;line-height: 28px;">Sign In</h5>
+             <!-- <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+             border: 2px;"> -->
+            </div>
+            <div class="col-md-6" (click)="showSignUpForm($event)">
+              <h5 style="font-size: 20px;font-weight: 500;line-height: 28px;" >Sign Up</h5>
+            </div>
+            
+           
+          </div>
+          <hr class="mt-1" style="border-radius:2px;color:
+          #FA8232;height: 2px;border: 2px;">
+          <div class="col-md-12 col-md-12 col-lg-12 col-xl-12  p-3 " *ngIf="showSignIn">
+            <form class="g-3"  [formGroup]="formGroup"    >
+              <div class="col-md-6 m-3">
+                  <div class="form-group">
+                      <label for="" class="form-label">Email Address </label>
+                      <div class="input-group" style="width: 177%;">
+                          <input type="text" placeholder="" class="form-control" formControlName="email" (click)="stopPropagation($event)">
+                      </div>
+    
+                      <!-- <mat-error>
+                          <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                      </mat-error> -->
+    
+                      
+                      
+                  </div>
+              </div>
+              <div class="col-md-6 m-3">
+                <div class="form-group">
+                    <label for="" class="form-label"  >Password<span class="text-info" style="margin-left: 176px;" >Forgot Password</span></label>
+                    <div class="input-group" style="width: 177%;">
+                        <input type="text"  placeholder="" class="form-control" formControlName="password" (click)="stopPropagation($event)">
+                    </div>
+    
+                    <!-- <mat-error>
+                        <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                    </mat-error> -->
+    
+                    
+                    
+                </div>
+              </div>
+             
+          </form>
+          <div class="col-md-12  m-3">
+            <div class="col-md-10 ">
+              <button type="submit" class="btn btn-secondary btn-info " style="width:106%;background-color: #F44C4C;
+              border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
+                        font-size: 15px;
+                        line-height: 36px;letter-spacing: 0.5px;" (click)="onSubmit();stopPropagation($event)"  >SIGN  IN <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+               
+            </div>
+           </div>
+           <!-- <hr> -->
+           <div class="col-md-12 ps-3">
+            <div class="col-md-11">
+                <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
+                <div class="col-md-12" >
+                  <div class="col-md-12">
+                      <input type="text" class="form-control">
+                      <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
+                      <p  style="margin-top: -49px;margin-left: 114px;">LogIn with Google</p>
+                      
+                  </div>
+              </div>
+    
+                <!-- <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                </mat-error> -->
+    
+                
+                
+            </div>
         </div>
-        <div class="col-md-6" (click)="showSignUpForm($event)">
-          <h5 style="font-size: 20px;font-weight: 500;line-height: 28px;" >Sign Up</h5>
+        <div class="col-md-12 ps-3">
+          <div class="col-md-11">
+              <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
+              <div class="col-md-12" >
+                <div class="col-md-12">
+                    <input type="text" class="form-control">
+                    <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
+                    <p  style="margin-top: -52px;margin-left: 114px;">LogIn with Apple</p>
+                    
+                </div>
+            </div>
+    
+              <!-- <mat-error>
+                  <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+              </mat-error> -->
+    
+              
+              
+          </div>
+        </div>
+          </div>
+          <div class="col-md-12 col-md-12 col-lg-12 col-xl-12 p-3" *ngIf="showSignUp">
+            <form class="g-3"  [formGroup]="SignUpForm"    >
+              <div class="col-md-6 m-3">
+                  <div class="form-group">
+                      <label for="" class="form-label" >Name </label>
+                      <div class="input-group" style="width: 177%;">
+                          <input type="text" placeholder="" class="form-control" formControlName="firstName"  (click)="stopPropagation($event)">
+                      </div>
+    
+                      <mat-error>
+                          <span *ngIf="(submitted && SignUpForm.get('firstName')?.errors) || !SignUpForm.get('firstName')?.valid && SignUpForm.get('firstName')?.touched">Please enter  name </span>
+                      </mat-error>
+    
+                      
+                      
+                  </div>
+              </div>
+              <div class="col-md-6 m-3">
+                <div class="form-group">
+                    <label for="" class="form-label">Email Address</label>
+                    <div class="input-group" style="width: 177%;">
+                        <input type="text"  placeholder="" class="form-control" formControlName="email"  (click)="stopPropagation($event)">
+                    </div>
+    
+                    <mat-error>
+                        <span *ngIf="(submitted && SignUpForm.get('email')?.errors) || !SignUpForm.get('email')?.valid && SignUpForm.get('email')?.touched">Please enter email</span>
+                    </mat-error>
+    
+                    
+                    
+                </div>
+              </div>
+              <div class="col-md-6 m-3">
+                <div class="form-group">
+                    <label for="" class="form-label">Phone Number</label>
+                    <div class="input-group" style="width: 177%;">
+                        <input type="text"  placeholder="" class="form-control" formControlName="mobile" (click)="stopPropagation($event)">
+                    </div>
+    
+                    <!-- <mat-error>
+                        <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                    </mat-error> -->
+    
+                    
+                    
+                </div>
+              </div>
+             
+              <div class="col-md-6 m-3 d-flex"  (click)="stopPropagation($event)">
+             <div class="col-md-1">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+               
+              </div>
+             </div>
+             <div class="col-md-5"  (click)="stopPropagation($event)">
+              <P  >Are you agree to <span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Terms of Condition</span> and <br><span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Privacy Policy</span>.</P>
+             </div>
+              </div>
+              
+          </form>
+          <div class="col-md-12  m-3">
+            <div class="col-md-10">
+              <button type="submit" class="btn btn-secondary btn-info " style="width: 106%;background-color: #F44C4C;
+              border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
+                        font-size: 15px;
+                        line-height: 36px;letter-spacing: 0.5px;" (click)="submit()">SIGN UP <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+            </div>
+           </div>
+           <!-- <hr> -->
+           <div class="col-md-12 ps-3"  (click)="stopPropagation($event)">
+            <div class="col-md-11">
+                <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
+                <div class="col-md-12" (click)="stopPropagation($event)">
+                  <div class="col-md-12">
+                      <input type="text" class="form-control">
+                      <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
+                      <p  style="margin-top: -49px;margin-left: 114px;">LogIn with Google</p>
+                      
+                  </div>
+              </div>
+    
+                <!-- <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                </mat-error> -->
+    
+                
+                
+            </div>
+        </div>
+        <div class="col-md-12 ps-3">
+          <div class="col-md-11">
+              <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
+              <div class="col-md-12" (click)="stopPropagation($event)">
+                <div class="col-md-12">
+                    <input type="text" class="form-control">
+                    <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
+                    <p  style="margin-top: -52px;margin-left: 114px;">LogIn with Apple</p>
+                    
+                </div>
+            </div>
+    
+              <!-- <mat-error>
+                  <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+              </mat-error> -->
+    
+              
+              
+          </div>
         </div>
         
-       
-      </div>
-      <hr class="mt-1" style="border-radius:2px;color:
-      #FA8232;height: 2px;
-      border: 2px;">
-      <div class="col-md-12 col-md-12 col-lg-12 col-xl-12  p-3 " *ngIf="showSignIn">
-        <form class="g-3"  [formGroup]="formGroup"    >
-          <div class="col-md-6 m-3">
-              <div class="form-group">
-                  <label for="" class="form-label">Email Address </label>
-                  <div class="input-group" style="width: 177%;">
-                      <input type="text" placeholder="" class="form-control" formControlName="email" (click)="stopPropagation($event)">
-                  </div>
-
-                  <!-- <mat-error>
-                      <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                  </mat-error> -->
-
-                  
-                  
-              </div>
           </div>
-          <div class="col-md-6 m-3">
-            <div class="form-group">
-                <label for="" class="form-label"  >Password<span class="text-info" style="margin-left: 176px;" >Forgot Password</span></label>
-                <div class="input-group" style="width: 177%;">
-                    <input type="text"  placeholder="" class="form-control" formControlName="password" (click)="stopPropagation($event)">
-                </div>
-
-                <!-- <mat-error>
-                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                </mat-error> -->
-
-                
-                
-            </div>
-          </div>
-         
-      </form>
-      <div class="col-md-12  m-3">
-        <div class="col-md-10 ">
-          <button type="submit" class="btn btn-secondary btn-info " style="width: 106%;background-color: #F44C4C;
-          border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
-                    font-size: 15px;
-                    line-height: 36px;letter-spacing: 0.5px;" (click)="onSubmit();stopPropagation($event)"  >SIGN  IN <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-           
         </div>
-       </div>
-       <!-- <hr> -->
-       <div class="col-md-12 ps-3">
-        <div class="col-md-11">
-            <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
-            <div class="col-md-12" >
-              <div class="col-md-12">
-                  <input type="text" class="form-control">
-                  <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
-                  <p  style="margin-top: -49px;margin-left: 114px;">LogIn with Google</p>
-                  
-              </div>
           </div>
-
-            <!-- <mat-error>
-                <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-            </mat-error> -->
-
-            
-            
-        </div>
-    </div>
-    <div class="col-md-12 ps-3">
-      <div class="col-md-11">
-          <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
-          <div class="col-md-12" >
-            <div class="col-md-12">
-                <input type="text" class="form-control">
-                <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
-                <p  style="margin-top: -52px;margin-left: 114px;">LogIn with Apple</p>
-                
-            </div>
-        </div>
-
-          <!-- <mat-error>
-              <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-          </mat-error> -->
-
-          
-          
-      </div>
-    </div>
-      </div>
-      <div class="col-md-12 col-md-12 col-lg-12 col-xl-12 p-3" *ngIf="showSignUp">
-        <form class="g-3"  [formGroup]="SignUpForm"    >
-          <div class="col-md-6 m-3">
-              <div class="form-group">
-                  <label for="" class="form-label" >Name </label>
-                  <div class="input-group" style="width: 177%;">
-                      <input type="text" placeholder="" class="form-control" formControlName="firstName"  (click)="stopPropagation($event)">
-                  </div>
-
-                  <mat-error>
-                      <span *ngIf="(submitted && SignUpForm.get('firstName')?.errors) || !SignUpForm.get('firstName')?.valid && SignUpForm.get('firstName')?.touched">Please enter  name </span>
-                  </mat-error>
-
-                  
-                  
-              </div>
-          </div>
-          <div class="col-md-6 m-3">
-            <div class="form-group">
-                <label for="" class="form-label">Email Address</label>
-                <div class="input-group" style="width: 177%;">
-                    <input type="text"  placeholder="" class="form-control" formControlName="email"  (click)="stopPropagation($event)">
-                </div>
-
-                <mat-error>
-                    <span *ngIf="(submitted && SignUpForm.get('email')?.errors) || !SignUpForm.get('email')?.valid && SignUpForm.get('email')?.touched">Please enter email</span>
-                </mat-error>
-
-                
-                
-            </div>
-          </div>
-          <div class="col-md-6 m-3">
-            <div class="form-group">
-                <label for="" class="form-label">Phone Number</label>
-                <div class="input-group" style="width: 177%;">
-                    <input type="text"  placeholder="" class="form-control" formControlName="mobile" (click)="stopPropagation($event)">
-                </div>
-
-                <!-- <mat-error>
-                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                </mat-error> -->
-
-                
-                
-            </div>
-          </div>
-         
-          <div class="col-md-6 m-3 d-flex"  (click)="stopPropagation($event)">
-         <div class="col-md-1">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-           
-          </div>
-         </div>
-         <div class="col-md-5"  (click)="stopPropagation($event)">
-          <P  >Are you agree to <span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Terms of Condition</span> and <br><span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Privacy Policy</span>.</P>
-         </div>
-          </div>
-          
-      </form>
-      <div class="col-md-12  m-3">
-        <div class="col-md-10">
-          <button type="submit" class="btn btn-secondary btn-info " style="width: 106%;background-color: #F44C4C;
-          border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
-                    font-size: 15px;
-                    line-height: 36px;letter-spacing: 0.5px;" (click)="stopPropagation($event); submit()">SIGN UP <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-        </div>
-       </div>
-       <!-- <hr> -->
-       <div class="col-md-12 ps-3"  (click)="stopPropagation($event)">
-        <div class="col-md-11">
-            <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
-            <div class="col-md-12" (click)="stopPropagation($event)">
-              <div class="col-md-12">
-                  <input type="text" class="form-control">
-                  <img src="/assets/images/google.png" style="width: 20px; height: 20px;margin-top: -55px;margin-left: 12px;">
-                  <p  style="margin-top: -49px;margin-left: 114px;">LogIn with Google</p>
-                  
-              </div>
-          </div>
-
-            <!-- <mat-error>
-                <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-            </mat-error> -->
-
-            
-            
-        </div>
-    </div>
-    <div class="col-md-12 ps-3">
-      <div class="col-md-11">
-          <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
-          <div class="col-md-12" (click)="stopPropagation($event)">
-            <div class="col-md-12">
-                <input type="text" class="form-control">
-                <img src="/assets/images/apple-logo.png" style="width: 20px; height: 20px;margin-top: -65px;margin-left: 14px;">
-                <p  style="margin-top: -52px;margin-left: 114px;">LogIn with Apple</p>
-                
-            </div>
-        </div>
-
-          <!-- <mat-error>
-              <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-          </mat-error> -->
-
-          
-          
-      </div>
-    </div>
-    
-      </div>
-      </div>
+  
       </a>
       </div>
        </div>

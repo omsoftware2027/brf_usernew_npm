@@ -4,6 +4,7 @@ import { SigninPopupComponent } from 'src/app/shared/signin-popup/signin-popup.c
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-page',
@@ -16,10 +17,11 @@ export class CheckoutPageComponent {
   userid:any;
   proccedaddressform!:FormGroup;
   shippingaddress:any;
+  orderpalceid:any;
   submitted:boolean=false;
   currentPage=0;
   pageSize=30;
-constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder){
+constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder,private route:Router){
 
 }
 ngOnInit(): void {
@@ -59,7 +61,6 @@ ngOnInit(): void {
       this.data =res;
       if (this.data.status === 0) {
         this.shippingaddress= this.data.response.dataSet;
-       
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -80,7 +81,10 @@ ngOnInit(): void {
     }
     this.dashboardservice.saveaddress(data).subscribe((res) => {
       if (res.status == 0) {
-        this.matSnackBar.open(res.response );
+        this.orderpalceid=res.response;
+        this.route.navigate(['/dashboard/order-detail-complated', this.orderpalceid])
+        this.matSnackBar.open(res.response ,'x');
+
       }
       else {
         this.matSnackBar.open("Error while place the order", 'x', { duration: 2000 });

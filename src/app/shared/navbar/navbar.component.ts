@@ -22,6 +22,9 @@ export class NavbarComponent implements OnInit{
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
     titlesAndIdsArray2:any;
     carttotal:any;
+    wishcart:any;
+    wishlist:any;
+    dropdownopen:boolean =true;
     userid:any;
     showSignIn: boolean = true;
     showSignUp: boolean = false;
@@ -117,8 +120,10 @@ export class NavbarComponent implements OnInit{
         this.sessionId = localStorage.getItem('sessionId');
         this.getfootergeneral();
         this.getTeams();
-        this.tabelLoad(0)
-        this.getallproduct()
+        this.tabelLoad(0);
+        this.getallcount()
+        this.getallproduct();
+        this.getallcart() ;
         this.formGroup = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
@@ -126,7 +131,7 @@ export class NavbarComponent implements OnInit{
           this.SignUpForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             firstName: ['',Validators.required],
-            mobile:[''],
+            mobile:['',Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")],
             lastName:['']
 
           });
@@ -231,7 +236,9 @@ export class NavbarComponent implements OnInit{
            this.loginData = data;   
            localStorage.setItem('id', this.loginData.response.id);
            console.log(this.loginData.response.id,'loginData');
-           this.submitted = false;
+           this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
+         
+
            // @ts-ignore
            if (data && data.value === 'Not Authorized') {
            this.matsnackbar.open('Wrong Username or Password Enter , try Again', '', {
@@ -282,7 +289,10 @@ export class NavbarComponent implements OnInit{
         this.dashboardservice.signup(data).subscribe((res) => {
           if (res.status == 0) {
             this.matsnackbar.open("Sign Up  Successfully", 'x', { duration: 2000 });
-          
+            const dropdownToggle = document.querySelector('.dropdown-toggle');
+            if (dropdownToggle) {
+              dropdownToggle.classList.remove('show');
+            }
           }
           else {
             this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });
@@ -358,5 +368,28 @@ export class NavbarComponent implements OnInit{
           }
       });
   }
-
+  getallcount() {
+    this.userid=localStorage.getItem('id');
+    this.dashboardservice.getcountcart(this.userid).subscribe(res => {
+        this.data = res;
+        if (this.data.status === 0) {  
+            this.wishlist = this.data.response;
+            
+        } else {
+            // Handle other cases if needed
+        }
+    });
+}
+getallcart() {
+  this.userid=localStorage.getItem('id');
+  this.dashboardservice.getcartcount(this.userid).subscribe(res => {
+      this.data = res;
+      if (this.data.status === 0) {  
+          this.wishcart = this.data.response;
+          
+      } else {
+          // Handle other cases if needed
+      }
+  });
+}
 }

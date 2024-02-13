@@ -18,6 +18,7 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 // import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import * as $ from 'jquery';
+import { OrderDetailComponent } from './order-detail/order-detail.component';
 
 
 
@@ -31,6 +32,7 @@ import * as $ from 'jquery';
     AppComponent,
     FullLayoutComponent,
     ContentLayoutComponent,
+    OrderDetailComponent,
   
   ],
   imports: [

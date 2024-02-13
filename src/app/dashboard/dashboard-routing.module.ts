@@ -23,6 +23,9 @@ import { BlogComponent } from './blog/blog.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AllProductComponent } from './all-product/all-product.component';
 import { ManageCarttComponent } from './manage-cartt/manage-cartt.component';
+import { OrderDetailComponent } from '../order-detail/order-detail.component';
+import { EmailSignupComponent } from './email-signup/email-signup.component';
+import { OrderDetailComplatedComponent } from './order-detail-complated/order-detail-complated.component';
 
 
 
@@ -208,7 +211,27 @@ const routes: Routes = [
           title: 'mycartlist'
         }
       },
-
+      {
+        path: 'order-detail-complated/:id',
+        component: OrderDetailComplatedComponent,
+        data: {
+          title: 'orderdetailcompleted'
+        }
+      },
+      // {
+      //   path: 'order-detail-complated',
+      //   component: OrderDetailComponent,
+      //   data: {
+      //     title: 'orderdetailcompleted'
+      //   }
+      // },
+      {
+        path: 'email-signup',
+        component: EmailSignupComponent,
+        data: {
+          title: 'email-sign-up'
+        }
+      },
 
       // {
       //   path: '',
