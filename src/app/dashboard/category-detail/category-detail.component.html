@@ -47,7 +47,7 @@
             <div class="card mt-2" style="height: 100%;">
               <div class="card-contain container col-md-12">
                <div class="col-md-12">
-                 <img [src]="data.image || 'assets/images/download (20).png'" style="width:100%;margin-top: 24px;height: 116px; display: grid;" class=""  	[routerLink]="['/dashboard/view-product-detail',data.productId]">
+                 <img [src]="data.image|| 'assets/images/download (20).png'" style="width:100%;margin-top: 24px;height: 116px; display: grid;" class=""  	[routerLink]="['/dashboard/view-product-detail',data.productId]">
          
                  <div class="image-text mt-4">
                   <p style="margin-left: 10px; font-size:14px;">{{  data.title }}</p>
@@ -129,7 +129,7 @@
               <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">{{data.productTitle}}</p>
              </div>
              <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
-              <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p>
+              <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
 
              </div>
             </div>

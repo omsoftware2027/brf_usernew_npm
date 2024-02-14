@@ -109,15 +109,26 @@
        <div class="col-lg-6 col-md-3 col-sm-5 col-xs-5" style="text-align: end;">
       <div class="cartDiv">
        <a style="color:#fff">
-        <i class="ri-heart-line" style="color:black ;font-size: 10px;"><span>{{wishlist}}</span></i>
+        <i class="bx bx-heart " style="color: black;
+        font-size: 34px;
+        position: absolute;
+        bottom: -118%;
+        margin-left: -35px;">
+        </i>
+         <span class=" msgcount rounded-circle"> {{wishcart}}</span>
         <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
         <span class="text-black" [routerLink]="['/dashboard/add-wishlist']"> Wishlist</span>
 
        </a>
        <a style="color:#fff ; margin-left:70px">
-        <img src="../../../assets/images/Add to cart.png" class="catImg">
+        <i class="las la-shopping-cart " style="    font-size: 37px;
+        position: absolute;
+        bottom: -104%;
+    margin-left: -35px;
+    color: black;"></i>
+        <span class=" msgcount rounded-circle">{{wishlist}}</span>
         <span class="text-black" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
-        <span style="color:black">{{wishcart}}</span>
+     
       
        </a>
        
@@ -232,19 +243,34 @@
             <form class="g-3"  [formGroup]="SignUpForm"    >
               <div class="col-md-6 m-3">
                   <div class="form-group">
-                      <label for="" class="form-label" >Name </label>
+                      <label for="" class="form-label" >First Name </label>
                       <div class="input-group" style="width: 177%;">
                           <input type="text" placeholder="" class="form-control" formControlName="firstName"  (click)="stopPropagation($event)">
                       </div>
     
                       <mat-error>
-                          <span *ngIf="(submitted && SignUpForm.get('firstName')?.errors) || !SignUpForm.get('firstName')?.valid && SignUpForm.get('firstName')?.touched">Please enter  name </span>
+                          <span *ngIf="(submitted && SignUpForm.get('firstName')?.errors) || !SignUpForm.get('firstName')?.valid && SignUpForm.get('firstName')?.touched">Please enter first name </span>
                       </mat-error>
     
                       
                       
                   </div>
               </div>
+              <div class="col-md-6 m-3">
+                <div class="form-group">
+                    <label for="" class="form-label" >Last Name </label>
+                    <div class="input-group" style="width: 177%;">
+                        <input type="text" placeholder="" class="form-control" formControlName="lastName"  (click)="stopPropagation($event)">
+                    </div>
+  
+                    <mat-error>
+                        <span *ngIf="(submitted && SignUpForm.get('lastName')?.errors) || !SignUpForm.get('lastName')?.valid && SignUpForm.get('lastName')?.touched">Please enter  last name </span>
+                    </mat-error> 
+  
+                    
+                    
+                </div>
+            </div>
               <div class="col-md-6 m-3">
                 <div class="form-group">
                     <label for="" class="form-label">Email Address</label>
@@ -267,16 +293,16 @@
                         <input type="text"  placeholder="" class="form-control" formControlName="mobile" (click)="stopPropagation($event)">
                     </div>
     
-                    <!-- <mat-error>
-                        <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                    </mat-error> -->
+                    <mat-error>
+                        <span *ngIf="(submitted && SignUpForm.get('mobile')?.errors) || !SignUpForm.get('mobile')?.valid && SignUpForm.get('mobile')?.touched">Please Enter mobile number</span>
+                    </mat-error>
     
                     
                     
                 </div>
               </div>
              
-              <div class="col-md-6 m-3 d-flex"  (click)="stopPropagation($event)">
+              <!-- <div class="col-md-6 m-3 d-flex"  (click)="stopPropagation($event)">
              <div class="col-md-1">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -286,15 +312,15 @@
              <div class="col-md-5"  (click)="stopPropagation($event)">
               <P  >Are you agree to <span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Terms of Condition</span> and <br><span style="font-weight: 500;color:#2DA5F3;font-size: 14px;">Privacy Policy</span>.</P>
              </div>
-              </div>
+              </div> -->
               
           </form>
-          <div class="col-md-12  m-3">
+          <div class="col-md-12  m-3" (click)="stopPropagation($event)">
             <div class="col-md-10">
-              <button type="submit" class="btn btn-secondary btn-info " style="width: 106%;background-color: #F44C4C;
+              <button  type="submit" class="btn btn-secondary btn-info " style="width: 106%;background-color: #F44C4C;
               border: aliceblue;border-radius: 1px;height:48px;font-weight: 700;
                         font-size: 15px;
-                        line-height: 36px;letter-spacing: 0.5px;" (click)="submit()">SIGN UP <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                        line-height: 36px;letter-spacing: 0.5px;" (click)="submit()"  >SIGN UP <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
             </div>
            </div>
            <!-- <hr> -->

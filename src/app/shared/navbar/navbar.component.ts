@@ -131,8 +131,9 @@ export class NavbarComponent implements OnInit{
           this.SignUpForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             firstName: ['',Validators.required],
-            mobile:['',Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")],
-            lastName:['']
+            lastName:['',Validators.required],
+            mobile:['',Validators.required],
+            
 
           });
         // if (!this.token) {
@@ -278,21 +279,24 @@ export class NavbarComponent implements OnInit{
       }
 
       submit(){
-       this.submitted=true;
+      this.submitted=true;
+      console.log('hk')
        if(this.SignUpForm.valid){
+        console.log('hk')
         let data = {
           email: this.SignUpForm.value.email,
           firstName: this.SignUpForm.value.firstName,
+          lastName: this.SignUpForm.value.lastName,
           mobile:this.SignUpForm.value.mobile,
-          lastName:this.SignUpForm.value.mobile,
+        
         }
         this.dashboardservice.signup(data).subscribe((res) => {
           if (res.status == 0) {
             this.matsnackbar.open("Sign Up  Successfully", 'x', { duration: 2000 });
-            const dropdownToggle = document.querySelector('.dropdown-toggle');
-            if (dropdownToggle) {
-              dropdownToggle.classList.remove('show');
-            }
+            // const dropdownToggle = document.querySelector('.dropdown-toggle');
+            // if (dropdownToggle) {
+            //   dropdownToggle.classList.remove('show');
+            // }
           }
           else {
             this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });

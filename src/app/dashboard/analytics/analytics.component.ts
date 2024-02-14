@@ -115,9 +115,10 @@ export class AnalyticsComponent implements OnInit {
   }
   deletewishlist(id:any) {
     if (confirm("Are you sure wants to delete this Product?") == true) {
-      this.dashboardservice.deletewishlist(id).subscribe(res => {
+      this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
           this.cardload(0);
+          this.getallcarttotal(0)
         }
       })
     }

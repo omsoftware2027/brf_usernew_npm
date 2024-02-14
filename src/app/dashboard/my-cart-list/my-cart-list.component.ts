@@ -37,7 +37,8 @@ export class MyCartListComponent {
         window.scrollTo(0, 0);
         this.totalrecordLength = this.data.response.totalElements;
         this.wishlist = this.data.response.dataSet;
-        this.getallcarttotal(0)
+        this.getallcarttotal(0);
+        
         setTimeout(() => {
           this.paginator.pageIndex = this.currentPage;   
           this.paginator.length = this.totalrecordLength;
@@ -85,7 +86,25 @@ export class MyCartListComponent {
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
         this.matSnackBar.open("Qutantity Added", 'x', { duration: 2000 });
-        this.getallcarttotal(0)
+        this.tabelLoad(0);
+        this.getallcarttotal(0);
+
+      }
+      else {
+        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+      }
+    })
+  
+  }
+  submitcart2(productId:any,quantity:any){
+    this.userid=localStorage.getItem('id');
+    this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
+      if (res.status == 0) {
+        this.matSnackBar.open("Qutantity Removed", 'x', { duration: 2000 });
+        this.tabelLoad(0);
+        this.getallcarttotal(0);
+
+        
       }
       else {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });

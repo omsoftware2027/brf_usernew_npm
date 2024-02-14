@@ -107,7 +107,7 @@ export class CategoryDetailComponent {
     let data = {
       productId:productId,
       userId: this.userid,
-      quantity:0,
+      quantity:1,
       weight:0,
       shipping:0,
       price:price
@@ -177,8 +177,9 @@ export class CategoryDetailComponent {
   }
   deletewishlist(id:any) {
     if (confirm("Are you sure wants to delete this Product?") == true) {
-      this.dashboardservice.deletewishlist(id).subscribe(res => {
+      this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
+          this.getallcarttotal(0)
           this.cardload(0);
         }
       })

@@ -83,7 +83,7 @@ ngOnInit(): void {
       if (res.status == 0) {
         this.orderpalceid=res.response;
         this.route.navigate(['/dashboard/order-detail-complated', this.orderpalceid])
-        this.matSnackBar.open(res.response ,'x');
+        this.matSnackBar.open(res.response ,'x', { duration: 2000 });
 
       }
       else {
