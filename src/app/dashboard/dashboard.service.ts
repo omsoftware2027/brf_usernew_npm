@@ -112,6 +112,9 @@ export class DashboardService {
   deletestaff(userId:any) {
     return this.http.delete<any>(`${environment.baseurl}/user/deleteUserByUserId?userId=${userId}`);
   }
+  deletecart(userId:any) {
+    return this.http.delete<any>(`${environment.baseurl}/user/deleteUserByUserId?userId=${userId}`);
+  }
   getallreorder(orderId:any,userId:any){
       // @ts-ignore
     return this.http.post<any>(`${environment.baseurl}/order/reorder?orderId=`+orderId+'&userId='+userId)
@@ -142,5 +145,12 @@ export class DashboardService {
   }
   getcartcount(userId:any){
     return this.http.get<any>(`${environment.baseurl}/wishlistCart/getCoutWishlistByUserId?userId=${userId}`)
+  }
+  savesubscriction(email:any){
+       // @ts-ignore
+    return this.http.post<any>(`${environment.baseurl}/master/saveSubscription?emailId=` +email);
+  }
+  getalllinkname(linkName:any){
+    return this.http.get<any>(`${environment.baseurl}/wishlistCart/getNameAndDescriptionByLink?linkName=${linkName}`)
   }
 }

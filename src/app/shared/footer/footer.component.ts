@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 
 @Component({
@@ -10,7 +12,13 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
 export class FooterComponent implements OnInit{
     cmsRes:any;
     cmsRes1:any;
+    warehouseinstantsavings:any;
+    deliveryinstantsavings:any;
+    email:any;
+    linkname:any;
+    link:any;
     cmsRes2:any;
+    footeremailform:FormGroup;
     socialmedia:any;
     contact:any;
     cmsRes3:any;
@@ -21,8 +29,10 @@ export class FooterComponent implements OnInit{
     cmsEnum3 ='ORDER'
     cmsEnum4 ='DELIVERY'
 
-  constructor(private dashboardservice:DashboardService){
-
+  constructor(private dashboardservice:DashboardService,private snackBar:MatSnackBar,private formBuilder:FormBuilder){
+    this.footeremailform=this.formBuilder.group({
+      email:[''],
+    })
   }
     ngOnInit() {
        this.getfootergeneral();
@@ -98,5 +108,27 @@ export class FooterComponent implements OnInit{
     openurl(url:any){
       window.open(url, '_blank');
     }
+    submitcart(){
+     
+      this.dashboardservice.savesubscriction(this.footeremailform.value.email).subscribe((res:any) => {
+        if (res.status == 0) {
+          // this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+          this.footeremailform.reset();   
+        }
+        else {
+          this.snackBar.open(res.response, 'x', { duration: 2000 });
+          this.footeremailform.reset();
+        }
+      })
     
+    }
+  //   getfooterinstantsaving(linkname:any) {
+  //     this.dashboardservice.getalllinkname(linkname).subscribe((res) => {
+  //       if (res.status === 0) {
+  //         this.linkname = res['response'];
+        
+  //       }
+  //     });
+  
+  // } 
 }

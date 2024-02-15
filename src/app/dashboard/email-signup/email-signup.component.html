@@ -3,7 +3,7 @@
     
     <div class="ps-4 container">
         <nav aria-label="breadcrumb" >
-            <ol class="breadcrumb mb-0 p-0 mt-3" >
+            <ol class="breadcrumb mb-0 p-0 mt-4" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
                     <a 
                         href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
@@ -34,12 +34,12 @@
                     <div class="form-group">
                         <label for="" class="form-label">Email</label>
                         <div class="input-group" >
-                            <input type="text" placeholder="email" class="form-control" formControlName="oldPassword">
+                            <input type="text" placeholder="email" class="form-control" formControlName="email">
                         </div>
       
-                        <!-- <mat-error>
-                            <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                        </mat-error> -->
+                        <mat-error>
+                            <span *ngIf="(submittedd && formGroup.get('email')?.errors) || !formGroup.get('email')?.valid && formGroup.get('email')?.touched">Please enter email </span>
+                        </mat-error>
       
                         
                         
@@ -52,12 +52,12 @@
                     <div class="form-group">
                         <label for="" class="form-label">Password</label>
                         <div class="input-group" >
-                            <input type="text"  placeholder="password" class="form-control" formControlName="newPassword">
+                            <input type="text"  placeholder="password" class="form-control" formControlName="password">
                         </div>
         
-                        <!-- <mat-error>
-                            <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                        </mat-error> -->
+                        <mat-error>
+                            <span *ngIf="(submittedd && formGroup.get('password')?.errors) || !formGroup.get('password')?.valid && formGroup.get('password')?.touched">Please enter password </span>
+                        </mat-error>
         
                         
                         
@@ -81,13 +81,13 @@
                
               </div>
              </div>
-             
+             <div class="col-md-9 text-end">
+                <button class="btn btn-secondary text-white" style="background-color:#F44C4C;letter-spacing: 0.5px" (click)="onSubmit()">Sign In</button>
+            </div>
              
             </form>
           
-            <div class="col-md-9 text-end">
-                <button class="btn btn-secondary text-white" style="background-color:#F44C4C;letter-spacing: 0.5px" (click)="onSubmit()">Sign In</button>
-            </div>
+           
         
          
           </div>
@@ -107,12 +107,12 @@
                     <div class="form-group">
                         <label for="" class="form-label">Frist Name </label>
                         <div class="input-group" >
-                            <input type="text" placeholder="frist name " class="form-control" formControlName="oldPassword">
+                            <input type="text" placeholder="frist name " class="form-control" formControlName="firstName">
                         </div>
       
-                        <!-- <mat-error>
-                            <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                        </mat-error> -->
+                        <mat-error>
+                            <span *ngIf="(submitted && SignUpForm.get('firstName')?.errors) || !SignUpForm.get('firstName')?.valid && SignUpForm.get('firstName')?.touched">Please enter first name </span>
+                        </mat-error>
       
                         
                         
@@ -122,12 +122,12 @@
                     <div class="form-group">
                         <label for="" class="form-label">Last Name</label>
                         <div class="input-group" >
-                            <input type="text"  placeholder="last name" class="form-control" formControlName="newPassword">
+                            <input type="text"  placeholder="last name" class="form-control" formControlName="lastName">
                         </div>
         
-                        <!-- <mat-error>
-                            <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                        </mat-error> -->
+                        <mat-error>
+                            <span *ngIf="(submitted && SignUpForm.get('lastName')?.errors) || !SignUpForm.get('lastName')?.valid && SignUpForm.get('lastName')?.touched">Please enter  last name </span>
+                        </mat-error> 
         
                         
                         
@@ -137,12 +137,12 @@
                     <div class="form-group">
                         <label for="" class="form-label">Email</label>
                         <div class="input-group" >
-                            <input type="text"  placeholder="email" class="form-control" formControlName="newPassword">
+                            <input type="text"  placeholder="email" class="form-control" formControlName="email">
                         </div>
         
-                        <!-- <mat-error>
-                            <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                        </mat-error> -->
+                        <mat-error>
+                            <span *ngIf="(submitted && SignUpForm.get('email')?.errors) || !SignUpForm.get('email')?.valid && SignUpForm.get('email')?.touched">Please enter email</span>
+                        </mat-error>
         
                         
                         
@@ -152,12 +152,12 @@
                     <div class="form-group">
                         <label for="" class="form-label">Phone number</label>
                         <div class="input-group" >
-                            <input type="text"  placeholder="phone number" class="form-control" formControlName="notes">
+                            <input type="text"  placeholder="phone number" class="form-control" formControlName="mobile">
                         </div>
         
-                        <!-- <mat-error>
-                            <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                        </mat-error> -->
+                        <mat-error>
+                            <span *ngIf="(submitted && SignUpForm.get('mobile')?.errors) || !SignUpForm.get('mobile')?.valid && SignUpForm.get('mobile')?.touched">Please Enter mobile number</span>
+                        </mat-error>
         
                         
                         

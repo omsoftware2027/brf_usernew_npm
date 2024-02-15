@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class SignInComponent {
   formGroup!:FormGroup;
-  constructor(private formBuilder:FormBuilder, private dialogRef: MatDialogRef<SignInComponent>){
+  constructor(private formBuilder:FormBuilder, private dialogRef: MatDialogRef<SignInComponent>,private router: Router){
 
   }
   ngOnInit() {
@@ -22,5 +23,13 @@ export class SignInComponent {
 }
 closeDialog(){
   this.dialogRef.close();
+
+}
+logout(){
+  this.dialogRef.close();
+  localStorage.removeItem('id');
+  this.dialogRef.close();
+  this.router.navigate(['/dashboard/view-product-detail']);
+  
 }
 }

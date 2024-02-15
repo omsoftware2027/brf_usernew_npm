@@ -328,8 +328,8 @@
     background-color: #F44C4C;
     position: absolute;
     bottom: -56px;
-    margin-left: -11px;
-
+    margin-left: -10px;
+    padding: 1px;
     // position: sticky;
     // left: 33px;
     // top:  3px !important;;
@@ -346,5 +346,28 @@
     // display: flex;
     // justify-content: center;
     // align-items: center;
-  }   
+  }
+  .cartDiv .msgcountt{
+    background-color: #F44C4C;
+    position: absolute;
+    bottom: -56px;
+    margin-left: -116px;
+    padding: 1px;
+    // position: sticky;
+    // left: 33px;
+    // top:  3px !important;;
+    // font-size: 10px;
+    // font-weight: 500;
+    // width: 17px;
+    // height: 17px;
+    // text-align: center;
+    // border-radius: 50%;
+    // z-index: 5;
+    // padding: 0;
+    // color: #fff;
+    // background-color: #F44C4C;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+  }      
 }

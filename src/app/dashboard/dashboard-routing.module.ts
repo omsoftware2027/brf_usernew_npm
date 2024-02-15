@@ -111,14 +111,14 @@ const routes: Routes = [
         }
       },
       {
-        path: 'pricing',
+        path: 'pricing/:linkname',
         component: PricingComponent,
         data: {
           title: 'pricing'
         }
       },
       {
-        path: 'credit-cards',
+        path: 'credit-cards/:linkname',
         component: CreditCardsComponent,
         data: {
           title: 'credit-cards'

@@ -17,7 +17,9 @@ export class CategoryDetailComponent {
   showMoreTextMap: { [key: string]: boolean } = {};
   categoryid:any;
   carttotal:any;
+  fwishlist:any;
   wishlist:any;
+  fwishcart:any
   showMoreText:any;
   toggleStates: boolean[] = [];
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
@@ -39,7 +41,8 @@ export class CategoryDetailComponent {
      this.userid=localStorage.getItem('id');
     this.tabelLoad(0);
     this.getallcarttotal(0);
-    this.cardload(0)
+    this.cardload(0);
+    this.getallcount();
 
     
      // this.getAllcategoryproduct();
@@ -117,7 +120,9 @@ export class CategoryDetailComponent {
       if (res.status == 0) {
         this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
         this.cardload(0)
-        this.getallcarttotal(0)
+        this.getallcarttotal(0);
+        this.getallcount();
+        this.getallcart();
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
@@ -181,6 +186,8 @@ export class CategoryDetailComponent {
         if (res.status == 0) {
           this.getallcarttotal(0)
           this.cardload(0);
+          this.getallcount();
+          this.getallcart();
         }
       })
     }
@@ -200,4 +207,28 @@ export class CategoryDetailComponent {
     })
   
   }
+  getallcart() {
+    this.userid=localStorage.getItem('id');
+    this.dashboardservice.getcartcount(this.userid).subscribe(res => {
+        this.data = res;
+        if (this.data.status === 0) {  
+            this.fwishcart = this.data.response;
+            
+        } else {
+            // Handle other cases if needed
+        }
+    });
+  }
+  getallcount() {
+    this.userid=localStorage.getItem('id');
+    this.dashboardservice.getcountcart(this.userid).subscribe(res => {
+        this.data = res;
+        if (this.data.status === 0) {  
+            this.fwishlist = this.data.response;
+            
+        } else {
+            // Handle other cases if needed
+        }
+    });
+}
 }

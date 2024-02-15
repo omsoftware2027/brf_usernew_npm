@@ -1,4 +1,4 @@
-import { Component , OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component , ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { BehaviorSubject } from 'rxjs';
@@ -18,6 +18,7 @@ import { MatPaginator } from '@angular/material/paginator';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit{
+  @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
     titlesAndIdsArray2:any;
@@ -187,9 +188,9 @@ export class NavbarComponent implements OnInit{
         //     duration: 3000,
         //     panelClass: ['success-snackbar']
         // });
-        e.preventDefault();
-        this.loggedIn.next(false);
-        this.router.navigate(['/login']);
+        // e.preventDefault();
+        // this.loggedIn.next(false);
+        // this.router.navigate(['/login']);
     }
     openeclinicAcessDialog(): void {
         this.dialog.open(SigninPopupComponent, {
@@ -225,9 +226,9 @@ export class NavbarComponent implements OnInit{
       }
       onSubmit() {
         // this.router.navigate(['/civantage'], { relativeTo: this.route.parent });
-        console.log('hi')
-    
-         const loginpayload ={
+        this.submitted=true;
+      if(this.formGroup.valid){
+        const loginpayload ={
           email: this.formGroup.value.email,
           password: this.formGroup.value.password,
   
@@ -236,45 +237,54 @@ export class NavbarComponent implements OnInit{
          this.dashboardservice.login(loginpayload).subscribe(data => {
            this.loginData = data;   
            localStorage.setItem('id', this.loginData.response.id);
+           localStorage.setItem('token', this.loginData.response.token);
            console.log(this.loginData.response.id,'loginData');
            this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
-         
+           if (this.dropdownMenu.nativeElement.classList.contains('show')) {
+            this.dropdownMenu.nativeElement.classList.remove('show');
+          }
+          this.formGroup.reset();
+          //  if (this.dropdownMenu.nativeElement.classList.contains('show')) {
+          //   this.dropdownMenu.nativeElement.classList.remove('show');
+          // }
 
            // @ts-ignore
-           if (data && data.value === 'Not Authorized') {
-           this.matsnackbar.open('Wrong Username or Password Enter , try Again', '', {
-               duration: 3000,
-               panelClass: ['error-snackbar']
-            });
-             this.retryError = true;
+          //  if (data && data.value === 'Not Authorized') {
+          //  this.matsnackbar.open('Wrong Username or Password Enter , try Again', '', {
+          //      duration: 3000,
+          //      panelClass: ['error-snackbar']
+          //   });
+          //    this.retryError = true;
   
-           } else if(this.loginData && this.loginData.value  === 'Inactive'){
-            //  this.snackBar.open('User is Inactive , Contact To Your Admin and Activate Your Account', '', {
-            //    duration: 3000,
-            //    panelClass: ['error-snackbar']
-            //  });
-             this.retryError = true;
-           } else {
-             // @ts-ignore
-             if (data && data.value === 'Another User LoggedIn') {
-               this.matsnackbar.open('Another User LoggedIn', '', {
-                 duration: 3000,
-                 panelClass: ['error-snackbar']
-               });
-               } else {
-              //    this.snackBar.open('Login Successfully', '', {
-              //      duration: 3000,
-              //      panelClass: ['success-snackbar']
-              //  });
-               this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+          //  } else if(this.loginData && this.loginData.value  === 'Inactive'){
+          
+          //    this.retryError = true;
+          //  } else {
+           
+          //    if (data && data.value === 'Another User LoggedIn') {
+          //      this.matsnackbar.open('Another User LoggedIn', '', {
+          //        duration: 3000,
+          //        panelClass: ['error-snackbar']
+          //      });
+          //      } else {
+          //     //    this.snackBar.open('Login Successfully', '', {
+          //     //      duration: 3000,
+          //     //      panelClass: ['success-snackbar']
+          //     //  });
+          //      this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
   
-           }}
-         }, (error => {
-          this.matsnackbar.open('Please Enter correct details', '', {
-            duration: 3000,
-            panelClass: ['error-snackbar']
-          });
-         }));
+          //  }}
+         }, 
+         //(error => {
+          // this.matsnackbar.open('Please Enter correct details', '', {
+          //   duration: 3000,
+          //   panelClass: ['error-snackbar']
+            
+       //   });
+        // })
+         );
+      }
+         
      
       }
 
@@ -293,6 +303,10 @@ export class NavbarComponent implements OnInit{
         this.dashboardservice.signup(data).subscribe((res) => {
           if (res.status == 0) {
             this.matsnackbar.open("Sign Up  Successfully", 'x', { duration: 2000 });
+            if (this.dropdownMenu.nativeElement.classList.contains('show')) {
+              this.dropdownMenu.nativeElement.classList.remove('show');
+            }
+            this.formGroup.reset();
             // const dropdownToggle = document.querySelector('.dropdown-toggle');
             // if (dropdownToggle) {
             //   dropdownToggle.classList.remove('show');
@@ -353,7 +367,8 @@ export class NavbarComponent implements OnInit{
         this.data =res;
         if (this.data.status === 0) {
           this.carttotal = this.data.response.dataSet;
-          this.router.navigate(['/dashboard/all-product',name]);
+          this.router.navigate(['/dashboard/view-product-detail',name]);
+        
         }
         else {
          
@@ -395,5 +410,12 @@ getallcart() {
           // Handle other cases if needed
       }
   });
+}
+onProductSelected() {
+  // console.log(productId,'productId')
+  const productId = this.searchproduct.value.name || '';
+  if (productId) {
+    this.router.navigate(['/dashboard/view-product-detail', productId]);
+  }
 }
 }

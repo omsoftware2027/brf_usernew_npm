@@ -87,10 +87,10 @@
                         </div>
                         <!-- <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name"> -->
                         <!-- <input class="form-select" type="search" id="example-search-input" placeholder="   Search for item "> -->
-                         <select (change)="getallselectproduct()"  class="form-select " style=" box-shadow: none!important;" formControlName="name" style="background-color: #F3F3F3;border:none">
+                         <select (change)="onProductSelected()" class="form-select " style=" box-shadow: none!important;" formControlName="name" style="background-color: #F3F3F3;border:none">
                           <i class="las la-caret-down"></i>
                           <option disabled selected value="">Select a product</option>
-                          <option *ngFor="let data of carttotal"  [value]="data.productName" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;">{{data.productName}}
+                          <option *ngFor="let data of carttotal"  [value]="data.productId" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;">{{data.productName}}
                           </option>
                         </select>
                         <span class="input-group-append" style="background-color: #F44C4C;border-radius: 3px;">
@@ -117,7 +117,7 @@
         </i>
          <span class=" msgcount rounded-circle"> {{wishcart}}</span>
         <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
-        <span class="text-black" [routerLink]="['/dashboard/add-wishlist']"> Wishlist</span>
+        <span class="text-black m-2" [routerLink]="['/dashboard/add-wishlist']"> Wishlist</span>
 
        </a>
        <a style="color:#fff ; margin-left:70px">
@@ -127,7 +127,7 @@
     margin-left: -35px;
     color: black;"></i>
         <span class=" msgcount rounded-circle">{{wishlist}}</span>
-        <span class="text-black" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
+        <span class="text-black m-3" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
      
       
        </a>
@@ -138,7 +138,7 @@
          <a  class="text-black ms-1">Sign In </a>
     
      
-        <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink" style="border-radius: 7px; width: 424px;"  >
+        <div class="dropdown-menu mt-2" #dropdownMenu aria-labelledby="dropdownMenuLink" style="border-radius: 7px; width: 424px;"  >
         <div >
           <div class="col-md-12 col-lg-12 col-xl-12 ps-5 mt-3 d-flex">
             <div class="col-md-6" (click)="showSignInForm($event)">
@@ -163,10 +163,10 @@
                           <input type="text" placeholder="" class="form-control" formControlName="email" (click)="stopPropagation($event)">
                       </div>
     
-                      <!-- <mat-error>
-                          <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                      </mat-error> -->
-    
+                      <mat-error>
+                        <span *ngIf="(submitted && formGroup.get('email')?.errors) || !formGroup.get('email')?.valid && formGroup.get('email')?.touched">Please enter email </span>
+                    </mat-error>
+     
                       
                       
                   </div>
@@ -178,9 +178,9 @@
                         <input type="text"  placeholder="" class="form-control" formControlName="password" (click)="stopPropagation($event)">
                     </div>
     
-                    <!-- <mat-error>
-                        <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                    </mat-error> -->
+                    <mat-error>
+                      <span *ngIf="(submitted && formGroup.get('password')?.errors) || !formGroup.get('password')?.valid && formGroup.get('password')?.touched">Please enter password </span>
+                  </mat-error>
     
                     
                     

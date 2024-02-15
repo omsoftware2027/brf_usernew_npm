@@ -101,11 +101,13 @@
       </div>
        
 
-        <div>
-          <h5 class="font-weight-bold">Join Our Community</h5>
-          <input type="text" class="form-control" name="email" style="width: 180px;height: 37px;border-radius: 10px;border: none;" placeholder="Email Id" class="col-xs-3">&nbsp;&nbsp;
-          <button type="button" class="btn btn-danger btn-sm">Submit</button>
-        </div>
+        <form [formGroup]="footeremailform">
+          <div>
+            <h5 class="font-weight-bold">Join Our Community</h5>
+            <input type="text" class="form-control" formControlName="email" style="width: 180px;height: 37px;border-radius: 10px;border: none;" placeholder="Email Id" class="col-xs-3"  >&nbsp;&nbsp;
+            <button type="button" class="btn btn-danger btn-sm" (click)="submitcart()">Submit</button>
+          </div>
+        </form>
 
         <div class="d-flex" style="height: 40px; width: 40px; padding-top: 5px;">
           <img src="/assets/images/iosApp.png" (click)="openurl(socialmedia.appleStoreUrl)">
@@ -119,7 +121,14 @@
     <div class="row align-i tems-center d-flex" style="margin-bottom: -30px;">
       <div class="col-md-7 col-lg-10 d-flex">
         <div class="text-white ps-5">© 2024 Wholesale Corporation all rights reserved </div>
-        <div class="text-white" style="padding-left: 200px;">Delivery Instant Savings | Warehouse Instant Saving</div>
+       <div class="d-flex">
+     <div>
+      <a class="text-white" style="padding-left: 200px;" [routerLink]="['/dashboard/pricing','deliveryinstantsavings']" >Delivery Instant Savings | </a>
+     </div>
+       <div>
+        <p [routerLink]="['/dashboard/credit-cards','warehouseinstantsavings']" >Warehouse Instant Saving</p>
+       </div>
+       </div>
 
         <!-- <div class="myclass text-md-right">
           <i class="fa fa-facebook-official" aria-hidden="true"></i>

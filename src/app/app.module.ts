@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { SpinnerInterceptor } from './helper/spinner/spinner.interceptor';
 import { AuthErrorInterceptor } from './helper/authErrorlogout/auth-error.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,8 @@ import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 
 import * as $ from 'jquery';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { JwtTokenInterceptor } from './helper/jwt-token.interceptor';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -48,8 +51,11 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
     MdbCarouselModule
   ],
   providers: [
-    //{ provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+    // { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtTokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
+ 
+    // { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
     {provide: HTTP_INTERCEPTORS, useClass: AuthErrorInterceptor, multi: true}
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

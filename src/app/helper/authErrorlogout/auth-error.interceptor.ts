@@ -20,15 +20,17 @@ export class AuthErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     return next.handle(request).pipe(catchError(err => {
-      // if (err.status === 401) { 
-      //   localStorage.removeItem('Id');
-      //   localStorage.removeItem('token');
-      //   this.router.navigate(['/login']);
-      //   if (document.referrer.toString().includes('/login')) {
-      //     return throwError('Not Authorized');
-      //   } else {
-      //   }
-      // }
+      if (err.status === 401) { 
+        // auto logout if 401 response returned from api
+        localStorage.removeItem('Id');
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+        if (document.referrer.toString().includes('/login')) {
+          return throwError('Not Authorized');
+        } else {
+        // this.document.location.href = `${environment.website}/home`;
+        }
+      }
       const error = err.error.message || err.statusText;
       return throwError(error);
      }

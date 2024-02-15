@@ -3,7 +3,7 @@
     
     <div class="ps-4 container">
         <nav aria-label="breadcrumb" >
-            <ol class="breadcrumb mb-0 p-0 mt-3" >
+            <ol class="breadcrumb mb-0 p-0 mt-4" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
                     <a 
                         href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
-                ;line-height: 20px;" aria-current="page">Credit Cards
+                ;line-height: 20px;" aria-current="page">{{linkname.cmsTitle}}
 
 </li>
               
@@ -25,18 +25,18 @@
     <div class="col-md-12 card " style="    border-radius: 9px;">
         <div class="card-title d-flex align-items-center">
             <h5 class="mb-0 main-text p-3"  style="font-weight:600;font-size:20px;line-height:24px; color:
-            #191C1F;">Credit Cards
+            #191C1F;">{{linkname.cmsTitle}}
 
 </h5>
         </div>
        <div class="p-3">
        <div class="d-flex">
         <i class="las la-directions" style="color:#F44C4C; font-size: 36px;"> </i>
-        <p class="p-1">Yes, we are accepting all major cards,
+        <p class="p-1">{{linkname.description}}
       
        </div>
       
-       <div class="d-flex">
+       <!-- <div class="d-flex">
         <i class="las la-directions" style="color:#F44C4C; font-size: 36px;"> </i>
         <p class="p-1">Two type payments are available:
       
@@ -46,7 +46,7 @@
         <p class="p-1">Easy step of online payment as shopping cart move to payment option,
             And payment at time of delivery, which will need to swipe the credit card and present a valid ID.      
        </div>
-      
+       -->
 
        </div>
     </div>

@@ -1,22 +1,27 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-view-product-detail',
   templateUrl: './view-product-detail.component.html',
   styleUrls: ['./view-product-detail.component.scss']
 })
-export class ViewProductDetailComponent {
+export class ViewProductDetailComponent implements OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   currentValue: number = 22;
   firstIconDisabled: boolean = true;
   secondIconDisabled: boolean = false;
   productRes:any;
+  fwishcart:any
   wishlist:any;
+  fwishlist:any;
+  qutantity:any;
   userid:any;
+  routeSubscription!: Subscription;
   totalrecordLength:any;
   carttotal:any;
   currentPage=0;
@@ -31,12 +36,19 @@ export class ViewProductDetailComponent {
     
     this.productid = this.route.snapshot.params['id'];
     this.userid=localStorage.getItem('id');
-   this.getproductById();
+    this.routeSubscription = this.route.params.subscribe(params => {
+      this.productid = params['id'];
+      this.getproductById();
+    });
    this.getallcarttotal(0);
-   this.cardload(0)
+   this.cardload(0);
+   this.getallcount();
     // this.getAllcategoryproduct();
   }
-  
+  ngOnDestroy() {
+    // Unsubscribe to avoid memory leaks
+    this.routeSubscription.unsubscribe();
+  }
   toggleIcons(iconClicked: string) {
     if (iconClicked === 'first') {
       this.secondIconDisabled = true;
@@ -58,10 +70,11 @@ export class ViewProductDetailComponent {
   }
   submitcart(productId:any,price:any,qutantity:any){
      
+  if(qutantity > 0){
     let data = {
       productId:productId,
       userId: this.userid,
-      quantity:qutantity,
+      quantity: qutantity,
       weight:0,
       shipping:0,
       price:price
@@ -76,7 +89,10 @@ export class ViewProductDetailComponent {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
       }
     })
-  
+  }
+  else{
+    this.matSnackBar.open("Qutanity greater  than 0", 'x', { duration: 2000 });
+  }
   }
   submit(productId:any){
      
@@ -173,7 +189,9 @@ export class ViewProductDetailComponent {
       this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
           this.cardload(0);
-          this.getallcarttotal(0)
+          this.getallcarttotal(0);
+          this.getallcount();
+          this.getallcart();
         }
       })
     }
@@ -185,6 +203,8 @@ export class ViewProductDetailComponent {
         this.matSnackBar.open("Quantity Update ", 'x', { duration: 2000 });
         this.getallcarttotal(0);
         this.cardload(0);
+        this.getallcount();
+        this.getallcart();
       }
       else {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
@@ -192,4 +212,29 @@ export class ViewProductDetailComponent {
     })
   
   }
+  getallcart() {
+    this.userid=localStorage.getItem('id');
+    this.dashboardservice.getcartcount(this.userid).subscribe(res => {
+        this.data = res;
+        if (this.data.status === 0) {  
+            this.fwishcart = this.data.response;
+            
+        } else {
+            // Handle other cases if needed
+        }
+    });
+  }
+  
+  getallcount() {
+    this.userid=localStorage.getItem('id');
+    this.dashboardservice.getcountcart(this.userid).subscribe(res => {
+        this.data = res;
+        if (this.data.status === 0) {  
+            this.fwishlist = this.data.response;
+            
+        } else {
+            // Handle other cases if needed
+        }
+    });
+}
 }

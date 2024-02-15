@@ -26,7 +26,7 @@
             #191C1F;">Wishlist</h5>
         </div>
         <div class="mt-2 cardNA mb-3" *ngIf="!wishlist.length">
-            <h5 class="mb-1">Data not Available</h5>
+            <h5 class="mb-1">wishlist not available</h5>
           </div>
         <table class="table mb-3" *ngIf="wishlist.length">
             <thead>
@@ -51,14 +51,14 @@
                         </div>
                         <div class="flex-grow-1">
                             <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                    class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156">{{data.productTitle}}</a></p>
+                                    class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.productTitle}}</a></p>
                         </div>
                     </div>
 
                 </th>
                 <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{data.price}}</td>
                 <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
-                <td  class="d-flex">   <button type="button" class="btn btn-primary mt-3" (click)="submitcart(data.productId,data.price)" style="background-color: #F44C4C; color: white; width:160px ;height: 48px;
+                <td  class="d-flex">   <button type="button" class="btn btn-primary mt-3" (click)="submitcart(data.productId,data.price)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;
                     border-radius: 2px;font-weight: 700;
     font-size: 14px;
     line-height: 35px;

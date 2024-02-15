@@ -19,6 +19,8 @@ export class AnalyticsComponent implements OnInit {
   userId:any;
   data:any;
   wishlist:any;
+  fwishcart:any;
+  fwishlist:any;
   page: number = 0;
   size: number = 30;
   currentPage = 0;
@@ -32,7 +34,8 @@ export class AnalyticsComponent implements OnInit {
   ngOnInit(): void {
     this.tabelLoad(0);
     this.getallcarttotal(0);
-    this.cardload(0)
+    this.cardload(0);
+    this.  getallcount()
   }
   tabelLoad(page: number) {
     this.dashboardservice.getAllcategoryy(this.currentPage, this.pageSize).subscribe(res => {
@@ -54,12 +57,12 @@ export class AnalyticsComponent implements OnInit {
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
-    if(this.userId != null ){
-      this.userid =this.userId
+    if(this.userid != null ){
+      this.userId =this.userid
     }else{
-      this.userid=0
+      this.userId=0
     }
-    this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
+    this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userId).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
         this.carttotal = this.data.response;
@@ -118,7 +121,9 @@ export class AnalyticsComponent implements OnInit {
       this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
           this.cardload(0);
-          this.getallcarttotal(0)
+          this.getallcarttotal(0);
+          this.getallcount();
+          this.getallcart();
         }
       })
     }
@@ -137,4 +142,28 @@ export class AnalyticsComponent implements OnInit {
     })
   
   }
+  getallcount() {
+    this.userid=localStorage.getItem('id');
+    this.dashboardservice.getcountcart(this.userid).subscribe(res => {
+        this.data = res;
+        if (this.data.status === 0) {  
+            this.fwishlist = this.data.response;
+            
+        } else {
+            // Handle other cases if needed
+        }
+    });
+}
+getallcart() {
+  this.userid=localStorage.getItem('id');
+  this.dashboardservice.getcartcount(this.userid).subscribe(res => {
+      this.data = res;
+      if (this.data.status === 0) {  
+          this.fwishcart = this.data.response;
+          
+      } else {
+          // Handle other cases if needed
+      }
+  });
+}
 }

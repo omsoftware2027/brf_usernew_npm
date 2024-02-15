@@ -271,7 +271,7 @@ submit(){
     this.dashboardservice.saveprofile(formData).subscribe((res) => {
       if (res.status == 0) {
         this.snackBar.open("Updated Successfully", 'x', { duration: 2000 });
-        this.route.navigate(['/system-settings/master-data'])
+        // this.route.navigate(['/system-settings/master-data'])
       }
       else {
         this.snackBar.open("Error while updating", 'x', { duration: 2000 });
@@ -466,28 +466,54 @@ getallreorder(orderid:any){
   }
   )
 }
-addToCart(productId: number,isCart:any,price:any,quantity:any) {
-  let data = {
-    bulkAdd: [
-      {
-        isCart: isCart, 
-        price: price, 
-        productId: productId,
-        quantity: quantity
-      }
-    ],
-    userId: this.userid
-  };
-
-  this.dashboardservice.bulkcartadd(data).subscribe((res) => {
-    if (res.status == 0) {
-      this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
-      this.getallbulkorder();
-    } else {
-      this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+// addToCart(productId: number,isCart:any,price:any,quantity:any) {
+//   if(quantity > 0){
+//     let data = {
+//       bulkAdd: [
+//         {
+//           isCart: isCart, 
+//           price: price, 
+//           productId: productId,
+//           quantity: quantity
+//         }
+//       ],
+//       userId: this.userid
+//     };
+  
+//     this.dashboardservice.bulkcartadd(data).subscribe((res) => {
+//       if (res.status == 0) {
+//         this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+//         this.getallbulkorder();
+//       } else {
+//         this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+//       }
+//     });
+//   }else{
+//     this.snackBar.open("Qutanity greater  than 0", 'x', { duration: 2000 });
+//   }
+//   }
+  addToCart(productId:any,price:any){
+     
+    let data = {
+      productId:productId,
+      userId: this.userid,
+      quantity:1,
+      weight:0,
+      shipping:0,
+      price:price
+   
     }
-  });
-}
+    this.dashboardservice.savewishcart(data).subscribe((res) => {
+      if (res.status == 0) {
+        this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+      
+      }
+      else {
+        this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+      }
+    })
+  
+  }
 sumbiCart() {
   let bulkAddArray = [];
 

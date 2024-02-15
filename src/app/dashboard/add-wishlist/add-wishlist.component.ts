@@ -71,7 +71,7 @@ export class AddWishlistComponent {
     let data = {
       productId:productId,
       userId: this.userid,
-      quantity:0,
+      quantity:1,
       weight:0,
       shipping:0,
       price:price

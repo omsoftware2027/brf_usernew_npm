@@ -29,7 +29,7 @@
                 #191C1F;">Shopping Cart</h5>
             </div>
             <div class="mt-2 cardNA mb-3" *ngIf="!wishlist.length">
-              <h5 class="mb-1">Wishlist not Available</h5>
+              <h5 class="mb-1">cartlist not available</h5>
             </div>
                 <table class="table" *ngIf="wishlist.length">
                     <thead>
@@ -55,7 +55,7 @@
                             <div class="flex-grow-1 p-3">
                               <h5 class="fs-base mb-0">
                                 <a href="javascript:void(0);" class="text-reset customer-name-elem"
-                                   style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156">{{data.productTitle}}</a>
+                                   style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.productTitle}}</a>
                               </h5>
                             </div>
                           </div>
