@@ -25,9 +25,9 @@
                                 <input type="text-area"  style="height:52px;" formControlName="address" placeholder="Address" class="form-control">
                             </div>
                         </div>
-                        <!-- <mat-error>
-                          <span *ngIf="(submitted && formGroup.get('medicationName').errors) || !formGroup.get('medicationName').valid && formGroup.get('medicationName').touched">Please Enter Medication Name</span>
-                      </mat-error> -->
+                        <mat-error>
+                            <span *ngIf="(submitted && formGroup.get('address')?.errors) || !formGroup.get('address')?.valid && formGroup.get('address')?.touched">Please enter address  </span>
+                        </mat-error>
                     </div>
                     <!-- <div class="col-md-6">
                       <div class="form-group">
@@ -44,6 +44,9 @@
                             <input type="text" formControlName="city" placeholder="City" class="form-control">
                         </div>
                     </div>
+                    <mat-error>
+                        <span *ngIf="(submitted && formGroup.get('city')?.errors) || !formGroup.get('city')?.valid && formGroup.get('city')?.touched">Please enter city  </span>
+                    </mat-error>
                 </div>
 
                 <!-- <div class="col-md-6">
@@ -60,6 +63,9 @@
                     <div class="input-group">
                         <input type="text" formControlName="state" placeholder="state" class="form-control">
                     </div>
+                    <mat-error>
+                        <span *ngIf="(submitted && formGroup.get('state')?.errors) || !formGroup.get('state')?.valid && formGroup.get('state')?.touched">Please enter state  </span>
+                    </mat-error>
                 </div>
             </div>
             <div class="col-md-6">
@@ -68,7 +74,11 @@
                   <div class="input-group">
                       <input type="text" formControlName="country" placeholder="country" class="form-control">
                   </div>
+                  <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('country')?.errors) || !formGroup.get('country')?.valid && formGroup.get('country')?.touched">Please enter country  </span>
+                </mat-error>
               </div>
+
           </div> 
           
         
@@ -78,6 +88,9 @@
                   <div class="input-group">
                       <input type="text" formControlName="pincode" placeholder="pin code" class="form-control">
                   </div>
+                  <mat-error>
+                    <span *ngIf="(submitted && formGroup.get('pincode')?.errors) || !formGroup.get('pincode')?.valid && formGroup.get('pincode')?.touched">Please enter pin code  </span>
+                </mat-error>
               </div>
           </div>
          

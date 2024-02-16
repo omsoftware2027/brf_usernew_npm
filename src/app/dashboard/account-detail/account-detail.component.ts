@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SigninPopupComponent } from 'src/app/shared/signin-popup/signin-popup.component';
 import { AddNewUserPopupComponent } from '../add-new-user-popup/add-new-user-popup.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from '../dashboard.service';
 import { Router } from '@angular/router';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-account-detail',
@@ -13,8 +14,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./account-detail.component.scss']
 })
 export class AccountDetailComponent {
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   formGroup!:FormGroup;
-  quantity1:any
+  quantity1:any;
+  totalrecordLength:any;
   orderserach!:FormGroup;
   userid:any;
   reorder:any;
@@ -59,7 +62,7 @@ export class AccountDetailComponent {
 
   }
   ngOnInit() {
-    this.getallbulkorder();
+    this.getallbulkorder(0);
     this.userId=localStorage.getItem('id');
     console.log(this.userid,'userid')
     if(this.userId != 0 ){
@@ -228,23 +231,18 @@ openeclinicAcessDialog(id:any): void {
   console.log(id,'id')
   
 }
-openeAcessDialog(): void {
-  this.dialog.open(SigninPopupComponent, {
-    width: '914px',
-    height:'584px',
+// openeAcessDialog(): void {
+//   this.dialog.open(SigninPopupComponent, {
+//     width: '914px',
+//     height:'584px',
    
     
-  });
+//   });
+//   this.getalladdress(0)
   
   
-}
-openewuserdialog(): void {
-  this.dialog.open(AddNewUserPopupComponent, {
-    width: '914px',
-    height:'584px'
-   
-  });
-}
+// }
+
 submit(){
      
   if (this.addOnUpdate) {
@@ -359,40 +357,77 @@ getaccountdetailById(){
     }
   })
 }
-getalladdress(){
+getalladdress(page:number){
   this.userid=localStorage.getItem('id');
   this.dashboardservice.getalladdress(this.currentPage, this.pageSize,this.userid).subscribe((res:any)=>{
    if(res.status==0){
     this.address=res.response.dataSet
+    this.totalrecordLength =res.response.totalElements;
+   console.log( this.totalrecordLength,'totalrecordlength')
+    setTimeout(() => {
+      this.paginator.pageIndex = this.currentPage;
+      this.paginator.length = this.totalrecordLength;
+    });
    }
   })
 }
-getallbulkorder(){
+getallbulkorder(page:number){
   const categoryid =this.selectcategoryid ||''
   this.userid=localStorage.getItem('id');
   this.dashboardservice.getallbulkorder(categoryid,this.userid).subscribe((res:any)=>{
     if(res.status ==0){
     this.bulkorderguide=res.response
     console.log(this.bulkorderespons,'bulkorderesponse')
+    this.totalrecordLength = this.data.response.totalElements;
+     
+    setTimeout(() => {
+      this.paginator.pageIndex = this.currentPage;
+      this.paginator.length = this.totalrecordLength;
+    });
     }
   }
   )
 }
-getallorder(){
+getallorder(page:number){
   this.userid=localStorage.getItem('id');
   this.dashboardservice.getallorder(this.currentPage,this.pageSize,this.userid).subscribe((res:any)=>{
     if(res.status ==0){
-    this.allorder=res.response.dataSet
-   
+      this.allorder=res.response.dataSet
+      this.totalrecordLength = this.data.response.totalElements;
+     
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
     }
   }
   )
 }
-getallstaff(){
+pageChanged(event: any) {
+  this.pageSize = event.pageSize;
+  this.currentPage = event.pageIndex;
+  // const calculatedPageIndex = this.currentPage * this.pageSize;
+  this.getallstaff(event.pageIndex);
+}
+pageChangedd(event: any) {
+  this.pageSize = event.pageSize;
+  this.currentPage = event.pageIndex;
+  // const calculatedPageIndex = this.currentPage * this.pageSize;
+  this.getalladdress(event.pageIndex);
+}
+getallstaff(page:number){
   this.userid=localStorage.getItem('id');
   this.dashboardservice.getallstaff(this.currentPage,this.pageSize,this.userid).subscribe((res:any)=>{
     if(res.status==0){
-      this.getallstafff=res.response.dataSet
+      this.getallstafff=res.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+    
+   
+     
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
     }
   })
 }
@@ -411,7 +446,7 @@ deletewishlist(id:any) {
   if (confirm("Are you sure wants to delete this Product?") == true) {
     this.dashboardservice.deletewishlist(id).subscribe(res => {
       if (res.status == 0) {
-        this.getallbulkorder();
+        this.getallbulkorder(0);
       }
     })
   }
@@ -420,7 +455,7 @@ deleteshippingaddress(id:any) {
   if (confirm("Are you sure wants to delete this Address?") == true) {
     this.dashboardservice.deleteshippingaddress(id).subscribe(res => {
       if (res.status == 0) {
-        this.getalladdress();
+        this.getalladdress(0);
       }
     })
   }
@@ -429,7 +464,7 @@ deletestaff(id:any) {
   if (confirm("Are you sure wants to delete this Staff?") == true) {
     this.dashboardservice.deletestaff(id).subscribe(res => {
       if (res.status == 0) {
-        this.getallstaff();
+        this.getallstaff(0);
       }
     })
   }
@@ -448,7 +483,7 @@ submitcart(productId:any,price:any,quantity:any){
   this.dashboardservice.savewishcart(data).subscribe((res) => {
     if (res.status == 0) {
       this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
-      this.getallbulkorder();
+      this.getallbulkorder(0);
     }
     else {
       this.snackBar.open("Error while updating", 'x', { duration: 2000 });
@@ -537,12 +572,37 @@ sumbiCart() {
   this.dashboardservice.bulkcartadd(data).subscribe((res) => {
     if (res.status == 0) {
       this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
-      this.getallbulkorder();
+      this.getallbulkorder(0);
     } else {
       this.snackBar.open("Error while updating", 'x', { duration: 2000 });
     }
   });
 }
+openeAcessDialog(): void {
+  // Open the dialog
+  const dialogRef: MatDialogRef<SigninPopupComponent> = this.dialog.open(SigninPopupComponent, {
+    width: '914px',
+    height: '584px',
+  });
 
+  // Subscribe to the afterClosed event
+  dialogRef.afterClosed().subscribe(result => {
+    // This code will be executed when the dialog is closed
+    // You can call your API or perform any other action here
+    this.getalladdress(0);
+  });
+}
+openewuserdialog(): void {
+  const dialogRef: MatDialogRef<AddNewUserPopupComponent> = this.dialog.open(AddNewUserPopupComponent, {
+    width: '914px',
+    height: '584px',
+  });
 
+  // Subscribe to the afterClosed event
+  dialogRef.afterClosed().subscribe(result => {
+    // This code will be executed when the dialog is closed
+    // You can call your API or perform any other action here
+    this.getallstaff(0);
+  });
+}
 }

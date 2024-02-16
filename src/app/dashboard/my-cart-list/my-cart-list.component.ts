@@ -121,4 +121,11 @@ export class MyCartListComponent {
       })
     }
   }
+  pageChanged(event: any) {
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    // const calculatedPageIndex = this.currentPage * this.pageSize;
+    this.tabelLoad(event.pageIndex);
+  }
+
 }

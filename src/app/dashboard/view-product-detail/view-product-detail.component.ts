@@ -84,6 +84,11 @@ export class ViewProductDetailComponent implements OnDestroy {
       if (res.status == 0) {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
         this.getproductById();
+        this.cardload(0);
+        this.getallcarttotal(0);
+        this.getallcount();
+        this.getallcart();
+
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });

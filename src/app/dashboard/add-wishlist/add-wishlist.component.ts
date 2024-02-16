@@ -13,6 +13,7 @@ export class AddWishlistComponent {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   currentValue: number = 22;
+  // totalrecordLength:any;
   wishlist:any;
   data:any;
   userid:any;
@@ -88,4 +89,12 @@ export class AddWishlistComponent {
     })
   
   }
+  pageChanged(event: any) {
+    this.pageSize = event.pageSize;
+    this.currentPage = event.pageIndex;
+    // const calculatedPageIndex = this.currentPage * this.pageSize;
+    this.tabelLoad(event.pageIndex);
+  }
+
+
 }

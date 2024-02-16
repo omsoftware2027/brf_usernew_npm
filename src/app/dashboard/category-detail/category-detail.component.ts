@@ -1,9 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-category-detail',
@@ -11,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./category-detail.component.scss']
 })
 export class CategoryDetailComponent {
+  @Output() apiCallSuccess: EventEmitter<any> = new EventEmitter();
   currentValue: number = 22;
   firstIconDisabled: boolean = true;
   secondIconDisabled: boolean = false;
@@ -25,7 +27,7 @@ export class CategoryDetailComponent {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   category:any;
-
+  routeSubscription!: Subscription;
   categoryname:any;
   data:any;
   userid:any;
@@ -39,6 +41,10 @@ export class CategoryDetailComponent {
    ngOnInit(): void {
      this.categoryid = this.route.snapshot.params['id'];
      this.userid=localStorage.getItem('id');
+     this.routeSubscription = this.route.params.subscribe(params => {
+      this.categoryid = params['id'];
+      this.tabelLoad(0);
+    });
     this.tabelLoad(0);
     this.getallcarttotal(0);
     this.cardload(0);
@@ -47,7 +53,10 @@ export class CategoryDetailComponent {
     
      // this.getAllcategoryproduct();
    }
-
+   ngOnDestroy() {
+    // Unsubscribe to avoid memory leaks
+    this.routeSubscription.unsubscribe();
+  }
   toggleIcons(iconClicked: string, index: number) {
     if (iconClicked === 'first') {
       this.toggleStates[index] = false;
@@ -123,6 +132,8 @@ export class CategoryDetailComponent {
         this.getallcarttotal(0);
         this.getallcount();
         this.getallcart();
+        // this.apiCallSuccess.emit();
+
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });

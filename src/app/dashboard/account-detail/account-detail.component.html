@@ -39,32 +39,32 @@
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
-        <div class="d-flex"(click)="myorder();getallorder()" [class.password-open]="isorderOpen">
+        <div class="d-flex"(click)="myorder();getallorder(0)" [class.password-open]="isorderOpen">
             <span class=""><i class="bx bxs-heart m-2"></i></span>
             <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
-        <div class="d-flex" (click)="bulkorder();getallbulkorder()" [class.password-open]="isbulkOpen">
+        <div class="d-flex" (click)="bulkorder();getallbulkorder(0)" [class.password-open]="isbulkOpen">
             <span class=""><i class="bx bxs-heart m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
-        <div class="d-flex" (click)="orderguide();getallcategory(0);getallbulkorder()" [class.password-open]="isguideOpen">
+        <div class="d-flex" (click)="orderguide();getallcategory(0);getallbulkorder(0)" [class.password-open]="isguideOpen">
             <span class=""><i class="bx bxs-user m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
         
-        <div class="d-flex" (click)="mystaff();getallstaff()" [class.password-open]="staffOpen">
+        <div class="d-flex" (click)="mystaff();getallstaff(0)" [class.password-open]="staffOpen">
             <span class=""><i class="bx bxs-user m-2"></i></span>
             <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Staff</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
-        <div class="d-flex" (click)="myaddress();getalladdress()" [class.password-open]="addressOpen">
+        <div class="d-flex" (click)="myaddress();getalladdress(0)" [class.password-open]="addressOpen">
             <span class=""><i class="bx bxs-home m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Address</h6>
         </div>
@@ -473,6 +473,7 @@
                                                 
                                              
                                                 </div>
+                                                
                                                 <table class="table">
                                                     <thead>
                                                       <tr>
@@ -482,7 +483,7 @@
                                                       </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr *ngFor="let data of orderdata.productProjections">
+                                                        <tr *ngFor="let data of orderdata.productProjections"  >
                                                             <th scope="row">
                                                                 <div  class="d-flex align-items-center">
                                                                     <div class="flex-shrink-0 me-2">
@@ -515,6 +516,9 @@
                                                     
                                                     </tbody>
                                                   </table>
+                                                  <!-- <div class="col-sm-auto  mt-3 mt-sm-0">
+                                                    <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
+                                                  </div> -->
                                                   <div style="background-color: #F2F4F5; height: 35px;" class="mt-2 mb-3">
                                                     <div class="col-md-12 d-flex mt-2 container">
                                                         <div class="col-md-6 text-white">
@@ -720,6 +724,9 @@
                                                 </ng-container>
                                               </tbody>
                                           </table>
+                                          <!-- <div class="col-sm-auto  mt-3 mt-sm-0">
+                                            <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
+                                          </div> -->
                                     </div>
                                  
                                   </div>
@@ -731,8 +738,8 @@
                                    <div class="col-md-12 card" style="border-radius: 9px;">
                                     <div class="d-flex mt-3 p-3">
                                         <div class="col-md-6">
-                                            <select id="" class="form-select" (change)="getallbulkorder()" [(ngModel)]="selectcategoryid">
-                                                <option disabled selected value="">Please select category</option>
+                                            <select id="" placeholder="Please Select Product" class="form-select" (change)="getallbulkorder(0)" [(ngModel)]="selectcategoryid">
+                                                <option   value="">Please select category</option>
                                                 <option *ngFor="let data of category" [value]="data.categoryId">{{ data.categoryName }}</option>
                                               </select>
                                             
@@ -862,7 +869,9 @@
                                         
                                         </tbody>
                                       </table>
-
+                                      <div class="col-sm-auto  mt-3 mt-sm-0">
+                                        <mat-paginator #paginatorRef (page)="pageChangedd($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
+                                      </div>
                                      
                                    </div>
                                  
@@ -914,7 +923,9 @@
                                         </tbody>
                                       </table>
 
-                                     
+                                         <div class="col-sm-auto  mt-3 mt-sm-0">
+                                            <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
+                                          </div>
                                    </div>
                                  
                                   </div>

@@ -15,17 +15,18 @@ export class SigninPopupComponent {
   shippingAddressId:any;
   addOnUpdate:boolean=false;
   accountTypeRes:any;
+  submitted:boolean=false;
 
   constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<SigninPopupComponent>,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,@Inject(MAT_DIALOG_DATA) public data: any){
 
   }
   ngOnInit(){
     this.formGroup = this.formBuilder.group({
-      address: [''],
-      city: [''],
-      country:[''],
-      pincode:[''],
-      state:[''],
+      address: ['',Validators.required],
+      city: ['',Validators.required],
+      country:['',Validators.required],
+      pincode:['',Validators.required],
+      state:['',Validators.required],
     });
     console.log(this.data.id,"id");
     this.shippingAddressId=this.data.id ;
@@ -39,44 +40,50 @@ export class SigninPopupComponent {
 }
 shppingaddress(){
   this.userid=localStorage.getItem('id');
-  if(this.addOnUpdate){
-    let data = {
-      userId: this.userid,
-      address:this.formGroup.value.address,
-      city:this.formGroup.value.city,
-      country:this.formGroup.value.country,
-      pincode:this.formGroup.value.pincode,
-      state:this.formGroup.value.state,
-      shippingAddressId:this.shippingAddressId
+  this.submitted=true;
+  if(this.formGroup.valid){
+    if(this.submitted){
+      let data = {
+        userId: this.userid,
+        address:this.formGroup.value.address,
+        city:this.formGroup.value.city,
+        country:this.formGroup.value.country,
+        pincode:this.formGroup.value.pincode,
+        state:this.formGroup.value.state,
+        shippingAddressId:this.shippingAddressId
+      }
+      this.dashboardservice.saveshippingaddress(data).subscribe((res) => {
+        if (res.status == 0) {
+          this.matSnackBar.open(res.response,'x',{ duration: 2000 } );
+          this.dialogRef.close();
+        }
+        else {
+          this.matSnackBar.open("Error while saving", 'x', { duration: 2000 });
+        }
+      })
     }
-    this.dashboardservice.saveshippingaddress(data).subscribe((res) => {
-      if (res.status == 0) {
-        this.matSnackBar.open(res.response );
-        this.dialogRef.close();
+    else{
+      let data = {
+        userId: this.userid,
+        address:this.formGroup.value.address,
+        city:this.formGroup.value.city,
+        country:this.formGroup.value.country,
+        pincode:this.formGroup.value.pincode,
+        state:this.formGroup.value.state,
+        shippingAddressId:0
       }
-      else {
-        this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
-      }
-    })
+      this.dashboardservice.saveshippingaddress(data).subscribe((res) => {
+        if (res.status == 0) {
+          this.matSnackBar.open(res.response,'x',{ duration: 2000 });
+          this.dialogRef.close();
+        }
+        else {
+          this.matSnackBar.open("Error while saving", 'x', { duration: 2000 });
+        }
+      })
+    }
   }else{
-    let data = {
-      userId: this.userid,
-      address:this.formGroup.value.address,
-      city:this.formGroup.value.city,
-      country:this.formGroup.value.country,
-      pincode:this.formGroup.value.pincode,
-      state:this.formGroup.value.state,
-      shippingAddressId:0
-    }
-    this.dashboardservice.saveshippingaddress(data).subscribe((res) => {
-      if (res.status == 0) {
-        this.matSnackBar.open(res.response );
-        this.dialogRef.close();
-      }
-      else {
-        this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
-      }
-    })
+    this.matSnackBar.open("Error while Updating!", 'x', { duration:  2000 });
   }
 
 

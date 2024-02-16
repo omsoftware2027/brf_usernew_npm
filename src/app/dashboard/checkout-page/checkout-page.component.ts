@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SigninPopupComponent } from 'src/app/shared/signin-popup/signin-popup.component';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-checkout-page',
@@ -12,6 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./checkout-page.component.scss']
 })
 export class CheckoutPageComponent {
+  DATE = new Date().toISOString().split('T')[0];
+
   carttotal:any;
   data:any;
   userid:any;
@@ -21,12 +24,15 @@ export class CheckoutPageComponent {
   submitted:boolean=false;
   currentPage=0;
   pageSize=30;
+  now:any;
 constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder,private route:Router){
 
 }
 ngOnInit(): void {
   this.getallcarttotal(0);
   this.shippingcard(0);
+  const datePipe = new DatePipe('en-Us');
+  this.now = datePipe.transform(new Date(), 'yyyy-MM-dd');
   this.proccedaddressform = this.formBuilder.group({
     shippingAddressId: ['',Validators.required],
     dateTime: ['', Validators.required],
@@ -34,13 +40,15 @@ ngOnInit(): void {
     shippingAddressType:[''],
 
   });
+  const now = new Date();
+  this.now = now.toISOString().slice(0, 16);
 }
-  openeclinicAcessDialog(): void {
-    this.dialog.open(SigninPopupComponent, {
-      width: '1000px',
+  // openeclinicAcessDialog(): void {
+  //   this.dialog.open(SigninPopupComponent, {
+  //     width: '1000px',
      
-    });
-  }
+  //   });
+  // }
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
@@ -92,5 +100,19 @@ ngOnInit(): void {
     })
    }
   
+  }
+  openeclinicAcessDialog(): void {
+    // Open the dialog
+    const dialogRef: MatDialogRef<SigninPopupComponent> = this.dialog.open(SigninPopupComponent, {
+      width: '914px',
+      height: '584px',
+    });
+  
+    // Subscribe to the afterClosed event
+    dialogRef.afterClosed().subscribe(result => {
+      // This code will be executed when the dialog is closed
+      // You can call your API or perform any other action here
+      this.shippingcard(0);
+    });
   }
 }

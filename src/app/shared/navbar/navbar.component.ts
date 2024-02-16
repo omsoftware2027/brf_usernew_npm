@@ -125,6 +125,7 @@ export class NavbarComponent implements OnInit{
         this.getallcount()
         this.getallproduct();
         this.getallcart() ;
+        
         this.formGroup = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
@@ -416,6 +417,15 @@ onProductSelected() {
   const productId = this.searchproduct.value.name || '';
   if (productId) {
     this.router.navigate(['/dashboard/view-product-detail', productId]);
+  }
+}
+keyPressNumbers(event:any) {
+  const charCode = event.which ? event.which : event.keyCode;
+  if (charCode < 48 || charCode > 57) {
+    event.preventDefault();
+    return false;
+  } else {
+    return true;
   }
 }
 }

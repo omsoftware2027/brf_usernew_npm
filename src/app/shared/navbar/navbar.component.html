@@ -115,7 +115,7 @@
         bottom: -118%;
         margin-left: -35px;">
         </i>
-         <span class=" msgcount rounded-circle"> {{wishcart}}</span>
+         <span class=" position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  mt-2" style="background-color: #F43C4C;"> {{wishcart}}</span>
         <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
         <span class="text-black m-2" [routerLink]="['/dashboard/add-wishlist']"> Wishlist</span>
 
@@ -126,7 +126,7 @@
         bottom: -104%;
     margin-left: -35px;
     color: black;"></i>
-        <span class=" msgcount rounded-circle">{{wishlist}}</span>
+        <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-2" style="background-color: #F43C4C;">{{wishlist}}</span>
         <span class="text-black m-3" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
      
       
@@ -275,7 +275,7 @@
                 <div class="form-group">
                     <label for="" class="form-label">Email Address</label>
                     <div class="input-group" style="width: 177%;">
-                        <input type="text"  placeholder="" class="form-control" formControlName="email"  (click)="stopPropagation($event)">
+                        <input type="text"  placeholder="" class="form-control" formControlName="email"  (click)="stopPropagation($event)" >
                     </div>
     
                     <mat-error>

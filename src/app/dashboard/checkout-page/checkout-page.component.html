@@ -75,7 +75,8 @@
           </mat-error>
                    </div>
               <div class="col-md-12 p-3">
-                <input type="datetime-local" class="form-control" placeholder="Order Delivery Date and Time" formControlName="dateTime">
+                <input type="datetime-local"  
+                  class="form-control" [min]="now" placeholder="Order Delivery Date and Time" formControlName="dateTime">
                 <mat-error>
                   <span *ngIf="(submitted && proccedaddressform.get('dateTime')?.errors) || !proccedaddressform.get('dateTime')?.valid && proccedaddressform.get('dateTime')?.touched">Please select date and time </span>
               </mat-error>
