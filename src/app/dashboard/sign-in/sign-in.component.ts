@@ -29,7 +29,7 @@ logout(){
   this.dialogRef.close();
   localStorage.removeItem('id');
   this.dialogRef.close();
-  this.router.navigate(['/dashboard/view-product-detail']);
+  this.router.navigate(['/dashboard']);
   
 }
 }

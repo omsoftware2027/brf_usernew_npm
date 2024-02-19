@@ -113,7 +113,7 @@
         font-size: 34px;
         position: absolute;
         bottom: -118%;
-        margin-left: -35px;">
+        margin-left: -31px;">
         </i>
          <span class=" position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  mt-2" style="background-color: #F43C4C;"> {{wishcart}}</span>
         <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
@@ -124,10 +124,10 @@
         <i class="las la-shopping-cart " style="    font-size: 37px;
         position: absolute;
         bottom: -104%;
-    margin-left: -35px;
+    margin-left: -34px;
     color: black;"></i>
         <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-2" style="background-color: #F43C4C;">{{wishlist}}</span>
-        <span class="text-black m-3" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
+        <span class="text-black m-2" [routerLink]="['/dashboard/my-cart-list']">My cart</span>
      
       
        </a>
@@ -290,7 +290,7 @@
                 <div class="form-group">
                     <label for="" class="form-label">Phone Number</label>
                     <div class="input-group" style="width: 177%;">
-                        <input type="text"  placeholder="" class="form-control" formControlName="mobile" (click)="stopPropagation($event)">
+                        <input type="text"  placeholder="" class="form-control" formControlName="mobile" (click)="stopPropagation($event)" (keypress)="keyPressNumbers($event)" [maxLength]="10">
                     </div>
     
                     <mat-error>

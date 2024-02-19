@@ -47,6 +47,7 @@ export class AllProductComponent {
      this.productname = this.route.snapshot.params['name'];
      this.userid=localStorage.getItem('id');
     this.tabelLoad(0);
+    this.getallcount();
     // this.getallcarttotal(0);
      this.cardload(0)
     // this.getallproduct() 
@@ -119,7 +120,7 @@ export class AllProductComponent {
     let data = {
       productId:productId,
       userId: this.userid,
-      quantity:0,
+      quantity:1,
       weight:0,
       shipping:0,
       price:price
@@ -128,6 +129,13 @@ export class AllProductComponent {
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
         this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
+        this.cardload(0)
+        this.getallcarttotal(0);
+        this.getallcount();
+        this.getallcart();
+        // this.apiCallSuccess.emit();
+     
+        window.location.reload();
       
       }
       else {
@@ -187,17 +195,17 @@ export class AllProductComponent {
       data.quantity -= 1;
     }
   }
-  deletewishlist(id:any) {
-    if (confirm("Are you sure wants to delete this Product?") == true) {
-      this.dashboardservice.deletewishlist(id).subscribe(res => {
-        if (res.status == 0) {
-          this.cardload(0);
-          this.getallcount();
-          this.getallcart();
-        }
-      })
-    }
-  }
+  // deletewishlist(id:any) {
+  //   if (confirm("Are you sure wants to delete this Product?") == true) {
+  //     this.dashboardservice.deletewishlist(id).subscribe(res => {
+  //       if (res.status == 0) {
+  //         this.cardload(0);
+  //         this.getallcount();
+  //         this.getallcart();
+  //       }
+  //     })
+  //   }
+  // }
   getallproduct() {
     const name =   this.productname || '';
     this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
@@ -249,4 +257,16 @@ export class AllProductComponent {
         }
     });
 }
+  deletewishlist(id:any) {
+    if (confirm("Are you sure wants to delete this Product?") == true) {
+      this.dashboardservice.deletecard(id).subscribe(res => {
+        if (res.status == 0) {
+          this.getallcarttotal(0)
+          this.cardload(0);
+          this.getallcount();
+          this.getallcart();
+        }
+      })
+    }
+  }
 }

@@ -88,7 +88,7 @@ export class ViewProductDetailComponent implements OnDestroy {
         this.getallcarttotal(0);
         this.getallcount();
         this.getallcart();
-
+        window.location.reload();
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
@@ -111,6 +111,7 @@ export class ViewProductDetailComponent implements OnDestroy {
       if (res.status == 0) {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
         this.getproductById();
+        window.location.reload();
       
       }
       else {

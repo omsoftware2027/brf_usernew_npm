@@ -760,14 +760,15 @@
           <mat-card-header class="col-12 d-flex" style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
             <!-- Image and title on the left -->
             <div class="col-6 d-flex">
-              <img src="/assets/images/myCart icon.png" class="catImg" style="width: 37px; padding-bottom: 7px;">
+              <i class="las la-shopping-cart mt-1 " style="font-size: 45px;margin-left: -11px;color: black;"></i>
+              <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-2" style="border: 3px solid white !important;margin-left: 26px;background-color: #F43C4C;">{{fwishlist}}</span>
               <h5 style="padding-left: 5px;" class="text-white mt-3">My Cart</h5>
             </div>
           
             <!-- Amount on the right -->
             <div class="col-6 d-flex justify-content-end">
               <a class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
-              font-size: 22px;">$2121</a>
+              font-size: 22px;">${{carttotal.total}}</a>
               <div class="dropdown-menu">
                 <a href="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">Item</a>
               </div>
@@ -780,7 +781,7 @@
               <div class="d-flex align-items-center">
                 <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
                 <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">{{data.productTitle}}</p>
-                <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p>
+                <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
               </div>
       
               <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">

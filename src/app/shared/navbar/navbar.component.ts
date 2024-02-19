@@ -1,7 +1,7 @@
 import { Component , ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { Router, ActivatedRoute } from "@angular/router";
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, interval } from 'rxjs';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { SigninPopupComponent } from '../signin-popup/signin-popup.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -138,6 +138,14 @@ export class NavbarComponent implements OnInit{
             
 
           });
+        //   interval(0).subscribe(() => {
+         
+        //     this.getallcount();
+        //     this.getallcart();
+
+        // });
+       
+
         // if (!this.token) {
         //     localStorage.removeItem('Id');
         //     localStorage.removeItem('token');
@@ -240,7 +248,9 @@ export class NavbarComponent implements OnInit{
            localStorage.setItem('id', this.loginData.response.id);
            localStorage.setItem('token', this.loginData.response.token);
            console.log(this.loginData.response.id,'loginData');
+           window.location.reload();
            this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
+           this.router.navigate(['/dashboard']);
            if (this.dropdownMenu.nativeElement.classList.contains('show')) {
             this.dropdownMenu.nativeElement.classList.remove('show');
           }
@@ -400,6 +410,7 @@ export class NavbarComponent implements OnInit{
         }
     });
 }
+
 getallcart() {
   this.userid=localStorage.getItem('id');
   this.dashboardservice.getcartcount(this.userid).subscribe(res => {
@@ -417,6 +428,7 @@ onProductSelected() {
   const productId = this.searchproduct.value.name || '';
   if (productId) {
     this.router.navigate(['/dashboard/view-product-detail', productId]);
+    this.searchproduct.reset()
   }
 }
 keyPressNumbers(event:any) {
@@ -427,5 +439,9 @@ keyPressNumbers(event:any) {
   } else {
     return true;
   }
+}
+onButtonClick(): void {
+  this.getallcount();
+  this.getallcart();
 }
 }

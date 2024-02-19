@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
             //      duration: 3000,
             //      panelClass: ['success-snackbar']
             //  });
-             this.router.navigate(['/civantage'], { relativeTo: this.route.parent });
+          
          }}
        }, (error => {
         // this.snackBar.open('Please Enter correct details', '', {

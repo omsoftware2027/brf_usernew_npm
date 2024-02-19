@@ -113,7 +113,7 @@ export class MyCartListComponent {
   
   }
   deletewishlist(id:any) {
-    if (confirm("Are you sure wants to delete this Product?") == true) {
+    if (confirm("Are you sure wants to remove form the cart list?") == true) {
       this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
           this.tabelLoad(0);

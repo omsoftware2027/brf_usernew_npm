@@ -107,6 +107,7 @@ export class CategoryDetailComponent {
       if (res.status == 0) {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
         this.tabelLoad(0);
+        window.location.reload();
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
@@ -133,6 +134,7 @@ export class CategoryDetailComponent {
         this.getallcount();
         this.getallcart();
         // this.apiCallSuccess.emit();
+        window.location.reload();
 
       }
       else {
@@ -242,4 +244,5 @@ export class CategoryDetailComponent {
         }
     });
 }
+
 }

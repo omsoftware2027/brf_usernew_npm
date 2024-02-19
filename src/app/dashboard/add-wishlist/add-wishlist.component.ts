@@ -20,7 +20,7 @@ export class AddWishlistComponent {
   page: number = 0;
   size: number = 30;
   currentPage = 0;
-  pageSize = 100;
+  pageSize = 30;
   totalrecordLength:any;
 
 
@@ -59,7 +59,7 @@ export class AddWishlistComponent {
     })
   }
   deletewishlist(id:any) {
-    if (confirm("Are you sure wants to delete this Product?") == true) {
+    if (confirm("Are you sure wants to remove form wishlist ?") == true) {
       this.dashboardservice.deletewishlist(id).subscribe(res => {
         if (res.status == 0) {
           this.tabelLoad(0);
@@ -81,6 +81,7 @@ export class AddWishlistComponent {
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
         this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
+        window.location.reload();
       
       }
       else {

@@ -23,7 +23,7 @@
     <div class="col-md-12 d-flex">
         <div class="col-md-5" >
             <div class="card-title d-flex align-items-center">
-                <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">Log to our Site</h5>
+                <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">Log-In To Our Site</h5>
             </div>
             <hr style="height: 2px;color: #4C7C17;">
             <form class="g-3"  [formGroup]="formGroup"    >
@@ -105,9 +105,9 @@
                 <!-- <h5>User Details</h5> -->
                 <div class="col-md-6 mt-3 ">
                     <div class="form-group">
-                        <label for="" class="form-label">Frist Name </label>
+                        <label for="" class="form-label">First Name </label>
                         <div class="input-group" >
-                            <input type="text" placeholder="frist name " class="form-control" formControlName="firstName">
+                            <input type="text" placeholder="first name " class="form-control" formControlName="firstName">
                         </div>
       
                         <mat-error>
@@ -150,9 +150,9 @@
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                        <label for="" class="form-label">Phone number</label>
+                        <label for="" class="form-label">Phone Number</label>
                         <div class="input-group" >
-                            <input type="text"  placeholder="phone number" class="form-control" formControlName="mobile">
+                            <input type="text"  placeholder="phone number" class="form-control" formControlName="mobile" [maxLength]="10" (keypress)="keyPressNumbers($event)">
                         </div>
         
                         <mat-error>

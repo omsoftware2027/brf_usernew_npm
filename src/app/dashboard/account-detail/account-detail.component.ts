@@ -51,7 +51,7 @@ export class AccountDetailComponent {
   page: number = 0;
   size: number = 30;
   currentPage = 0;
-  pageSize = 100;
+  pageSize = 30;
   address:any;
   userId:any;
   changepasswordform!:FormGroup;
