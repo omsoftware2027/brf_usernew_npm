@@ -497,3 +497,7 @@ td.mat-cell .bx{
         border: 1px solid #677F98;
     }
 }
+
+.mdc-dialog__surface{
+    overflow-y: clip;
+}

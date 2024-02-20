@@ -91,7 +91,7 @@ ngOnInit(): void {
       if (res.status == 0) {
         this.orderpalceid=res.response;
         this.route.navigate(['/dashboard/order-detail-complated', this.orderpalceid])
-        this.matSnackBar.open(res.response ,'x', { duration: 2000 });
+        this.matSnackBar.open("Order place  successfully",'x', { duration: 2000 });
 
       }
       else {

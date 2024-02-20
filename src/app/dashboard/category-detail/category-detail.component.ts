@@ -65,6 +65,9 @@ export class CategoryDetailComponent {
     }
   }
   tabelLoad(page: number) {
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,this.categoryid,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -96,56 +99,65 @@ export class CategoryDetailComponent {
     return this.shouldShowMore(cardId, text) && this.showMoreTextMap[cardId] ? text : text.slice(0, 50);
   }
   submit(productId:any){
+     if( this.userid > 0){
+      let data = {
+        productId:productId,
+        userId: this.userid,
+        wishlistId:0,
      
-    let data = {
-      productId:productId,
-      userId: this.userid,
-      wishlistId:0,
-   
-    }
-    this.dashboardservice.savewishlist(data).subscribe((res) => {
-      if (res.status == 0) {
-        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
-        this.tabelLoad(0);
-        window.location.reload();
       }
-      else {
-        this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
-      }
-    })
-  
+      this.dashboardservice.savewishlist(data).subscribe((res) => {
+        if (res.status == 0) {
+          this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+          this.tabelLoad(0);
+          window.location.reload();
+        }
+        else {
+          this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
+        }
+      })
+     }
+     else{
+      this.router.navigate(['/dashboard/email-signup']);
+     }
   }
   submitcart(productId:any,price:any){
+     if( this.userid > 0  ){
+      let data = {
+        productId:productId,
+        userId: this.userid,
+        quantity:1,
+        weight:0,
+        shipping:0,
+        price:price
      
-    let data = {
-      productId:productId,
-      userId: this.userid,
-      quantity:1,
-      weight:0,
-      shipping:0,
-      price:price
-   
-    }
-    this.dashboardservice.savewishcart(data).subscribe((res) => {
-      if (res.status == 0) {
-        this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
-        this.cardload(0)
-        this.getallcarttotal(0);
-        this.getallcount();
-        this.getallcart();
-        // this.apiCallSuccess.emit();
-        window.location.reload();
-
       }
-      else {
-        this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
-      }
-    })
+      this.dashboardservice.savewishcart(data).subscribe((res) => {
+        if (res.status == 0) {
+          this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
+          this.cardload(0)
+          this.getallcarttotal(0);
+          this.getallcount();
+          this.getallcart();
+          // this.apiCallSuccess.emit();
+     
   
+        }
+        else {
+          this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
+        }
+      })
+     }
+    else{
+      this.router.navigate(['/dashboard/email-signup']);
+    } 
   }
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
+    console.log(this.userid,'userid');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -158,7 +170,10 @@ export class CategoryDetailComponent {
   }
   cardload(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
+    console.log(this.userid,'userid');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -234,6 +249,9 @@ export class CategoryDetailComponent {
   }
   getallcount() {
     this.userid=localStorage.getItem('id');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getcountcart(this.userid).subscribe(res => {
         this.data = res;
         if (this.data.status === 0) {  

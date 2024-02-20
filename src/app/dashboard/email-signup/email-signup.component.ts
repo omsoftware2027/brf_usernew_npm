@@ -12,7 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EmailSignupComponent {
   formGroup!:FormGroup;
   SignUpForm!:FormGroup;
+  forgotpasswordform!:FormGroup;
   loginData:any;
+  login:boolean=true;
   retryError = false;
   submitted:boolean=false;
   submittedd:boolean=false;
@@ -24,6 +26,10 @@ ngOnInit() {;
   this.formGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
+    });
+    this.forgotpasswordform = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+   
     });
     this.SignUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -56,6 +62,7 @@ ngOnInit() {;
 }
 onSubmit() {
   // this.router.navigate(['/civantage'], { relativeTo: this.route.parent });
+  this.login =false
   this.submittedd=true;
 if(this.formGroup.valid){
   const loginpayload ={
@@ -177,5 +184,22 @@ submit(){
     } else {
       return true;
     }
+  }
+  forgotpassword(){
+  
+    this.dashboardservice.forgotpassword(this.forgotpasswordform.value.email).subscribe((res:any) => {
+      if (res.status == 0) {
+        this.matsnackbar.open("Sign Up  Successfully", 'x', { duration: 2000 });
+        this.SignUpForm.reset();
+        this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+        // const dropdownToggle = document.querySelector('.dropdown-toggle');
+        // if (dropdownToggle) {
+        //   dropdownToggle.classList.remove('show');
+        // }
+      }
+      else {
+        this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });
+      }
+    })
   }
 }

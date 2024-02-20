@@ -335,7 +335,6 @@ export class NavbarComponent implements OnInit{
           this.data =res;
           if (this.data.status === 0) {
             window.scrollTo(0, 0);
-    
             this.totalrecordLength = this.data.response.totalElements;
             this.category = this.data.response.dataSet;
             setTimeout(() => {
@@ -400,6 +399,9 @@ export class NavbarComponent implements OnInit{
   }
   getallcount() {
     this.userid=localStorage.getItem('id');
+    if(this.userid == null){
+      this.userid = 0
+    }
     this.dashboardservice.getcountcart(this.userid).subscribe(res => {
         this.data = res;
         if (this.data.status === 0) {  
@@ -413,6 +415,9 @@ export class NavbarComponent implements OnInit{
 
 getallcart() {
   this.userid=localStorage.getItem('id');
+  if(this.userid == null){
+    this.userid = 0
+  }
   this.dashboardservice.getcartcount(this.userid).subscribe(res => {
       this.data = res;
       if (this.data.status === 0) {  
@@ -428,7 +433,7 @@ onProductSelected() {
   const productId = this.searchproduct.value.name || '';
   if (productId) {
     this.router.navigate(['/dashboard/view-product-detail', productId]);
-    this.searchproduct.reset()
+ 
   }
 }
 keyPressNumbers(event:any) {

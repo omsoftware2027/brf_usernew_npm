@@ -153,4 +153,8 @@ export class DashboardService {
   getalllinkname(linkName:any){
     return this.http.get<any>(`${environment.baseurl}/wishlistCart/getNameAndDescriptionByLink?linkName=${linkName}`)
   }
+  forgotpassword(linkName:any){
+   // @ts-ignore
+   return this.http.post<any>(`${environment.baseurl}/auth/ForgotPassword`+userId)
+  }
 }

@@ -56,7 +56,7 @@ export class AnalyticsComponent implements OnInit {
   }
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
+    console.log(this.userid,'userid');
     if(this.userid != null ){
       this.userId =this.userid
     }else{
@@ -144,6 +144,9 @@ export class AnalyticsComponent implements OnInit {
   }
   getallcount() {
     this.userid=localStorage.getItem('id');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getcountcart(this.userid).subscribe(res => {
         this.data = res;
         if (this.data.status === 0) {  

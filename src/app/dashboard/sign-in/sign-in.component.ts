@@ -27,9 +27,11 @@ closeDialog(){
 }
 logout(){
   this.dialogRef.close();
+  localStorage.removeItem('token');
   localStorage.removeItem('id');
   this.dialogRef.close();
-  this.router.navigate(['/dashboard']);
+  this.router.navigate(['/dashboard/email-signup']);
+  window.location.reload()
   
 }
 }

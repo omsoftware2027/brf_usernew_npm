@@ -41,6 +41,9 @@ export class AddWishlistComponent {
   tabelLoad(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getallwishlist(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -63,6 +66,7 @@ export class AddWishlistComponent {
       this.dashboardservice.deletewishlist(id).subscribe(res => {
         if (res.status == 0) {
           this.tabelLoad(0);
+          window.location.reload();
         }
       })
     }

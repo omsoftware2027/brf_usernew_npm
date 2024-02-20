@@ -31,6 +31,9 @@ export class MyCartListComponent {
   tabelLoad(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
+    if(this.userid == null){
+      this.userid = 0 ;
+     }
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -70,6 +73,9 @@ export class MyCartListComponent {
   }
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
+    if(this.userid == null){
+      this.userid = 0 ;
+     }
     console.log(this.userid,'userid')
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
@@ -117,6 +123,7 @@ export class MyCartListComponent {
       this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
           this.tabelLoad(0);
+          window.location.reload();
         }
       })
     }

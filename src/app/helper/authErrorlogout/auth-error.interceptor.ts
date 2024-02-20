@@ -22,10 +22,10 @@ export class AuthErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(catchError(err => {
       if (err.status === 401) { 
         // auto logout if 401 response returned from api
-        localStorage.removeItem('Id');
+        localStorage.removeItem('id');
         localStorage.removeItem('token');
-        this.router.navigate(['/login']);
-        if (document.referrer.toString().includes('/login')) {
+        this.router.navigate(['/dashboard/email-signup']);
+        if (document.referrer.toString().includes('/dashboard/email-signup')) {
           return throwError('Not Authorized');
         } else {
         // this.document.location.href = `${environment.website}/home`;

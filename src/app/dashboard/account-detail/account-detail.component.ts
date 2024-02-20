@@ -486,7 +486,7 @@ submitcart(productId:any,price:any,quantity:any){
       this.getallbulkorder(0);
     }
     else {
-      this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+      this.snackBar.open(res.response, 'x', { duration: 2000 });
     }
   })
 
