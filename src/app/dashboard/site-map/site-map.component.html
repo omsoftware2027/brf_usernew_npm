@@ -11,8 +11,8 @@
                     </a>
                 </li>
                 <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
-                ;line-height: 20px;" aria-current="page">{{cmsRes3.cmsTitle}}
-</li>
+                ;line-height: 20px;" aria-current="page"[innerHTML]="cmsRestitle">
+               </li>
               
             </ol>
         </nav>
@@ -24,13 +24,13 @@
     <div class="col-md-12 card " style="    border-radius: 9px;">
         <div class="card-title d-flex align-items-center">
             <h5 class="mb-0 main-text p-3"  style="font-weight:400;font-size:30px;line-height:24px; color:
-            #191C1F;">{{cmsRes3.cmsTitle}}
+            #191C1F;"[innerHTML]="cmsRestitle">
 </h5>
         </div>
        <div class="p-3">
        <div class="">
      
-        <p class="p-1" style="color:#0500FF; font-size: 20px;line-height: 28px;font-weight: 400;">{{cmsRes3.description}}</p>
+        <p class="p-1" style="color:#0500FF; font-size: 20px;line-height: 28px;font-weight: 400;" [innerHTML]="cmsresdescrption"></p>
         <!-- <p class="" style="color:#0500FF;font-size: 20px;line-height: 28px;font-weight: 400;">404</p>
         <p class="" style="color:#0500FF;font-size: 20px;line-height: 28px;font-weight: 400;">Category</p>
         <p class="p-1" style="color:#0500FF;font-size: 20px;line-height: 28px;font-weight: 400;">Contact Us</p>

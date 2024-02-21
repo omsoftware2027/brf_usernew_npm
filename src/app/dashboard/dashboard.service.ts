@@ -157,4 +157,7 @@ export class DashboardService {
    // @ts-ignore
    return this.http.post<any>(`${environment.baseurl}/auth/ForgotPassword`+userId)
   }
+  getcmsbyidwithhtml(cmsId:any){
+    return this.http.get<any>(`${environment.baseurl}/master/getByCmsIdWithhtml?cmsId=${cmsId}`)
+  }
 }

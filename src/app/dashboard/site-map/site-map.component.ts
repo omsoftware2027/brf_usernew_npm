@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-site-map',
@@ -10,7 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class SiteMapComponent {
   serviceid:any
   cmsRes3:any;
-  constructor(private dashboardservice:DashboardService, private route: ActivatedRoute){
+  cmsRestitle:any;
+  cmsresdescrption:any;
+  constructor(private dashboardservice:DashboardService, private route: ActivatedRoute,private sanitizer: DomSanitizer){
 
   }
   ngOnInit(): void {
@@ -22,7 +25,9 @@ export class SiteMapComponent {
   getuseractivitybyid() {
     this.dashboardservice.getallcmsdatabyid(this.serviceid).subscribe((res) => {
       if (res.status === 0) {
-        this.cmsRes3 = res.response
+        this.cmsRestitle = this.sanitizer.bypassSecurityTrustHtml(res.response.cmsTitle)
+        // this.cmsresdescrption=res.response.description
+        this.cmsresdescrption = this.sanitizer.bypassSecurityTrustHtml(res.response.description);
       }
     });
 

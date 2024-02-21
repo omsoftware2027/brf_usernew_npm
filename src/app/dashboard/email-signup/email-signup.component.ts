@@ -186,7 +186,7 @@ submit(){
     }
   }
   forgotpassword(){
-  
+    this.login =true;
     this.dashboardservice.forgotpassword(this.forgotpasswordform.value.email).subscribe((res:any) => {
       if (res.status == 0) {
         this.matsnackbar.open("Sign Up  Successfully", 'x', { duration: 2000 });

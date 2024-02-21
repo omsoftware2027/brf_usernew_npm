@@ -1,6 +1,6 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
@@ -29,7 +29,7 @@ export class ViewProductDetailComponent implements OnDestroy {
   data:any;
 
   productid:any;
-  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar ){
+  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router ){
 
   }
   ngOnInit(): void {
@@ -59,6 +59,9 @@ export class ViewProductDetailComponent implements OnDestroy {
     }
   }
   getproductById() {
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getProductByCategoryId(this.productid,this.userid).subscribe((res) => {
       if (res.status === 0) {
         this.productRes = res['response'];
@@ -96,11 +99,12 @@ export class ViewProductDetailComponent implements OnDestroy {
     })
   }
   else{
-    this.matSnackBar.open("Qutanity greater  than 0", 'x', { duration: 2000 });
+    this.matSnackBar.open("Quantity  greater  than 0", 'x', { duration: 2000 });
   }
   }
   submit(productId:any){
      
+   if( this.userid > 0 ){
     let data = {
       productId:productId,
       userId: this.userid,
@@ -118,10 +122,18 @@ export class ViewProductDetailComponent implements OnDestroy {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
       }
     })
+   }
+   else{
+    this.router.navigate(['/dashboard/email-signup']);
+  } 
   
   }
   getallcarttotal(page: number) {
+   
     this.userid=localStorage.getItem('id');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     console.log(this.userid,'userid')
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
@@ -135,7 +147,10 @@ export class ViewProductDetailComponent implements OnDestroy {
   }
   cardload(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
+    console.log(this.userid,'userid');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -220,6 +235,9 @@ export class ViewProductDetailComponent implements OnDestroy {
   }
   getallcart() {
     this.userid=localStorage.getItem('id');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getcartcount(this.userid).subscribe(res => {
         this.data = res;
         if (this.data.status === 0) {  

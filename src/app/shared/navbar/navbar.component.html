@@ -173,7 +173,7 @@
               </div>
               <div class="col-md-6 m-3">
                 <div class="form-group">
-                    <label for="" class="form-label"  >Password<span class="text-info" style="margin-left: 176px;" >Forgot Password</span></label>
+                    <label for="" class="form-label"  >Password<span [routerLink]="['/dashboard/email-signup']" class="text-info" style="margin-left: 176px;" >Forgot Password</span></label>
                     <div class="input-group" style="width: 177%;">
                         <input type="text"  placeholder="" class="form-control" formControlName="password" (click)="stopPropagation($event)">
                     </div>
@@ -198,9 +198,9 @@
             </div>
            </div>
            <!-- <hr> -->
-           <div class="col-md-12 ps-3">
+           <!-- <div class="col-md-12 ps-3">
             <div class="col-md-11">
-                <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
+               
                 <div class="col-md-12" >
                   <div class="col-md-12">
                       <input type="text" class="form-control">
@@ -212,7 +212,7 @@
     
                 <!-- <mat-error>
                     <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                </mat-error> -->
+                </mat-error> 
     
                 
                 
@@ -220,7 +220,7 @@
         </div>
         <div class="col-md-12 ps-3">
           <div class="col-md-11">
-              <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
+             
               <div class="col-md-12" >
                 <div class="col-md-12">
                     <input type="text" class="form-control">
@@ -232,12 +232,12 @@
     
               <!-- <mat-error>
                   <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-              </mat-error> -->
+              </mat-error> 
     
               
               
           </div>
-        </div>
+        </div> -->
           </div>
           <div class="col-md-12 col-md-12 col-lg-12 col-xl-12 p-3" *ngIf="showSignUp">
             <form class="g-3"  [formGroup]="SignUpForm"    >
@@ -324,9 +324,9 @@
             </div>
            </div>
            <!-- <hr> -->
-           <div class="col-md-12 ps-3"  (click)="stopPropagation($event)">
+           <!-- <div class="col-md-12 ps-3"  (click)="stopPropagation($event)">
             <div class="col-md-11">
-                <!-- <label for="" class="form-label">Email Address <span class="text-danger">*</span></label> -->
+              
                 <div class="col-md-12" (click)="stopPropagation($event)">
                   <div class="col-md-12">
                       <input type="text" class="form-control">
@@ -336,9 +336,7 @@
                   </div>
               </div>
     
-                <!-- <mat-error>
-                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                </mat-error> -->
+               
     
                 
                 
@@ -346,7 +344,7 @@
         </div>
         <div class="col-md-12 ps-3">
           <div class="col-md-11">
-              <!-- <label for="" class="form-label">Password<span class="text-info" style="margin-left: 48px;">Forgot Password</span></label> -->
+            
               <div class="col-md-12" (click)="stopPropagation($event)">
                 <div class="col-md-12">
                     <input type="text" class="form-control">
@@ -356,14 +354,12 @@
                 </div>
             </div>
     
-              <!-- <mat-error>
-                  <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-              </mat-error> -->
+            
     
               
               
           </div>
-        </div>
+        </div> -->
         
           </div>
         </div>

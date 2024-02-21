@@ -134,13 +134,14 @@ export class CategoryDetailComponent {
       }
       this.dashboardservice.savewishcart(data).subscribe((res) => {
         if (res.status == 0) {
+          window.location.reload();
           this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
-          this.cardload(0)
-          this.getallcarttotal(0);
-          this.getallcount();
-          this.getallcart();
+          // this.cardload(0)
+          // this.getallcarttotal(0);
+          // this.getallcount();
+          // this.getallcart();
           // this.apiCallSuccess.emit();
-     
+          
   
         }
         else {

@@ -91,7 +91,7 @@ export class MyCartListComponent {
     this.userid=localStorage.getItem('id');
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
-        this.matSnackBar.open("Qutantity Added", 'x', { duration: 2000 });
+        this.matSnackBar.open("Quantity Added", 'x', { duration: 2000 });
         this.tabelLoad(0);
         this.getallcarttotal(0);
 
@@ -106,7 +106,7 @@ export class MyCartListComponent {
     this.userid=localStorage.getItem('id');
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
-        this.matSnackBar.open("Qutantity Removed", 'x', { duration: 2000 });
+        this.matSnackBar.open("Quantity Removed", 'x', { duration: 2000 });
         this.tabelLoad(0);
         this.getallcarttotal(0);
 
