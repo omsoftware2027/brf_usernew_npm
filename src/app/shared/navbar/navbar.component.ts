@@ -122,7 +122,7 @@ export class NavbarComponent implements OnInit{
         this.getfootergeneral();
         this.getTeams();
         this.tabelLoad(0);
-        this.getallcount()
+        this.getallcount();
         this.getallproduct();
         this.getallcart() ;
         
@@ -234,69 +234,38 @@ export class NavbarComponent implements OnInit{
         event.stopPropagation();
       }
       onSubmit() {
-        // this.router.navigate(['/civantage'], { relativeTo: this.route.parent });
-        this.submitted=true;
-      if(this.formGroup.valid){
-        const loginpayload ={
-          email: this.formGroup.value.email,
-          password: this.formGroup.value.password,
-  
-         };
-  
-         this.dashboardservice.login(loginpayload).subscribe(data => {
-           this.loginData = data;   
-           localStorage.setItem('id', this.loginData.response.id);
-           localStorage.setItem('token', this.loginData.response.token);
-           console.log(this.loginData.response.id,'loginData');
-           window.location.reload();
-           this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
-           this.router.navigate(['/dashboard']);
-           if (this.dropdownMenu.nativeElement.classList.contains('show')) {
-            this.dropdownMenu.nativeElement.classList.remove('show');
-          }
-          this.formGroup.reset();
-          //  if (this.dropdownMenu.nativeElement.classList.contains('show')) {
-          //   this.dropdownMenu.nativeElement.classList.remove('show');
-          // }
-
-           // @ts-ignore
-          //  if (data && data.value === 'Not Authorized') {
-          //  this.matsnackbar.open('Wrong Username or Password Enter , try Again', '', {
-          //      duration: 3000,
-          //      panelClass: ['error-snackbar']
-          //   });
-          //    this.retryError = true;
-  
-          //  } else if(this.loginData && this.loginData.value  === 'Inactive'){
-          
-          //    this.retryError = true;
-          //  } else {
-           
-          //    if (data && data.value === 'Another User LoggedIn') {
-          //      this.matsnackbar.open('Another User LoggedIn', '', {
-          //        duration: 3000,
-          //        panelClass: ['error-snackbar']
-          //      });
-          //      } else {
-          //     //    this.snackBar.open('Login Successfully', '', {
-          //     //      duration: 3000,
-          //     //      panelClass: ['success-snackbar']
-          //     //  });
-          //      this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
-  
-          //  }}
-         }, 
-         //(error => {
-          // this.matsnackbar.open('Please Enter correct details', '', {
-          //   duration: 3000,
-          //   panelClass: ['error-snackbar']
-            
-       //   });
-        // })
-         );
-      }
-         
-     
+        this.submitted = true;
+        if (this.formGroup.valid) {
+          const loginpayload = {
+            email: this.formGroup.value.email,
+            password: this.formGroup.value.password,
+          };
+          this.dashboardservice.login(loginpayload).subscribe(
+            data => {
+              this.loginData = data;
+              if (this.loginData.status === 0) {
+                localStorage.setItem('id', this.loginData.response.id);
+                localStorage.setItem('token', this.loginData.response.token);
+                console.log(this.loginData.response.id, 'loginData');
+                window.location.reload();
+                this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
+                this.router.navigate(['/dashboard']);
+                if (this.dropdownMenu.nativeElement.classList.contains('show')) {
+                  this.dropdownMenu.nativeElement.classList.remove('show');
+                }
+                this.formGroup.reset();
+              } else {
+                // Display error message from loginData.response.error or any appropriate field
+                const errorMessage = this.loginData.response.error || 'Unknown error occurred';
+                this.matsnackbar.open(errorMessage, 'x', { duration: 2000 });
+              }
+            },
+            error => {
+              // Handle HTTP errors
+              this.matsnackbar.open("An error occurred while logging in", 'x', { duration: 2000 });
+            }
+          );
+        }
       }
 
       submit(){
@@ -324,7 +293,7 @@ export class NavbarComponent implements OnInit{
             // }
           }
           else {
-            this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });
+            this.matsnackbar.open(res.response, 'x', { duration: 2000 });
           }
         })
        }
