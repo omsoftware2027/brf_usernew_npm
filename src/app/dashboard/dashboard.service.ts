@@ -153,11 +153,14 @@ export class DashboardService {
   getalllinkname(linkName:any){
     return this.http.get<any>(`${environment.baseurl}/wishlistCart/getNameAndDescriptionByLink?linkName=${linkName}`)
   }
-  forgotpassword(linkName:any){
+  forgotpassword(data:any){
    // @ts-ignore
-   return this.http.post<any>(`${environment.baseurl}/auth/ForgotPassword`+userId)
+   return this.http.post<any>(`${environment.baseurl}/auth/ForgotPassword`,data)
   }
   getcmsbyidwithhtml(cmsId:any){
     return this.http.get<any>(`${environment.baseurl}/master/getByCmsIdWithhtml?cmsId=${cmsId}`)
+  }
+  getlogin(userId:any){
+    return this.http.get<any>(`${environment.baseurl}/user/getLoginUserDetailsById?userId=${userId}`)
   }
 }

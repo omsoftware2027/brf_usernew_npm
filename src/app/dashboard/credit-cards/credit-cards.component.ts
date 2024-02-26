@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-credit-cards',
@@ -9,7 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreditCardsComponent {
   linkname:any;
-  constructor(private dashboardservice:DashboardService,private route:ActivatedRoute){
+  descripation:any;
+  constructor(private dashboardservice:DashboardService,private route:ActivatedRoute,private sanitizer: DomSanitizer){
   
   }
   ngOnInit(): void {
@@ -21,7 +23,9 @@ export class CreditCardsComponent {
   getfooterinstantsaving() {
     this.dashboardservice.getalllinkname(this.linkname).subscribe((res:any) => {
       if (res.status === 0) {
-        this.linkname = res['response'];
+        // this.linkname = res['response'];
+        this.linkname = this.sanitizer.bypassSecurityTrustHtml(res.response.cmsTitle)
+        this.descripation =this.sanitizer.bypassSecurityTrustHtml(res.response.description)
       
       }
     });

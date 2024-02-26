@@ -188,20 +188,27 @@ submit(){
       return true;
     }
   }
-  forgotpassword(){
+  forgotpasssword(){
     this.login =false;
-    this.dashboardservice.forgotpassword(this.forgotpasswordform.value.email).subscribe((res:any) => {
+  }
+  forgotpassword(){
+   
+    let data =
+    {
+      username:this.forgotpasswordform.value.email
+    }
+    this.dashboardservice.forgotpassword(data).subscribe((res:any) => {
       if (res.status == 0) {
-        this.matsnackbar.open("Sign Up  Successfully", 'x', { duration: 2000 });
+        this.matsnackbar.open(res.response, 'x', { duration: 2000 });
         this.SignUpForm.reset();
-        this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+        // this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
         // const dropdownToggle = document.querySelector('.dropdown-toggle');
         // if (dropdownToggle) {
         //   dropdownToggle.classList.remove('show');
         // }
       }
       else {
-        this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });
+        this.matsnackbar.open(res.response, 'x', { duration: 2000 });
       }
     })
   }

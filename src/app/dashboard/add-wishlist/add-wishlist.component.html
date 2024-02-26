@@ -58,10 +58,10 @@
                 </th>
                 <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">${{data.price}}</td>
                 <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
-                <td  class="d-flex">   <button type="button" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 35px;
+                <td  class="d-flex">   <button type="button" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;
                     ">ADD TO CART
                         <img src="../../../assets/images/Add to cart.png" 
-                        class="" style="width:24px;height: 24px;"> </button> <p class="p-4"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p></td>
+                        class="" style="width:24px;height: 24px;"> </button> <p class="p-4 mt-2"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p></td>
               </tr>
             
             </tbody>

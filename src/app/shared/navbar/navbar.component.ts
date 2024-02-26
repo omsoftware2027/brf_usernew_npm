@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit{
     carttotal:any;
     wishcart:any;
     wishlist:any;
+    logindetail:any
     dropdownopen:boolean =true;
     userid:any;
     showSignIn: boolean = true;
@@ -37,6 +38,7 @@ export class NavbarComponent implements OnInit{
     searchproduct!:FormGroup;
     retryError = false;
     loginData:any;
+    product:any;
     id:any;
     cmsEnum ='HEADER'
     cmsRes4:any
@@ -48,11 +50,12 @@ export class NavbarComponent implements OnInit{
     size: number = 30;
    currentPage = 0;
     pageSize = 500;
-   
+    loginn:boolean=true;
     token: any;
     loginTime:any;
     sessionId:any;
     formGroup!:FormGroup
+    forgotpasswordform!:FormGroup;
     tabs: { [key: string]: boolean } = {
         'pills-manage-doc': false,
         'pills-alfa-dev': false,
@@ -125,10 +128,15 @@ export class NavbarComponent implements OnInit{
         this.getallcount();
         this.getallproduct();
         this.getallcart() ;
+        this.login()
         
         this.formGroup = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
+          });
+          this.forgotpasswordform = this.formBuilder.group({
+            email: ['', [Validators.required, Validators.email]],
+       
           });
           this.SignUpForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
@@ -216,6 +224,7 @@ export class NavbarComponent implements OnInit{
         event.stopPropagation();
         this.showSignIn = true;
         this.showSignUp = false;
+        this.loginn =true;
       }
     
 
@@ -286,7 +295,7 @@ export class NavbarComponent implements OnInit{
             if (this.dropdownMenu.nativeElement.classList.contains('show')) {
               this.dropdownMenu.nativeElement.classList.remove('show');
             }
-            this.formGroup.reset();
+            this.SignUpForm.reset();
             // const dropdownToggle = document.querySelector('.dropdown-toggle');
             // if (dropdownToggle) {
             //   dropdownToggle.classList.remove('show');
@@ -332,7 +341,7 @@ export class NavbarComponent implements OnInit{
       this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
         this.data =res;
         if (this.data.status === 0) {
-          this.carttotal = this.data.response.dataSet;
+          this.product = this.data.response.dataSet;
           // this.router.navigate(['/dashboard/all-product']);
         }
         else {
@@ -347,7 +356,7 @@ export class NavbarComponent implements OnInit{
         if (this.data.status === 0) {
           this.carttotal = this.data.response.dataSet;
           this.router.navigate(['/dashboard/view-product-detail',name]);
-        
+          
         }
         else {
          
@@ -417,5 +426,54 @@ keyPressNumbers(event:any) {
 onButtonClick(): void {
   this.getallcount();
   this.getallcart();
+}
+login() {
+  this.userid=localStorage.getItem('id');
+  if(this.userid == null){
+    this.userid = 0
+  }
+  this.dashboardservice.getlogin(this.userid).subscribe(res => {
+      this.data = res;
+      if (this.data.status === 0) {  
+          this.logindetail = this.data.response;
+          
+      } else {
+          // Handle other cases if needed
+      }
+  });
+}
+forgotpasssword(){
+  this.loginn =false;
+}
+signnin(){
+    this.loginn =false;
+}
+forgotpassword(){
+ 
+  let data =
+  {
+    username:this.forgotpasswordform.value.email
+  }
+  this.dashboardservice.forgotpassword(data).subscribe((res:any) => {
+    if (res.status == 0) {
+      this.matsnackbar.open(res.response, 'x', { duration: 2000 });
+      this.SignUpForm.reset();
+      // this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+      // const dropdownToggle = document.querySelector('.dropdown-toggle');
+      // if (dropdownToggle) {
+      //   dropdownToggle.classList.remove('show');
+      // }
+    }
+    else {
+      this.matsnackbar.open(res.response, 'x', { duration: 2000 });
+    }
+  })
+}
+clear(){
+  this.searchproduct.patchValue({
+    name:'',
+ 
+  })
+  this.getallproduct()
 }
 }

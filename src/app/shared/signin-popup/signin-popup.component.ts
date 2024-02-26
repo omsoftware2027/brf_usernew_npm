@@ -40,7 +40,7 @@ export class SigninPopupComponent {
 }
 shppingaddress(){
   this.userid=localStorage.getItem('id');
-  this.submitted=true;
+
   if(this.formGroup.valid){
     if(this.submitted){
       let data = {
@@ -70,7 +70,7 @@ shppingaddress(){
         country:this.formGroup.value.country,
         pincode:this.formGroup.value.pincode,
         state:this.formGroup.value.state,
-        shippingAddressId:0
+        shippingAddressId: '0'
       }
       this.dashboardservice.saveshippingaddress(data).subscribe((res) => {
         if (res.status == 0) {
@@ -93,7 +93,7 @@ getaccountdetailById(shippingAddressId:any){
     if(res.status == 0){
       console.log(res,"Response");
       this.accountTypeRes = res.response
-      this.addOnUpdate = true;
+      this.submitted=true;
       this.formGroup.patchValue({
         address: this.accountTypeRes.address,
         city:this.accountTypeRes.city,

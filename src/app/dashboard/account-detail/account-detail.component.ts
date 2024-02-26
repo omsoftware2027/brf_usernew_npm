@@ -374,6 +374,9 @@ getalladdress(page:number){
 getallbulkorder(page:number){
   const categoryid =this.selectcategoryid ||''
   this.userid=localStorage.getItem('id');
+  if(this.userid == null){
+    this.userid = 0
+  }
   this.dashboardservice.getallbulkorder(categoryid,this.userid).subscribe((res:any)=>{
     if(res.status ==0){
     this.bulkorderguide=res.response
@@ -390,6 +393,9 @@ getallbulkorder(page:number){
 }
 getallorder(page:number){
   this.userid=localStorage.getItem('id');
+  if(this.userid == null){
+    this.userid = 0
+  }
   this.dashboardservice.getallorder(this.currentPage,this.pageSize,this.userid).subscribe((res:any)=>{
     if(res.status ==0){
       this.allorder=res.response.dataSet
@@ -417,6 +423,9 @@ pageChangedd(event: any) {
 }
 getallstaff(page:number){
   this.userid=localStorage.getItem('id');
+  if(this.userid == null){
+    this.userid = 0
+  }
   this.dashboardservice.getallstaff(this.currentPage,this.pageSize,this.userid).subscribe((res:any)=>{
     if(res.status==0){
       this.getallstafff=res.response.dataSet;
@@ -483,6 +492,7 @@ submitcart(productId:any,price:any,quantity:any){
   this.dashboardservice.savewishcart(data).subscribe((res) => {
     if (res.status == 0) {
       this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+    
       this.getallbulkorder(0);
     }
     else {
@@ -541,6 +551,7 @@ getallreorder(orderid:any){
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
         this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+        window.location.reload();
       
       }
       else {
@@ -573,6 +584,7 @@ sumbiCart() {
     if (res.status == 0) {
       this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
       this.getallbulkorder(0);
+      window.location.reload();
     } else {
       this.snackBar.open("Error while updating", 'x', { duration: 2000 });
     }
@@ -583,8 +595,9 @@ openeAcessDialog(): void {
   const dialogRef: MatDialogRef<SigninPopupComponent> = this.dialog.open(SigninPopupComponent, {
     width: '914px',
     height: '584px',
+    
   });
-
+ 
   // Subscribe to the afterClosed event
   dialogRef.afterClosed().subscribe(result => {
     // This code will be executed when the dialog is closed

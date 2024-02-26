@@ -778,7 +778,9 @@
                                                </div>
                                         </thead> -->
                                         <tbody>
-                                            
+                                            <div class="mt-2 cardNA mb-3" *ngIf="!bulkorderguide.length">
+                                                <h5 class="mb-1">Product not available</h5>
+                                              </div>
                                       <ng-container *ngFor="let bulkorder of bulkorderguide;">
                                         <tr *ngFor="let data1 of bulkorder.bulkOrderResponses;">
                                             <th scope="row">
