@@ -50,16 +50,15 @@
                  <img [src]="data.image|| 'assets/images/download (20).png'" style="width:100%;margin-top: 24px;height: 116px; display: grid;" class=""  	[routerLink]="['/dashboard/view-product-detail',data.productId]">
          
                  <div class="image-text mt-4">
-                  <p style="margin-left: 10px; font-size:14px;font-size: 14px;
-                  font-weight: 500;
-                  line-height: 15px;color:#505050">{{  data.title }}</p>
-                  <!-- <p *ngIf="shouldShowMore(data.productId, data.title)" style="color:#F44C4C" (click)="toggleShowMore(data.productId)">
-                    {{ showMoreTextMap[data.productId] ? 'Show Less' : 'Show More' }}
-                  </p> -->
-                </div>
+                  <p style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050" [innerHTML]="highlightText(data.title, maxCharacters, i)"[innerHTML]="highlightText(data.title, maxCharacters, i)">
+                    
+                  </p>
+                  <a *ngIf="data.title.length > maxCharacters" (click)="toggleShowMore(i)" style="color:#F44C4C">
+                    {{ showMoreStates[i] ? "Show less" : "Show more" }}
+                  </a>
+              </div>
             <div class="">
-              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;
-              line-height: 20px;">${{data.price}}
+              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;line-height: 20px;">${{data.price}}
               </a>
             </div>
             <div class=" justify-content-between">
@@ -164,14 +163,14 @@
                 <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
                   <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
                   
-                    <div>
-                      <i class="ri-add-line ps-1 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                    <div class="col-md-3">
+                      <i class="ri-add-line  " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
                     </div>
-                   <div>
+                   <div  class="col-md-6">
                     <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '1' }}</p>
                    </div>
-                    <div>
-                      <i class="ri-subtract-line ms-3 " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
+                    <div class="col-md-3">
+                      <i class="ri-subtract-line " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
                     </div>
                  
                   </div>

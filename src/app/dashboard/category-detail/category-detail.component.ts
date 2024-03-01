@@ -15,10 +15,13 @@ import { MasterService } from 'src/app/services/master-service/master.service';
 export class CategoryDetailComponent {
   @Output() apiCallSuccess: EventEmitter<any> = new EventEmitter();
   currentValue: number = 22;
+  showMoreStates: boolean[] = [];
   firstIconDisabled: boolean = true;
   secondIconDisabled: boolean = false;
   showMoreTextMap: { [key: string]: boolean } = {};
   categoryid:any;
+  
+  focusedCardIndex: number = -1;
   carttotal:any;
   fwishlist:any;
   wishlist:any;
@@ -35,6 +38,9 @@ export class CategoryDetailComponent {
   page: number = 0;
   size: number = 30;
   currentPage = 0;
+  
+  showMore: boolean = false;
+  maxCharacters:number =30
   pageSize = 100;
   totalrecordLength:any;
   constructor(private dashboardservice:DashboardService,private router: Router,
@@ -88,9 +94,9 @@ export class CategoryDetailComponent {
       }
     })
   }
-  toggleShowMore(cardId: string) {
-    this.showMoreTextMap[cardId] = !this.showMoreTextMap[cardId];
-  }
+  // toggleShowMore(cardId: string) {
+  //   this.showMoreTextMap[cardId] = !this.showMoreTextMap[cardId];
+  // }
 
   shouldShowMore(cardId: string, text: string): boolean {
     return text.length > 50;
@@ -264,5 +270,29 @@ export class CategoryDetailComponent {
         }
     });
 }
-
+highlightText(text: string, maxLength: number, index: number): string {
+  // Your existing code here
+  
+  // Check if "Show more" state is true for this card
+  if (this.showMoreStates[index]) {
+    return text; // If "Show more" is clicked, return full text
+  } else {
+    // Otherwise, truncate text
+    if (text.length <= maxLength) {
+      return text;
+    } else {
+      return text.slice(0, maxLength) + '...';
+    }
+  }
 }
+toggleShowMore(index: number) {
+  this.showMoreStates[index] = !this.showMoreStates[index]; // Toggle "Show more" state
+}
+// Method to set the focused card index
+focusCard(event: MouseEvent,index: number) {
+  event.preventDefault();
+  event.stopPropagation();
+  this.focusedCardIndex = index;
+}
+}
+       
