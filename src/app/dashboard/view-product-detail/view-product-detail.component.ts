@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
+import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-view-product-detail',
@@ -29,7 +30,7 @@ export class ViewProductDetailComponent implements OnDestroy {
   data:any;
 
   productid:any;
-  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router ){
+  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService  ){
 
   }
   ngOnInit(): void {
@@ -86,6 +87,7 @@ export class ViewProductDetailComponent implements OnDestroy {
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
         this.getproductById();
         this.cardload(0);
         this.getallcarttotal(0);
@@ -115,7 +117,7 @@ export class ViewProductDetailComponent implements OnDestroy {
       if (res.status == 0) {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
         this.getproductById();
-        window.location.reload();
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
       
       }
       else {

@@ -164,9 +164,15 @@
                 <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
                   <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
                   
-                    <i class="ri-add-line ps-1 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                    <div>
+                      <i class="ri-add-line ps-1 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                    </div>
+                   <div>
                     <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '1' }}</p>
-                    <i class="ri-subtract-line ps-3 " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
+                   </div>
+                    <div>
+                      <i class="ri-subtract-line ms-3 " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
+                    </div>
                  
                   </div>
                 </div>

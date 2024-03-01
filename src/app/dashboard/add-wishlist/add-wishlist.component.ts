@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from '../dashboard.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-add-wishlist',
@@ -31,7 +32,7 @@ export class AddWishlistComponent {
   decrementValue() {
     this.currentValue -= 1;
   }
-  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService) { }
+  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService,private reloadCommonService:MasterService) { }
 
   ngOnInit(): void {
     this.tabelLoad(0);
@@ -85,7 +86,7 @@ export class AddWishlistComponent {
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
         this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
-        window.location.reload();
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
       
       }
       else {

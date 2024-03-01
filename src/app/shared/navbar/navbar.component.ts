@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { MasterService } from 'src/app/services/master-service/master.service';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
@@ -45,6 +46,7 @@ export class NavbarComponent implements OnInit{
     // submitted:boolean = false;
     name:any;
     data: any;
+    messageReceived:any;
     category:any;
     page: number = 0;
     size: number = 30;
@@ -92,7 +94,7 @@ export class NavbarComponent implements OnInit{
     private loggedIn = new BehaviorSubject<boolean>(false);
 
     constructor(private router: Router,
-        public sidebarservice: SidebarService,public dialog: MatDialog,private formBuilder: FormBuilder,private matsnackbar:MatSnackBar,private dashboardservice:DashboardService,private route: ActivatedRoute) {
+        public sidebarservice: SidebarService,public dialog: MatDialog,private formBuilder: FormBuilder,private matsnackbar:MatSnackBar,private dashboardservice:DashboardService,private route: ActivatedRoute,private reloadCommonService:MasterService ) {
           this.searchproduct = this.formBuilder.group({
             name: [''],
             categoryId:['']
@@ -100,6 +102,18 @@ export class NavbarComponent implements OnInit{
             setInterval(() => {
                 this.currentDataTime = new Date();
               }, 1);
+
+              this.reloadCommonService.getUpdate().subscribe
+              (message => {
+              this.messageReceived = message;
+                if(this.messageReceived.text == 'reloadNavbar'){
+                  this.ngOnInit();
+                } else if(this.messageReceived.text == 'reloadWalletDetail'){
+                  this.getallcart();
+                  this.getallcount();
+
+                }
+      });      
          }  
     toggleTab(tabId: string): void {
             this.tabs[tabId] = !this.tabs[tabId];

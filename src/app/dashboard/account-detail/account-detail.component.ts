@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from '../dashboard.service';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
+import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-account-detail',
@@ -58,7 +59,7 @@ export class AccountDetailComponent {
   Orderguide:boolean=false;
   Mystaff:boolean=false;
   Myaddress:boolean=false;
-  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router){
+  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService){
 
   }
   ngOnInit() {
@@ -79,7 +80,7 @@ export class AccountDetailComponent {
       email:[''],
       billingAddressLine1:[''],
       billingAddressLine2:[''],
-      city:[''],
+      city:[''], 
       country:[''],
       state:[''],
       pincode:[''],
@@ -551,7 +552,7 @@ getallreorder(orderid:any){
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
         this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
-        window.location.reload();
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
       
       }
       else {
@@ -584,7 +585,7 @@ sumbiCart() {
     if (res.status == 0) {
       this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
       this.getallbulkorder(0);
-      window.location.reload();
+      this.reloadCommonService.sendUpdate('reloadWalletDetail');
     } else {
       this.snackBar.open("Error while updating", 'x', { duration: 2000 });
     }

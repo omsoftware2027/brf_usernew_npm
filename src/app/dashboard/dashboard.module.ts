@@ -38,7 +38,6 @@ import { ManageCarttComponent } from './manage-cartt/manage-cartt.component';
 import { OrderDetailComplatedComponent } from './order-detail-complated/order-detail-complated.component';
 import { EmailSignupComponent } from './email-signup/email-signup.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -80,7 +79,7 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatTooltipModule,
     MatButtonModule,
-    MatIconModule,
+  
   
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

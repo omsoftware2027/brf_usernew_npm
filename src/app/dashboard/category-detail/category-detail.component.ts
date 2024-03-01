@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-category-detail',
@@ -37,7 +38,7 @@ export class CategoryDetailComponent {
   pageSize = 100;
   totalrecordLength:any;
   constructor(private dashboardservice:DashboardService,private router: Router,
-    private route: ActivatedRoute,private matSnackBar:MatSnackBar) { }
+    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService) { }
    ngOnInit(): void {
      this.categoryid = this.route.snapshot.params['id'];
      this.userid=localStorage.getItem('id');
@@ -110,7 +111,7 @@ export class CategoryDetailComponent {
         if (res.status == 0) {
           this.matSnackBar.open(res.response, 'x', { duration: 2000 });
           this.tabelLoad(0);
-          window.location.reload();
+          this.reloadCommonService.sendUpdate('reloadWalletDetail');
         }
         else {
           this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
@@ -134,12 +135,12 @@ export class CategoryDetailComponent {
       }
       this.dashboardservice.savewishcart(data).subscribe((res) => {
         if (res.status == 0) {
-          window.location.reload();
+          this.reloadCommonService.sendUpdate('reloadWalletDetail');
           this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
-          // this.cardload(0)
-          // this.getallcarttotal(0);
-          // this.getallcount();
-          // this.getallcart();
+          this.cardload(0)
+          this.getallcarttotal(0);
+          this.getallcount();
+          this.getallcart();
           // this.apiCallSuccess.emit();
           
   
