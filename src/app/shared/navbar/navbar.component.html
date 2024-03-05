@@ -18,24 +18,24 @@
                   <li style="margin-right: auto;" >
                       <a style="color:#F44C4C" (click)="logoutaccount()">Log Out </a>
                   </li>
-                  <li class="ms-1">
+                  <li class="ms-2">
                       <a> |</a>
                   </li>
                   <li>
                       <p [routerLink]="['/dashboard/account-detail']">My Account</p>
                   </li>
-                  <li>
+                  <li class="ms-1">
                       <a>|</a>
                   </li>
                   <li>
-                      <p class="ps-2" [routerLink]="['/dashboard/email-signup']">Email Sign-Up</p>
+                      <p  [routerLink]="['/dashboard/email-signup']">Email Sign-Up</p>
                   </li>
-                  <li>
+                  <li class="ms-1">
                     <a>|</a>
                   </li>
                   <div *ngFor="let data of titlesAndIdsArray2 ">
                       <li [routerLink]="['/dashboard/statement',data.cmsId]">
-                          <p [routerLink]="['/dashboard/new-customers',data.cmsId]" class="ps-1">{{data.title}} |</p>
+                          <p [routerLink]="['/dashboard/new-customers',data.cmsId]" class="ps-2">{{data.title}}  <span class="ps-1">|</span></p>
                       </li>
                   </div>
               </ul>
@@ -83,11 +83,8 @@
                         <!-- <input class="form-select" type="search" id="example-search-input" placeholder="   Search for item "> -->
                          <select (change)="onProductSelected()" class="form-select " style=" box-shadow: none!important;" formControlName="name" style="background-color: #F3F3F3;border:none">
                           <i class="las la-caret-down"></i>
-                          <button   matSuffix mat-icon-button aria-label="Clear" >
-                            <mat-icon>close</mat-icon>
-                          </button>
-                          <option disabled selected value="">Select a product</option>
-                          <option *ngFor="let data of product"  [value]="data.productId" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;">{{data.productName}}
+                          <option disabled selected value="" style="background-color: white;">Select a product</option>
+                          <option *ngFor="let data of product"  [value]="data.productId" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;background-color: white;">{{data.productName}}
                           </option>
                         </select>
                         <span class="input-group-append text-white" style="background-color: #F44C4C;border-radius: 3px;padding: 8px;cursor:pointer"(click)="clear()">

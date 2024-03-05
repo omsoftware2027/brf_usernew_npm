@@ -908,7 +908,7 @@
                                           <tr *ngFor="let data of getallstafff ">
                                             <td style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">{{data.firstName}}   </td>
                                             <td>{{data.email}}</td>
-                                            <td>{{data.mobile}}</td>
+                                            <td>{{data.mobile ? data.mobile:'-' }}</td>
                                           
                                             <td>   
                                                 

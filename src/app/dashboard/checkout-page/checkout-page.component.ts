@@ -51,7 +51,10 @@ ngOnInit(): void {
   // }
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
+    console.log(this.userid,'userid');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -64,7 +67,10 @@ ngOnInit(): void {
   }
   shippingcard(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
+    console.log(this.userid,'userid');
+    if(this.userid == null){
+      this.userid = 0;
+    }
     this.dashboardservice.getallshppingaddress(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
