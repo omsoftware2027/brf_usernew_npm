@@ -53,7 +53,7 @@
                   <p style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050" [innerHTML]="highlightText(data.title, maxCharacters, i)"[innerHTML]="highlightText(data.title, maxCharacters, i)">
                     
                   </p>
-                  <a *ngIf="data.title.length > maxCharacters" (click)="toggleShowMore(i)" style="color:#F44C4C">
+                  <a *ngIf="data.title.length > maxCharacters" (click)="toggleShowMore(i)" style="color:#F44C4C;cursor: pointer;">
                     {{ showMoreStates[i] ? "Show less" : "Show more" }}
                   </a>
               </div>

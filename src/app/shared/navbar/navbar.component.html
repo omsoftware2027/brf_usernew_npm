@@ -15,27 +15,27 @@
         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 mt-3">
           <div class="headRight mt-2">
               <ul class="d-flex flex-wrap justify-content-end"> <!-- Modified line -->
-                  <li style="margin-right: auto;" >
+                  <li  >
                       <a style="color:#F44C4C" (click)="logoutaccount()">Log Out </a>
                   </li>
-                  <li class="ms-2">
-                      <a> |</a>
+                  <li >
+                      <a class="ms-2"> |</a>
                   </li>
                   <li>
                       <p [routerLink]="['/dashboard/account-detail']">My Account</p>
                   </li>
-                  <li class="ms-1">
-                      <a>|</a>
+                  <li >
+                      <a class="ms-2">|</a>
                   </li>
                   <li>
                       <p  [routerLink]="['/dashboard/email-signup']">Email Sign-Up</p>
                   </li>
-                  <li class="ms-1">
-                    <a>|</a>
+                  <li >
+                    <a class="ms-2">|</a>
                   </li>
                   <div *ngFor="let data of titlesAndIdsArray2 ">
                       <li [routerLink]="['/dashboard/statement',data.cmsId]">
-                          <p [routerLink]="['/dashboard/new-customers',data.cmsId]" class="ps-2">{{data.title}}  <span class="ps-1">|</span></p>
+                          <p [routerLink]="['/dashboard/new-customers',data.cmsId]" class="ps-2">{{data.title}}  <span class="ms-2">|</span></p>
                       </li>
                   </div>
               </ul>
