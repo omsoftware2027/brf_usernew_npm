@@ -619,4 +619,10 @@ openewuserdialog(): void {
     this.getallstaff(0);
   });
 }
+downoladinvoice(orderid:any){
+  this.dashboardservice.downloadprintinvoice(orderid).subscribe( res =>{
+    this.data =res.response;
+    window.open(this.data, '_blank');
+  })
+}
 }

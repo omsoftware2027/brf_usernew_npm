@@ -501,3 +501,10 @@ td.mat-cell .bx{
 .mdc-dialog__surface{
     overflow-y: clip;
 }
+.mat-mdc-select {
+    font-family: "Prompt" !important;
+  }
+.mat-mdc-option .mdc-list-item__primary-text{
+    font-family: "Prompt" !important;
+    padding:2px;
+}  

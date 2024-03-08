@@ -48,6 +48,7 @@ export class NavbarComponent implements OnInit{
     data: any;
     messageReceived:any;
     category:any;
+    docSpecializationClone:any;
     page: number = 0;
     size: number = 30;
    currentPage = 0;
@@ -356,6 +357,7 @@ export class NavbarComponent implements OnInit{
         this.data =res;
         if (this.data.status === 0) {
           this.product = this.data.response.dataSet;
+          this.docSpecializationClone=  this.product;
           // this.router.navigate(['/dashboard/all-product']);
         }
         else {
@@ -421,7 +423,7 @@ getallcart() {
   });
 }
 onProductSelected() {
-  // console.log(productId,'productId')
+   console.log('productId')
   const productId = this.searchproduct.value.name || '';
   if (productId) {
     this.router.navigate(['/dashboard/view-product-detail', productId]);
@@ -435,6 +437,34 @@ keyPressNumbers(event:any) {
     return false;
   } else {
     return true;
+  }
+}
+specializationSelect(query: string): any[] {
+  const result: any[] = [];
+  // Check if this.docSpecializationClone is defined and not null
+  if (this.docSpecializationClone) {
+    console.log(this.docSpecializationClone,'this.docSpecializationClone')
+    for (const b of this.docSpecializationClone) {
+      // Check if b.name is defined and not null
+      if (b.productName && b.productName.toLowerCase().indexOf(query) > -1) {
+        result.push(b);
+        console.log(result,'result')
+      }
+    }
+  }
+  return result;
+}
+specialitySearch(event: KeyboardEvent): void {
+  const query = (event.target as HTMLInputElement).value; // Extracting value from the event
+  const d = query.toLowerCase();
+  console.log('fd')
+  const result = this.specializationSelect(d);
+  if (query === '') {
+    console.log('fd')
+    this.product = this.docSpecializationClone;
+  } else {
+    console.log('fdd')
+    this.product = result;
   }
 }
 onButtonClick(): void {

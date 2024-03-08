@@ -19,19 +19,19 @@
                       <a style="color:#F44C4C" (click)="logoutaccount()">Log Out </a>
                   </li>
                   <li >
-                      <a class="ms-2"> |</a>                
+                      <p class="ms-2"> |</p>                
                   </li>
                   <li>
                       <p [routerLink]="['/dashboard/account-detail']">My Account</p>
                   </li>
                   <li >
-                      <a class="ms-2">|</a>
+                      <p class="ms-2">|</p>
                   </li>
                   <li>
                       <p  [routerLink]="['/dashboard/email-signup']">Email Sign-Up</p>
                   </li>
                   <li >
-                    <a class="ms-2">|</a>
+                    <p class="ms-2">|</p>
                   </li>
                   <div *ngFor="let data of titlesAndIdsArray2 ">
                       <li [routerLink]="['/dashboard/statement',data.cmsId]">
@@ -81,18 +81,38 @@
                      
                         <!-- <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name"> -->
                         <!-- <input class="form-select" type="search" id="example-search-input" placeholder="   Search for item "> -->
-                         <select (change)="onProductSelected()" class="form-select " style=" box-shadow: none!important;" formControlName="name" style="background-color: #F3F3F3;border:none">
+                         <!-- <select (change)="onProductSelected()" class="form-select " style=" box-shadow: none!important;" formControlName="name" style="background-color: #F3F3F3;border:none">
+                          
                           <i class="las la-caret-down"></i>
                           <option disabled selected value="" style="background-color: white;">Select a product</option>
                           <option *ngFor="let data of product"  [value]="data.productId" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;background-color: white;">{{data.productName}}
                           </option>
-                        </select>
-                        <span class="input-group-append text-white" style="background-color: #F44C4C;border-radius: 3px;padding: 8px;cursor:pointer"(click)="clear()">
-                          <!-- <button class="btn btn-pr" type="button" style="text-white" (click)="clear()">
-                           Clear
-                          </button> -->
-                          Clear
-                        </span>
+                        </select> -->
+                        <div class="ps-3 d-flex" style="width: 66%;">
+                          <mat-select name="selection"#mySelectSpecialization class="form-control" placeholder="search" (selectionChange)="onProductSelected()" formControlName="name" style="border-radius: 5px;background-color: #F3F3F3;">
+          <input style="margin: 10px; width: 96%;font-family: Arial, Helvetica, sans-serif;"class="customeSearchDropdown myInput form-control"
+          #myInputSpecialization
+          focused="'true'"
+          (openedChange)="myInputSpecialization.focus()"
+          (closed)="myInputSpecialization.value = ''"
+          (keyup)="specialitySearch($event)"
+          type="text"
+          autocomplete="off"
+          placeholder="search"
+          (keydown)="$event.stopPropagation()"
+          />
+          <mat-option *ngFor="let data of product"  [value]="data.productId">{{
+            data.productName}}</mat-option>
+                        </mat-select>
+                     <div class="ps-2"> 
+                      <button class="btn btn-primary" class="input-group-append text-white" style="background-color: #F44C4C;border-radius: 3px;padding: 8px;cursor:pointer;border: white;
+                      height: 40px;"(click)="clear()">
+                        
+                        Clear
+                      </button>
+                     </div>
+                        </div>
+                       
                        
                       
                         </div>

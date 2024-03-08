@@ -163,4 +163,7 @@ export class DashboardService {
   getlogin(userId:any){
     return this.http.get<any>(`${environment.baseurl}/user/getLoginUserDetailsById?userId=${userId}`)
   }
+  downloadprintinvoice(orderId:any) {
+    return this.http.get<any>(`${environment.baseurl}/order/printInvoice?orderId=${orderId}`);
+  }
 }

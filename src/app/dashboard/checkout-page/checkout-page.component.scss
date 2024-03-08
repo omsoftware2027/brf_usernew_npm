@@ -18,8 +18,12 @@
     // line-height: 37px;
     font-family: 'Prompt';
     border: white;
+    border-radius: 6px;
 }
 .btn-primary,.btn-primary:focus{
     box-shadow: none!important;
     border-color: #F44C4C;
+}
+li ::marker{
+    color:#F44C4C !important
 }
