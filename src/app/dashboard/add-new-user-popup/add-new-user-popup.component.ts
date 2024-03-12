@@ -18,7 +18,7 @@ export class AddNewUserPopupComponent {
   }
   ngOnInit(){
     this.SignUpForm = this.formBuilder.group({
-      email: ['',Validators.required,Validators.email],
+      email: ['',Validators.required],
       firstName: ['',Validators.required],
       lastName:[''],
       mobile:['',[Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
@@ -39,7 +39,7 @@ export class AddNewUserPopupComponent {
         email: this.SignUpForm.value.email,
         firstName: this.SignUpForm.value.firstName,
         mobile:this.SignUpForm.value.mobile,
-        // lastName:this.SignUpForm.value.mobile,
+        lastName:this.SignUpForm.value.lastName,
         parentId: this.userId,
       }
       this.dashboardservice.signup(data).subscribe((res) => {

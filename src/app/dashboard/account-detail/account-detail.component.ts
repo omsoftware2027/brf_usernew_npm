@@ -595,7 +595,7 @@ openeAcessDialog(): void {
   // Open the dialog
   const dialogRef: MatDialogRef<SigninPopupComponent> = this.dialog.open(SigninPopupComponent, {
     width: '914px',
-    height: '584px',
+    height: '470px',
     
   });
  
@@ -609,7 +609,7 @@ openeAcessDialog(): void {
 openewuserdialog(): void {
   const dialogRef: MatDialogRef<AddNewUserPopupComponent> = this.dialog.open(AddNewUserPopupComponent, {
     width: '914px',
-    height: '584px',
+    height: '384px',
   });
 
   // Subscribe to the afterClosed event

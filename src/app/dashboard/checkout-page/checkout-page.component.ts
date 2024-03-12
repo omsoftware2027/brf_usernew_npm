@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-checkout-page',
@@ -25,7 +26,7 @@ export class CheckoutPageComponent {
   currentPage=0;
   pageSize=30;
   now:any;
-constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder,private route:Router){
+constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder,private route:Router,private reloadCommonService:MasterService){
 
 }
 ngOnInit(): void {
@@ -96,6 +97,7 @@ ngOnInit(): void {
     this.dashboardservice.saveaddress(data).subscribe((res) => {
       if (res.status == 0) {
         this.orderpalceid=res.response;
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
         this.route.navigate(['/dashboard/order-detail-complated', this.orderpalceid])
         this.matSnackBar.open("Order place  successfully",'x', { duration: 2000 });
 
@@ -111,7 +113,7 @@ ngOnInit(): void {
     // Open the dialog
     const dialogRef: MatDialogRef<SigninPopupComponent> = this.dialog.open(SigninPopupComponent, {
       width: '914px',
-      height: '584px',
+      height: '470px',
     });
   
     // Subscribe to the afterClosed event

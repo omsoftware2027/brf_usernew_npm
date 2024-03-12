@@ -405,4 +405,10 @@
 .mat-mdc-select {
   font-family: 'Poppins', sans-serif;
 }
+.mat-mdc-option {
+  padding: 8px;
+}
+}
+::ng-deep.mat-mdc-select-panel{
+  overflow-x: hidden !important;
 }

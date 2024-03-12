@@ -508,3 +508,6 @@ td.mat-cell .bx{
     font-family: "Prompt" !important;
     padding:2px;
 }  
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    overflow: hidden !important;
+  }
