@@ -24,6 +24,22 @@
     box-shadow: none!important;
     border-color: #F44C4C;
 }
-li ::marker{
-    color:#F44C4C !important
+li {
+    color:#000000 !important
 }
+ul {
+    list-style-type: none;
+    padding: 0;
+   
+    
+  }
+  ul li::marker {
+    color: #F44C4C;
+  }
+//   .form-control::placeholder {
+//     color: #000000 !important; /* Change this to the desired color */
+//   }
+.form-check-input:checked{
+    background-color: #F44C4C !important;
+    border-color: #F44C4C !important;
+} 
