@@ -43,14 +43,14 @@
      <div class="row">
       <div class="col-md-8 ">
         <div class="row">
-          <div class="col-md-3 " *ngFor="let data of category ;let i=index" [ngStyle]="{'margin-top': i < 4 ? '0%' : '7%'}">
-            <div class="card mt-2" style="height: 100%;">
+          <div class="col-md-3 " *ngFor="let data of category ;let i=index" [ngStyle]="{'margin-top': i < 4 ? '0%' : '0%'}">
+            <div class="card mt-2" >
               <div class="card-contain container col-md-12">
                <div class="col-md-12">
                  <img [src]="data.image|| 'assets/images/download (20).png'" style="width:100%;margin-top: 24px;height: 116px; display: grid;" class=""  	[routerLink]="['/dashboard/view-product-detail',data.productId]">
          
                  <div class="image-text mt-4">
-                  <p style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050" [innerHTML]="highlightText(data.title, maxCharacters, i)"[innerHTML]="highlightText(data.title, maxCharacters, i)">
+                  <p 	[routerLink]="['/dashboard/view-product-detail',data.productId]" style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050;cursor: pointer;" [innerHTML]="highlightText(data.title, maxCharacters, i)"[innerHTML]="highlightText(data.title, maxCharacters, i)">
                     
                   </p>
                   <a *ngIf="data.title.length > maxCharacters" (click)="toggleShowMore(i)" style="color:#F44C4C;cursor: pointer;">
@@ -61,7 +61,7 @@
               <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;line-height: 20px;">${{data.price}}
               </a>
             </div>
-            <div class=" justify-content-between">
+            <div class=" justify-content-between mb-3">
              <div class=" ps-2">
              <div class="d-flex">
               <button type="button" class="btnn mt-3" (click)="submitcart(data.productId,data.price)" style="background-color: #F44C4C;border-radius: 3px; color: white; width:141px;margin-left:-3px;height: 40px; 

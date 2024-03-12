@@ -37,7 +37,7 @@ export class CategoryDetailComponent {
   userid:any;
   page: number = 0;
   size: number = 30;
-  currentPage = 0;
+  currentPage = 0;  
   
   showMore: boolean = false;
   maxCharacters:number =30

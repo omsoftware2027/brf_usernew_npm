@@ -6,7 +6,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from "./shared/shared.module";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { SpinnerInterceptor } from './helper/spinner/spinner.interceptor';
 import { AuthErrorInterceptor } from './helper/authErrorlogout/auth-error.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
