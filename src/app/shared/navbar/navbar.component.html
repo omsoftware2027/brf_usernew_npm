@@ -89,7 +89,7 @@
                           </option>
                         </select> -->
                         <div class="ps-3 d-flex" style="width: 75%;">
-                          <mat-select name="selection"#mySelectSpecialization class="form-control" placeholder="search for items" (selectionChange)="onProductSelected()" formControlName="name" style="border-radius: 5px;background-color: #F3F3F3;">
+                          <mat-select name="selection"#mySelectSpecialization class="form-control" placeholder="search for items" (selectionChange)="onProductSelected()" formControlName="name" style="border-radius: 8px 0px 0px 8px;background-color: #F3F3F3;">
           <input style="margin: 10px; width: 96%;font-family: Arial, Helvetica, sans-serif;"class="customeSearchDropdown myInput form-control"
           #myInputSpecialization
           focused="'true'"
@@ -103,11 +103,11 @@
           />
           <mat-option  *ngFor="let data of product"  [value]="data.productId">{{data.productName}}</mat-option>
                         </mat-select>
-                     <div class="ps-2"> 
-                      <button class="btn btn-primary" class="input-group-append text-white" style="background-color: #F44C4C;border-radius: 3px;padding: 8px;cursor:pointer;border: white;
+                     <div class=""> 
+                      <button class="btn btn-primary" class="input-group-append text-white" style="background-color: #F44C4C;border-radius: 3px;padding: 2px;cursor:pointer;border: white;
                       height: 40px;"(click)="clear()">
                         
-                        Clear
+                        <i class='bx bx-search' style="font-size: 23px;margin-top: -10px;border-radius: 0px 9px 9px 0px;padding:10px;"></i>
                       </button>
                      </div>
                         </div>

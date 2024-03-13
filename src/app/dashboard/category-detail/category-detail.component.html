@@ -45,17 +45,18 @@
      <div class="row">
       <div class="col-md-8 ">
         <div class="row">
-          <div class="col-md-3 " *ngFor="let data of category ;let i=index" [ngStyle]="{'margin-top': i < 4 ? '0%' : '0%'}">
+          <div class="col-md-3 " *ngFor="let data of category ;let i=index" [ngStyle]="{'margin-top': i < 4 ? '0%' : '-2%'}">
             <div class="card mt-2" >
               <div class="card-contain container col-md-12">
                <div class="col-md-12">
                  <img [src]="data.image|| 'assets/images/download (20).png'" style="width:100%;margin-top: 24px;height: 116px; display: grid;" class=""  	[routerLink]="['/dashboard/view-product-detail',data.productId]">
          
                  <div class="image-text mt-4">
-                  <p 	[routerLink]="['/dashboard/view-product-detail',data.productId]" style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050;cursor: pointer;" [innerHTML]="highlightText(data.title, maxCharacters, i)"[innerHTML]="highlightText(data.title, maxCharacters, i)">
+                  <p 	[routerLink]="['/dashboard/view-product-detail',data.productId]" style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050;cursor: pointer;white-space: break-spaces;word-break: break-all;
+              " [innerHTML]="highlightText(data.title, maxCharacters, i)"[innerHTML]="highlightText(data.title, maxCharacters, i)">
                     
                   </p>
-                  <a *ngIf="data.title.length > maxCharacters" (click)="toggleShowMore(i)" style="color:#F44C4C;cursor: pointer;">
+                  <a *ngIf="data.title.length > maxCharacters" (click)="toggleShowMore(i)" style="color:#F44C4C;cursor: pointer;margin-left:10px">
                     {{ showMoreStates[i] ? "Show less" : "Show more" }}
                   </a>
               </div>
@@ -166,14 +167,14 @@
                     <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
                      <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
                  
-                       <div class="col-md-3">
-                         <i class="ri-add-line  " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
-                       </div>
+                      <div class="col-md-3">
+                        <i class="ri-subtract-line  " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                      </div>
                       <div  class="col-md-6">
                        <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '1' }}</p>
                       </div>
                        <div class="col-md-3">
-                         <i class="ri-subtract-line " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
+                         <i class="ri-add-line " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
                        </div>
                     
                      </div>

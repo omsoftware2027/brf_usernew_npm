@@ -114,6 +114,7 @@ export class NavbarComponent implements OnInit{
                 } else if(this.messageReceived.text == 'reloadWalletDetail'){
                   this.getallcart();
                   this.getallcount();
+                  this.getallcarttotal(0);
 
                 }
       });      
@@ -451,6 +452,22 @@ onProductSelected() {
  
   }
 }
+// getallcarttotal(page: number) {
+//   this.userid=localStorage.getItem('id');
+//   console.log(this.userid,'userid');
+//   if(this.userid == null){
+//     this.userid = 0;
+//   }
+//   this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
+//     this.data =res;
+//     if (this.data.status === 0) {
+//       this.carttotal = this.data.response;
+//     }
+//     else {
+//       // this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
+//     }
+//   })
+// }
 keyPressNumbers(event:any) {
   const charCode = event.which ? event.which : event.keyCode;
   if (charCode < 48 || charCode > 57) {

@@ -40,7 +40,7 @@ export class CategoryDetailComponent {
   currentPage = 0;  
   
   showMore: boolean = false;
-  maxCharacters:number =30
+  maxCharacters:number =17;
   pageSize = 100;
   totalrecordLength:any;
   constructor(private dashboardservice:DashboardService,private router: Router,

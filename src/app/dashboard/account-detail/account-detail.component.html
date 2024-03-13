@@ -40,7 +40,7 @@
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
         <div class="d-flex"(click)="myorder();getallorder(0)" [class.password-open]="isorderOpen">
-            <span class=""><i class="bx bxs-heart m-2"></i></span>
+            <span class=""><i class='bx bxs-briefcase m-2' ></i></span>
             <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
@@ -52,7 +52,7 @@
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
         <div class="d-flex" (click)="orderguide();getallcategory(0);getallbulkorder(0)" [class.password-open]="isguideOpen">
-            <span class=""><i class="bx bxs-user m-2"></i></span>
+            <span class=""><i class="bx bxs-heart m-2"></i></span>
             <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
@@ -459,7 +459,7 @@
                                         <div *ngFor="let orderdata of allorder">
                                             <div style="background-color: #F44C4C; height: 35px;" >
                                                 <div class="col-md-12 d-flex mt-2 container">
-                                                    <div class="col-md-2 text-white">
+                                                    <div class="col-md-2 text-white mt-2" style="padding-left:17px">
                                                         <p>{{orderdata.shippingDate | date:'short'}}</p>
                                                     </div>
                                                     <div class="col-md-3"></div>
@@ -496,9 +496,9 @@
                                                                         <p class="fs-base mb-0"><a href="javascript:void(0);"
                                                                                 class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.title}}</a></p>
                                                                       <div class="d-flex">
-                                                                        <div ><p style="color:#F44C4C">Price:<span style="color:#475156">{{data.price}}</span></p></div>
-                                                                        <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity:<span style="color:#475156">{{data.quantity}}</span></p></div>
-                                                                        <div  style="margin-left: 38px"><p style="color:#F44C4C">Total:<span style="color:#475156">{{data.totalPrice}}$</span></p></div>
+                                                                        <div ><p style="color:#F44C4C">Price: <span style="color:#475156">{{data.price}}</span></p></div>
+                                                                        <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity: <span style="color:#475156">{{data.quantity}}</span></p></div>
+                                                                        <div  style="margin-left: 38px"><p style="color:#F44C4C">Total: <span style="color:#475156">{{data.totalPrice}}$</span></p></div>
                                                                       </div>
                                                                                 
             
@@ -522,7 +522,7 @@
                                                   <div style="background-color: #F2F4F5; height: 35px;" class="mt-2 mb-3">
                                                     <div class="col-md-12 d-flex mt-2 container">
                                                         <div class="col-md-6 text-white">
-                                                            <p class="text-black">Delivery Date & Time :{{orderdata.transactionDate | date:'short'}} </p>
+                                                            <p class="text-black mt-2" style="padding-left: 15px;">Delivery Date & Time :{{orderdata.transactionDate | date:'short'}} </p>
                                                         </div>
                                                         <div class="col-md-4"></div>
                                                      
@@ -696,8 +696,8 @@
                                             </thead>       
                                             <tbody>
                                                 <ng-container *ngFor="let categoryData of bulkorderguide">
-                                                  <tr style="background-color: #D9D9D9;">
-                                                    <th colspan="5" style="color: #F44C4C;">{{ categoryData.category }}</th>
+                                                  <tr>
+                                                    <td colspan="5" ><div style="background-color: #D9D9D9;color: #F44C4C;padding: 7px;border-radius: 12px;">{{ categoryData.category }}</div></td>
                                                   </tr>
                                                   <tr *ngFor="let data1 of categoryData.bulkOrderResponses">
                                                     <td>
@@ -714,9 +714,9 @@
                                                         </div>
                                                       </div>
                                                     </td>
-                                                    <td><input type="text" class="form-control" style="width:77px;height:29px;" [value]="data1.unit"></td>
+                                                    <td><input type="text" class="form-control" style="width:77px;height:29px;color:#000000;" [value]="data1.unit"></td>
                                                     <td>${{ data1.price }}</td>
-                                                    <td><input type="text" class="form-control" style="width:77px;height:29px;"  [(ngModel)]="data1.quantity" ></td>
+                                                    <td><input type="text" class="form-control" style="width:77px;height:29px;color:#000000;"  [(ngModel)]="data1.quantity" ></td>
                                                     <td>
                                                       <button type="button" class="btn btn-secondary mt-2" style="background-color: #F44C4C; color: white;width:124px;height: 33px;border-radius: 1px;" (click)="addToCart(data1.productId,data1.price)">ADD TO CART</button>
                                                     </td>
@@ -753,7 +753,7 @@
                                         <thead>
                                           <tr>
                                             <th scope="col" style=" color:#475156 !important">PRODUCTS</th>
-                                            <!-- <th scope="col" style=" color:#475156 !important">UNIT</th> -->
+                                            <th scope="col" style=" color:#475156 !important">UNIT</th>
                                             <th scope="col" style=" color:#475156 !important">QUANTITY</th>
                                             <th scope="col" style=" color:#475156 !important">PRICE</th>
                                        
@@ -782,8 +782,11 @@
                                                 <h5 class="mb-1">Product not available</h5>
                                               </div>
                                       <ng-container *ngFor="let bulkorder of bulkorderguide;">
+                                        <tr>
+                                            <td colspan="5" ><div style="background-color: #D9D9D9;color: #F44C4C;padding: 7px;border-radius: 12px;">{{ bulkorder.category }}</div></td>
+                                          </tr>
                                         <tr *ngFor="let data1 of bulkorder.bulkOrderResponses;">
-                                            <th scope="row">
+                                            <td scope="row">
                                                 <div  class="d-flex align-items-center">
                                                     <div class="flex-shrink-0 me-2">
                                                         <div>
@@ -797,12 +800,13 @@
                                                     </div>
                                                 </div>
                             
-                                            </th>
-                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;" [(ngModel)]="data1.quantity"  [value]="data1.quantity" >
-                                                <button *ngIf="data1.isCart == false" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">Add to cart</button> 
-                                                <button *ngIf="data1.isCart == true" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">update to cart</button>
+                                            </td>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px;color:#000000;" [value]="data1.unit"  ></td>
+                                            <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;color:#000000;" [(ngModel)]="data1.quantity"  [value]="data1.quantity" >
+                                                <!-- <button *ngIf="data1.isCart == false" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">Add to cart</button> 
+                                                <button *ngIf="data1.isCart == true" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">update to cart</button> -->
                                              </td>
-                                            <!-- <td><input type= "text" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;" [value]="data1.unit"  ></td> -->
+                                           
                                             <td>${{data1.price}}</td>
                                          
                                             <td>   
@@ -852,9 +856,9 @@
                                         </thead>
                                         <tbody>
                                           <tr *ngFor="let data of address">
-                                            <td style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">{{data.address}}</td>
-                                            <td>{{data.city}}</td>
-                                            <td>{{data.state}}</td>
+                                            <td style="color:#000000 !important;font-weight: 500;font-size:14px;line-height: 15px;">{{data.address}}</td>
+                                            <td style="color: #000000;">{{data.city}}</td>
+                                            <td style="color: #000000;">{{data.state}}</td>
                                           
                                             <td>   
                                                 
@@ -906,9 +910,9 @@
                                         </thead>
                                         <tbody>
                                           <tr *ngFor="let data of getallstafff ">
-                                            <td style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;">{{data.firstName}}   </td>
-                                            <td>{{data.email}}</td>
-                                            <td>{{data.mobile ? data.mobile:'-' }}</td>
+                                            <td style="color:#000000 !important;font-weight: 500;font-size:14px;line-height: 15px;">{{data.firstName}}   </td>
+                                            <td style="color: #000000;">{{data.email}}</td>
+                                            <td style="color: #000000;">{{data.mobile ? data.mobile:'-' }}</td>
                                           
                                             <td>   
                                                 
