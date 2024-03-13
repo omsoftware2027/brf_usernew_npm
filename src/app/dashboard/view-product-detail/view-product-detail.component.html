@@ -1,9 +1,9 @@
-<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3" style="margin-top:144px;height: 72px;background-color: 
+<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
 #F2F4F5;">
     
     <div class="ps-4 container ">
         <nav aria-label="breadcrumb" >
-            <ol class="breadcrumb mb-0 p-0 mt-4" >
+            <ol class="breadcrumb mb-0 p-0 mt-2" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
                     <a 
                         href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
@@ -88,126 +88,132 @@
 
         </div>
       </div>
-      <div class="col-4 mt-3">
-        <mat-card style="border: 1px;">
-          <mat-card-header class="col-12 d-flex" style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
-            <!-- Image and title on the left -->
-         <div class="p-1 d-flex col-12">
-           <div class="col-6 d-flex">
-             <i class="las la-shopping-cart mt-1 " style="font-size: 45px;margin-left: -11px;color: black;"></i>
-             <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-2" style="border: 3px solid white !important;margin-left: 26px;background-color: #F43C4C;">{{fwishlist}}</span>
-              <h5 style="padding-left: 13px;font-weight: 400;
-              font-size: 24px;" class="text-white mt-4 pl-2">My Cart</h5>
+      <div class="col-4 mt-2">
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default card">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
+                  <div class="p-1 d-flex col-12"style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
+                    <div class="col-6 d-flex">
+                      <i class="las la-shopping-cart mt-3 " style="font-size: 45px;margin-left: -2px;color: black;"></i>
+                      <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  " style="border: 3px solid white !important;margin-left:37px;background-color: #F43C4C;margin-top: 18px;">{{fwishlist}}</span>
+                       <h5 style="padding-left: 27px;font-weight: 400;
+                       font-size: 24px;" class="text-white mt-4 pl-2">My Cart</h5>
+                     </div>
+                   
+                     <!-- Amount on the right -->
+                     <div class="col-6 d-flex justify-content-end mt-2">
+                       <a class="btn dropdown-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
+                       font-size: 22px;">${{carttotal.total}} <i   class='bx bx-chevron-down'></i></a>
+                       <!-- <div class="dropdown-menu">
+                         <a href="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">Item</a>
+                       </div> -->
+                     </div>
+                  </div></a>
+              </h4>
             </div>
-          
-            <!-- Amount on the right -->
-            <div class="col-6 d-flex justify-content-end mt-2">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
-              font-size: 22px;">${{carttotal.total}}</a>
-              <div class="dropdown-menu">
-                <a href="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">Item</a>
-              </div>
-            </div>
-         </div>
-          </mat-card-header>
-          <mat-card-body style="padding: 20px;">
-            <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
-            <div class="d-flex col-md-12 col-lg-12 col-xl-12">
-             <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
-               <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
-              
-             </div>
-             <div class="col-md-9 col-lg-9 col-xl-9">
-              <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;">{{data.productTitle}}</p>
-             </div>
-             <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
-              <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
+            <div id="collapse1" class="panel-collapse collapse  show p-3" style="height:700px !important;overflow: auto;">
+              <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
+                <div class="d-flex col-md-12 col-lg-12 col-xl-12">
+                 <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
+                   <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
+                  
+                 </div>
+                 <div class="col-md-9 col-lg-9 col-xl-9">
+                  <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.productTitle}}</p>
+                 </div>
+                 <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
+                  <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
 
-             </div>
-            </div>
-              <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
-                <div>
-                  <p style="font-size: 15px;
-                  font-weight: 500;
-                  line-height: 14px;">PRICE</p>
+                 </div>
                 </div>
-                <div style="padding-left: 10px;">
-                  <p style="font-size: 15px;
-                  font-weight: 500;
-                  line-height: 14px;" >QUANTITY</p>
-                </div>
-                <div style="padding-left: 10px;">
-                  <p style="font-size: 15px;
-                  font-weight: 500;
-                  line-height: 14px;">SUB-TOTAL</p>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between p-1 mb-2 col-md-12 col-lg-12 col-xl-12" style="padding-top: 0px;">
-                <div class="mt-2  col-md-4 col-lg-4 col-xl-4">
-                  <h5 >${{data.price}}</h5>
-                </div>
-                <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
-                  <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
-                  
-                    <div class="col-md-3">
-                      <i class="ri-add-line  " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                  <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
+                    <div>
+                      <p style="font-size: 15px;
+                      font-weight: 500;
+                      line-height: 14px;">PRICE</p>
                     </div>
-                   <div  class="col-md-6">
-                    <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '1' }}</p>
-                   </div>
-                    <div class="col-md-3">
-                      <i class="ri-subtract-line " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
+                    <div style="padding-left: 10px;">
+                      <p style="font-size: 15px;
+                      font-weight: 500;
+                      line-height: 14px;" >QUANTITY</p>
                     </div>
+                    <div style="padding-left: 10px;">
+                      <p style="font-size: 15px;
+                      font-weight: 500;
+                      line-height: 14px;">SUB-TOTAL</p>
+                    </div>
+                  </div>
+          
+                  <div class="d-flex justify-content-between p-1 mb-2 col-md-12 col-lg-12 col-xl-12" style="padding-top: 0px;">
+                    <div class="mt-2  col-md-4 col-lg-4 col-xl-4">
+                      <h5 >${{data.price}}</h5>
+                    </div>
+                    <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
+                     <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
                  
+                       <div class="col-md-3">
+                         <i class="ri-add-line  " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                       </div>
+                      <div  class="col-md-6">
+                       <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-3">{{data.quantity || '1' }}</p>
+                      </div>
+                       <div class="col-md-3">
+                         <i class="ri-subtract-line " (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
+                       </div>
+                    
+                     </div>
+                    </div>
+                    <div class="mt-2 col-md-4 col-lg-4 col-xl-4" style="text-align: end">
+                      <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
+                    </div>
                   </div>
                 </div>
-                <div class="mt-2 col-md-4 col-lg-4 col-xl-4" style="text-align: end">
-                  <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
+      
+                <div class="card p-4" style=" border-radius: 10px; ">
+                  <div class="align-items-center">
+                    <p style="font-weight: 600;font-size:16px;line-height: 21px;">Card Totals</p>
+                    <div class="row">
+                      <div class="d-flex justify-content-between p-2">
+                        <span  style="color: #5F6C72;">Sub-total</span>
+                        <span class="font-weight-bold">${{carttotal.subTotal}}</span>
+                      </div>
+                      
+                      <div class="d-flex justify-content-between p-2">
+                        <a  style="color: #5F6C72;"> Shipping</a>
+                        <span class="font-weight-bold"> {{carttotal.shipping}}</span>
+                      </div>
+      
+                      <div class="d-flex justify-content-between p-2">
+                         <a style="color: #5F6C72;"> Discount</a>
+                         <span class="font-weight-bold"> ${{carttotal.discount}}</span>
+                      </div><hr>
+      
+                      <div class="d-flex justify-content-between p-2">
+                        <span class="" style="color: #5F6C72;"> Total</span>
+                        <span  class="font-weight-bold">${{carttotal.total}} USD</span>
+                      </div>
+      
+                      <div class="d-flex flex-column">
+                        <button type="button" class="btn btn-secondary mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
+                        font-size: 15px;
+                        line-height: 42px;letter-spacing: 0.6px;"[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
+                          <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                        <button type="button" class="btn  btn-primary w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
+                        font-size: 15px;
+                        line-height: 42px;letter-spacing: 0.5px;" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
+                          <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                      </div>
+                     
+                      
+                    </div>
+                  </div>
                 </div>
-              </div>
             </div>
-  
-            <div class="card p-4" style=" border-radius: 10px; ">
-              <div class="align-items-center">
-                <p style="font-weight: 600;font-size:16px;line-height: 21px;">Card Totals</p>
-                <div class="row">
-                  <div class="d-flex justify-content-between p-2">
-                    <span  style="color: #5F6C72;">Sub-total</span>
-                    <span class="font-weight-bold">${{carttotal.subTotal}}</span>
-                  </div>
-                  
-                  <div class="d-flex justify-content-between p-2">
-                    <a  style="color: #5F6C72;"> Shipping</a>
-                    <span class="font-weight-bold"> {{carttotal.shipping}}</span>
-                  </div>
-  
-                  <div class="d-flex justify-content-between p-2">
-                     <a style="color: #5F6C72;"> Discount</a>
-                     <span class="font-weight-bold"> ${{carttotal.discount}}</span>
-                  </div><hr>
-  
-                  <div class="d-flex justify-content-between p-2">
-                    <span class="" style="color: #5F6C72;"> Total</span>
-                    <span  class="font-weight-bold">${{carttotal.total}} USD</span>
-                  </div>
-  
-                  <div class="d-flex flex-column">
-                    <button type="button" class="btn btn-secondary mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
-                    font-size: 15px;
-                    line-height: 42px;letter-spacing: 0.6px;"[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
-                      <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                    <button type="button" class="btn  btn-primary w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
-                    font-size: 15px;
-                    line-height: 42px;letter-spacing: 0.5px;" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
-                      <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                  </div>
-                 
-                  
-                </div>
-              </div>
-            </div>
-          </mat-card-body>
-        </mat-card>
+          </div>
+          
+        </div>
       </div>
       
    </div>

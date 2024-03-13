@@ -24,6 +24,8 @@ export class NavbarComponent implements OnInit{
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
     titlesAndIdsArray2:any;
     carttotal:any;
+    userId:any;
+    carttotalt:any;
     wishcart:any;
     wishlist:any;
     logindetail:any
@@ -133,7 +135,7 @@ export class NavbarComponent implements OnInit{
 
     ngOnInit() {
         this.name = localStorage.getItem('name');
-      
+        this.userId=localStorage.getItem('id');
         this.token = localStorage.getItem('token');
         this.loginTime = localStorage.getItem('loginTime');
         this.sessionId = localStorage.getItem('sessionId');
@@ -143,7 +145,8 @@ export class NavbarComponent implements OnInit{
         this.getallcount();
         this.getallproduct();
         this.getallcart() ;
-        this.login()
+        this.login();
+        this.getallcarttotal(0);
         
         this.formGroup = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
@@ -421,6 +424,24 @@ getallcart() {
           // Handle other cases if needed
       }
   });
+}
+getallcarttotal(page: number) {
+  this.userid=localStorage.getItem('id');
+  console.log(this.userid,'userid');
+  if(this.userid != null ){
+    this.userId =this.userid
+  }else{
+    this.userId=0
+  }
+  this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userId).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.carttotalt = this.data.response.total;
+    }
+    // else {
+    //   this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    // }
+  })
 }
 onProductSelected() {
    console.log('productId')
