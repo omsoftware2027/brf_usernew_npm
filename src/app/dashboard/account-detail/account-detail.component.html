@@ -28,39 +28,39 @@
         <div class="col-md-3 card p-3 cartDiv" style="border-radius: 10px;height: 50%;">
         <div class="d-flex " (click)="showSignInForm()" [class.profile-open]="isProfileOpen" >
             <span class=""><i class="bx bxs-user m-2 "></i></span>
-            <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Profile</h6>
+            <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">My Profile</h6>
             
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
         <div  class="d-flex" (click)="showpassword()" [class.password-open]="isPasswordOpen">
             <span class=""><i class="bx bxs-lock m-2"></i></span>
-            <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">Change Password</h6>
+            <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">Change Password</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
         <div class="d-flex"(click)="myorder();getallorder(0)" [class.password-open]="isorderOpen">
             <span class=""><i class='bx bxs-briefcase m-2' ></i></span>
-            <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
+            <h6 class="m-1 "style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
         </div>
-        <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
+        <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 1px;
         border: 2px;">
         <div class="d-flex" (click)="bulkorder();getallbulkorder(0)" [class.password-open]="isbulkOpen">
             <span class=""><i class="bx bxs-heart m-2"></i></span>
-            <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
+            <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
         <div class="d-flex" (click)="orderguide();getallcategory(0);getallbulkorder(0)" [class.password-open]="isguideOpen">
             <span class=""><i class="bx bxs-heart m-2"></i></span>
-            <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
+            <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
         
         <div class="d-flex" (click)="mystaff();getallstaff(0)" [class.password-open]="staffOpen">
             <span class=""><i class="bx bxs-user m-2"></i></span>
-            <h6 class="m-1"style="font-size: 20px;line-height: 28px;font-weight: 400;">My Staff</h6>
+            <h6 class="m-1 "style="font-size: 20px;line-height: 28px;font-weight: 400;">My Staff</h6>
         </div>
         <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
         border: 2px;">
@@ -81,7 +81,7 @@
                           
                                 <div class="col-md-12 " *ngIf="showmyprfile">
                                     <div class="card-title d-flex align-items-center">
-                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Profile</h5>
+                                        <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C;">My Profile</h5>
                                     </div>
                                     <hr style="height: 2px;color: #4C7C17;">
                                     <form class="g-3"  [formGroup]="formGroup"    >

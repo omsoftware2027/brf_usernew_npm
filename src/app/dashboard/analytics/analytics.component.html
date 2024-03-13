@@ -21,7 +21,7 @@
         <div class="col-8  ">
           <div class="row mt-5" >
             <div class=" col-3 category " *ngFor="let data of category ;let i = index" [ngStyle]="{'margin-top': i < 4 ? '-5%' : '16%'}">
-              <div class="category-card rounded-circle p-1 border bg-white" style="width:174px;height: 174px;border: 3px solid #669038 !important">
+              <div class="category-card rounded-circle p-1 border bg-white" style="width:174px;height: 174px;border: 3px solid #669038 !important;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
                <img [src]="data.image|| 'assets/images/download (20).png'" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail',data.categoryId]">
                <p class="mt-5" style="font-size: 23px;text-align: center;
                font-weight: 500;

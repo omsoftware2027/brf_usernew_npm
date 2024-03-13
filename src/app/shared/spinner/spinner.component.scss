@@ -111,3 +111,17 @@
     right: 27px;
     bottom: 0;
 }
+#overlay {
+  z-index: 999999;
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(130 133 134 / 47%);
+  opacity: 1;
+  cursor: progress;
+}
