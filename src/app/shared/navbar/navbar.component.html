@@ -88,34 +88,32 @@
                           <option *ngFor="let data of product"  [value]="data.productId" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;background-color: white;">{{data.productName}}
                           </option>
                         </select> -->
-                   
-                        <div  class="ps-3 d-flex" style="width: 75%;">
-                     
-                      <mat-select name="selection"#mySelectSpecialization class="form-control" placeholder="search for items" (selectionChange)="onProductSelected()" formControlName="name" style="border-radius: 8px 0px 0px 8px;background-color: #F3F3F3;">
-                 
-                   
-          <input style="margin: 10px; width: 96%;font-family: Arial, Helvetica, sans-serif;"class="customeSearchDropdown myInput form-control"
-          #myInputSpecialization
-          focused="'true'"
-          (openedChange)="myInputSpecialization.focus()"
-          (closed)="myInputSpecialization.value = ''"
-          (keyup)="specialitySearch($event)"
-          type="text"
-          autocomplete="off"
-          placeholder="search"
-          (keydown)="$event.stopPropagation()"
-          />
-          <div>
-
-        </div>
-          <mat-option  *ngFor="let data of product"  [value]="data.productId">{{data.productName}}</mat-option>
-                        </mat-select>
-                        <div>
-                          <button class="btn btn-primary input-group-append text-white"  style="background-color: #F44C4C; border-radius: 3px; padding: 2px; cursor: pointer; border: white; height: 40px;">
-                            <i class='bx bx-search' style="font-size: 23px; margin-top: -21px; border-radius: 0px 9px 9px 0px; padding: 10px;"></i>
-                        </button>
+                        <div class="ps-3" style="width: 75%;">
+                          <div class="d-flex">
+                              <input type="text" style=" background-color: #F3F3F3;" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name" formControlName="productname" (keyup)="handleKeyUp($event)" (input)="specialitySearch($event);getallproduct()" (focus)="showDropdown = true" (click)="onProductSelected($event)">
+                              <div>
+                                  <button class="btn btn-primary input-group-append text-white" (click)="searchproductbyname()" style="background-color: #F44C4C; border-radius: 3px; padding: 2px; cursor: pointer; border: white; height: 40px;">
+                                      <i class='bx bx-search' style="font-size: 23px; margin-top: -21px; border-radius: 0px 9px 9px 0px; padding: 10px;"></i>
+                                  </button>
+                              </div>
+                          </div>
+                          <div>
+                              <ul *ngIf="showDropdown && product.length > 0" class="card" style="position: absolute;width: 490px;margin-left: -1px;height: 400px;overflow-x: auto;" (click)="onProductSelected($event)" (mouseleave)="onInputBlur()">
+                                  <li *ngFor="let data of product" style="white-space: break-spaces;margin-left: -24px;margin-top: 14px;cursor:pointer;" [value]="data.productId" (click)="updateInput(data.productName)">
+                                      {{data.productName}}
+                                  </li>
+                              </ul>
+                          </div>
                       </div>
-                        </div>
+       
+                   <div class=""> 
+                    <!-- <button class="btn btn-primary" class="input-group-append text-white" style="background-color: #F44C4C;border-radius: 3px;padding: 2px;cursor:pointer;border: white;
+                    height: 40px;"(click)="clear()">
+                      
+                      <i class='bx bx-search' style="font-size: 23px;margin-top: -10px;border-radius: 0px 9px 9px 0px;padding:10px;"></i>
+                    </button> -->
+                   </div>
+                       
                        
                       
                         </div>
@@ -132,11 +130,11 @@
           </i>
            <span class=" position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill" style="background-color: #F43C4C; margin-top:-6px"> {{wishcart}}</span>
           <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
-          <span class="text-black m-3" [routerLink]="['/dashboard/add-wishlist']" style="color:black"> Wishlist</span>
+          <span class="text-black m-3" [routerLink]="['/dashboard/add-wishlist']"  style="color:black"> Wishlist</span>
          </a>
        </div>
-       <div class="mycart" >
-        <a style="color:#fff ; margin-left:70px;">
+       <div class="mycart">
+        <a style="color:#fff ; margin-left:72px">
           <i class="las la-shopping-cart " style="font-size: 37px;position: absolute; margin-left: -34px;color: #77878F;"></i>
           <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-1" style="background-color: #F43C4C;">{{wishlist}}</span>
           <span class="text-black m-3" [routerLink]="['/dashboard/my-cart-list']" style="color:#77878F">My cart</span><br>
@@ -147,7 +145,7 @@
        </div>
        
       
-      <div class="signin" >
+      <div class="signin">
         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
           <img [src]="logindetail.image ||'assets/images/bsup.svg'" width="30" height="30" alt="" class="rounded-circle header-profile-user">
            <a  class="text-black ms-1"> {{logindetail.name || 'sign In'}} </a>

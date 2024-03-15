@@ -56,6 +56,9 @@ export class DashboardService {
   getallwishlist(no:any,size:any,userid:any){
     return this.http.get<any>(`${environment.baseurl}/wishlistCart/getAllWishlist?pageNo=${no}&pageSize=${size}&userId=${userid}`)
   }
+  getproductbyname(productName:any,userId:any){
+    return this.http.get<any>(`${environment.baseurl}/product/getProductByName?productName=${productName}&userId=${userId}`)
+  }
   getallcart(no:any,size:any,userid:any){
     return this.http.get<any>(`${environment.baseurl}/wishlistCart/getAllCart?pageNo=${no}&pageSize=${size}&userId=${userid}`)
   }

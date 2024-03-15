@@ -73,7 +73,7 @@
                             </div>
                           </div>
                         </td>
-                        <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">{{ data.subTotal || '0' }}</td>
+                        <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{ data.subTotal || '0' }}</td>
                       </tr>
                       
                       <!-- <tr>
@@ -127,7 +127,7 @@
                         <div class="row">
                           <div class="d-flex justify-content-between p-2">
                             <span>Sub-total</span>
-                            <span class="font-weight-bold">{{carttotal.subTotal}}</span>
+                            <span class="font-weight-bold">${{carttotal.subTotal}}</span>
                           </div>
                           
                           <div class="d-flex justify-content-between p-2">
@@ -137,7 +137,7 @@
           
                           <div class="d-flex justify-content-between p-2">
                              <a> Discount</a>
-                             <span class="font-weight-bold"> {{carttotal.discount}}</span>
+                             <span class="font-weight-bold"> ${{carttotal.discount}}</span>
                           </div><hr>
           
                           <div class="d-flex justify-content-between p-2">
