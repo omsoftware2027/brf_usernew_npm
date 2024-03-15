@@ -135,8 +135,8 @@
           <span class="text-black m-3" [routerLink]="['/dashboard/add-wishlist']" style="color:black"> Wishlist</span>
          </a>
        </div>
-       <div class="mycart" style="position: fixed;">
-        <a style="color:#fff ; margin-left:70px;margin-left: 138px;">
+       <div class="mycart" >
+        <a style="color:#fff ; margin-left:70px;">
           <i class="las la-shopping-cart " style="font-size: 37px;position: absolute; margin-left: -34px;color: #77878F;"></i>
           <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-1" style="background-color: #F43C4C;">{{wishlist}}</span>
           <span class="text-black m-3" [routerLink]="['/dashboard/my-cart-list']" style="color:#77878F">My cart</span><br>
@@ -147,7 +147,7 @@
        </div>
        
       
-      <div class="signin" style="margin-left: 35%;">
+      <div class="signin" >
         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
           <img [src]="logindetail.image ||'assets/images/bsup.svg'" width="30" height="30" alt="" class="rounded-circle header-profile-user">
            <a  class="text-black ms-1"> {{logindetail.name || 'sign In'}} </a>
