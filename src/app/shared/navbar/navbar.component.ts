@@ -23,7 +23,9 @@ export class NavbarComponent implements OnInit{
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
     titlesAndIdsArray2:any;
+    inputText: string = '';
     carttotal:any;
+    showInput: boolean = true;
     userId:any;
     carttotalt:any;
     wishcart:any;
@@ -557,5 +559,16 @@ clear(){
  
   })
   this.getallproduct()
+}
+onInputChange(value: any) {
+  this.inputText = value.trim();
+  if (this.inputText) {
+    // Filter products based on input text
+    this.product = this.product.filter((item:any) =>
+      item.productName.toLowerCase().includes(this.inputText.toLowerCase())
+    );
+  } else {
+    this.product = [];
+  }
 }
 }
