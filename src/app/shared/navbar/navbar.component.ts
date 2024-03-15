@@ -1,11 +1,11 @@
-import { Component , ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component , ElementRef, HostListener, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
-import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { BehaviorSubject, interval } from 'rxjs';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { SigninPopupComponent } from '../signin-popup/signin-popup.component';
 import { MatDialog } from '@angular/material/dialog';
-import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
 import { LoginComponent } from 'src/app/auth/login/login.component';
 import { SignInComponent } from 'src/app/dashboard/sign-in/sign-in.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -19,15 +19,19 @@ import { MasterService } from 'src/app/services/master-service/master.service';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit{
+  productname = new FormControl('');
+  @ViewChild('dropdownList') dropdownList!: ElementRef;
+  @ViewChild('listItem') listItem!: ElementRef;
   @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
-  @ViewChild('myInputSpecialization') myInputSpecialization!: ElementRef
+  @HostListener('document:click', ['$event'])
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  showDropdown: boolean = false;
     titlesAndIdsArray2:any;
-    inputText: string = '';
     carttotal:any;
-    showInput: boolean = true;
+    isInputFilled: boolean = false;
     userId:any;
+    productt:any;
     carttotalt:any;
     wishcart:any;
     wishlist:any;
@@ -97,13 +101,12 @@ export class NavbarComponent implements OnInit{
      ]
     currentDataTime:any=new Date();
     @ViewChild('filterModal') filterModal!: TemplateRef<any>;
-    // @HostListener('document:click', ['$event'])
     private loggedIn = new BehaviorSubject<boolean>(false);
 
-    constructor(private router: Router,private _eref: ElementRef,
-        public sidebarservice: SidebarService,public dialog: MatDialog,private formBuilder: FormBuilder,private matsnackbar:MatSnackBar,private dashboardservice:DashboardService,private route: ActivatedRoute,private reloadCommonService:MasterService ) {
+    constructor(private router: Router,private renderer: Renderer2,
+        public sidebarservice: SidebarService,private elementRef: ElementRef,public dialog: MatDialog,private formBuilder: FormBuilder,private matsnackbar:MatSnackBar,private dashboardservice:DashboardService,private route: ActivatedRoute,private reloadCommonService:MasterService ) {
           this.searchproduct = this.formBuilder.group({
-            name: [''],
+            productname: [''],
             categoryId:['']
           });
             setInterval(() => {
@@ -122,7 +125,8 @@ export class NavbarComponent implements OnInit{
 
                 }
       });      
-         }  
+         } 
+
     toggleTab(tabId: string): void {
             this.tabs[tabId] = !this.tabs[tabId];
     }
@@ -145,19 +149,21 @@ export class NavbarComponent implements OnInit{
         this.loginTime = localStorage.getItem('loginTime');
         this.sessionId = localStorage.getItem('sessionId');
         this.getfootergeneral();
-        this.getTeams();
         this.tabelLoad(0);
         this.getallcount();
         this.getallproduct();
         this.getallcart() ;
         this.login();
         this.getallcarttotal(0);
-        this.router.events.subscribe(event => {
-          if (event instanceof NavigationEnd) {
-            // Reset the form control associated with mat-select
-            this.clearMatSelect();
+        this.renderer.listen('document', 'click', (event) => {
+          // Check if the click target is not within the input field or the dropdown list
+          if (!this.elementRef.nativeElement.contains(event.target)) {
+              // Clear the input field
+              this.searchproduct?.get('productname')?.setValue('');
+              // Hide the dropdown
+              this.showDropdown = false;
           }
-        });
+      });
         this.formGroup = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]],
@@ -210,25 +216,20 @@ export class NavbarComponent implements OnInit{
         });
 
     }
-    onClick(event:any) {
-      if (!this.myInputSpecialization.nativeElement.contains(event.target)) {
-        // Clicked outside of the input field, clear the input value
-        this.myInputSpecialization.nativeElement.value = '';
+    onClick(event: MouseEvent) {
+      const clickedElement = event.target as HTMLElement;
+
+      // Check if the clicked element is not the input field
+      if (!clickedElement.closest('.form-control')) {
+        // Clear the input field
+        this.productname.setValue('');
       }
     }
-    clearMatSelect() {
-      // Assuming you have a formGroup named 'yourFormGroup' containing the 'name' formControl
-      // Reset the form control value
-      this.searchproduct?.get('name')?.reset();
-    }
-    getTeams() {
-        // this.teamsService.getTeamById(this.id).subscribe(res => {
-        //     if (res.status == 0) {
-        //         this.data = res.response;
-        //         localStorage.setItem('roleID', res.response.userRole)
-        //     }
-        // })
-    }
+
+    // onInputChange(value:any): void {
+    //   const isFilled = value.trim() !== '';
+    //   this.reloadCommonService.setInputFilled(isFilled);
+    // }
 
     logout(e:any):any{
         localStorage.removeItem('Id');
@@ -375,7 +376,7 @@ export class NavbarComponent implements OnInit{
     
     }
      getallproduct() {
-      const name = this.searchproduct.value.name || '';
+      const name = this.searchproduct.value.productname || '';
       this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
         this.data =res;
         if (this.data.status === 0) {
@@ -388,9 +389,24 @@ export class NavbarComponent implements OnInit{
         }
       })
     }
-    getallselectproduct() {
-      const name = this.searchproduct.value.name || '';
+    searchproductbyname(){
+      const name = this.searchproduct.value.productname || '';
       this.dashboardservice.getproductbyname(name,this.userId).subscribe(res => {
+        this.data =res;
+        if (this.data.status === 0) {
+          this.productt = this.data.response.productId;
+          this.router.navigate(['/dashboard/view-product-detail', this.productt]);
+
+          // this.router.navigate(['/dashboard/all-product']);
+        }
+        else {
+         
+        }
+      })
+    }
+    getallselectproduct() {
+      const name = this.searchproduct.value.productname || '';
+      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
         this.data =res;
         if (this.data.status === 0) {
           this.carttotal = this.data.response.dataSet;
@@ -463,13 +479,15 @@ getallcarttotal(page: number) {
     // }
   })
 }
-onProductSelected() {
-   console.log('productId')
-  const productId = this.searchproduct.value.name || '';
+onProductSelected(event: any) {
+  const target = event.target as HTMLLIElement;
+  const productId = target.getAttribute('value');
+  console.log(productId);
   if (productId) {
     this.router.navigate(['/dashboard/view-product-detail', productId]);
- 
+    this.showDropdown = false;
   }
+  
 }
 // getallcarttotal(page: number) {
 //   this.userid=localStorage.getItem('id');
@@ -511,16 +529,15 @@ specializationSelect(query: string): any[] {
   }
   return result;
 }
-specialitySearch(event: KeyboardEvent): void {
-  const query = (event.target as HTMLInputElement).value; // Extracting value from the event
-  const d = query.toLowerCase();
-  console.log('fd')
-  const result = this.specializationSelect(d);
+specialitySearch(event: Event): void {
+  const query = (event.target as HTMLInputElement).value.toLowerCase();
+  console.log('fd');
+  const result = this.specializationSelect(query);
   if (query === '') {
-    console.log('fd')
+    console.log('fd');
     this.product = this.docSpecializationClone;
   } else {
-    console.log('fdd')
+    console.log('fdd');
     this.product = result;
   }
 }
@@ -577,15 +594,36 @@ clear(){
   })
   this.getallproduct()
 }
-onInputChange(value: string) {
-  this.inputText = value.trim();
-  if (this.inputText) {
-    // Filter products based on input text
-    this.product = this.product.filter((item:any) =>
-      item.productName.toLowerCase().includes(this.inputText.toLowerCase())
-    );
-  } else {
+handleKeyUp(event: any) {
+  // Check if the input field is empty
+  this.isInputFilled = event.target.value.trim() !== '';
+}
+clearr() {
+  const inputElement = this.elementRef.nativeElement.querySelector('.form-control');
+  if (inputElement) {
+    inputElement.value = '';
+    // Clear the search results
     this.product = [];
   }
 }
+onInputBlur() {
+  // Hide dropdown when input field loses focus
+  this.showDropdown = false;
+
+}
+// oninputblur()
+// {
+//   this.showDropdown = true;  
+// }
+openDropdown() {
+  this.showDropdown = true;
+  if (this.listItem) {
+    this.listItem.nativeElement.focus();
+  }
+}
+updateInput(productName: string) {
+  // Update the input field value if searchproduct and productname exist
+  this.searchproduct?.get('productname')?.setValue(productName);
+}
+
 }

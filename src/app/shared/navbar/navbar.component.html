@@ -56,7 +56,7 @@
         <img src="/assets/images/categoryicon.png" class="catImg">
         <span class="text-white">All Category</span>
       </div> -->
-      <div  class="col-lg-8 col-md-3 col-sm-5 col-xs-5" >
+      <div  class="col-lg-7 col-md-7 col-sm-5 col-xs-5" >
         <form class="form" [formGroup]="searchproduct" >
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
             <!-- <span class="SerchText">Search</span> -->
@@ -88,32 +88,32 @@
                           <option *ngFor="let data of product"  [value]="data.productId" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;background-color: white;">{{data.productName}}
                           </option>
                         </select> -->
-                   
-                        <div  class="ps-3 d-flex" style="width: 75%;">
-                     
-                          <mat-select name="selection" class="form-control" placeholder="search for items" (selectionChange)="onProductSelected()" formControlName="name" style="border-radius: 8px 0px 0px 8px; position: relative; box-shadow: none!important;">
-                            <input style="margin: 10px; width: 100%; font-family:prompt; position: absolute; top: -41px; left: -22px; z-index: 1; box-shadow: none!important;" class="customeSearchDropdown myInput form-control"
-                                #myInputSpecialization
-                                focused="true"
-                                (openedChange)="myInputSpecialization.focus()"
-                                (closed)="myInputSpecialization.value = ''"
-                                (keyup)="specialitySearch($event)"
-                                type="text"
-                                autocomplete="off"
-                                placeholder="search for items"
-                                (keydown)="$event.stopPropagation()"
-                            />
-
-                            <mat-option *ngIf="product.length === 0" [value]="'noData'">No data found</mat-option>
-                            <mat-option *ngFor="let data of product" [value]="data.productId">{{data.productName}}</mat-option>                       
-
-                        </mat-select>
-                        <div>
-                          <button class="btn btn-primary input-group-append text-white"  style="background-color: #F44C4C; border-radius: 3px; padding: 2px; cursor: pointer; border: white; height: 40px;">
-                            <i class='bx bx-search' style="font-size: 23px; margin-top: -21px; border-radius: 0px 9px 9px 0px; padding: 10px;"></i>
-                        </button>
+                        <div class="ps-3" style="width: 75%;">
+                          <div class="d-flex">
+                              <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name" formControlName="productname" (keyup)="handleKeyUp($event)" (input)="specialitySearch($event);getallproduct()" (focus)="showDropdown = true" (click)="onProductSelected($event)">
+                              <div>
+                                  <button class="btn btn-primary input-group-append text-white" (click)="searchproductbyname()" style="background-color: #F44C4C; border-radius: 3px; padding: 2px; cursor: pointer; border: white; height: 40px;" >
+                                      <i class='bx bx-search' style="font-size: 23px; margin-top: -21px; border-radius: 0px 9px 9px 0px; padding: 10px;"></i>
+                                  </button>
+                              </div>
+                          </div>
+                          <div>
+                              <ul *ngIf="showDropdown && product.length > 0" class="card" style="position: absolute;width: 490px;margin-left: -1px;height: 400px;overflow-x: auto;"  (mouseleave)="onInputBlur()">
+                                  <li *ngFor="let data of product" style="white-space: break-spaces;margin-left: -24px;margin-top: 14px;cursor:pointer;" [value]="data.productId" (click)="updateInput(data.productName)">
+                                      {{data.productName}}
+                                  </li>
+                              </ul>
+                          </div>
                       </div>
-                        </div>
+       
+                   <div class=""> 
+                    <!-- <button class="btn btn-primary" class="input-group-append text-white" style="background-color: #F44C4C;border-radius: 3px;padding: 2px;cursor:pointer;border: white;
+                    height: 40px;"(click)="clear()">
+                      
+                      <i class='bx bx-search' style="font-size: 23px;margin-top: -10px;border-radius: 0px 9px 9px 0px;padding:10px;"></i>
+                    </button> -->
+                   </div>
+                       
                        
                       
                         </div>
@@ -122,19 +122,19 @@
            </div>
         </form>
       </div>
-       <div class="col-lg-4 col-md-3 col-sm-5 col-xs-5" style="text-align: end;">
-      <div class="cartDiv d-flex">
+       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="text-align: end;">
+      <div class="cartDiv d-flex justify-content-end">
        <div class="wishlist" style="margin-top: 9px;">
         <a style="color:#fff">
           <i class="bx bx-heart " style="color: #77878F; font-size: 34px;position:absolute;margin-left: -31px;margin-top: -16px;">
           </i>
            <span class=" position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill" style="background-color: #F43C4C; margin-top:-6px"> {{wishcart}}</span>
           <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
-          <span class="text-black m-3" [routerLink]="['/dashboard/add-wishlist']" style="color:black"> Wishlist</span>
+          <span class="text-black m-3" [routerLink]="['/dashboard/add-wishlist']"  style="color:black"> Wishlist</span>
          </a>
        </div>
-       <div class="mycart" >
-        <a style="color:#fff ; margin-left:70px;">
+       <div class="mycart">
+        <a style="color:#fff ; margin-left:72px">
           <i class="las la-shopping-cart " style="font-size: 37px;position: absolute; margin-left: -34px;color: #77878F;"></i>
           <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-1" style="background-color: #F43C4C;">{{wishlist}}</span>
           <span class="text-black m-3" [routerLink]="['/dashboard/my-cart-list']" style="color:#77878F">My cart</span><br>
@@ -145,7 +145,7 @@
        </div>
        
       
-      <div class="signin" >
+      <div class="signin">
         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
           <img [src]="logindetail.image ||'assets/images/bsup.svg'" width="30" height="30" alt="" class="rounded-circle header-profile-user">
            <a  class="text-black ms-1"> {{logindetail.name || 'sign In'}} </a>
@@ -156,11 +156,15 @@
             <div class="col-md-12 col-lg-12 col-xl-12 ps-5 mt-3 d-flex">
               <div class="col-md-6" (click)="showSignInForm($event)">
                <h5 style="font-size: 20px;font-weight: 500;line-height: 28px;">Sign In</h5>
-               <!-- <hr class="mt-1" style="border-radius:2px;color:#4C7C17;height: 2px;
-               border: 2px;"> -->
+               <!-- <div>
+                <img src="../../../assets/images/line 1.png"  class="" style="width: 203px;margin-left: -46px;height: 2px;"   >
+            </div> -->
               </div>
               <div class="col-md-6" (click)="showSignUpForm($event)">
                 <h5 style="font-size: 20px;font-weight: 500;line-height: 28px;" >Sign Up</h5>
+                <!-- <div>
+                  <img src="../../../assets/images/line 1.png"  class="" style="width: 203px;margin-left: -46px;height: 2px;"   >
+              </div> -->
               </div>
               
              
