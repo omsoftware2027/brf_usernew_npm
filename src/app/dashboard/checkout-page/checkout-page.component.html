@@ -57,7 +57,7 @@
                           State: {{data.state}}
                         </li>
                         <li>
-                          Country:  {{data.country}}
+                          Country:  {{data.country ? data.country:'-' }}
                         </li>
                         <li>
                           Pincode: {{data.pincode}}
@@ -223,7 +223,7 @@
                         <div class="row">
                           <div class="d-flex justify-content-between p-2">
                             <span>Sub-totals</span>
-                            <span class="font-weight-bold">${{carttotal.subTotal}}</span>
+                            <span class="font-weight-bold">{{carttotal.subTotal}}</span>
                           </div>
                           
                           <div class="d-flex justify-content-between p-2">
@@ -233,7 +233,7 @@
           
                           <div class="d-flex justify-content-between p-2">
                              <a> Discount</a>
-                             <span class="font-weight-bold"> ${{carttotal.discount}}</span>
+                             <span class="font-weight-bold"> {{carttotal.discount}}</span>
                           </div><hr>
           
                           <div class="d-flex justify-content-between p-2">

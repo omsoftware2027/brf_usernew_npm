@@ -411,4 +411,9 @@
 }
 ::ng-deep.mat-mdc-select-panel{
   overflow-x: hidden !important;
+  margin-top: 10px !important;
+  margin-left: -13px !important;
+}
+.mat-select-arrow-wrapper {
+  display: none; /* Hide default dropdown arrow */
 }
