@@ -25,7 +25,7 @@
                <img [src]="data.image|| 'assets/images/download (20).png'" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail',data.categoryId]">
                <p class="mt-5" style="font-size: 23px;text-align: center;
                font-weight: 500;
-               line-height: 27px;cursor:pointer;" >{{data.categoryName}}</p>
+               line-height: 27px;cursor:pointer;" [routerLink]="['/dashboard/category-detail',data.categoryId]" >{{data.categoryName}}</p>
              
               </div>
              </div>
