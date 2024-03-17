@@ -42,6 +42,10 @@ export class NavbarComponent implements OnInit{
     showSignUp: boolean = false;
     addOnUpdate:boolean=false;
     totalrecordLength:any;
+    showLine3InSignIn: boolean = true;
+    showLine4InSignIn: boolean = false;
+    showLine3InSignUp: boolean = false;
+    showLine4InSignUp: boolean = true;
     submitted:boolean =false;
     loginFormGroup!: FormGroup;
     SignUpForm!:FormGroup;
@@ -64,6 +68,10 @@ export class NavbarComponent implements OnInit{
     pageSize = 500;
     loginn:boolean=true;
     token: any;
+    orangeline=true;
+    showLine3: boolean = true;
+    showLine4: boolean = false;
+    grayline=false;
     loginTime:any;
     sessionId:any;
     formGroup!:FormGroup
@@ -264,13 +272,27 @@ export class NavbarComponent implements OnInit{
         this.showSignIn = true;
         this.showSignUp = false;
         this.loginn =true;
+        this.showLine3InSignIn = true;
+        this.showLine4InSignIn = false;
+        this.showLine3InSignUp = false;
+        this.showLine4InSignUp = true;
       }
-    
-
+    line(){
+      this.orangeline==true;
+      this.grayline==false;
+    }
+    line1(){
+      this.orangeline==false;
+      this.grayline==true;
+    }
       showSignUpForm(event: Event) {
         event.stopPropagation();
         this.showSignIn = false;
         this.showSignUp = true;
+        this.showLine3InSignIn = false;
+        this.showLine4InSignIn = true;
+        this.showLine3InSignUp = true;
+        this.showLine4InSignUp = false;
       }
       logoutaccount(): void {
         this.dialog.open(SignInComponent, {

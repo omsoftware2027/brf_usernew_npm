@@ -155,13 +155,22 @@
           <div >
             <div class="col-md-12 col-lg-12 col-xl-12 ps-5 mt-3 d-flex">
               <div class="col-md-6" (click)="showSignInForm($event)">
-               <h5 style="font-size: 20px;font-weight: 500;line-height: 28px;">Sign In</h5>
-               <!-- <div>
-                <img src="../../../assets/images/line 1.png"  class="" style="width: 203px;margin-left: -46px;height: 2px;"   >
-            </div> -->
-              </div>
+               <h5 *ngIf="showLine3InSignIn" style="font-size: 20px;font-weight: 500;line-height: 28px;color: black;">Sign In</h5>
+               <h5 *ngIf="showLine4InSignIn"  style="font-size: 20px;font-weight: 500;line-height: 28px;color:#77878F">Sign In</h5>
+
+               <div>
+                <img *ngIf="showLine3InSignIn" src="../../../assets/images/line 3.png" class="" style="width: 240px;margin-left: -46px;height: 2px;">
+                <img  src="../../../assets/images/line 4.png" class="" style="width: 240px;margin-left: -46px;height: 2px;">
+            </div>
+              </div>  
               <div class="col-md-6" (click)="showSignUpForm($event)">
-                <h5 style="font-size: 20px;font-weight: 500;line-height: 28px;" >Sign Up</h5>
+                <h5 *ngIf="showLine3InSignUp" style="font-size: 20px;font-weight: 500;line-height: 28px;color: black;" >Sign Up</h5>
+                <h5 *ngIf="showLine4InSignUp"  style="font-size: 20px;font-weight: 500;line-height: 28px;color:#77878F" >Sign Up</h5>
+
+                <div>
+                  <img *ngIf="showLine3InSignUp" src="../../../assets/images/line 3.png" class="" style="width: 240px;margin-left: -46px;height: 2px;">
+                  <img *ngIf="showLine4InSignUp" src="../../../assets/images/line 4.png" class="" style="width: 240px;margin-left: -46px;height: 2px;">
+              </div>
                 <!-- <div>
                   <img src="../../../assets/images/line 1.png"  class="" style="width: 203px;margin-left: -46px;height: 2px;"   >
               </div> -->
@@ -169,8 +178,8 @@
               
              
             </div>
-            <hr class="mt-1" style="border-radius:2px;color:
-            #FA8232;height: 2px;border: 2px;">
+            <!-- <hr class="mt-1" style="border-radius:2px;color:
+            #FA8232;height: 2px;border: 2px;"> -->
             <div class="col-md-12 col-md-12 col-lg-12 col-xl-12  p-3 " *ngIf="showSignIn">
              <div *ngIf="loginn==true" >
               <form class="g-3"  [formGroup]="formGroup"    >
