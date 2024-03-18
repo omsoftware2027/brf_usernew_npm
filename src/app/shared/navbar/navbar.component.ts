@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit{
   @ViewChild('dropdownList') dropdownList!: ElementRef;
   @ViewChild('listItem') listItem!: ElementRef;
   @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
-  @HostListener('document:click', ['$event'])
+  // @HostListener('document:click', ['$event'])
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   showDropdown: boolean = false;
