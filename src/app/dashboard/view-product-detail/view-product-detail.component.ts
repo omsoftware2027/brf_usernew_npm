@@ -73,40 +73,44 @@ export class ViewProductDetailComponent implements OnDestroy {
 
   }
   submitcart(productId:any,price:any,qutantity:any){
-     
-  if(qutantity > 0){
-    let data = {
-      productId:productId,
-      userId: this.userid,
-      quantity: qutantity,
-      weight:0,
-      shipping:0,
-      price:price
-   
-    }
-    this.dashboardservice.savewishcart(data).subscribe((res) => {
-      if (res.status == 0) {
-        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
-        this.reloadCommonService.sendUpdate('reloadWalletDetail');
-        this.getproductById();
-        this.cardload(0);
-        this.getallcarttotal(0);
-        this.getallcount();
-        this.getallcart();
-        window.location.reload();
+    if(this.userid > 0 ) {
+      if(qutantity > 0 ){
+        let data = {
+          productId:productId,
+          userId: this.userid,
+          quantity: qutantity,
+          weight:0,
+          shipping:0,
+          price:price
+       
+        }
+        this.dashboardservice.savewishcart(data).subscribe((res) => {
+          if (res.status == 0) {
+            this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+            this.reloadCommonService.sendUpdate('reloadWalletDetail');
+            this.getproductById();
+            this.cardload(0);
+            this.getallcarttotal(0);
+            this.getallcount();
+            this.getallcart();
+            window.location.reload();
+          }
+          else {
+            this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
+          }
+        })
       }
-      else {
-        this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
+      else{
+        this.matSnackBar.open("Quantity  greater  than 0", 'x', { duration: 2000 });
       }
-    })
-  }
-  else{
-    this.matSnackBar.open("Quantity  greater  than 0", 'x', { duration: 2000 });
-  }
+    } else{
+      this.router.navigate(['/dashboard/email-signup']);
+    } 
+ 
   }
   submit(productId:any){
      
-   if( this.userid > 0 ){
+   if( this.userid > 0  ){
     let data = {
       productId:productId,
       userId: this.userid,

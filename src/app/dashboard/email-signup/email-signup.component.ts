@@ -76,12 +76,13 @@ if(this.formGroup.valid){
 
    this.dashboardservice.login(loginpayload).subscribe(data => {
      this.loginData = data;   
+     this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
      localStorage.setItem('id', this.loginData.response.id);
      localStorage.setItem('token', this.loginData.response.token);
      console.log(this.loginData.response.id,'loginData');
      this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
     this.formGroup.reset();
-    this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+
     //  if (this.dropdownMenu.nativeElement.classList.contains('show')) {
     //   this.dropdownMenu.nativeElement.classList.remove('show');
     // }

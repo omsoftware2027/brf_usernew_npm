@@ -314,12 +314,13 @@ export class NavbarComponent implements OnInit{
             data => {
               this.loginData = data;
               if (this.loginData.status === 0) {
+                this.router.navigate(['/dashboard']);
                 localStorage.setItem('id', this.loginData.response.id);
                 localStorage.setItem('token', this.loginData.response.token);
                 console.log(this.loginData.response.id, 'loginData');
                 window.location.reload();
                 this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
-                this.router.navigate(['/dashboard']);
+              
                 if (this.dropdownMenu.nativeElement.classList.contains('show')) {
                   this.dropdownMenu.nativeElement.classList.remove('show');
                 }
