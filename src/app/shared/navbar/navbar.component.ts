@@ -327,14 +327,19 @@ export class NavbarComponent implements OnInit{
                 this.formGroup.reset();
               } else {
                 // Display error message from loginData.response.error or any appropriate field
-                const errorMessage = this.loginData.response.error || 'Unknown error occurred';
-                this.matsnackbar.open(errorMessage, 'x', { duration: 2000 });
+                // const errorMessage = this.loginData.response || 'Unknown error occurred';
+                // this.matsnackbar.open(errorMessage, 'x', { duration: 2000 });
+              }
+              if(data && data.value === 'Unauthorized'){
+                this.matsnackbar.open("Please Check Username and Password", 'x', { duration: 2000 });
+                console.log('ghk')
               }
             },
-            error => {
-              // Handle HTTP errors
-              this.matsnackbar.open("An error occurred while logging in", 'x', { duration: 2000 });
-            }
+            // error => {
+            //   // Handle HTTP errors
+            //   console.log(this.loginData.response,'d')
+            //   this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
+            // }
           );
         }
       }

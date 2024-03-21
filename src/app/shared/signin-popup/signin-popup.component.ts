@@ -58,7 +58,7 @@ shppingaddress(){
           this.dialogRef.close();
         }
         else {
-          this.matSnackBar.open("Error while saving", 'x', { duration: 2000 });
+          this.matSnackBar.open(res.response, 'x', { duration: 2000 });
         }
       })
     }
@@ -78,7 +78,7 @@ shppingaddress(){
           this.dialogRef.close();
         }
         else {
-          this.matSnackBar.open("Error while saving", 'x', { duration: 2000 });
+          this.matSnackBar.open(res.response, 'x', { duration: 2000 });
         }
       })
     }

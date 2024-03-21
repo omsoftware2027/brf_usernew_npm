@@ -67,7 +67,7 @@ export class AddWishlistComponent {
       this.dashboardservice.deletewishlist(id).subscribe(res => {
         if (res.status == 0) {
           this.tabelLoad(0);
-          window.location.reload();
+          this.reloadCommonService.sendUpdate('reloadWalletDetail');
         }
       })
     }

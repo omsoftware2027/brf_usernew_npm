@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-my-cart-list',
@@ -19,7 +20,7 @@ export class MyCartListComponent {
   userid:any;
   carttotal:any;
   pageSize=30;
- constructor(private dashboardservice:DashboardService,private matSnackBar:MatSnackBar){
+ constructor(private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService){
 
  }
  ngOnInit(){
@@ -56,19 +57,24 @@ export class MyCartListComponent {
     if (data.quantity === undefined) {
       // If quantity property doesn't exist, initialize it with 1
       data.quantity = 1;
+      this.reloadCommonService.sendUpdate('reloadWalletDetail');
     } else {
       // Increment the quantity
       data.quantity += 1;
+      this.reloadCommonService.sendUpdate('reloadWalletDetail');
+
     }
   }
   
   decrementValue(data: any): void {
     if (data.quantity === undefined || data.quantity <= 0) {
+      this.reloadCommonService.sendUpdate('reloadWalletDetail');
       // If quantity property doesn't exist or is already 0, do nothing
       return;
     } else {
       // Decrement the quantity
       data.quantity -= 1;
+      this.reloadCommonService.sendUpdate('reloadWalletDetail');
     }
   }
   getallcarttotal(page: number) {
@@ -123,7 +129,8 @@ export class MyCartListComponent {
       this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
           this.tabelLoad(0);
-          window.location.reload();
+          this.reloadCommonService.sendUpdate('reloadWalletDetail');
+
         }
       })
     }
