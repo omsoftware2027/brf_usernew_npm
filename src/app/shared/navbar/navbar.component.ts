@@ -310,39 +310,42 @@ export class NavbarComponent implements OnInit{
             email: this.formGroup.value.email,
             password: this.formGroup.value.password,
           };
-          this.dashboardservice.login(loginpayload).subscribe(
-            data => {
-              this.loginData = data;
-              if (this.loginData.status === 0) {
-                this.router.navigate(['/dashboard']);
-                localStorage.setItem('id', this.loginData.response.id);
-                localStorage.setItem('token', this.loginData.response.token);
-                console.log(this.loginData.response.id, 'loginData');
-                window.location.reload();
-                this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
-              
-                if (this.dropdownMenu.nativeElement.classList.contains('show')) {
-                  this.dropdownMenu.nativeElement.classList.remove('show');
-                }
-                this.formGroup.reset();
-              } else {
-                // Display error message from loginData.response.error or any appropriate field
-                // const errorMessage = this.loginData.response || 'Unknown error occurred';
-                // this.matsnackbar.open(errorMessage, 'x', { duration: 2000 });
+          this.dashboardservice.login(loginpayload).subscribe(data => {
+            this.loginData = data;
+            console.log(data, 'this.loginData'); // Log received data
+      
+            if (this.loginData.status === 0) {
+              this.router.navigate(['/dashboard']);
+              localStorage.setItem('id', this.loginData.response.id);
+              localStorage.setItem('token', this.loginData.response.token);
+              console.log(this.loginData.response.id, 'loginData');
+              window.location.reload();
+              this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
+            
+              if (this.dropdownMenu.nativeElement.classList.contains('show')) {
+                this.dropdownMenu.nativeElement.classList.remove('show');
               }
-              if(data && data.value === 'Unauthorized'){
-                this.matsnackbar.open("Please Check Username and Password", 'x', { duration: 2000 });
-                console.log('ghk')
-              }
-            },
-            // error => {
-            //   // Handle HTTP errors
-            //   console.log(this.loginData.response,'d')
-            //   this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
-            // }
-          );
+              this.formGroup.reset();
+            } else if (this.loginData.status === -1) { // Added else if block for -1 status
+              this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
+              console.log('Snackbar opened for -1 status');
+            } else {
+              // Display error message from loginData.response.error or any appropriate field
+              // const errorMessage = this.loginData.response || 'Unknown error occurred';
+              // this.matsnackbar.open(errorMessage, 'x', { duration: 2000 });
+            }
+          },
+          error => {
+            // Handle HTTP errors
+            this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });; // Log error
+            // Uncomment below line if you need to access loginData here
+            // console.log(this.loginData.response,'d')
+            // this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
+          });
         }
       }
+      
+      
 
       submit(){
       this.submitted=true;
