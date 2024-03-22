@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./email-signup.component.scss']
 })
 export class EmailSignupComponent {
+  @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
   formGroup!:FormGroup;
   SignUpForm!:FormGroup;
   forgotpasswordform!:FormGroup;
@@ -75,53 +76,37 @@ if(this.formGroup.valid){
    };
 
    this.dashboardservice.login(loginpayload).subscribe(data => {
-     this.loginData = data;   
-     this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
-     localStorage.setItem('id', this.loginData.response.id);
-     localStorage.setItem('token', this.loginData.response.token);
-     console.log(this.loginData.response.id,'loginData');
-     this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
-    this.formGroup.reset();
+    this.loginData = data;
+    console.log(data, 'this.loginData'); // Log received data
 
-    //  if (this.dropdownMenu.nativeElement.classList.contains('show')) {
-    //   this.dropdownMenu.nativeElement.classList.remove('show');
-    // }
-
-     // @ts-ignore
-    //  if (data && data.value === 'Not Authorized') {
-    //  this.matsnackbar.open('Wrong Username or Password Enter , try Again', '', {
-    //      duration: 3000,
-    //      panelClass: ['error-snackbar']
-    //   });
-    //    this.retryError = true;
-
-    //  } else if(this.loginData && this.loginData.value  === 'Inactive'){
+    if (this.loginData.status === 0) {
+      this.router.navigate(['/dashboard']);
+      localStorage.setItem('id', this.loginData.response.id);
+      localStorage.setItem('token', this.loginData.response.token);
+      console.log(this.loginData.response.id, 'loginData');
+      window.location.reload();
+      this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
     
-    //    this.retryError = true;
-    //  } else {
-     
-    //    if (data && data.value === 'Another User LoggedIn') {
-    //      this.matsnackbar.open('Another User LoggedIn', '', {
-    //        duration: 3000,
-    //        panelClass: ['error-snackbar']
-    //      });
-    //      } else {
-    //     //    this.snackBar.open('Login Successfully', '', {
-    //     //      duration: 3000,
-    //     //      panelClass: ['success-snackbar']
-    //     //  });
-    //      this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
-
-    //  }}
-   }, 
-   //(error => {
-    // this.matsnackbar.open('Please Enter correct details', '', {
-    //   duration: 3000,
-    //   panelClass: ['error-snackbar']
-      
- //   });
-  // })
-   );
+      if (this.dropdownMenu.nativeElement.classList.contains('show')) {
+        this.dropdownMenu.nativeElement.classList.remove('show');
+      }
+      this.formGroup.reset();
+    } else if (this.loginData.status === -1) { // Added else if block for -1 status
+      this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
+      console.log('Snackbar opened for -1 status');
+    } else {
+      // Display error message from loginData.response.error or any appropriate field
+      // const errorMessage = this.loginData.response || 'Unknown error occurred';
+      // this.matsnackbar.open(errorMessage, 'x', { duration: 2000 });
+    }
+  },
+  error => {
+    // Handle HTTP errors
+    this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });; // Log error
+    // Uncomment below line if you need to access loginData here
+    // console.log(this.loginData.response,'d')
+    // this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
+  });
 }
    
 
