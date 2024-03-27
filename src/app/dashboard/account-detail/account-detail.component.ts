@@ -340,7 +340,7 @@ getaccountdetailById(){
         mobile:this.accountTypeRes.mobile,
         businessName:this.accountTypeRes.businessName,
         email:this.accountTypeRes.email,
-        billingAddressine1:this.accountTypeRes.billingAddressine1,
+        billingAddressLine1:this.accountTypeRes.billingAddressLine1,
         billingAddressLine2:this.accountTypeRes.billingAddressLine2,
         city:this.accountTypeRes.city,
         country:this.accountTypeRes.country,
@@ -625,4 +625,5 @@ downoladinvoice(orderid:any){
     window.open(this.data, '_blank');
   })
 }
+
 }
