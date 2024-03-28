@@ -38,6 +38,7 @@ import { ManageCarttComponent } from './manage-cartt/manage-cartt.component';
 import { OrderDetailComplatedComponent } from './order-detail-complated/order-detail-complated.component';
 import { EmailSignupComponent } from './email-signup/email-signup.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
     ManageCarttComponent,
     OrderDetailComplatedComponent,
     EmailSignupComponent,
+    MainComponent,
 
   ],
   imports: [

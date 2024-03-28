@@ -26,6 +26,7 @@ import { ManageCarttComponent } from './manage-cartt/manage-cartt.component';
 import { OrderDetailComponent } from '../order-detail/order-detail.component';
 import { EmailSignupComponent } from './email-signup/email-signup.component';
 import { OrderDetailComplatedComponent } from './order-detail-complated/order-detail-complated.component';
+import { MainComponent } from './main/main.component';
 
 
 
@@ -230,6 +231,13 @@ const routes: Routes = [
         component: EmailSignupComponent,
         data: {
           title: 'email-sign-up'
+        }
+      },
+      {
+        path: 'main/:id/:token/:userType/:type',
+        component: MainComponent,
+        data: {
+          title: 'main'
         }
       },
 

@@ -330,6 +330,8 @@ export class NavbarComponent implements OnInit{
               this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
               console.log('Snackbar opened for -1 status');
             } else {
+              this.router.navigate(['/dashboard/main/'+this.loginData.response.id+'/'+this.loginData.response.token]);
+              
               // Display error message from loginData.response.error or any appropriate field
               // const errorMessage = this.loginData.response || 'Unknown error occurred';
               // this.matsnackbar.open(errorMessage, 'x', { duration: 2000 });
