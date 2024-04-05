@@ -1,9 +1,19 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from '../dashboard.service';
 
+export function onlyLettersValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const value = control.value;
+    const onlyLettersRegex = /^[a-zA-Z]+$/;
+    if (!onlyLettersRegex.test(value)) {
+      return { onlyLetters: true };
+    }
+    return null;
+  };
+}
 @Component({
   selector: 'app-add-new-user-popup',
   templateUrl: './add-new-user-popup.component.html',
@@ -19,14 +29,23 @@ export class AddNewUserPopupComponent {
   ngOnInit(){
     this.SignUpForm = this.formBuilder.group({
       email: ['',Validators.required],
-      firstName: ['',Validators.required],
-      lastName:[''],
+      firstName: ['', [Validators.required, this.onlyCharactersValidator()]],
+      lastName:['', [Validators.required, onlyLettersValidator()]],
       mobile:['',[Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       parentId:['']
     });
 
 
   
+  }
+  onlyCharactersValidator() {
+    return (control: { value: string; }) => {
+      const pattern = /^[a-zA-Z]*$/; // Regular expression to allow only alphabetic characters
+      if (!pattern.test(control.value)) {
+        return { invalidCharacters: true };
+      }
+      return null;
+    };
   }
   closeDialog(){
     this.dialogRef.close();

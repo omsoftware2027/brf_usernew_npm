@@ -83,6 +83,7 @@ if(this.formGroup.valid){
       this.router.navigate(['/dashboard']);
       localStorage.setItem('id', this.loginData.response.id);
       localStorage.setItem('token', this.loginData.response.token);
+      localStorage.setItem('userType', this.loginData.response.userType);
       console.log(this.loginData.response.id, 'loginData');
       window.location.reload();
       this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });

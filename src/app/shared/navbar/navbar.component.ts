@@ -53,6 +53,7 @@ export class NavbarComponent implements OnInit{
     retryError = false;
     loginData:any;
     product:any;
+    usertype:any;
     id:any;
     cmsEnum ='HEADER'
     cmsRes4:any
@@ -154,6 +155,8 @@ export class NavbarComponent implements OnInit{
         this.name = localStorage.getItem('name');
         this.userId=localStorage.getItem('id');
         this.token = localStorage.getItem('token');
+        this.usertype = localStorage.getItem('usertype');
+        console.log(this.usertype,'this.usertype')
         this.loginTime = localStorage.getItem('loginTime');
         this.sessionId = localStorage.getItem('sessionId');
         this.getfootergeneral();
@@ -318,6 +321,8 @@ export class NavbarComponent implements OnInit{
               this.router.navigate(['/dashboard']);
               localStorage.setItem('id', this.loginData.response.id);
               localStorage.setItem('token', this.loginData.response.token);
+              localStorage.setItem('usertype', this.loginData.response.userType);
+
               console.log(this.loginData.response.id, 'loginData');
               window.location.reload();
               this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });

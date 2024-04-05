@@ -9,6 +9,29 @@
     font-family: 'Prompt';
     border-radius: 1px;
 }
+.btnnn {
+  width: 105px;
+  height: 48px;
+  padding: 0 24px; /* Adjusted padding syntax */
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: "Prompt";
+  border-radius: 15px;
+  color: black;
+  background-color: #fff;
+  transition: background-color 0.3s; /* Smooth transition for color change */
+}
+
+.btnnn:hover,
+.btnnn:active {
+  background-color: #F44C4C;
+}
+
+.selected {
+  background-color: #F44C4C;
+}
+
 
 .btnn{
     width: 197px;
@@ -97,4 +120,11 @@
     -webkit-text-stroke: 0.5px darkgrey;
     -webkit-text-stroke: 0.5px darkgrey;
     -webkit-text-fill-color: black;
+  }
+  .h4{
+    font-family: 'promat';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px; 
+
   }

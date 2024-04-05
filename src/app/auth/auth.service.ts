@@ -38,6 +38,7 @@ export class AuthService {
             localStorage.setItem('id', LData.response.teamId);
             localStorage.setItem('token',LData.response.token);
             localStorage.setItem('name',LData.response.name);
+            localStorage.setItem('usertype',LData.response.userType);
             this.loggedInUserObservable(LData.response.name);
             return {value: '0'};
           } else {

@@ -18,12 +18,39 @@ export class AccountDetailComponent {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   formGroup!:FormGroup;
   quantity1:any;
+  myorderdata:any;
+  selectedButton: string | null = null;
+  dropdowndata:any;
+  mydata:any;
+  type='pickup'
+  searchText: string = '';
+selectcategoryid: string = '';
+productname=''
+code=''
+bin=''
+vender=''
+qutanity=''
+price=''
+total=''
+ref=''
+status=''
+customername=''
+transationdate=''
+routee=''
+  customerdetail:any;
   totalrecordLength:any;
   orderserach!:FormGroup;
+  orderform!:FormGroup
   userid:any;
+  vendor:any;
+  orderDetails:any
   reorder:any;
+  addressdetail:any;
+  isexpandorder:boolean=false;
   quantity:any;
   bulkoderguide:any;
+  productDetails:any;
+  myorderOpen:boolean=false;
   bulkorderespons:any
   bulkorderguide:any;
   bulkoderguid:any;
@@ -31,7 +58,7 @@ export class AccountDetailComponent {
   data:any;
   allorder:any;
   categoryy:any;
-  selectcategoryid:any
+
   categoryid=0;
   accountTypeRes:any;
   addOnUpdate:boolean=false;
@@ -40,14 +67,18 @@ export class AccountDetailComponent {
   isguideOpen:boolean=false;
   isorderOpen:boolean=false;
   addressOpen:boolean=false;
+  isexpandorderr:boolean=false;
   isbulkOpen:boolean=false;
   staffOpen:boolean=false;
   showmyprfile: boolean = true;
   showmypassword: boolean = false;
   showorder:boolean=false;
   Bulkorder:boolean=false;
+  myorderrOpenn:boolean=false;
+  usertype:any;
   id:any;
-  
+  expandOpen:boolean=false;
+
   category:any;
   page: number = 0;
   size: number = 30;
@@ -64,8 +95,16 @@ export class AccountDetailComponent {
   }
   ngOnInit() {
     this.getallbulkorder(0);
+    this.getalldropdown('PRODUCTNAME')
+    this.getalldropdown('CODE')
+    this.getalldropdown('BIN')
     this.userId=localStorage.getItem('id');
+    this.usertype=localStorage.getItem('usertype')
     console.log(this.userid,'userid')
+    if( this.usertype ==1){
+      this.expandOpen=true;
+      this.getallexpandorder('')
+    }
     if(this.userId != 0 ){
       this.userid =this.userId;
       this.getaccountdetailById();
@@ -92,11 +131,11 @@ export class AccountDetailComponent {
       billingState:['']
 
       });
-      this.changepasswordform=this.formBuilder.group({
-        newPassword:[''],
-        oldPassword:[''],
-
-      });
+      this.changepasswordform = this.formBuilder.group({
+        newPassword: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+        oldPassword:['',Validators.required]
+      }, { validator: this.passwordMatchValidator });
       this.orderserach=this.formBuilder.group({
         categoryId:[''],
       
@@ -120,7 +159,27 @@ showSignInForm() {
   this.Myaddress=false;
 
 }
+showexpandorder(){
+ this.isexpandorder=true ;
+ this.isexpandorderr=false;
+}
+showexpandorderr(){
+  this.isexpandorder=false ;
+  this.isexpandorderr=true;
+}
+selectButton(button: string) {
+  this.selectedButton = button;
+}
+passwordMatchValidator(changepasswordform: FormGroup) {
+  const newPassword = changepasswordform.get('newPassword')?.value;
+  const confirmPassword = changepasswordform.get('confirmPassword')?.value;
 
+  if (newPassword !== confirmPassword) {
+    changepasswordform.get('confirmPassword')?.setErrors({ passwordMismatch: true });
+  } else {
+    changepasswordform.get('confirmPassword')?.setErrors(null);
+  }
+}
 showpassword() {
   this.showmyprfile = false;
   this.staffOpen=false;
@@ -136,6 +195,11 @@ showpassword() {
   this.Orderguide=false;
   this.Mystaff=false;
   this.Myaddress=false;
+  this.expandOpen=false;
+  this.myorderOpen=false;
+  this.myorderrOpenn=false;
+
+
 }
 myorder() {
   this.isProfileOpen = false;
@@ -152,6 +216,10 @@ myorder() {
   this.Orderguide=false;
   this.Mystaff=false;
   this.Myaddress=false;
+  this.expandOpen=false;
+  this.myorderOpen=false;
+  this.myorderrOpenn=false;
+
 }
 bulkorder(){
   this.showmyprfile = false;
@@ -168,6 +236,10 @@ bulkorder(){
   this.Orderguide=false;
   this.Mystaff=false;
   this.Myaddress=false;
+  this.expandOpen=false;
+  this.myorderOpen=false;
+  this.myorderrOpenn=false;
+
 }
 orderguide(){
   this.showmyprfile = false;
@@ -184,6 +256,10 @@ orderguide(){
   this.Orderguide=true;
   this.Mystaff=false;
   this.Myaddress=false;
+  this.expandOpen=false;
+  this.myorderOpen=false;
+  this.myorderrOpenn=false;
+
 }
 mystaff(){
   this.showmyprfile = false;
@@ -201,6 +277,10 @@ mystaff(){
   this.Myaddress=false;
   this.isProfileOpen=false
   this.isPasswordOpen=false;
+  this.expandOpen=false;
+  this.myorderOpen=false;
+  this.myorderrOpenn=false;
+
 }
 myaddress(){
   this.showmyprfile = false;
@@ -219,6 +299,75 @@ myaddress(){
   this.Myaddress=true;
   this.isProfileOpen=false
   this.isPasswordOpen=false;
+  this.expandOpen=false;
+  this.myorderOpen=false;
+  this.myorderrOpenn=false;
+
+}
+expandorder(){
+  this.showmyprfile = false;
+  this.showmypassword = false;
+  this.staffOpen=false;
+  this.isguideOpen=false;
+  this.addressOpen=false;
+  this.isbulkOpen=false;
+  this.isorderOpen=false;
+  this.expandOpen=true;
+  this.showmypassword = false;
+  this.showorder=false;
+  this.Bulkorder=false;
+  this.Orderguide=false;
+  this.Mystaff=false;
+  this.Myaddress=false;
+  this.isProfileOpen=false
+  this.isPasswordOpen=false;
+  this.expandOpen=true;
+  this.myorderOpen=false;
+  this.myorderrOpenn=false;
+
+}
+myorderopen(){
+  this.showmyprfile = false;
+  this.showmypassword = false;
+  this.staffOpen=false;
+  this.isguideOpen=false;
+  this.addressOpen=false;
+  this.isbulkOpen=false;
+  this.isorderOpen=false;
+  this.expandOpen=false;
+  this.showmypassword = false;
+  this.showorder=false;
+  this.Bulkorder=false;
+  this.Orderguide=false;
+  this.Mystaff=false;
+  this.Myaddress=false;
+  this.isProfileOpen=false
+  this.isPasswordOpen=false;
+  this.expandOpen=false;
+  this.myorderOpen=true;
+  this.myorderrOpenn=false;
+
+}
+myexpandorder(){
+  this.showmyprfile = false;
+  this.showmypassword = false;
+  this.staffOpen=false;
+  this.isguideOpen=false;
+  this.addressOpen=false;
+  this.isbulkOpen=false;
+  this.isorderOpen=false;
+  this.expandOpen=false;
+  this.showmypassword = false;
+  this.showorder=false;
+  this.Bulkorder=false;
+  this.Orderguide=false;
+  this.Mystaff=false;
+  this.Myaddress=false;
+  this.isProfileOpen=false
+  this.isPasswordOpen=false;
+  this.expandOpen=false;
+  this.myorderOpen=false;
+  this.myorderrOpenn=true;
 }
 openeclinicAcessDialog(id:any): void {
   this.dialog.open(SigninPopupComponent, {
@@ -314,18 +463,22 @@ submit(){
 
 
 changepassword(){ 
-  let data = {
-    newPassword:this.changepasswordform.value.newPassword,
-    oldPassword:this.changepasswordform.value.oldPassword,
+  if(this.changepasswordform.valid){
+    let data = {
+      newPassword:this.changepasswordform.value.newPassword,
+      oldPassword:this.changepasswordform.value.oldPassword,
+    }
+    this.dashboardservice.changepassword(data).subscribe((res) => {
+      if (res.status == 0) {
+        this.snackBar.open(res.response ,'x', { duration: 2000 });
+      }
+      else {
+        this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+      }
+    })
+  }else{
+    this.snackBar.open( 'please check confirm password ','x', { duration: 2000 });
   }
-  this.dashboardservice.changepassword(data).subscribe((res) => {
-    if (res.status == 0) {
-      this.snackBar.open(res.response );
-    }
-    else {
-      this.snackBar.open("Error while updating", 'x', { duration: 2000 });
-    }
-  })
 
 }
 getaccountdetailById(){
@@ -340,7 +493,7 @@ getaccountdetailById(){
         mobile:this.accountTypeRes.mobile,
         businessName:this.accountTypeRes.businessName,
         email:this.accountTypeRes.email,
-        billingAddressLine1:this.accountTypeRes.billingAddressLine1,
+        billingAddressLine1:this.accountTypeRes.billingAddressine1,
         billingAddressLine2:this.accountTypeRes.billingAddressLine2,
         city:this.accountTypeRes.city,
         country:this.accountTypeRes.country,
@@ -452,6 +605,54 @@ getallcategory(page: number) {
     }
   })
 }
+getallmyorder() {
+  const vender = this.selectcategoryid;
+  const search = this.searchText;
+  this.dashboardservice.getAllBrfoodUserOrder(this.currentPage, this.pageSize,search,vender).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.myorderdata = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getorderbyorderid(orderid:any,orderitemid:any) {
+  const serach =''
+  console.log('hksk')
+  this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+   
+      this.customerdetail=this.data.response.dataSet.customerDetails;
+      this.addressdetail=this.data.response.dataSet.shippingDetails;
+      this.productDetails=this.data.response.dataSet.productDetails;
+      this.orderDetails=this.data.response.dataSet.orderDetails
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getmyorderbyorderid(orderid:any) {
+  const serach ='';
+  const orderitemid=''
+  console.log('hksk')
+  this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+   
+      this.customerdetail=this.data.response.dataSet.customerDetails;
+      this.addressdetail=this.data.response.dataSet.shippingDetails;
+      this.productDetails=this.data.response.dataSet.productDetails;
+      this.orderDetails=this.data.response.dataSet.orderDetails
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
 deletewishlist(id:any) {
   if (confirm("Are you sure wants to delete this Product?") == true) {
     this.dashboardservice.deletewishlist(id).subscribe(res => {
@@ -505,6 +706,15 @@ submitcart(productId:any,price:any,quantity:any){
 getallreorder(orderid:any){
   this.userid=localStorage.getItem('id');
   this.dashboardservice.getallreorder(orderid,this.userid).subscribe((res:any)=>{
+    if(res.status ==0){
+    this.reorder=res.response
+    this.snackBar.open(res.response,'X', { duration: 2000 })
+    }
+  }
+  )
+}
+saveorder(orderid:any){
+  this.dashboardservice.saveorder(orderid).subscribe((res:any)=>{
     if(res.status ==0){
     this.reorder=res.response
     this.snackBar.open(res.response,'X', { duration: 2000 })
@@ -625,5 +835,57 @@ downoladinvoice(orderid:any){
     window.open(this.data, '_blank');
   })
 }
-
+getallexpandorder(type:any) {
+  const serach ='';
+  const productname =this.productname ||''
+  const code=this.code || ''
+  const bin= this.bin || ''
+  const vender=this.vender ||''
+  const qutanity=this.qutanity || ''
+  const price=this.price || ''
+  const total =this.total || ''
+  const customername=this.customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallvendor() {
+ const userId=this.userid
+  this.dashboardservice.getallvendor(userId).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.vendor = this.data.response;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown(type:any) {
+   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+     this.data =res;
+     if (this.data.status === 0) {
+       this.dropdowndata = this.data.response.dataSet;
+     }
+     else {
+       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+     }
+   })
+ }
+ 
 }

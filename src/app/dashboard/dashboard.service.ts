@@ -169,4 +169,24 @@ export class DashboardService {
   downloadprintinvoice(orderId:any) {
     return this.http.get<any>(`${environment.baseurl}/order/printInvoice?orderId=${orderId}`);
   }
+  getBrFoodUserOrderProduct(pageNo:any,pageSize:any,search:any,type:any,productName:any,quantity:any,bin:any,vendor:any,skuCode:any,price:any,customerName:any,ref:any,driver:any,orderStatus:any,transactionDate:any,route:any){
+    return this.http.get<any>(`${environment.baseurl}/order/getBrFoodUserOrderProduct?pageNo=${pageNo}&pageSize=${pageSize}&search=${search}&type=${type}&productName=${productName}&quantity=${quantity}&bin=${bin}&vendor=${vendor}&skuCode=${skuCode}&price=${price}&customerName=${customerName}&ref=${ref}&driver=${driver}&orderStatus=${orderStatus}&transactionDate=${transactionDate}&route=${route}`);
+  }
+  getAllBrfoodUserOrder(pageNo:any,pageSize:any,search:any,vender:any){
+    return this.http.get<any>(`${environment.baseurl}/brfooduser/getAllBrfoodUserOrder?pageNo=${pageNo}&pageSize=${pageSize}&search=${search}&vender=${vender}`);
+  }
+  getorderbyorderid(pageNo:any,pageSize:any,orderId:any,userId:any,search:any,orderItemId:any){
+    return this.http.get<any>(`${environment.baseurl}/brfooduser/getOrderByOrderId?pageNo=${pageNo}&pageSize=${pageSize}&orderId=${orderId}&userId=${userId}&search=${search}&orderItemId=${orderItemId}`);
+  }
+  getallvendor(userId:any){
+    return this.http.get<any>(`${environment.baseurl}/brfooduser/getAllVendor?userId=${userId}`);
+  }
+  getalldropdowndata(type:any){
+    return this.http.get<any>(`${environment.baseurl}/brfooduser/getAllDropdownData?type=${type}`);
+  }
+  saveorder(orderId:any){
+  // @ts-ignore
+    return this.http.put<any>(`${environment.baseurl}/brfooduser/saveOrderPage?orderId=${orderId}`)
+  }
+
 }

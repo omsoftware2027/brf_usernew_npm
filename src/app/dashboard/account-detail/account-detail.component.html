@@ -24,58 +24,69 @@
 
 <div class="container" >
     
-    <div class="col-md-12 d-flex  ">
+    <div class="col-md-12 d-flex ">
         <div class="col-md-3 card p-3 cartDiv" style="border-radius: 10px;height: 50%;">
-        <div class="d-flex " (click)="showSignInForm()" [class.profile-open]="isProfileOpen" >
-            <span class=""><i class="bx bxs-user m-2 "></i></span>
-            <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">My Profile</h6>
-            
+        <div *ngIf="this.usertype == 0">
+            <div class="d-flex " (click)="showSignInForm()" [class.profile-open]="isProfileOpen" >
+                <span class=""><i class="bx bxs-user m-2 "></i></span>
+                <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">My Profile</h6>
+                
+            </div>
+            <!-- <hr class="mt-1" style="border-radius:2px;color:#223d06;height: 2px;
+            border: 2px;"> -->
+            <div>
+                <img src="../../../assets/images/line 1.png"  class="" style="width: 279px" >
+            </div>
+            <div  class="d-flex" (click)="showpassword()" [class.password-open]="isPasswordOpen">
+                <span class=""><i class="bx bxs-lock m-2"></i></span>
+                <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">Change Password</h6>
+            </div>
+            <div>
+                <img src="../../../assets/images/line 1.png"  class="" style="width: 279px"  >
+            </div>
+            <div class="d-flex"(click)="myorder();getallorder(0)" [class.password-open]="isorderOpen">
+                <span class=""><i class='bx bxs-briefcase m-2' ></i></span>
+                <h6 class="m-1 "style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
+            </div>
+            <div>
+                <img src="../../../assets/images/line 1.png"  class=""  style="width: 279px"  >
+            </div>
+            <div class="d-flex" (click)="bulkorder();getallbulkorder(0)" [class.password-open]="isbulkOpen">
+                <span class=""><i class="bx bxs-heart m-2"></i></span>
+                <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
+            </div>
+            <div>
+                <img src="../../../assets/images/line 1.png"  class="" style="width: 279px"   >
+            </div>
+            <div class="d-flex" (click)="orderguide();getallcategory(0);getallbulkorder(0)" [class.password-open]="isguideOpen">
+                <span class=""><i class="bx bxs-heart m-2"></i></span>
+                <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
+            </div>
+            <div>
+                <img src="../../../assets/images/line 1.png"  class="" style="width: 279px"   >
+            </div> 
+            <div class="d-flex" (click)="mystaff();getallstaff(0)" [class.password-open]="staffOpen">
+                <span class=""><i class="bx bxs-user m-2"></i></span>
+                <h6 class="m-1 "style="font-size: 20px;line-height: 28px;font-weight: 400;">My Staff</h6>
+            </div>
+            <div>
+                <img src="../../../assets/images/line 1.png"  class="" style="width: 279px"   >
+            </div>
+            <div class="d-flex" (click)="myaddress();getalladdress(0)" [class.password-open]="addressOpen">
+                <span class=""><i class="bx bxs-home m-2"></i></span>
+                <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Address</h6>
+            </div>
         </div>
-        <!-- <hr class="mt-1" style="border-radius:2px;color:#223d06;height: 2px;
-        border: 2px;"> -->
-        <div>
-            <img src="../../../assets/images/line 1.png"  class="" style="width: 279px" >
-        </div>
-        <div  class="d-flex" (click)="showpassword()" [class.password-open]="isPasswordOpen">
-            <span class=""><i class="bx bxs-lock m-2"></i></span>
-            <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">Change Password</h6>
-        </div>
-        <div>
-            <img src="../../../assets/images/line 1.png"  class="" style="width: 279px"  >
-        </div>
-        <div class="d-flex"(click)="myorder();getallorder(0)" [class.password-open]="isorderOpen">
-            <span class=""><i class='bx bxs-briefcase m-2' ></i></span>
-            <h6 class="m-1 "style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
-        </div>
-        <div>
-            <img src="../../../assets/images/line 1.png"  class=""  style="width: 279px"  >
-        </div>
-        <div class="d-flex" (click)="bulkorder();getallbulkorder(0)" [class.password-open]="isbulkOpen">
-            <span class=""><i class="bx bxs-heart m-2"></i></span>
-            <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
-        </div>
-        <div>
-            <img src="../../../assets/images/line 1.png"  class="" style="width: 279px"   >
-        </div>
-        <div class="d-flex" (click)="orderguide();getallcategory(0);getallbulkorder(0)" [class.password-open]="isguideOpen">
-            <span class=""><i class="bx bxs-heart m-2"></i></span>
-            <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
-        </div>
-        <div>
-            <img src="../../../assets/images/line 1.png"  class="" style="width: 279px"   >
-        </div>
-        
-        <div class="d-flex" (click)="mystaff();getallstaff(0)" [class.password-open]="staffOpen">
-            <span class=""><i class="bx bxs-user m-2"></i></span>
-            <h6 class="m-1 "style="font-size: 20px;line-height: 28px;font-weight: 400;">My Staff</h6>
-        </div>
-        <div>
-            <img src="../../../assets/images/line 1.png"  class="" style="width: 279px"   >
-        </div>
-        <div class="d-flex" (click)="myaddress();getalladdress(0)" [class.password-open]="addressOpen">
-            <span class=""><i class="bx bxs-home m-2"></i></span>
-            <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Address</h6>
-        </div>
+         <div *ngIf="this.usertype == 1">
+            <div class="d-flex" (click)="expandorder();getallexpandorder('')"   [class.password-open]="expandOpen">
+                <span class=""><i class="bx bxs-home m-2"></i></span>
+                <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">Expand order</h6>
+            </div>
+            <div class="d-flex" (click)="myexpandorder();getallmyorder();getallvendor()"   [class.password-open]="myorderrOpenn">
+                <span class=""><i class="bx bxs-home m-2"></i></span>
+                <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My order</h6>
+            </div>
+         </div>
         </div>
         <div class="col-md-9 " >
             <div class="row">
@@ -87,6 +98,7 @@
                                     <h5 class="mb-0 main-text">My Profile</h5>
                                 </div> -->
                           
+                             <div *ngIf="this.usertype == 0">
                                 <div class="col-md-12 " *ngIf="showmyprfile">
                                     <div class="card-title d-flex align-items-center">
                                         <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C;">My Profile</h5>
@@ -417,36 +429,30 @@
                                         <div class="col-md-6 mt-3">
                                         
                                         </div>
-                                        <div class="col-md-6 ">
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="" class="form-label">New Password</label>
-                                                <div class="input-group" >
-                                                    <input type="text"  placeholder="new password" class="form-control" formControlName="newPassword">
+                                                <div class="input-group">
+                                                    <input type="password" placeholder="New Password" class="form-control" formControlName="newPassword">
                                                 </div>
-                                
-                                                <!-- <mat-error>
-                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
-                                                </mat-error> -->
-                                
-                                                
-                                                
                                             </div>
-                                          </div>
-                                          <div class="col-md-6">
+                                        </div>
+                                        <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="" class="form-label">Confirm Password</label>
-                                                <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control" formControlName="notes">
+                                                <div class="input-group">
+                                                    <input type="password" placeholder="Confirm Password" class="form-control" formControlName="confirmPassword">
                                                 </div>
-                                
+                                                <div *ngIf="changepasswordform.hasError('passwordMismatch')" class="text-danger">
+                                                    Passwords do not match
+                                                </div>
+                                                
+                                              
                                                 <!-- <mat-error>
-                                                    <span *ngIf="(submitted && formGroup.get('xrayType').errors) || !formGroup.get('xrayType').valid && formGroup.get('xrayType').touched">Please Enter Type X-Ray Name</span>
+                                                    <span *ngIf="(submitted && changepasswordform.get('confirmPassword').errors) || !changepasswordform.get('confirmPassword').valid && changepasswordform.get('confirmPassword').touched">Please Enter confirm password</span>
                                                 </mat-error> -->
-                                
-                                                
-                                                
                                             </div>
-                                          </div>
+                                        </div>
                                        
                                       </div>
                                      </div>
@@ -975,13 +981,447 @@
                                    </div>
                                  
                                   </div>
-                                 
+                             </div>
+                            <div *ngIf="this.usertype == 1" style="margin-left: -52px;"> 
+                                <div class="col-md-9 " *ngIf="expandOpen">
+                                    <div class="row">
+                                        <div class="col-xl-11 mx-auto">
+                                            <div class="content-wrapper">
+                                                <div   style="border-radius: 16px;">
+                                                    <div class="p-4">    
+                                                          <div class="col-md-12 " >
+                                                            <div class="card-title d-flex align-items-center">
+                                                                <div class="col-md-12 col-lg-12 col-xl-12 d-flex">
+                                                                 <div class="col-md-6 col-lg-6 col-xl-6"> 
+                                                                    <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Order List</h5>
+                                                                 </div>
+                                                              
+                                                                </div>
+                                                              
+                                                            </div>
+                                                            <div class="d-flex mt-4">
+                                                           
+
+                                                                <div class="ps-2">
+                                                                    <button type="button" class="btnnn" [ngClass]="{'selected': selectedButton === 'pickup'}" (click)="selectButton('pickup');getallexpandorder('pickup')">Pick Up </button>
+                                                                </div>
+                                                                <div class="ps-2">
+                                                                    <button type="button" class="btnnn" [ngClass]="{'selected': selectedButton === 'jetro'}" (click)="selectButton('jetro');getallexpandorder('jetro')">Jetro </button>
+                                                                </div>
+                                                                <div class="ps-2">
+                                                                    <button type="button" class="btnnn" [ngClass]="{'selected': selectedButton === 'warehouse'}" (click)="selectButton('warehouse');getallexpandorder('warehouse')">Ware house</button>
+                                                                </div>
+                                                            </div>
+                                                            <img src="../../../assets/images/line 1.png"  class="" style="width: 851px;height: 2px;"  >
+
+                                                      
+                                                            <div class="col-md-12 " style="border-radius: 9px;overflow-y: scroll;width:150%">
+                                                                <!-- <div class="mt-2 cardNA mb-3">
+                                                                    <h5 class="mb-1">Product not available</h5>
+                                                                  </div> -->
+                                                                <table class="table" >
+                                                                    <thead >
+                                                                      <tr>
+                                                                        <th scope="col" style=" color:#475156 !important">PRODUCT NAME</th>
+                                                                        <th scope="col" style=" color:#475156 !important">CODE</th>
+                                                                        <th scope="col" style=" color:#475156 !important">BIN</th>
+                                                                        <th scope="col" style=" color:#475156 !important">VENDER</th>
+                                                                        <th scope="col" style=" color:#475156 !important">QUTANITY</th>
+                                                                        <th scope="col" style=" color:#475156 !important">PRICE</th>
+                                                                        <th scope="col" style=" color:#475156 !important">TOTAL</th>
+                                                                        <th scope="col" style=" color:#475156 !important">REF</th>
+                                                                        <th scope="col" style=" color:#475156 !important">STATUS</th>
+                                                                        <th scope="col" style=" color:#475156 !important">T DATE</th>
+                                                                        <th scope="col" style=" color:#475156 !important">ROUTE</th>
+                                                                        <th scope="col" style=" color:#475156 !important">DRIVER</th>
+                                                                        <th scope="col" style=" color:#475156 !important">ACTIONS</th>
+                                                                      </tr>
+                                                                    </thead>       
+                                                                    <tbody>
+                                                                        <ng-container>
+                                                                        
+                                                                          <tr *ngFor="let data of category">
+                                                                            <td>
+                                                                             {{data.productName}}
+                                                                            </td>
+                                                                            <td>{{data.skuCode}}</td>
+                                                                            <td>{{data.bin}}</td>
+                                                                            <td>{{data.vendor}}</td>
+                                                                            <td>
+                                                                                {{data.quantity}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{data.price}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{data.total}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{data.ref}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{data.orderStatus}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{data.tdate}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{data.route}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{data.driver}}
+                                                                            </td>
+                                                                            <td>
+                                                                         <i *ngIf="data.locks== 'false'" class="bx bx-search" (click)="myorderopen();getorderbyorderid(data.orderId,data.orderItemId)"   [class.password-open]="myorderOpen"></i>
+                                                                         <i  *ngIf="data.locks== 'true'"  class="bx bx-lock"    ></i>
+
+                                                                            </td>
+                                                                          </tr>
+                                                                          <tr>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('PRODUCTNAME')" (change)="getallexpandorder('PRODUCTNAME')" [(ngModel)]="productname">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let productname of dropdowndata" [value]="productname">{{ productname }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('CODE')" [(ngModel)]="code" (change)="getallexpandorder('CODE')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control"  (click)="getalldropdown('BIN')" [(ngModel)]="bin" (change)="getallexpandorder('BIN')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('VENDER')" [(ngModel)]="vender" (change)="getallexpandorder('VENDER')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('QUANTITY')" [(ngModel)]="qutanity" (change)="getallexpandorder('QUANTITY')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('PRICE')" [(ngModel)]="price"(change)="getallexpandorder('PRICE')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('TOTAL')" [(ngModel)]="total"(change)="getallexpandorder('TOTAL')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('CUSTOMERNAME')" [(ngModel)]="customername"(change)="getallexpandorder('CUSTOMERNAME')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('REF')" [(ngModel)]="ref"(change)="getallexpandorder('REF')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('STATUS')" [(ngModel)]="status" (change)="getallexpandorder('STATUS')">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('TRANSACTIONDATE')" [(ngModel)]="transationdate" STATUS>
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('ROUTE')" [(ngModel)]="routee">
+                                                                                    <option   value="">Please select product</option>
+                                                                                    <option *ngFor="let data of dropdowndata" [value]="data">{{ data }}</option>
+                                                                                  </select>
+                                                                            </td>
+                                                                          </tr>
+                                                                        </ng-container>
+                                                                      </tbody>
+                                                                  </table>
+                                                                  <div style="width: 150%;">
+                                                                    <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
+                                                                  </div>
+                                                            </div>
+                                                         
+                                                          </div>
+                                                        
+                                                    
+                                                         
+                                                       
+                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="" *ngIf="myorderOpen">
+                                    <div class="row">
+                                        <div style="margin-left: 39px;">
+                                            <div class="content-wrapper">
+                                                <div   style="border-radius: 16px;">
+                                                    <div class="p-4">    
+                                                          <div class="col-md-12 " >
+                                                            <div class="card-title d-flex align-items-center">
+                                                                <div class="col-md-12 col-lg-12 col-xl-12 d-flex">
+                                                                 <div class="col-md-6 col-lg-6 col-xl-6"> 
+                                                                    <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Order List</h5>
+                                                                 </div>
+                                                              
+                                                                </div>
+                                                              
+                                                            </div>
+                                                   
+                                                            <img src="../../../assets/images/line 1.png"  class="" style="width: 851px;height: 2px;"  >
+                                                          </div>
+                                                        
+                                                    
+                                                         
+                                                       
+                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class=" rounded-end-0">
+                                                    <div class="card-body p-4">
+                                                        <!-- <p class="text-muted float-md-end mb-md-0"><a href="javascript:void(0);"><i
+                                                                    class="ph-storefront align-middle me-1"></i> Visit Store</a></p> -->
+                                                        <div class="d-flex">
+                                                            <p class="text-capitalize mb-3"style="font-weight: 600;font-size: 20px;line-height: 30px;color:#F44C4C">Customer Detail</p>
+                                                            <div  class="d-flex" style="margin-left: 36%;margin-top: -1%;">
+                                                                <button type="button" class="btn" style="width: 149px;height: 35px;background-color:#4C7C17;color:#FFFFFF;font-weight:700;font-size: 15px;" (click)="saveorder(orderDetails.orderId)">SAVE</button> 
+                                                                <button type="button" class="btn  ms-2" style="width: 149px;height: 35px;background-color:#F44C4C;color:#FFFFFF;font-weight:700;font-size: 15px;"(click)="myexpandorder()">CANCEL</button>
+                                                           </div> 
+                                                        </div>
+                                                        <div class="d-flex ">
+                                                            <div class="ps-3"><p class="text-body fw-medium " style="color:#000000 !important;font-size: 15px;font-weight: 500;">Customer Name :<span style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{customerdetail.customerName}}</span></p>  
+                                                        </div>
+                                                      
+                                                            
+                                                       </div>
+                                                       <div class="text-muted ps-3"><p class="text-body fw-medium mt-2" style="color:#000000 !important;font-size: 15px;font-weight: 500">Email:<span style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{customerdetail.email}}</span></p></div>
+                                                       <div class="text-muted ps-3"><p class="text-body fw-medium mt-4" style="color:#000000 !important;font-size: 15px;font-weight: 500">Contact:<span style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{customerdetail.contact}}</span></p></div>   
+                                                
+                                                       <p class="text-capitalize mt-4"style="font-weight: 600;font-size: 20px;line-height: 30px;color:#F44C4C">Address Detail</p>
+                                                        <p class="ps-3"style="color:#000000 !important;font-size: 20px;font-weight: 500">Shipping address : <br><span class="ps-3" style="font-size: 16px;font-weight: 400;">{{addressdetail.shippingAddress}}
+                                                            </span></p>
+                                                      <div class="col-md-12" style="overflow: scroll;"> 
+                                                        <table class="table" >
+                                                            <thead >
+                                                              <tr>
+                                                                <th scope="col" style=" color:#475156 !important">PRODUCT NAME</th>
+                                                                <th scope="col" style=" color:#475156 !important">CODE</th>
+                                                                <th scope="col" style=" color:#475156 !important">BIN</th>
+                                                                <th scope="col" style=" color:#475156 !important">DESCRIPTION</th>
+                                                                <th scope="col" style=" color:#475156 !important">VENDER </th>
+                                                                <th scope="col" style=" color:#475156 !important">NOTES</th>
+                                                                <th scope="col" style=" color:#475156 !important">IMAGE</th>
+                                                                <th scope="col" style=" color:#475156 !important">QUTANITY</th>
+                                                                <th scope="col" style=" color:#475156 !important">PRICE</th>
+                                                                <th scope="col" style=" color:#475156 !important">WEIGHT</th>
+                                                                <th scope="col" style=" color:#475156 !important">TOTAL PRICE</th>
+                                                                <th scope="col" style=" color:#475156 !important">REMARK</th>
+                                                              </tr>
+                                                            </thead>       
+                                                            <tbody>
+                                                                <ng-container>
+                                                                
+                                                                  <tr *ngFor="let data of productDetails">
+                                                                    <td>
+                                                                       {{data.productName}}
+                                                                       <button type="button" class="btn " style="width: 64px;height: 29px;font-size: 8px;" [ngClass]="{'selected': data.confirmStatus === 'Pending'}">Pending</button>
+                                                                       <button type="button" class="btn btn-outline-primary" style="width: 64px;height: 29px;font-size: 8px;" [ngClass]="{'selected': data.confirmStatus === 'Confirm'}">Confirm</button>
+                                                                       <button type="button" class="btn btn-outline-primary" style="width: 64px;height: 29px;font-size: 8px;" [ngClass]="{'selected': data.confirmStatus === 'Missing'}">Missing</button>
+                                                                       {{data.updatedBy}}
+                                                                    </td>
+
+                                                                    <td>   
+                                                                    {{data.code}}                                                             
+                                                                    </td>
+                                                                    <td>{{data.bin}}</td>
+                                                                    <td>{{data.description}}</td>
+                                                                    <td>
+                                                                    {{data.vendor}}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{data.notes}}
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <img class="avatar-xs customer-image-elem" alt="" [src]="data.image || 'assets/images/download (20).png'" style="width:62px;height:62px">
+
+                                                                    </td>
+                                                                    <td>
+                                                                        {{data.quantity}}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{data.price}}
+                                                                    </td>
+                                                                    <td>
+                                                                        {{data.weight}}
+                                                                        <i class="bx bx-edit" *ngIf="data.unit=='LBS'" style="color: #000000;"></i>
+                                                                    </td>
+                                                                
+                                                                    <td>
+                                                                        {{data.totalPrice}}   
+                                                                    </td>
+                                                                    <td>
+                                                                      
+                                                                    <textarea>
+                                                                        {{data.remark}}   
+                                                                    </textarea>
+                                                                    </td>
+                                                                  </tr>
+                                                                </ng-container>
+                                                              </tbody>
+                                                          </table>
+                                                      </div>
+                                                        <p class="text-capitalize mt-4"style="font-weight: 600;font-size: 20px;line-height: 30px;color:#F44C4C">Order Detail</p>
+                                                        <div class="text-muted mt-4 ps-3"><p class="text-body fw-medium" style="color:#000000 !important;font-size: 15px;font-weight: 500">Order Amount : <span style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{orderDetails.orderAmount}}</span></p></div>
+                                                        <div class="text-muted mt-4 ps-3"><p class="text-body fw-medium" style="color:#000000 !important;font-size: 15px;font-weight: 500">Order Status: <span  style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{orderDetails.orderStatus}}</span></p></div>   
+                                                        <div class="text-muted mt-4 ps-3"><p class="text-body fw-medium" style="color:#000000 !important;font-size: 15px;font-weight: 500">Shipping Date and Time: <span  style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{orderDetails.shippingDate}}</span></p></div>   
+                                                        <div class="text-muted mt-4 ps-3"><p class="text-body fw-medium" style="color:#000000 !important;font-size: 15px;font-weight: 500">Transaction Id: <span  style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{orderDetails.transactionId}}</span></p></div>
+                                                        <div class="text-muted mt-4 ps-3"><p class="text-body fw-medium" style="color:#000000 !important;font-size: 15px;font-weight: 500">Transaction Status  :<span  style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{orderDetails.transactionStatus}}</span></p></div>
+                                                        <div class="text-muted mt-4 ps-3"><p class="text-body fw-medium" style="color:#000000 !important;font-size: 15px;font-weight: 500">Delivery Cost   :<span  style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{orderDetails.deliveryCost}}</span></p></div>
+                                                        <div class="text-muted mt-4 ps-3"><p class="text-body fw-medium" style="color:#000000 !important;font-size: 15px;font-weight: 500">Note   :<span style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{orderDetails.note}}</span></p></div>
+
+                                                        
+
+                                                       
+
+                                                     </div>
+                                                    
+                                                <!--end card-->
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                                <div  class="d-flex" style="margin-left: 24%;margin-top: 2%;">
+                                    <button type="button" class="btn" style="width: 277px;height: 48px; background-color:#4C7C17;color:#FFFFFF;font-weight:700;font-size: 15px;" (click)="saveorder(orderDetails.orderId)">SAVE</button> 
+                                    <button type="button" class="btn  ms-4" style="width: 277px;height: 48px;background-color:#F44C4C;color:#FFFFFF;font-weight:700;font-size: 15px;" (click)="myexpandorder()">CANCEL</button>
+                                </div> 
+                            </div>
+                            <div class="" *ngIf="myorderrOpenn" style="margin-left: 27px;">
+                                <div class="row">
+                                    <div class=" mx-auto">
+                                        <div class="content-wrapper">
+                                            <div   style="border-radius: 16px;">
+                                                <div class="p-4">    
+                                                      <div class="col-md-12 " >
+                                                        <div class="card-title d-flex align-items-center">
+                                                            <div class="col-md-12 col-lg-12 col-xl-12 d-flex">
+                                                             <div class="col-md-6 col-lg-6 col-xl-6"> 
+                                                                <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Order List</h5>
+                                                             </div>
+                                                          
+                                                            </div>
+                                                          
+                                                        </div>
+                                                        <div style="width:326px;height: 36px;">
+                                                            <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (change)="getallmyorder()" [(ngModel)]="selectcategoryid">
+                                                                <option   [value]="">Please select vendor</option>
+                                                                <option *ngFor="let data of vendor" [value]="data">{{ data }}</option>
+                                                              </select>
+                                                          </div>
+                                                      </div>
+                                                    
+                                                      <img src="../../../assets/images/line 1.png"  class="" style="width: 851px;height: 2px;"  >
+
+                                                     
+                                                   
+                                                     
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex" style="margin-left: 67%;">
+                                          <p class="text-dark" style="margin-top: 9px;">Search:</p>
+                                            <!-- <p class="text-muted float-md-end mb-md-0"><a href="javascript:void(0);"><i
+                                                        class="ph-storefront align-middle me-1"></i> Visit Store</a></p> -->
+                                         <div  class="text-end ps-3">
+                                         <input type="text ps-2" class="form-control" (keyup)="getallmyorder()" [(ngModel)]="searchText">
+                                         </div>
+                                       
+                                            
+
+                                         </div>
+                                <div  style="margin-left:8px;">
+                                    <div class="mt-2 cardNA mb-3" *ngIf="!myorderdata.length">
+                                        <h5 class="mb-1">Product not available</h5>
+                                      </div>
+                                    <table class="table" >
+                                        <thead >
+                                          <tr>
+                                            <th scope="col" style=" color:#475156 !important">TRANSACTION ID</th>
+                                            <th scope="col" style=" color:#475156 !important">TRANSACTION DATE</th>
+                                            <th scope="col" style=" color:#475156 !important">CUSTOMER NAME</th>
+                                            <th scope="col" style=" color:#475156 !important">ADDRESS</th>
+                                            <th scope="col" style=" color:#475156 !important">STATUS</th>
+                                            <th scope="col" style=" color:#475156 !important">CONTACT</th>
+                                            <th scope="col" style=" color:#475156 !important">ACTION</th>
+                                            
+                                          </tr>
+                                        </thead>       
+                                        <tbody>
+                                            <ng-container>
+                                            
+                                              <tr  *ngFor="let data of myorderdata">
+                                                <td>
+                                                {{data.transactionId}}
+                                                </td>
+                                                <td>   
+                                                    {{data.transactionDate}}                                                                        
+                                                </td>
+                                                <td> {{data.customerName}}</td>
+                                                <td> {{data.shippingAddress}}</td>
+                                                <td>
+                                                    {{data.status}}
+                                                </td>
+                                                <td>
+                                                    {{data.contact}}
+                                                </td>
+                                                <td>
+                                                  <i *ngIf="data.locks== 'false'"  class="bx bx-search" (click)="getmyorderbyorderid(data.orderId);myorderopen()" ></i>
+                                                  <i *ngIf="data.locks== 'true'"  class="bx bx-lock"  ></i>
+                                                </td>
+                                               
+                                              </tr>
+                                            </ng-container>
+                                          </tbody>
+                                    </table>  
+                                </div>     
+                                    
+                                </div>
+                            </div>
+                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+     
+         
+        </div>
+        
 
