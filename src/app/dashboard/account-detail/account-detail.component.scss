@@ -10,8 +10,8 @@
     border-radius: 1px;
 }
 .btnnn {
-  width: 105px;
-  height: 48px;
+  width: 135px;
+  height: 39px;
   padding: 0 24px; /* Adjusted padding syntax */
   gap: 8px;
   font-weight: 700;
@@ -112,6 +112,14 @@
     position: absolute;
     top: 49px;
     right: 437px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid  black; /* Arrow color */
+  }
+  .select-arrow1 {
+    position: absolute;
+    top: 108px;
+    right: 556px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid  black; /* Arrow color */

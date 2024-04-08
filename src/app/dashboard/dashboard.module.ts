@@ -39,6 +39,7 @@ import { OrderDetailComplatedComponent } from './order-detail-complated/order-de
 import { EmailSignupComponent } from './email-signup/email-signup.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MainComponent } from './main/main.component';
+import { InventoryPopupComponent } from './account-detail/inventory-popup/inventory-popup.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { MainComponent } from './main/main.component';
     OrderDetailComplatedComponent,
     EmailSignupComponent,
     MainComponent,
+    InventoryPopupComponent,
 
   ],
   imports: [

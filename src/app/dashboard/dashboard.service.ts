@@ -188,5 +188,18 @@ export class DashboardService {
   // @ts-ignore
     return this.http.put<any>(`${environment.baseurl}/brfooduser/saveOrderPage?orderId=${orderId}`)
   }
-
+  getOrderProductInventoryedit(productId:any,orderItemId:any){
+    return this.http.get<any>(`${environment.baseurl}/brfooduser/getOrderProductInventory?productId=${productId}&orderItemId=${orderItemId}`)
+  }
+  changeweight(weight: any, inventoryId: any, orderItemId: any) {
+    const url = `${environment.baseurl}/brfooduser/saveWeight?weight=${weight}&inventoryId=${inventoryId}&orderItemId=${orderItemId}`;
+    return this.http.post(url, {});
+  }
+  checkWeightExists(weight:any,sku:any,orderItemId:any ){
+    return this.http.get<any>(`${environment.baseurl}/brfooduser/checkWeightExists?weight=${weight}&sku=${sku}&orderItemId=${orderItemId}`)
+  }
+  Updateremark(remark: any, orderItemId: any) {
+    const url = `${environment.baseurl}/brfooduser/updateRemarkByOrderItemsId?remark=${remark}&orderItemId=${orderItemId}`;
+    return this.http.post(url, {});
+  }
 }

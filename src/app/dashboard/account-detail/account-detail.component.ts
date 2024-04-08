@@ -8,6 +8,7 @@ import { DashboardService } from '../dashboard.service';
 import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { InventoryPopupComponent } from './inventory-popup/inventory-popup.component';
 
 @Component({
   selector: 'app-account-detail',
@@ -21,6 +22,19 @@ export class AccountDetailComponent {
   myorderdata:any;
   selectedButton: string | null = null;
   dropdowndata:any;
+  dropdowndata1:any;
+  dropdowndata2:any;
+  dropdowndata3:any;
+  dropdowndata4:any;
+  dropdowndata5:any;
+  dropdowndata6:any;
+  dropdowndata7:any;
+  dropdowndata8:any;
+  dropdowndata9:any;
+  dropdowndata10:any;
+  dropdowndata11:any;
+  dropdowndata12:any;
+
   mydata:any;
   type='pickup'
   searchText: string = '';
@@ -39,6 +53,7 @@ transationdate=''
 routee=''
   customerdetail:any;
   totalrecordLength:any;
+  totalrecordLengthh:any;
   orderserach!:FormGroup;
   orderform!:FormGroup
   userid:any;
@@ -575,6 +590,12 @@ pageChangedd(event: any) {
   // const calculatedPageIndex = this.currentPage * this.pageSize;
   this.getalladdress(event.pageIndex);
 }
+pageChangeddd(event: any) {
+  this.pageSize = event.pageSize;
+  this.currentPage = event.pageIndex;
+  // const calculatedPageIndex = this.currentPage * this.pageSize;
+  // this.getorderbyorderid();
+}
 getallstaff(page:number){
   this.userid=localStorage.getItem('id');
   if(this.userid == null){
@@ -618,7 +639,7 @@ getallmyorder() {
     }
   })
 }
-getorderbyorderid(orderid:any,orderitemid:any) {
+getorderbyorderid(orderid:any,orderitemid:any,) {
   const serach =''
   console.log('hksk')
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
@@ -628,7 +649,13 @@ getorderbyorderid(orderid:any,orderitemid:any) {
       this.customerdetail=this.data.response.dataSet.customerDetails;
       this.addressdetail=this.data.response.dataSet.shippingDetails;
       this.productDetails=this.data.response.dataSet.productDetails;
-      this.orderDetails=this.data.response.dataSet.orderDetails
+      this.orderDetails=this.data.response.dataSet.orderDetails;
+      this.totalrecordLengthh = this.data.response.totalElements;
+      console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLengthh;
+      });
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -646,7 +673,13 @@ getmyorderbyorderid(orderid:any) {
       this.customerdetail=this.data.response.dataSet.customerDetails;
       this.addressdetail=this.data.response.dataSet.shippingDetails;
       this.productDetails=this.data.response.dataSet.productDetails;
-      this.orderDetails=this.data.response.dataSet.orderDetails
+      this.orderDetails=this.data.response.dataSet.orderDetails;
+      this.totalrecordLengthh = this.data.response.totalElements;
+      console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLengthh;
+      });
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -829,6 +862,29 @@ openewuserdialog(): void {
     this.getallstaff(0);
   });
 }
+openeinventorydialog(productName: any, totalPrice: any, productId: any, orderItemId: any, quantity: any, inventoryItems: any): void {
+
+  const dialogRef: MatDialogRef<InventoryPopupComponent> = this.dialog.open(InventoryPopupComponent, {
+    width: '914px',
+    height: '384px',  
+    data:{
+      productName:productName,
+      totalPrice:totalPrice,
+      productId:productId,
+      orderItemId:orderItemId,
+      quantity:quantity,
+      inventoryItems:inventoryItems
+
+    }
+  });
+
+  // Subscribe to the afterClosed event
+  dialogRef.afterClosed().subscribe(result => {
+    // This code will be executed when the dialog is closed
+    // You can call your API or perform any other action here
+    this.getallstaff(0);
+  });
+}
 downoladinvoice(orderid:any){
   this.dashboardservice.downloadprintinvoice(orderid).subscribe( res =>{
     this.data =res.response;
@@ -887,5 +943,130 @@ getalldropdown(type:any) {
      }
    })
  }
- 
+ getalldropdown1(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata1 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown2(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata2 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown3(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata3 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown4(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata4 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown5(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata5 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown6(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata6 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown7(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata7 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown8(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata8 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown9(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata9 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown10(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata10 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getalldropdown11(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata11 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+updateremark(remark:any,orderItemId:any){
+
+  this.dashboardservice.Updateremark(remark,orderItemId).subscribe((res) => {
+  });
+}
 }
