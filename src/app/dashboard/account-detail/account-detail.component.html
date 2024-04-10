@@ -1025,7 +1025,7 @@
                                                         <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">CODE</th>
                                                         <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">BIN</th>
                                                         <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">VENDER</th>
-                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">QUTANITY</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">QUANTITY</th>
                                                         <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">PRICE</th>
                                                         <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">TOTAL</th>
                                                         <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">Customer Name</th>
@@ -1074,10 +1074,10 @@
                                                               {{data.transactionDate | date:'MM/dd/yyyy'}}
                                                           </td>
                                                           <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
-                                                              {{data.route}}
+                                                              {{data.route ? data.route:'-'}}
                                                           </td>
                                                           <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
-                                                              {{data.driver}}
+                                                              {{data.driver ? data.driver:'-'}}
                                                           </td>
                                                           <td>
                                                        <i *ngIf="data.locks== 'false'" class="bx bx-search" style="color: #000000;font-size: 16px;" (click)="myorderopen();getorderbyorderid(data.orderId,data.orderItemId)"   [class.password-open]="myorderOpen"></i>
@@ -1255,13 +1255,14 @@
                                                             
                                                               <tr *ngFor="let data of productDetails">
                                                                 <td style="width: 267px;color: #000000;">
-                                                                   {{data.productName}} <br>
+                                                                    <s *ngIf="data.quantity === 0">{{ data.productName }}</s>
+                                                                    <span *ngIf="data.quantity > 0">{{ data.productName }}</span><br>
                                                                 <div class="mt-2">
                                                                     <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 6px 0px 0px 6px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Pending' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Pending'}" (click)="changestausofproduct('Pending',data.remark,data.orderItemId,data.orderId)">PENDING</button>
                                                                     <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Confirm' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Confirm'}"(click)="changestausofproductt('Confirm',data.remark,data.orderItemId,data.orderId)">CONFIRM</button>
                                                                     <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 0px 6px 6px 0px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Missing' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Missing'}"(click)="showChangeProductButton(data.remark, data.orderItemId, data.orderId, data.productId,'Missing');">MISSING</button>
                                                                 </div>
-                                                                   <br>
+                                                                   <!-- <br> -->
                                                                    <div>
                                                                      <button type="button" class="btn-sm me-1 m-1" style="width: 131px;height: 32px;font-size: 11px;background: #F44C4C;border: antiquewhite; color: white;" *ngIf="data.quantity > 0 && showChangeProduct[data.orderItemId]" (click)="changeproductpopup(data.orderId,data.orderItemId,data.productId)">Change Product</button>
                                                                    </div>
