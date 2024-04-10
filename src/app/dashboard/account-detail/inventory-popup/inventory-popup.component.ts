@@ -139,6 +139,7 @@ export class InventoryPopupComponent {
     // Use the limited inventoryIds and weights arrays when calling the service
     this.service.changeweight(weights, inventoryIds, this.orderItemId).subscribe((res) => {
       // this.getmyorderbyorderid(orderid);
+      this.closeDialog()
     });
   }
   // getmyorderbyorderid(orderid:any) {
@@ -227,4 +228,8 @@ export class InventoryPopupComponent {
       this.inputValues[index] = ''; // Clear the input field
     }
   }
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
+
 }

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { InventoryPopupComponent } from './inventory-popup/inventory-popup.component';
+import { ChangeProductPopupComponent } from '../change-product-popup/change-product-popup.component';
 
 @Component({
   selector: 'app-account-detail',
@@ -20,6 +21,7 @@ export class AccountDetailComponent {
   formGroup!:FormGroup;
   quantity1:any;
   myorderdata:any;
+  showChangeProduct:boolean[]= [];
   selectedButton: string | null = null;
   dropdowndata:any;
   dropdowndata1:any;
@@ -61,6 +63,8 @@ routee=''
   orderDetails:any
   reorder:any;
   addressdetail:any;
+  isConfirmSelected:boolean=false;
+  isPendingSelected:boolean=false;
   isexpandorder:boolean=false;
   quantity:any;
   bulkoderguide:any;
@@ -73,7 +77,7 @@ routee=''
   data:any;
   allorder:any;
   categoryy:any;
-
+  isMissingSelected:boolean=true;
   categoryid=0;
   accountTypeRes:any;
   addOnUpdate:boolean=false;
@@ -645,7 +649,6 @@ getorderbyorderid(orderid:any,orderitemid:any,) {
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
-   
       this.customerdetail=this.data.response.dataSet.customerDetails;
       this.addressdetail=this.data.response.dataSet.shippingDetails;
       this.productDetails=this.data.response.dataSet.productDetails;
@@ -669,7 +672,6 @@ getmyorderbyorderid(orderid:any) {
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
-   
       this.customerdetail=this.data.response.dataSet.customerDetails;
       this.addressdetail=this.data.response.dataSet.shippingDetails;
       this.productDetails=this.data.response.dataSet.productDetails;
@@ -862,6 +864,24 @@ openewuserdialog(): void {
     this.getallstaff(0);
   });
 }
+changeproductpopup(orderid:any,orderItemId:any,replaceProductId:any): void {
+  const dialogRef: MatDialogRef<ChangeProductPopupComponent> = this.dialog.open(ChangeProductPopupComponent, {
+    width: '600px',
+    height: '320px',
+    data:{
+      orderid:orderid,
+      orderitemid:orderItemId,
+      replaceproductid:replaceProductId
+    }
+  });
+
+  // Subscribe to the afterClosed event
+  dialogRef.afterClosed().subscribe(result => {
+    // This code will be executed when the dialog is closed
+    // You can call your API or perform any other action here
+    this.getallstaff(0);
+  });
+}
 openeinventorydialog(productName: any, totalPrice: any, productId: any, orderItemId: any, quantity: any, inventoryItems: any): void {
 
   const dialogRef: MatDialogRef<InventoryPopupComponent> = this.dialog.open(InventoryPopupComponent, {
@@ -931,6 +951,56 @@ getallvendor() {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
     }
   })
+}
+
+changestaus(orderItemId: any) {
+  this.dashboardservice.changecheckedstatus(orderItemId).subscribe(
+    (res: any) => { // Assuming res is of type any for now
+      if (res && res.status === 0) { // Check if res exists and has a status property
+        this.snackBar.open("Changed successfully", 'x', { duration: 2000 });
+      }
+    },
+    (error) => {
+      console.error('Error occurred:', error);
+      // Handle error appropriately, show error message or take other actions
+    }
+  );
+}
+changestausofproduct(confirmStatus:any,remark:any,orderItemId:any,orderId:any){
+  this.isPendingSelected = true;
+  this.isConfirmSelected = false;
+  this.isMissingSelected = false;
+  this.showChangeProduct[orderItemId] = false;
+  this.dashboardservice.changestatusofproduct(confirmStatus,remark,orderItemId).subscribe(
+    (res: any) => { // Assuming res is of type any for now
+      if (res && res.status === 0) { // Check if res exists and has a status property
+        this.snackBar.open("Changed successfully", 'x', { duration: 2000 });
+        this.getmyorderbyorderid(orderId)
+      }
+    },
+    (error) => {
+      console.error('Error occurred:', error);
+      // Handle error appropriately, show error message or take other actions
+    }
+  );
+}
+changestausofproductt(confirmStatus:any,remark:any,orderItemId:any,orderId:any){
+  this.isPendingSelected = false;
+  this.isConfirmSelected = true;
+  this.isMissingSelected = false;
+  this.showChangeProduct[orderItemId] = false;
+  this.dashboardservice.changestatusofproduct(confirmStatus,remark,orderItemId).subscribe(
+    (res: any) => { // Assuming res is of type any for now
+      if (res && res.status === 0) { // Check if res exists and has a status property
+        this.snackBar.open("Changed successfully", 'x', { duration: 2000 });
+        this.getmyorderbyorderid(orderId);
+      }
+    },
+    (error) => {
+      console.error('Error occurred:', error);
+      // Handle error appropriately, show error message or take other actions
+    }
+  );
 }
 getalldropdown(type:any) {
    this.dashboardservice.getalldropdowndata(type).subscribe(res => {
@@ -1064,9 +1134,43 @@ getalldropdown11(type:any) {
     }
   })
 }
+getalldropdown12(type:any) {
+  this.dashboardservice.getalldropdowndata(type).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.dropdowndata12 = this.data.response.dataSet;
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
 updateremark(remark:any,orderItemId:any){
 
   this.dashboardservice.Updateremark(remark,orderItemId).subscribe((res) => {
   });
+}
+showChangeProductButton(remark:any,orderItemId:any,orderId:any,productId:any,confirmStatus:any) {
+  this.isPendingSelected = false;
+  this.isConfirmSelected = false;
+  this.isMissingSelected = true;
+  this.showChangeProduct[orderItemId] = true;
+  // this.confirmStatus[orderItemId]='missing';
+  // var elementPos = array.map(function(x) {return x.id; }).indexOf(idYourAreLookingFor);
+  // var objectFound = array[elementPos];
+  // let elementPos = this.productdetail.map((x: { orderItemId: any; }) => {return x.orderItemId; }).indexOf(orderItemId);
+  // this.productdetail[elementPos].confirmStatus = 'Missing';
+  this.dashboardservice.changestatusofproduct(confirmStatus,remark,orderItemId).subscribe((res)=>{
+    this.getmyorderbyorderid(orderId)
+    if(res['status']==0){
+      // this.getmyorderbyorderid(orderId);
+      // this.gettorderDetailsById();
+      // this.changrproductlist = res.response;
+
+    }
+
+
+  });
+
 }
 }

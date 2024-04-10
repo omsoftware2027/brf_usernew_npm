@@ -1,0 +1,30 @@
+<div class="">
+    <div class="p-3">
+        <div class="text-end">
+            <button type="button" class="btn-close" id="deleteRecord-close" (click)=" closeDialog()"
+               ></button>
+        </div>
+
+
+        <div class="mt-2 fs-base" >
+            <h4 class="mb-1" style="color: #F44C4C;">Change Product</h4>
+            <hr>
+            <div class=" p-md-3">
+                <div class="mb-3">
+                    <label for="product-category-input" class="form-label">Product category</label>
+                    <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" [(ngModel)]="productId">
+              
+                        <option *ngFor="let data of productdata" [value]="data.productId">{{ data.productName }}</option>
+                      </select>
+                  </div>
+     
+               </div>
+     
+             <div class="modal-footer">
+               <div class="hstack gap-2 justify-content-end">
+                   <button type="submit" class="btn" id="add-btn" style="background-color: #F44C4C;color: white;"(click)="changeproduct()" >Change product</button>
+               </div>
+           </div>
+        </div>
+    </div><!-- /.modal-content -->
+</div>

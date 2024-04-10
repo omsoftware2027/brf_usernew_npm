@@ -91,9 +91,10 @@
             </div>
          </div>
         </div>
-        <div class="col-md-9 " >
+        <div class="col-md-9 " style="width:78%">
             <div class="row">
-                <div class="col-xl-11 mx-auto">
+                <div class="col-xl-11 "
+                style="margin-left: 2rem;">
                     <div class="content-wrapper">
                         <div class="card "  style="border-radius: 16px;">
                             <div class="card-body p-4">
@@ -1013,74 +1014,81 @@
                                               </div>
                                           </div>
                                           <img src="../../../assets/images/line 1.png"  class="" style="width: 851px;height: 2px;"  >
-                                          <div class="col-md-12 card" style="border-radius: 9px;overflow-y: scroll;max-width:100%">
+                                         <div class="card" style="border-radius: 9px;">
+                                            <div class="col-md-12 mt-3" style="overflow-y: scroll;max-width:100%">
                                           
-                                              <table class="table" >
-                                                  <thead class="mt-4">
-                                                    <tr>
-                                                      <th></th>
-                                                      <th scope="col" style=" color:#475156 !important;width: 150px !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">PRODUCT NAME</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">CODE</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">BIN</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">VENDER</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">QUTANITY</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">PRICE</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">TOTAL</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">REF</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">STATUS</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">T DATE</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">ROUTE</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">DRIVER</th>
-                                                      <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">ACTIONS</th>
-                                                    </tr>
-                                                  </thead>       
-                                                  <tbody>
-                                                      <ng-container>
-                                                      
-                                                        <tr *ngFor="let data of category">
+                                                <table class="" style="width: max-content;">
+                                                    <thead class="mt-4">
+                                                      <tr>
+                                                        <th style="width: 50px;padding: 20px;"></th>
+                                                        <th  style=" color:#475156 !important;width: 150px !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important; width: 200px;">PRODUCT NAME</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">CODE</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">BIN</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">VENDER</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">QUTANITY</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">PRICE</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">TOTAL</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">Customer Name</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">REF</th>
+                                                        <th style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">STATUS</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">T DATE</th>
+                                                        <th style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">ROUTE</th>
+                                                        <th style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 80px;">DRIVER</th>
+                                                        <th  style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width: 150px;">ACTIONS</th>
+                                                      </tr>
+                                                    </thead>       
+                                                    <tbody>
+                                                      <tr *ngFor="let data of category">
                                                           <td>
                                                               <div class="form-check">
-                                                                  <input class="form-check-input" type="checkbox" name="checkAll" >
+                                                                  <input class="form-check-input" type="checkbox" name="checkAll"  [checked]="data.flag==1" (click)="changestaus(data.orderItemId)" >
                           
                                                                 <label class="form-check-label"></label>
                                                               </div>
-                                                          <td style="width: 150px !;" style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
+                                                          <td style="width: 150px !;" style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;width: 185px;padding-top: 19px;                                                          " >
                                                            {{data.productName}}
                                                           </td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">{{data.skuCode}}</td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">{{data.bin}}</td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">{{data.vendor}}</td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px;">{{data.skuCode}}</td>
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px;">{{data.bin}}</td>
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">{{data.vendor}}</td>
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
                                                               {{data.quantity}}
                                                           </td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
                                                               {{data.price}}
                                                           </td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
-                                                              {{data.total}}
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
+                                                              {{data.totalPrice}}
                                                           </td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;width:253px;padding-top: 19px">
+                                                            {{data.customerName}}
+                                                        </td>
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;width:253px;padding-top: 19px">
                                                               {{data.ref}}
                                                           </td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
+                                                       
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
                                                               {{data.orderStatus}}
                                                           </td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
-                                                              {{data.tdate}}
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
+                                                              {{data.transactionDate | date:'MM/dd/yyyy'}}
                                                           </td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
                                                               {{data.route}}
                                                           </td>
-                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;">
+                                                          <td style="font-weight: 400;font-size: 14px;line-height: 16px;color: #000000;padding-top: 19px">
                                                               {{data.driver}}
                                                           </td>
                                                           <td>
-                                                       <i *ngIf="data.locks== 'false'" class="bx bx-search" (click)="myorderopen();getorderbyorderid(data.orderId,data.orderItemId)"   [class.password-open]="myorderOpen"></i>
-                                                       <i  *ngIf="data.locks== 'true'"  class="bx bx-lock"    ></i>
-
+                                                       <i *ngIf="data.locks== 'false'" class="bx bx-search" style="color: #000000;font-size: 16px;" (click)="myorderopen();getorderbyorderid(data.orderId,data.orderItemId)"   [class.password-open]="myorderOpen"></i>
+                                                       <i  *ngIf="data.locks== 'true'"  class="bx bx-lock"  style="color: #000000;font-size: 16px;margin-left: 20px;"  ></i>
+  
                                                           </td>
                                                         </tr>
                                                         <tr>
+                                                            <td>
+
+                                                            </td>
                                                           <td>
                                                               <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('PRODUCTNAME')" (change)="getallexpandorder('')" [(ngModel)]="productname">
                                                                   <option   value="">Please select product</option>
@@ -1153,14 +1161,21 @@
                                                                   <option *ngFor="let data of dropdowndata11" [value]="data">{{ data }}</option>
                                                                 </select>
                                                           </td>
+                                                          <td>
+                                                            <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown12('DRIVER')" [(ngModel)]="routee" >
+                                                                <option   value="">Please select product</option>
+                                                                <option *ngFor="let data of dropdowndata12" [value]="data">{{ data }}</option>
+                                                              </select>
+                                                        </td>
                                                         </tr>
-                                                      </ng-container>
-                                                    </tbody>
-                                                </table>
-                                                <div style="width: 150%;">
-                                                  <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
-                                                </div>
-                                          </div>
+                                                      </tbody>
+                                                  </table>
+                                                  
+                                            </div>
+                                            <div style="width: 100%;">
+                                                <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #FFFFFF;"showFirstLastButtons></mat-paginator>
+                                              </div>
+                                         </div>
                                         </div>  
                                   </div>
                                 </div>
@@ -1168,7 +1183,7 @@
                            <div>
                             <div class="" *ngIf="myorderOpen">
                                 <div class="row">
-                                    <div style="margin-left: 39px;">
+                                    <div style="margin-left: -8px;">
                                         <div class="content-wrapper">
                                             <div   style="border-radius: 16px;">
                                                 <div class="p-4">    
@@ -1218,7 +1233,7 @@
                                                     <p class="ps-3"style="color:#000000 !important;font-size: 20px;font-weight: 500">Shipping address : <br><span class="ps-3" style="font-size: 16px;font-weight: 400;">{{addressdetail.shippingAddress}}
                                                         </span></p>
                                                   <div class="col-md-12" style="overflow: scroll;"> 
-                                                    <table class="table" >
+                                                    <table class="table" style="width: max-content;" >
                                                         <thead >
                                                           <tr>
                                                             <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">PRODUCT NAME</th>
@@ -1239,45 +1254,52 @@
                                                             <ng-container>
                                                             
                                                               <tr *ngFor="let data of productDetails">
-                                                                <td>
-                                                                   {{data.productName}}
-                                                                   <button type="button" class="btn " style="width: 64px;height: 29px;font-size: 8px;" [ngClass]="{'selected': data.confirmStatus === 'Pending'}">Pending</button>
-                                                                   <button type="button" class="btn btn-outline-primary" style="width: 64px;height: 29px;font-size: 8px;" [ngClass]="{'selected': data.confirmStatus === 'Confirm'}">Confirm</button>
-                                                                   <button type="button" class="btn btn-outline-primary" style="width: 64px;height: 29px;font-size: 8px;" [ngClass]="{'selected': data.confirmStatus === 'Missing'}">Missing</button>
-                                                                   {{data.updatedBy}}
+                                                                <td style="width: 267px;color: #000000;">
+                                                                   {{data.productName}} <br>
+                                                                <div class="mt-2">
+                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 6px 0px 0px 6px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Pending' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Pending'}" (click)="changestausofproduct('Pending',data.remark,data.orderItemId,data.orderId)">PENDING</button>
+                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Confirm' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Confirm'}"(click)="changestausofproductt('Confirm',data.remark,data.orderItemId,data.orderId)">CONFIRM</button>
+                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 0px 6px 6px 0px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Missing' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Missing'}"(click)="showChangeProductButton(data.remark, data.orderItemId, data.orderId, data.productId,'Missing');">MISSING</button>
+                                                                </div>
+                                                                   <br>
+                                                                   <div>
+                                                                     <button type="button" class="btn-sm me-1 m-1" style="width: 131px;height: 32px;font-size: 11px;background: #F44C4C;border: antiquewhite; color: white;" *ngIf="data.quantity > 0 && showChangeProduct[data.orderItemId]" (click)="changeproductpopup(data.orderId,data.orderItemId,data.productId)">Change Product</button>
+                                                                   </div>
+                                                                   <br>
+                                                                   <span *ngIf="data.updatedBy !=null " style="color:#000000">Updated by:</span>{{data.updatedBy}}
                                                                 </td>
 
-                                                                <td>   
+                                                                <td style="color:#000000">   
                                                                 {{data.code}}                                                             
                                                                 </td>
-                                                                <td>{{data.bin}}</td>
-                                                                <td>{{data.description}}</td>
-                                                                <td>
+                                                                <td style="color:#000000">{{data.bin}}</td>
+                                                                <td style="width: 267px;color:#000000">{{data.description}}</td>
+                                                                <td style="color:#000000">
                                                                 {{data.vendor}}
                                                                 </td>
-                                                                <td>
+                                                                <td style="color:#000000">
                                                                     {{data.notes}}
 
                                                                 </td>
-                                                                <td>
+                                                                <td >
                                                                     <img class="avatar-xs customer-image-elem" alt="" [src]="data.image || 'assets/images/download (20).png'" style="width:62px;height:62px">
 
                                                                 </td>
-                                                                <td>
+                                                                <td style="color:#000000">
                                                                     {{data.quantity}}
                                                                 </td>
-                                                                <td>
+                                                                <td style="color:#000000">
                                                                     {{data.price}}
                                                                 </td>
-                                                                <td>
+                                                                <td style="color:#000000">
                                                                     {{data.weight}}
                                                                     <i class="bx bx-edit" *ngIf="data.unit=='LBS'" style="color: #000000;" (click)="openeinventorydialog(data.productName,data.code,data.productId,data.orderItemId,data.quantity,data.inventoryItems)"></i>
                                                                 </td>
                                                             
-                                                                <td>
+                                                                <td style="color:#000000">
                                                                     {{data.totalPrice}}   
                                                                 </td>
-                                                                <td>
+                                                                <td style="color:#000000">
                                 
                                                                     <textarea [(ngModel)]="data.remark" (keyup)="updateremark(data.remark, data.orderItemId)"></textarea>
                                                                 </td>
@@ -1285,9 +1307,10 @@
                                                             </ng-container>
                                                           </tbody>
                                                       </table>
-                                                      <div style="width: 150%;">
-                                                        <mat-paginator #paginatorRef (page)="pageChangeddd($event)" [length]="totalrecordLengthh" [pageSize]="pageSize"  style="background-color: #FFFFFF;" showFirstLastButtons></mat-paginator>
-                                                      </div>
+
+                                                  </div>
+                                                  <div style="width: 100%;">
+                                                    <mat-paginator #paginatorRef (page)="pageChangeddd($event)" [length]="totalrecordLengthh" [pageSize]="pageSize"  style="background-color: #FFFFFF;" showFirstLastButtons></mat-paginator>
                                                   </div>
                                                     <p class="text-capitalize mt-4"style="font-weight: 600;font-size: 20px;line-height: 30px;color:#F44C4C">Order Detail</p>
                                                     <div class="text-muted mt-4 ps-3"><p class="text-body fw-medium" style="color:#000000 !important;font-size: 15px;font-weight: 500">Order Amount : <span style="color:#8D8D8D;font-size: 15px;font-weight: 500">{{orderDetails.orderAmount}}</span></p></div>
@@ -1365,9 +1388,9 @@
                                          </div>
                                 <div  style="margin-left:8px;overflow: auto;">
                                     <div class="mt-2 cardNA mb-3" *ngIf="!myorderdata.length">
-                                        <h5 class="mb-1">Product not available</h5>
+                                        <h5 class="mb-1">Data Not Available</h5>
                                       </div>
-                                    <table class="table" >
+                                    <table class="table" *ngIf="myorderdata.length">
                                         <thead >
                                           <tr>
                                             <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">TRANSACTION ID</th>
@@ -1399,10 +1422,9 @@
                                                     {{data.contact}}
                                                 </td>
                                                 <td>
-                                                  <i *ngIf="data.locks== 'false'"  class="bx bx-search" (click)="getmyorderbyorderid(data.orderId);myorderopen()" ></i>
-                                                  <i *ngIf="data.locks== 'true'"  class="bx bx-lock"  ></i>
+                                                  <i *ngIf="data.locks== 'false'"  class="bx bx-search" style="font-size: 16px;margin-left: 20px;" (click)="getmyorderbyorderid(data.orderId);myorderopen()" ></i>
+                                                  <i *ngIf="data.locks== 'true'"  class="bx bx-lock" style="font-size: 16px;margin-left: 20px;" ></i>
                                                 </td>
-                                               
                                               </tr>
                                             </ng-container>
                                           </tbody>

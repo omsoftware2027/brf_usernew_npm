@@ -1,7 +1,11 @@
-<div>
-    <div class="text-center">
-        <div class="mt-2 fs-base">
-            <h4 class="mb-1">Update Weight</h4>
+<div class="p-3">
+    <div class="text-center p-3" style="overflow:auto;">
+      <div class="text-end">
+        <button type="button" class="btn-close" style="border: white;" id="deleteRecord-close" (click)="closeDialog()"
+          ></button>
+    </div>
+        <div class="mt-2 fs-base" style="max-height: 350px;">
+            <h4 class="mb-1" style="color: #F44C4C;">Update Weight</h4>
             <hr>
     <div class="d-flex align-items-center gap-2">
      <div class="flex-grow-1">
@@ -10,7 +14,7 @@
     </a>
   </div>
   <div class="text-end">
-  <h5 class="fs-md text-primary mb-0">({{totalPriceModal}})</h5>
+  <h5 class="fs-md  mb-0" style="color: #F44C4C;">({{totalPriceModal}})</h5>
   </div>
 
 
@@ -23,7 +27,7 @@
 Weight is not matching with the inventory in hand - Do you still want to proceed?
 </span>
 </div>
-<button type="submit" class="btn btn-success" id="add-btn" (click)="sumbitInventory()">Save</button>
+<button type="submit" class="btn " id="add-btn" (click)="sumbitInventory()" style="background-color: #F44C4C;color:white;">Save</button>
 </div>
 
 
@@ -35,7 +39,7 @@ Weight is not matching with the inventory in hand - Do you still want to proceed
 
 
 <hr>
-<h4 class="mb-1">Available Inventory</h4>
+<h4 class="mb-1"style="color: #F44C4C;">Available Inventory</h4>
 <table class="table align-middle table-nowrap" style="width: 100%;">
 <thead class="table-active">
   <tr>

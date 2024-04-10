@@ -188,6 +188,10 @@ export class DashboardService {
   // @ts-ignore
     return this.http.put<any>(`${environment.baseurl}/brfooduser/saveOrderPage?orderId=${orderId}`)
   }
+  changecheckedstatus(orderItemId:any){
+      // @ts-ignore
+      return this.http.put<any>(`${environment.baseurl}/product/changeCheckedStatus?orderItemId=${orderItemId}`)
+  }
   getOrderProductInventoryedit(productId:any,orderItemId:any){
     return this.http.get<any>(`${environment.baseurl}/brfooduser/getOrderProductInventory?productId=${productId}&orderItemId=${orderItemId}`)
   }
@@ -198,8 +202,17 @@ export class DashboardService {
   checkWeightExists(weight:any,sku:any,orderItemId:any ){
     return this.http.get<any>(`${environment.baseurl}/brfooduser/checkWeightExists?weight=${weight}&sku=${sku}&orderItemId=${orderItemId}`)
   }
+  changestatusofproduct(confirmStatus:any,remark:any,orderItemId:any ){
+    return this.http.get<any>(`${environment.baseurl}/brfooduser/changeStatusOfProduct?confirmStatus=${confirmStatus}&remark=${remark}&orderItemId=${orderItemId}`)
+  }
   Updateremark(remark: any, orderItemId: any) {
     const url = `${environment.baseurl}/brfooduser/updateRemarkByOrderItemsId?remark=${remark}&orderItemId=${orderItemId}`;
     return this.http.post(url, {});
   }
+  getallproductt(no:any,size:any){
+    return this.http.get<any>(`${environment.baseurl}/product/getAllProduct?pageNo=${no}&pageSize=${size}`)
+  }
+  changeproduct(orderId:any,originalProductId:any,replaceProductId:any,orderItemId:any) {
+    return this.http.get<any>(`${environment.baseurl}/brfooduser/changeProduct?orderId=${orderId}&originalProductId=${originalProductId}&replaceProductId=${replaceProductId}&orderItemId=${orderItemId}`);
+   }
 }
