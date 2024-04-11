@@ -1013,11 +1013,21 @@
                                                   <button type="button" class="btnnn" [ngClass]="{'selected': selectedButton === 'warehouse'}" (click)="selectButton('warehouse');getallexpandorder('warehouse')">Ware house</button>
                                               </div>
                                           </div>
-                                          <img src="../../../assets/images/line 1.png"  class="" style="width: 851px;height: 2px;"  >
+                                          <img src="../../../assets/images/line 1.png"  class="" style="width: 867px;height: 2px;"  >
+                                          <div class="d-flex" style="margin-left: 67%;">
+                                            <p class="text-dark" style="margin-top: 9px;font-size: 16px;color: #000000 !important;font-weight: 400;">Search:</p>
+                                              <!-- <p class="text-muted float-md-end mb-md-0"><a href="javascript:void(0);"><i
+                                                          class="ph-storefront align-middle me-1"></i> Visit Store</a></p> -->
+                                           <div  class="text-end ps-3">
+                                           <input type="text ps-2" class="form-control" (keyup)="getallexpandorder('')" [(ngModel)]="searchText">
+                                           </div>
+                                           </div>
                                          <div class="card" style="border-radius: 9px;">
-                                            <div class="col-md-12 mt-3" style="overflow-y: scroll;max-width:100%">
-                                          
-                                                <table class="" style="width: max-content;">
+                                            <div class="col-md-12 mt-3 mb-3" style="overflow-x: scroll;max-width:100%">
+                                                <div class="mt-2 cardNA mb-3" *ngIf="!category.length">
+                                                    <h5 class="mb-1">Data Not Available</h5>
+                                                  </div>
+                                                <table class="" style="width: max-content;" class="mb-3" *ngIf="category.length">
                                                     <thead class="mt-4">
                                                       <tr>
                                                         <th style="width: 50px;padding: 20px;"></th>
@@ -1080,7 +1090,7 @@
                                                               {{data.driver ? data.driver:'-'}}
                                                           </td>
                                                           <td>
-                                                       <i *ngIf="data.locks== 'false'" class="bx bx-search" style="color: #000000;font-size: 16px;" (click)="myorderopen();getorderbyorderid(data.orderId,data.orderItemId)"   [class.password-open]="myorderOpen"></i>
+                                                       <i *ngIf="data.locks== 'false'" class="bx bx-search" style="color: #000000;font-size: 16px;margin-left: 20px;" (click)="myorderopen();getorderbyorderid(data.orderId,data.orderItemId)"   [class.password-open]="myorderOpen"></i>
                                                        <i  *ngIf="data.locks== 'true'"  class="bx bx-lock"  style="color: #000000;font-size: 16px;margin-left: 20px;"  ></i>
   
                                                           </td>
@@ -1090,82 +1100,85 @@
 
                                                             </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown('PRODUCTNAME')" (change)="getallexpandorder('')" [(ngModel)]="productname">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let productname of dropdowndata" [value]="productname">{{ productname }}</option>
-                                                              </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Product" class="form-control" (click)="getalldropdown('PRODUCTNAME')" (change)="getallexpandorder('')" [(ngModel)]="productname">
+                                                                  <!-- <option   value="">Please select product</option> -->
+                                                                  <mat-option *ngFor="let productname of dropdowndata" [value]="productname">{{ productname }}</mat-option>
+                                                              </mat-select>
+                                                              <!-- <div class="select-arrow2"></div> -->
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown1('CODE')" [(ngModel)]="code" (change)="getallexpandorder('')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata1" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder=" Select Code" class="form-control" (click)="getalldropdown1('CODE')" [(ngModel)]="code" (change)="getallexpandorder('')">
+                                                                  <!-- <option   value="">Please select product</option> -->
+                                                                  <mat-option *ngFor="let data of dropdowndata1" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
+                                                                <!-- <div class="select-arrow3"></div> -->
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control"  (click)="getalldropdown2('BIN')" [(ngModel)]="bin" (change)="getallexpandorder('BIN')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata2" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Bin" class="form-control"  (click)="getalldropdown2('BIN')" [(ngModel)]="bin" (change)="getallexpandorder('BIN')">
+                                                                  <!-- <option   value="">Please select product</option> -->
+                                                                  <mat-option *ngFor="let data of dropdowndata2" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
+                                                                <!-- <div class="select-arrow4"></div> -->
+
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown3('VENDER')" [(ngModel)]="vender" (change)="getallexpandorder('VENDER')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata3" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Vender" class="form-control" (click)="getalldropdown3('VENDER')" [(ngModel)]="vender" (change)="getallexpandorder('VENDER')">
+                                                                  <!-- <option   value="">Please select product</option> -->
+                                                                  <mat-option *ngFor="let data of dropdowndata3" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
+                                                                <!-- <div class="select-arrow5"></div> -->
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown4('QUANTITY')" [(ngModel)]="qutanity" (change)="getallexpandorder('QUANTITY')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata4" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Quantity " class="form-control" (click)="getalldropdown4('QUANTITY')" [(ngModel)]="qutanity" (change)="getallexpandorder('QUANTITY')">
+                                                                  <!-- <option   value="">Please select product</option> -->
+                                                                  <mat-option *ngFor="let data of dropdowndata4" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
+                                                             
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown5('PRICE')" [(ngModel)]="price"(change)="getallexpandorder('PRICE')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata5" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder=" Select Price" class="form-control" (click)="getalldropdown5('PRICE')" [(ngModel)]="price"(change)="getallexpandorder('PRICE')">
+                                                                  <!-- <option   value="">Please select product</option> -->
+                                                                  <mat-option *ngFor="let data of dropdowndata5" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
+                                                       
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown6('TOTAL')" [(ngModel)]="total"(change)="getallexpandorder('TOTAL')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata6" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder=" Select Total" class="form-control" (click)="getalldropdown6('TOTAL')" [(ngModel)]="total"(change)="getallexpandorder('TOTAL')">
+                                                              
+                                                                  <mat-option *ngFor="let data of dropdowndata6" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown7('CUSTOMERNAME')" [(ngModel)]="customername"(change)="getallexpandorder('CUSTOMERNAME')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata7" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Customer" class="form-control" (click)="getalldropdown7('CUSTOMERNAME')" [(ngModel)]="customername"(change)="getallexpandorder('CUSTOMERNAME')">
+                                                                  <mat-option *ngFor="let data of dropdowndata7" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown8('REF')" [(ngModel)]="ref"(change)="getallexpandorder('REF')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata8" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder=" Select Ref" class="form-control" (click)="getalldropdown8('REF')" [(ngModel)]="ref"(change)="getallexpandorder('REF')">
+                                                                 
+                                                                  <mat-option *ngFor="let data of dropdowndata8" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown9('STATUS')" [(ngModel)]="status" (change)="getallexpandorder('STATUS')">
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata9" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Status" class="form-control" (click)="getalldropdown9('STATUS')" [(ngModel)]="status" (change)="getallexpandorder('STATUS')">
+                                                                  <mat-option *ngFor="let data of dropdowndata9" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown10('TRANSACTIONDATE')" [(ngModel)]="transationdate" STATUS>
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata10" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Transaction Date" class="form-control" (click)="getalldropdown10('TRANSACTIONDATE')" [(ngModel)]="transationdate" STATUS>
+                                                                  <mat-option *ngFor="let data of dropdowndata10" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
                                                           </td>
                                                           <td>
-                                                              <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown11('ROUTE')" [(ngModel)]="routee" >
-                                                                  <option   value="">Please select product</option>
-                                                                  <option *ngFor="let data of dropdowndata11" [value]="data">{{ data }}</option>
-                                                                </select>
+                                                              <mat-select name="status-field" id="status-field"  placeholder=" Select Route" class="form-control" (click)="getalldropdown11('ROUTE')" [(ngModel)]="routee" >
+                                                                  <mat-option *ngFor="let data of dropdowndata11" [value]="data">{{ data }}</mat-option>
+                                                                </mat-select>
                                                           </td>
                                                           <td>
-                                                            <select name="status-field" id="status-field"  placeholder="Please Select Product" class="form-control" (click)="getalldropdown12('DRIVER')" [(ngModel)]="routee" >
-                                                                <option   value="">Please select product</option>
-                                                                <option *ngFor="let data of dropdowndata12" [value]="data">{{ data }}</option>
-                                                              </select>
+                                                            <mat-select name="status-field" id="status-field"  placeholder=" Select Driver" class="form-control" (click)="getalldropdown12('DRIVER')" [(ngModel)]="routee" >
+                                                               
+                                                                <mat-option *ngFor="let data of dropdowndata12" [value]="data">{{ data }}</mat-option>
+                                                              </mat-select>
                                                         </td>
                                                         </tr>
                                                       </tbody>
@@ -1211,8 +1224,7 @@
                                         <div class="">
                                             <div class=" rounded-end-0">
                                                 <div class="card-body p-4">
-                                                    <!-- <p class="text-muted float-md-end mb-md-0"><a href="javascript:void(0);"><i
-                                                                class="ph-storefront align-middle me-1"></i> Visit Store</a></p> -->
+                                                   
                                                     <div class="d-flex">
                                                         <p class="text-capitalize mb-3"style="font-weight: 600;font-size: 20px;line-height: 30px;color:#F44C4C">Customer Detail</p>
                                                         <div  class="d-flex" style="margin-left: 36%;margin-top: -1%;">
@@ -1233,6 +1245,9 @@
                                                     <p class="ps-3"style="color:#000000 !important;font-size: 20px;font-weight: 500">Shipping address : <br><span class="ps-3" style="font-size: 16px;font-weight: 400;">{{addressdetail.shippingAddress}}
                                                         </span></p>
                                                   <div class="col-md-12" style="overflow: scroll;"> 
+                                                    <div class="mt-2 cardNA mb-3" *ngIf="!productDetails.length">
+                                                        <h5 class="mb-1">Data Not Available</h5>
+                                                      </div>
                                                     <table class="table" style="width: max-content;" >
                                                         <thead >
                                                           <tr>
@@ -1243,7 +1258,7 @@
                                                             <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">VENDER </th>
                                                             <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">NOTES</th>
                                                             <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">IMAGE</th>
-                                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">QUTANITY</th>
+                                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">QUANTITY</th>
                                                             <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">PRICE</th>
                                                             <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">WEIGHT</th>
                                                             <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">TOTAL PRICE</th>
@@ -1257,7 +1272,7 @@
                                                                 <td style="width: 267px;color: #000000;">
                                                                     <s *ngIf="data.quantity === 0">{{ data.productName }}</s>
                                                                     <span *ngIf="data.quantity > 0">{{ data.productName }}</span><br>
-                                                                <div class="mt-2">
+                                                                <div class="mt-2" *ngIf="data.quantity > 0" >
                                                                     <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 6px 0px 0px 6px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Pending' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Pending'}" (click)="changestausofproduct('Pending',data.remark,data.orderItemId,data.orderId)">PENDING</button>
                                                                     <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Confirm' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Confirm'}"(click)="changestausofproductt('Confirm',data.remark,data.orderItemId,data.orderId)">CONFIRM</button>
                                                                     <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 0px 6px 6px 0px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Missing' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Missing'}"(click)="showChangeProductButton(data.remark, data.orderItemId, data.orderId, data.productId,'Missing');">MISSING</button>
@@ -1266,7 +1281,7 @@
                                                                    <div>
                                                                      <button type="button" class="btn-sm me-1 m-1" style="width: 131px;height: 32px;font-size: 11px;background: #F44C4C;border: antiquewhite; color: white;" *ngIf="data.quantity > 0 && showChangeProduct[data.orderItemId]" (click)="changeproductpopup(data.orderId,data.orderItemId,data.productId)">Change Product</button>
                                                                    </div>
-                                                                   <br>
+                                                                   <!-- <br> -->
                                                                    <span *ngIf="data.updatedBy !=null " style="color:#000000">Updated by:</span>{{data.updatedBy}}
                                                                 </td>
 
@@ -1293,10 +1308,9 @@
                                                                     {{data.price}}
                                                                 </td>
                                                                 <td style="color:#000000">
-                                                                    {{data.weight}}
-                                                                    <i class="bx bx-edit" *ngIf="data.unit=='LBS'" style="color: #000000;" (click)="openeinventorydialog(data.productName,data.code,data.productId,data.orderItemId,data.quantity,data.inventoryItems)"></i>
+                                                                    {{data.weight ? data.weight:'-'}}
+                                                                    <i class="bx bx-edit" *ngIf="data.unit=='LBS' && data.quantity > 0 "  style="color: #000000;" (click)="openeinventorydialog(data.productName,data.code,data.productId,data.orderItemId,data.quantity,data.inventoryItems,data.orderId)"></i>
                                                                 </td>
-                                                            
                                                                 <td style="color:#000000">
                                                                     {{data.totalPrice}}   
                                                                 </td>
@@ -1368,7 +1382,7 @@
                                                           </div>
                                                       </div>
                                                     
-                                                      <img src="../../../assets/images/line 1.png"  class="" style="width: 851px;height: 2px;"  >
+                                                      <img src="../../../assets/images/line 1.png"  class="" style="width: 869px;height: 2px;"  >
 
                                                      
                                                    
@@ -1387,50 +1401,56 @@
                                             
 
                                          </div>
-                                <div  style="margin-left:8px;overflow: auto;">
+                                <div  style="margin-left:8px;overflow: auto;border-radius:10px;" class="card">
                                     <div class="mt-2 cardNA mb-3" *ngIf="!myorderdata.length">
                                         <h5 class="mb-1">Data Not Available</h5>
                                       </div>
-                                    <table class="table" *ngIf="myorderdata.length">
-                                        <thead >
-                                          <tr>
-                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">TRANSACTION ID</th>
-                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">TRANSACTION DATE</th>
-                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">CUSTOMER NAME</th>
-                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">ADDRESS</th>
-                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">STATUS</th>
-                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">CONTACT</th>
-                                            <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">ACTION</th>
-                                            
-                                          </tr>
-                                        </thead>       
-                                        <tbody>
-                                            <ng-container>
-                                            
-                                              <tr  *ngFor="let data of myorderdata">
-                                                <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;">
-                                                {{data.transactionId}}
-                                                </td>
-                                                <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;">   
-                                                    {{data.transactionDate}}                                                                        
-                                                </td>
-                                                <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;"> {{data.customerName}}</td>
-                                                <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;"> {{data.shippingAddress}}</td>
-                                                <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;">
-                                                    {{data.status}}
-                                                </td>
-                                                <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;">
-                                                    {{data.contact}}
-                                                </td>
-                                                <td>
-                                                  <i *ngIf="data.locks== 'false'"  class="bx bx-search" style="font-size: 16px;margin-left: 20px;" (click)="getmyorderbyorderid(data.orderId);myorderopen()" ></i>
-                                                  <i *ngIf="data.locks== 'true'"  class="bx bx-lock" style="font-size: 16px;margin-left: 20px;" ></i>
-                                                </td>
+                                    <div class="mt-3">
+                                        <table class="table" *ngIf="myorderdata.length" class="mb-3"style="width: max-content;">
+                                            <thead style="height: 40px;" >
+                                              <tr>
+                                                <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">TRANSACTION ID</th>
+                                                <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">TRANSACTION DATE</th>
+                                                <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">CUSTOMER NAME</th>
+                                                <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;width:150px">ADDRESS</th>
+                                                <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">STATUS</th>
+                                                <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">CONTACT</th>
+                                                <th scope="col" style=" color:#475156 !important;font-size: 15px;font-weight: 500;line-height: 18px;color: #475156 !important;">ACTION</th>
+                                                
                                               </tr>
-                                            </ng-container>
-                                          </tbody>
-                                    </table>  
-                                </div>     
+                                            </thead>       
+                                            <tbody>
+                                                <ng-container>
+                                                
+                                                  <tr  *ngFor="let data of myorderdata">
+                                                    <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;">
+                                                    {{data.transactionId}}
+                                                    </td>
+                                                    <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;">   
+                                                        {{data.transactionDate}}                                                                        
+                                                    </td>
+                                                    <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;"> {{data.customerName}}</td>
+                                                    <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;"> {{data.shippingAddress}}</td>
+                                                    <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;">
+                                                        {{data.status}}
+                                                    </td>
+                                                    <td style="font-weight: 400;font-size: 16px;line-height: 18px;color: #000000;">
+                                                        {{data.contact}}
+                                                    </td>
+                                                    <td>
+                                                      <i *ngIf="data.locks== 'false'"  class="bx bx-search" style="font-size: 16px;margin-left: 20px;" (click)="getmyorderbyorderid(data.orderId);myorderopen()" ></i>
+                                                      <i *ngIf="data.locks== 'true'"  class="bx bx-lock" style="font-size: 16px;margin-left: 20px;" ></i>
+                                                    </td>
+                                                  </tr>
+                                                </ng-container>
+                                              </tbody>
+                                        </table>  
+                                    </div>
+                                   
+                                </div> 
+                                <div style="width: 100%;">
+                                    <mat-paginator #paginatorRef (page)="pageChangeddd($event)" [length]="totalrecordLengthh" [pageSize]="pageSize"  style="background-color: #FFFFFF;" showFirstLastButtons></mat-paginator>
+                                  </div>    
                                     
                                 </div>
                             </div>
@@ -1438,11 +1458,14 @@
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
-     
-         
         </div>
+
+
+
         
 

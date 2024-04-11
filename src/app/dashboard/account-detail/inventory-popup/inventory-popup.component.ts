@@ -1,7 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DashboardService } from '../../dashboard.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
 interface InventoryItem {
   isSold: boolean;
   // other properties of the object
@@ -17,6 +19,7 @@ interface InventoryItem {
   styleUrls: ['./inventory-popup.component.scss']
 })
 export class InventoryPopupComponent {
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   productNameModal:any;
   totalPriceModal:any;
   customerdetail:any
@@ -27,6 +30,7 @@ export class InventoryPopupComponent {
   currentPage=0;
   addressdetail:any;
   pageSize=30;
+  orderId:any
   orderDetails:any
   selectedRowWeight: any;
   inventoryIds:any;
@@ -36,10 +40,10 @@ export class InventoryPopupComponent {
   selectedInventoryIds: number[] = [];
   inputValues:any;
   checkinventory:any;
-
+  totalrecordLengthh:any;
   inventorylist:any;
   checkInventoryStatus:any
-  constructor(public domSanitizer:DomSanitizer,public dialogRef: MatDialogRef<InventoryPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private service:DashboardService){
+  constructor(public domSanitizer:DomSanitizer,public dialogRef: MatDialogRef<InventoryPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private service:DashboardService,private snackBar:MatSnackBar){
 
   }
   ngOnInit(): void{
@@ -54,6 +58,7 @@ export class InventoryPopupComponent {
     this.productNameModal = this.data.productName;
     this.totalPriceModal =  this.data.totalPrice;
     this.orderItemId =  this.data.orderItemId;
+    this.orderId=this.data.orderId
     this.quantity = parseInt(this.data.quantity, 10); // Set the quantity property
     this.inputValues = new Array(parseInt(this.data.quantity, 10)).fill('');
     this.checkInventoryStatus = new Array(this.inputValues.length).fill(true);
@@ -138,27 +143,11 @@ export class InventoryPopupComponent {
 
     // Use the limited inventoryIds and weights arrays when calling the service
     this.service.changeweight(weights, inventoryIds, this.orderItemId).subscribe((res) => {
-      // this.getmyorderbyorderid(orderid);
+       this.getmyorderbyorderid(this.orderId);
       this.closeDialog()
     });
   }
-  // getmyorderbyorderid(orderid:any) {
-  //   const serach ='';
-  //   const orderitemid=''
-  //   console.log('hksk')
-  //   this.service.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
-  //     this.data =res;
-  //     if (this.data.status === 0) {
-     
-  //       this.customerdetail=this.data.response.dataSet.customerDetails;
-  //       this.addressdetail=this.data.response.dataSet.shippingDetails;
-  //       this.productDetails=this.data.response.dataSet.productDetails;
-  //       this.orderDetails=this.data.response.dataSet.orderDetails
-  //     }
-  //     else {
-  //     }
-  //   })
-  // }
+
   handleCheckboxClick(data: any, index: number) {
     if (index >= 0 && index < this.inputValues.length) {
       if (data.isSold) {
@@ -230,6 +219,29 @@ export class InventoryPopupComponent {
   }
   closeDialog(): void {
     this.dialogRef.close();
+  
   }
-
+  getmyorderbyorderid(orderid:any) {
+    const serach ='';
+    const orderitemid=''
+    console.log('hksk')
+    this.service.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
+      this.data =res;
+      if (this.data.status === 0) {
+        this.customerdetail=this.data.response.dataSet.customerDetails;
+        this.addressdetail=this.data.response.dataSet.shippingDetails;
+        this.productDetails=this.data.response.dataSet.productDetails;
+        this.orderDetails=this.data.response.dataSet.orderDetails;
+        this.totalrecordLengthh = this.data.response.totalElements;
+        console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
+        setTimeout(() => {
+          this.paginator.pageIndex = this.currentPage;
+          this.paginator.length = this.totalrecordLengthh;
+        });
+      }
+      else {
+        this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+      }
+    })
+  }
 }

@@ -455,7 +455,8 @@ td.mat-cell .bx{
        }
 }
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 2px;
+    height:5px ;
   }
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, #F44C4C 0%, #F44C4C 100%);

@@ -10,6 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { InventoryPopupComponent } from './inventory-popup/inventory-popup.component';
 import { ChangeProductPopupComponent } from '../change-product-popup/change-product-popup.component';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-account-detail',
@@ -18,6 +19,7 @@ import { ChangeProductPopupComponent } from '../change-product-popup/change-prod
 })
 export class AccountDetailComponent {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild('ProductModal', { static: false }) ProductModal?: ModalDirective;
   formGroup!:FormGroup;
   quantity1:any;
   myorderdata:any;
@@ -637,6 +639,11 @@ getallmyorder() {
     this.data =res;
     if (this.data.status === 0) {
       this.myorderdata = this.data.response.dataSet;
+      this.totalrecordLengthh = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLengthh;
+      });
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -882,7 +889,7 @@ changeproductpopup(orderid:any,orderItemId:any,replaceProductId:any): void {
     this.getallstaff(0);
   });
 }
-openeinventorydialog(productName: any, totalPrice: any, productId: any, orderItemId: any, quantity: any, inventoryItems: any): void {
+openeinventorydialog(productName: any, totalPrice: any, productId: any, orderItemId: any, quantity: any, inventoryItems: any,orderId:any): void {
 
   const dialogRef: MatDialogRef<InventoryPopupComponent> = this.dialog.open(InventoryPopupComponent, {
     width: '914px',
@@ -893,17 +900,14 @@ openeinventorydialog(productName: any, totalPrice: any, productId: any, orderIte
       productId:productId,
       orderItemId:orderItemId,
       quantity:quantity,
-      inventoryItems:inventoryItems
+      inventoryItems:inventoryItems,
+      orderId:orderId
 
     }
   });
 
   // Subscribe to the afterClosed event
-  dialogRef.afterClosed().subscribe(result => {
-    // This code will be executed when the dialog is closed
-    // You can call your API or perform any other action here
-    this.getallstaff(0);
-  });
+  // openeinventorydialog
 }
 downoladinvoice(orderid:any){
   this.dashboardservice.downloadprintinvoice(orderid).subscribe( res =>{
@@ -912,7 +916,7 @@ downoladinvoice(orderid:any){
   })
 }
 getallexpandorder(type:any) {
-  const serach ='';
+  const serach =this.searchText;
   const productname =this.productname ||''
   const code=this.code || ''
   const bin= this.bin || ''

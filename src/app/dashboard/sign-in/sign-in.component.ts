@@ -29,6 +29,8 @@ logout(){
   this.dialogRef.close();
   localStorage.removeItem('token');
   localStorage.removeItem('id');
+  localStorage.removeItem('userType');
+
   this.dialogRef.close();
   this.router.navigate(['/dashboard/email-signup']);
   window.location.reload()
