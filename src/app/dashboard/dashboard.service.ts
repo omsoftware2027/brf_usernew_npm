@@ -169,8 +169,8 @@ export class DashboardService {
   downloadprintinvoice(orderId:any) {
     return this.http.get<any>(`${environment.baseurl}/order/printInvoice?orderId=${orderId}`);
   }
-  getBrFoodUserOrderProduct(pageNo:any,pageSize:any,search:any,type:any,productName:any,quantity:any,bin:any,vendor:any,skuCode:any,price:any,customerName:any,ref:any,driver:any,orderStatus:any,transactionDate:any,route:any){
-    return this.http.get<any>(`${environment.baseurl}/order/getBrFoodUserOrderProduct?pageNo=${pageNo}&pageSize=${pageSize}&search=${search}&type=${type}&productName=${productName}&quantity=${quantity}&bin=${bin}&vendor=${vendor}&skuCode=${skuCode}&price=${price}&customerName=${customerName}&ref=${ref}&driver=${driver}&orderStatus=${orderStatus}&transactionDate=${transactionDate}&route=${route}`);
+  getBrFoodUserOrderProduct(pageNo:any,pageSize:any,search:any,type:any,productName:any,skuCode:any,quantity:any,bin:any,vendor:any,price:any,customerName:any,ref:any,driver:any,orderStatus:any,transactionDate:any,route:any){
+    return this.http.get<any>(`${environment.baseurl}/order/getBrFoodUserOrderProduct?pageNo=${pageNo}&pageSize=${pageSize}&search=${search}&type=${type}&productName=${productName}&skuCode=${skuCode}&quantity=${quantity}&bin=${bin}&vendor=${vendor}&price=${price}&customerName=${customerName}&ref=${ref}&driver=${driver}&orderStatus=${orderStatus}&transactionDate=${transactionDate}&route=${route}`);
   }
   getAllBrfoodUserOrder(pageNo:any,pageSize:any,search:any,vender:any){
     return this.http.get<any>(`${environment.baseurl}/brfooduser/getAllBrfoodUserOrder?pageNo=${pageNo}&pageSize=${pageSize}&search=${search}&vender=${vender}`);

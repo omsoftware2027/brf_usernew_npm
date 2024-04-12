@@ -40,7 +40,7 @@ export class AccountDetailComponent {
   dropdowndata12:any;
 
   mydata:any;
-  type='pickup'
+  type=''
   searchText: string = '';
 selectcategoryid: string = '';
 productname=''
@@ -611,9 +611,6 @@ getallstaff(page:number){
     if(res.status==0){
       this.getallstafff=res.response.dataSet;
       this.totalrecordLength = res.response.totalElements;
-    
-   
-     
       setTimeout(() => {
         this.paginator.pageIndex = this.currentPage;
         this.paginator.length = this.totalrecordLength;
@@ -673,6 +670,8 @@ getorderbyorderid(orderid:any,orderitemid:any,) {
   })
 }
 getmyorderbyorderid(orderid:any) {
+  this.ProductModal?.show()
+
   const serach ='';
   const orderitemid=''
   console.log('hksk')
@@ -881,12 +880,11 @@ changeproductpopup(orderid:any,orderItemId:any,replaceProductId:any): void {
       replaceproductid:replaceProductId
     }
   });
-
   // Subscribe to the afterClosed event
   dialogRef.afterClosed().subscribe(result => {
     // This code will be executed when the dialog is closed
     // You can call your API or perform any other action here
-    this.getallstaff(0);
+    this.getmyorderbyorderid(orderid);
   });
 }
 openeinventorydialog(productName: any, totalPrice: any, productId: any, orderItemId: any, quantity: any, inventoryItems: any,orderId:any): void {
@@ -904,6 +902,13 @@ openeinventorydialog(productName: any, totalPrice: any, productId: any, orderIte
       orderId:orderId
 
     }
+    
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    // This code will be executed when the dialog is closed
+    // You can call your API or perform any other action here
+    this.getmyorderbyorderid(orderId);
+
   });
 
   // Subscribe to the afterClosed event
@@ -944,6 +949,355 @@ getallexpandorder(type:any) {
     }
   })
 }
+getallexpandorderr(productName:any) {
+  const serach =this.searchText;
+  const productname =productName ||''
+  const code=this.code || ''
+  const bin= this.bin || ''
+  const vender=this.vender ||''
+  const qutanity=this.qutanity || ''
+  const price=this.price || ''
+  const total =this.total || ''
+  const customername=this.customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandordercode(code:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=code || ''
+  const bin= this.bin || ''
+  const vender=this.vender ||''
+  const qutanity=this.qutanity || ''
+  const price=this.price || ''
+  const total =this.total || ''
+  const customername=this.customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,bin,vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandorderbin(bin:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= bin || ''
+  const vender=this.vender ||''
+  const qutanity=this.qutanity || ''
+  const price=this.price || ''
+  const total =this.total || ''
+  const customername=this.customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandordervender(vender:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=vender ||''
+  const qutanity=this.qutanity || ''
+  const price=this.price || ''
+  const total =this.total || ''
+  const customername=this.customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandorderqutanity(qutanity:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=qutanity || ''
+  const price=this.price || ''
+  const total =this.total || ''
+  const customername=this.customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandorderprice(price:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=this.qutanity || ''
+  const Price=price || ''
+  const total =this.total || ''
+  const customername=this.customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandordertotal(total:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=this.qutanity || ''
+  const Price=this.price || ''
+  const Total =total || ''
+  const customername=this.customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandordercustomer(customername:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=this.qutanity || ''
+  const Price=this.price || ''
+  const Total =this.total || ''
+  const Customername=customername || ''
+  const ref=this.ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandorderref(ref:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=this.qutanity || ''
+  const Price=this.price || ''
+  const Total =this.total || ''
+  const Customername=this.customername || ''
+  const Ref=ref || ''
+  const status=this.status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandorderstatus(status:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=this.qutanity || ''
+  const Price=this.price || ''
+  const Total =this.total || ''
+  const Customername=this.customername || ''
+  const Ref=this.ref || ''
+  const Status=status || ''
+  const transationdate=this.transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandordertransationdate(transationdate:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=this.qutanity || ''
+  const Price=this.price || ''
+  const Total =this.total || ''
+  const Customername=this.customername || ''
+  const Ref=this.ref || ''
+  const Status=this.status || ''
+  const Transationdate=transationdate || ''
+  const routee=this.routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,Transationdate,routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandorderroute(routee:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=this.qutanity || ''
+  const Price=this.price || ''
+  const Total =this.total || ''
+  const Customername=this.customername || ''
+  const Ref=this.ref || ''
+  const Status=this.status || ''
+  const Transationdate=this.transationdate || ''
+  const Routee=routee || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,Transationdate,Routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+
 getallvendor() {
  const userId=this.userid
   this.dashboardservice.getallvendor(userId).subscribe(res => {

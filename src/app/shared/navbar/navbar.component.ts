@@ -29,9 +29,12 @@ export class NavbarComponent implements OnInit{
   showDropdown: boolean = false;
     titlesAndIdsArray2:any;
     carttotal:any;
+    orderId:any;
+    addressdetail:any;
     isInputFilled: boolean = false;
     userId:any;
     productt:any;
+    totalrecordLengthh:any;
     carttotalt:any;
     wishcart:any;
     wishlist:any;
@@ -53,12 +56,16 @@ export class NavbarComponent implements OnInit{
     retryError = false;
     loginData:any;
     product:any;
+    orderDetails:any
     usertype:any;
     id:any;
+    customerdetail:any
     cmsEnum ='HEADER'
     cmsRes4:any
     // submitted:boolean = false;
     name:any;
+    productDetails:any;
+    orderItemId:any;
     data: any;
     messageReceived:any;
     category:any;
@@ -130,7 +137,10 @@ export class NavbarComponent implements OnInit{
                 } else if(this.messageReceived.text == 'reloadWalletDetail'){
                   this.getallcart();
                   this.getallcount();
+                  this.getmyorderbyorderid();
                   this.getallcarttotal(0);
+                  this.getorderbyorderid() ;
+
 
                 }
       });      
@@ -663,5 +673,53 @@ updateInput(productName: string) {
   // Update the input field value if searchproduct and productname exist
   this.searchproduct?.get('productname')?.setValue(productName);
 }
+getmyorderbyorderid() {
+  const serach ='';
+  const orderitemid=''
+  this.orderId=localStorage.getItem('orderid');
+  console.log('hksk')
+  this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,this.orderId,this.userId,serach,orderitemid).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.customerdetail=this.data.response.dataSet.customerDetails;
+      this.addressdetail=this.data.response.dataSet.shippingDetails;
+      this.productDetails=this.data.response.dataSet.productDetails;
+      this.orderDetails=this.data.response.dataSet.orderDetails;
+      this.totalrecordLengthh = this.data.response.totalElements;
+      console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLengthh;
+      });
+    }
+    else {
+      // this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getorderbyorderid() {
 
+  const serach ='';
+  this.orderId=localStorage.getItem('orderid');
+  this.orderItemId=localStorage.getItem('orderItemId');
+  console.log('hksk')
+  this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,this.orderId,this.userId,serach,this.orderItemId).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.customerdetail=this.data.response.dataSet.customerDetails;
+      this.addressdetail=this.data.response.dataSet.shippingDetails;
+      this.productDetails=this.data.response.dataSet.productDetails;
+      this.orderDetails=this.data.response.dataSet.orderDetails;
+      this.totalrecordLengthh = this.data.response.totalElements;
+      console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLengthh;
+      });
+    }
+    else {
+      // this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
 }

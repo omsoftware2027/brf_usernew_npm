@@ -1100,21 +1100,21 @@
 
                                                             </td>
                                                           <td>
-                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Product" class="form-control" (click)="getalldropdown('PRODUCTNAME')" (change)="getallexpandorder('')" [(ngModel)]="productname">
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Product" class="form-control" (click)="getalldropdown('PRODUCTNAME')" (selectionChange)="getallexpandorderr(productname)" [(ngModel)]="productname">
                                                                   <!-- <option   value="">Please select product</option> -->
                                                                   <mat-option *ngFor="let productname of dropdowndata" [value]="productname">{{ productname }}</mat-option>
                                                               </mat-select>
                                                               <!-- <div class="select-arrow2"></div> -->
                                                           </td>
                                                           <td>
-                                                              <mat-select name="status-field" id="status-field"  placeholder=" Select Code" class="form-control" (click)="getalldropdown1('CODE')" [(ngModel)]="code" (change)="getallexpandorder('')">
+                                                              <mat-select name="status-field" id="status-field"  placeholder=" Select Code" class="form-control" (click)="getalldropdown1('CODE')" [(ngModel)]="code" (selectionChange)="getallexpandordercode(code)">
                                                                   <!-- <option   value="">Please select product</option> -->
                                                                   <mat-option *ngFor="let data of dropdowndata1" [value]="data">{{ data }}</mat-option>
                                                                 </mat-select>
                                                                 <!-- <div class="select-arrow3"></div> -->
                                                           </td>
                                                           <td>
-                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Bin" class="form-control"  (click)="getalldropdown2('BIN')" [(ngModel)]="bin" (change)="getallexpandorder('BIN')">
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Bin" class="form-control"  (click)="getalldropdown2('BIN')" [(ngModel)]="bin" (change)="getallexpandorder('BIN')" (selectionChange)="getallexpandorderbin(bin)">
                                                                   <!-- <option   value="">Please select product</option> -->
                                                                   <mat-option *ngFor="let data of dropdowndata2" [value]="data">{{ data }}</mat-option>
                                                                 </mat-select>
@@ -1122,14 +1122,14 @@
 
                                                           </td>
                                                           <td>
-                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Vender" class="form-control" (click)="getalldropdown3('VENDER')" [(ngModel)]="vender" (change)="getallexpandorder('VENDER')">
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Vender" class="form-control" (click)="getalldropdown3('VENDER')" [(ngModel)]="vender" (change)="getallexpandorder('VENDER')" (selectionChange)="getallexpandordervender(vender)">
                                                                   <!-- <option   value="">Please select product</option> -->
                                                                   <mat-option *ngFor="let data of dropdowndata3" [value]="data">{{ data }}</mat-option>
                                                                 </mat-select>
                                                                 <!-- <div class="select-arrow5"></div> -->
                                                           </td>
                                                           <td>
-                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Quantity " class="form-control" (click)="getalldropdown4('QUANTITY')" [(ngModel)]="qutanity" (change)="getallexpandorder('QUANTITY')">
+                                                              <mat-select name="status-field" id="status-field"  placeholder="Select Quantity " class="form-control" (click)="getalldropdown4('QUANTITY')" [(ngModel)]="qutanity" (change)="getallexpandorder('QUANTITY')"(selectionChange)="getallexpandorderqutanity(qutanity)">
                                                                   <!-- <option   value="">Please select product</option> -->
                                                                   <mat-option *ngFor="let data of dropdowndata4" [value]="data">{{ data }}</mat-option>
                                                                 </mat-select>
@@ -1273,9 +1273,9 @@
                                                                     <s *ngIf="data.quantity === 0">{{ data.productName }}</s>
                                                                     <span *ngIf="data.quantity > 0">{{ data.productName }}</span><br>
                                                                 <div class="mt-2" *ngIf="data.quantity > 0" >
-                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 6px 0px 0px 6px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Pending' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Pending'}" (click)="changestausofproduct('Pending',data.remark,data.orderItemId,data.orderId)">PENDING</button>
-                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Confirm' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Confirm'}"(click)="changestausofproductt('Confirm',data.remark,data.orderItemId,data.orderId)">CONFIRM</button>
-                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 0px 6px 6px 0px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Missing' ? '#669038' : '#D9D9D9'}" [ngClass]="{'selected': data.confirmStatus === 'Missing'}"(click)="showChangeProductButton(data.remark, data.orderItemId, data.orderId, data.productId,'Missing');">MISSING</button>
+                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 6px 0px 0px 6px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Pending' ? '#669038' : '#D9D9D9','color': data.confirmStatus === 'Pending' ? '#FFFFFF' : '#000000'}" [ngClass]="{'selected': data.confirmStatus === 'Pending'}" (click)="changestausofproduct('Pending',data.remark,data.orderItemId,data.orderId)">PENDING</button>
+                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Confirm' ? '#669038' : '#D9D9D9','color': data.confirmStatus === 'Confirm' ? '#FFFFFF' : '#000000'}" [ngClass]="{'selected': data.confirmStatus === 'Confirm'}"(click)="changestausofproductt('Confirm',data.remark,data.orderItemId,data.orderId)">CONFIRM</button>
+                                                                    <button type="button"   style="width: 64px;height: 29px;font-size: 8px;color:#000000;border-radius: 0px 6px 6px 0px;border: #D9D9D9;"[ngStyle]="{'background-color': data.confirmStatus === 'Missing' ? '#669038' : '#D9D9D9','color': data.confirmStatus === 'Missing' ? '#FFFFFF' : '#000000'}" [ngClass]="{'selected': data.confirmStatus === 'Missing'}"(click)="showChangeProductButton(data.remark, data.orderItemId, data.orderId, data.productId,'Missing');">MISSING</button>
                                                                 </div>
                                                                    <!-- <br> -->
                                                                    <div>
@@ -1438,7 +1438,7 @@
                                                         {{data.contact}}
                                                     </td>
                                                     <td>
-                                                      <i *ngIf="data.locks== 'false'"  class="bx bx-search" style="font-size: 16px;margin-left: 20px;" (click)="getmyorderbyorderid(data.orderId);myorderopen()" ></i>
+                                                      <i *ngIf="data.locks== 'false'"  class="bx bx-search"  style="font-size: 16px;margin-left: 20px;" (click)="getmyorderbyorderid(data.orderId);myorderopen()" ></i>
                                                       <i *ngIf="data.locks== 'true'"  class="bx bx-lock" style="font-size: 16px;margin-left: 20px;" ></i>
                                                     </td>
                                                   </tr>
@@ -1469,3 +1469,4 @@
 
         
 
+ 
