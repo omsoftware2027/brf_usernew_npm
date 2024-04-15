@@ -16,26 +16,26 @@
           <div class="headRight mt-2">
               <ul class="d-flex flex-wrap justify-content-end"> <!-- Modified line -->
                   <li  >
-                      <a style="color:#F44C4C" (click)="logoutaccount()">Log Out </a>
+                      <a style="color:#F44C4C;font-size: 14px;font-weight: 400;" (click)="logoutaccount()">Log Out </a>
                   </li>
                   <li >
                       <p class="ms-2"> |</p>                
                   </li>
                   <li>
-                      <p [routerLink]="['/dashboard/account-detail']">My Account</p>
+                      <p [routerLink]="['/dashboard/account-detail']" style="color: #000000;font-size: 14px;font-weight: 400;">My Account</p>
                   </li>
                   <li >
                       <p class="ms-2">|</p>
                   </li>
                   <li>
-                      <p  [routerLink]="['/dashboard/email-signup']">Email Sign-Up</p>
+                      <p  [routerLink]="['/dashboard/email-signup']"style="color: #000000;font-size: 14px;font-weight: 400;">Email Sign-Up</p>
                   </li>
                   <li >
                     <p class="ms-2">|</p>
                   </li>
                   <div *ngFor="let data of titlesAndIdsArray2 ">
                       <li [routerLink]="['/dashboard/statement',data.cmsId]">
-                          <p [routerLink]="['/dashboard/new-customers',data.cmsId]" class="ps-2">{{data.title}}  <span class="ms-2">|</span></p>
+                          <p [routerLink]="['/dashboard/new-customers',data.cmsId]" style="color: #000000;font-size: 14px;font-weight: 400;" class="ps-2">{{data.title}}  <span class="ms-2">|</span></p>
                       </li>
                   </div>
               </ul>
