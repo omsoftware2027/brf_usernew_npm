@@ -65,11 +65,17 @@
                           <div class="d-flex">
                             <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;    width: 148px;
                             height: 48px">
-                              <i class="ri-subtract-line ps-3 mt-3" (click)="decrementValue(data);submitcart2(data.productId,data.quantity)" style="font-size: 22px;"></i>
-                              <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 14px;padding-left: 30px;" class="">{{ data.quantity || '1' }}</p>
-                              <i class="ri-add-line ps-4 mt-3"  (click)="incrementValue(data);submitcart(data.productId,data.quantity)"style="font-size: 22px;padding-left: 40px;"> </i>
-                              <!-- <button *ngIf="data1.isCart == false" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data.price,data.quantity)">Add to cart</button> 
-                              <button *ngIf="data1.isCart == true" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data.price,data.quantity)">update to cart</button> -->
+                         <div class="col-md-12 d-flex">
+                          <div class="col-md-2 mt-3">
+                            <i class="ri-subtract-line ps-2 " (click)="decrementValue(data);submitcart2(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                           </div>
+                             <div class="col-md-6 ">
+                              <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 13px;padding-left: 44px;" class="">{{ data.quantity || '1' }}</p>
+                             </div>
+                            <div class="col-md-4 mt-3">
+                              <i class="ri-add-line ps-3 "  (click)="incrementValue(data);submitcart(data.productId,data.quantity)"style="font-size: 22px;padding-left: 40px;"> </i>
+                            </div>
+                         </div>
                             </div>
                           </div>
                         </td>
