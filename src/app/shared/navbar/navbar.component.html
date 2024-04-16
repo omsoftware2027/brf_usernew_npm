@@ -90,9 +90,9 @@
                         </select> -->
                         <div class="ps-3" style="width: 75%;">
                           <div class="d-flex">
-                              <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Search by Product Name" formControlName="productname" (keyup)="handleKeyUp($event)" (input)="specialitySearch($event);getallproduct()" (focus)="showDropdown = true" (click)="onProductSelected($event)">
+                              <input type="text" class="form-control" style="border-radius: 5px 0px 0px 5px !important; " aria-label="Text input with dropdown button" placeholder="Search by Product Name" formControlName="productname" (keyup)="handleKeyUp($event)" (input)="specialitySearch($event);getallproduct()" (focus)="showDropdown = true" (click)="onProductSelected($event)">
                               <div>
-                                  <button class="btn btn-primary input-group-append text-white" (click)="searchproductbyname()" style="background-color: #F44C4C; border-radius: 3px; padding: 2px; cursor: pointer; border: white; height: 40px;" >
+                                  <button class="btn btn-primary input-group-append text-white" (click)="searchproductbyname()" style="background-color: #F44C4C;     border-radius: 0px 3px 3px 0px; padding: 2px; cursor: pointer; border: white; height: 40px;" >
                                       <i class='bx bx-search' style="font-size: 23px; margin-top: -21px; border-radius: 0px 9px 9px 0px; padding: 10px;"></i>
                                   </button>
                               </div>
