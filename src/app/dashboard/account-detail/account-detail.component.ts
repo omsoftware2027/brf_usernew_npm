@@ -52,9 +52,12 @@ price=''
 total=''
 ref=''
 status=''
+orderStatus:any
 customername=''
 transationdate=''
 routee=''
+data1=''
+driver=''
   customerdetail:any;
   totalrecordLength:any;
   totalrecordLengthh:any;
@@ -933,8 +936,9 @@ getallexpandorder(type:any) {
   const ref=this.ref || ''
   const status=this.status || ''
   const transationdate=this.transationdate || ''
+  const driver=this.driver ||''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -962,8 +966,9 @@ getallexpandorderr(productName:any) {
   const ref=this.ref || ''
   const status=this.status || ''
   const transationdate=this.transationdate || ''
+  const driver=this.driver ||''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -990,9 +995,10 @@ getallexpandordercode(code:any) {
   const customername=this.customername || ''
   const ref=this.ref || ''
   const status=this.status || ''
+  const driver=this.driver ||''
   const transationdate=this.transationdate || ''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,bin,vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1019,9 +1025,10 @@ getallexpandorderbin(bin:any) {
   const customername=this.customername || ''
   const ref=this.ref || ''
   const status=this.status || ''
+  const driver=this.driver ||''
   const transationdate=this.transationdate || ''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1048,9 +1055,10 @@ getallexpandordervender(vender:any) {
   const customername=this.customername || ''
   const ref=this.ref || ''
   const status=this.status || ''
+  const driver=this.driver ||''
   const transationdate=this.transationdate || ''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1077,9 +1085,10 @@ getallexpandorderqutanity(qutanity:any) {
   const customername=this.customername || ''
   const ref=this.ref || ''
   const status=this.status || ''
+  const driver=this.driver ||''
   const transationdate=this.transationdate || ''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1106,9 +1115,10 @@ getallexpandorderprice(price:any) {
   const customername=this.customername || ''
   const ref=this.ref || ''
   const status=this.status || ''
+  const driver=this.driver ||''
   const transationdate=this.transationdate || ''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,total,customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1136,8 +1146,9 @@ getallexpandordertotal(total:any) {
   const ref=this.ref || ''
   const status=this.status || ''
   const transationdate=this.transationdate || ''
+  const driver=this.driver ||''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1165,8 +1176,9 @@ getallexpandordercustomer(customername:any) {
   const ref=this.ref || ''
   const status=this.status || ''
   const transationdate=this.transationdate || ''
+  const driver=this.driver ||''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1193,9 +1205,10 @@ getallexpandorderref(ref:any) {
   const Customername=this.customername || ''
   const Ref=ref || ''
   const status=this.status || ''
+  const driver=this.driver ||''
   const transationdate=this.transationdate || ''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1210,7 +1223,7 @@ getallexpandorderref(ref:any) {
     }
   })
 }
-getallexpandorderstatus(status:any) {
+getallexpandorderstatus(orderStatus:any) {
   const serach =this.searchText;
   const productname =this.productname ||''
   const Code=this.code || ''
@@ -1221,10 +1234,11 @@ getallexpandorderstatus(status:any) {
   const Total =this.total || ''
   const Customername=this.customername || ''
   const Ref=this.ref || ''
-  const Status=status || ''
+  const Status=orderStatus || ''
+  const driver=this.driver ||''
   const transationdate=this.transationdate || ''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1252,8 +1266,9 @@ getallexpandordertransationdate(transationdate:any) {
   const Ref=this.ref || ''
   const Status=this.status || ''
   const Transationdate=transationdate || ''
+  const driver=this.driver ||''
   const routee=this.routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,Transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,driver,Transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1268,7 +1283,7 @@ getallexpandordertransationdate(transationdate:any) {
     }
   })
 }
-getallexpandorderroute(routee:any) {
+getallexpandorderdriver(data1:any) {
   const serach =this.searchText;
   const productname =this.productname ||''
   const Code=this.code || ''
@@ -1280,9 +1295,40 @@ getallexpandorderroute(routee:any) {
   const Customername=this.customername || ''
   const Ref=this.ref || ''
   const Status=this.status || ''
+  const driver=this.driver ||''
   const Transationdate=this.transationdate || ''
-  const Routee=routee || ''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,Transationdate,Routee).subscribe(res => {
+  const Routee=data1 || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,driver,Transationdate,Routee).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.category = this.data.response.dataSet;
+      this.totalrecordLength = res.response.totalElements;
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLength;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
+getallexpandorderroute(data1:any) {
+  const serach =this.searchText;
+  const productname =this.productname ||''
+  const Code=this.code || ''
+  const Bin= this.bin || ''
+  const Vender=this.vender ||''
+  const Qutanity=this.qutanity || ''
+  const Price=this.price || ''
+  const Total =this.total || ''
+  const Customername=this.customername || ''
+  const Ref=this.ref || ''
+  const Status=this.status || ''
+  const driver=this.driver || ''
+  const Transationdate=this.transationdate || ''
+  const Routee=data1 || ''
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,driver,Transationdate,Routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
@@ -1530,5 +1576,14 @@ showChangeProductButton(remark:any,orderItemId:any,orderId:any,productId:any,con
 
   });
 
+}
+keyPressNumbers(event:any) {
+  const charCode = event.which ? event.which : event.keyCode;
+  if (charCode < 48 || charCode > 57) {
+    event.preventDefault();
+    return false;
+  } else {
+    return true;
+  }
 }
 }

@@ -115,11 +115,7 @@ ngOnInit(): void {
       width: '914px',
       height: '470px',
     });
-  
-    // Subscribe to the afterClosed event
     dialogRef.afterClosed().subscribe(result => {
-      // This code will be executed when the dialog is closed
-      // You can call your API or perform any other action here
       this.shippingcard(0);
     });
   }
