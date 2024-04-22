@@ -38,7 +38,7 @@ export class AccountDetailComponent {
   dropdowndata10:any;
   dropdowndata11:any;
   dropdowndata12:any;
-
+  searchproductform!:FormGroup;
   mydata:any;
   type=''
   searchText: string = '';
@@ -162,7 +162,9 @@ driver=''
       }, { validator: this.passwordMatchValidator });
       this.orderserach=this.formBuilder.group({
         categoryId:[''],
-      
+      })
+      this.searchproductform=this.formBuilder.group({
+        productname:['']
       })
    
 }
@@ -947,19 +949,19 @@ downoladinvoice(orderid:any){
 }
 getallexpandorder(type:any) {
   const serach =this.searchText;
-  const productname =this.productname ||''
-  const code=this.code || ''
-  const bin= this.bin || ''
-  const vender=this.vender ||''
-  const qutanity=this.qutanity || ''
-  const price=this.price || ''
-  const total =this.total || ''
-  const customername=this.customername || ''
-  const ref=this.ref || ''
-  const status=this.status || ''
-  const transationdate=this.transationdate || ''
-  const driver=this.driver ||''
-  const routee=this.routee || ''
+  const productname = ''
+  const code= ''
+  const bin=  ''
+  const vender=''
+  const qutanity= ''
+  const price=''
+  const total = ''
+  const customername= ''
+  const ref= ''
+  const status= ''
+  const transationdate= ''
+  const driver=''
+  const routee=''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
@@ -969,6 +971,19 @@ getallexpandorder(type:any) {
         this.paginator.pageIndex = this.currentPage;
         this.paginator.length = this.totalrecordLength;
       });
+      this.productname = '';
+      this.code='';
+      this.bin='';
+      this.vender='';
+      this.qutanity='';
+      this.price='';
+      this.total='';
+      this.customername='';
+      this.ref='';
+      this.status='';
+      this.transationdate='';
+      this.driver='';
+      this.routee=''
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
