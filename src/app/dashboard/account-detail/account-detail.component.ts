@@ -697,6 +697,28 @@ getmyorderbyorderid(orderid:any) {
     }
   })
 }
+getmyorderbyorderidandorderitemid(orderid:any,orderitemid:any) {
+  const serach ='';
+  console.log('hksk')
+  this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
+    this.data =res;
+    if (this.data.status === 0) {
+      this.customerdetail=this.data.response.dataSet.customerDetails;
+      this.addressdetail=this.data.response.dataSet.shippingDetails;
+      this.productDetails=this.data.response.dataSet.productDetails;
+      this.orderDetails=this.data.response.dataSet.orderDetails;
+      this.totalrecordLengthh = this.data.response.totalElements;
+      console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
+      setTimeout(() => {
+        this.paginator.pageIndex = this.currentPage;
+        this.paginator.length = this.totalrecordLengthh;
+      });
+    }
+    else {
+      this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
+    }
+  })
+}
 deletewishlist(id:any) {
   if (confirm("Are you sure wants to delete this Product?") == true) {
     this.dashboardservice.deletewishlist(id).subscribe(res => {
@@ -910,7 +932,7 @@ openeinventorydialog(productName: any, totalPrice: any, productId: any, orderIte
   dialogRef.afterClosed().subscribe(result => {
     // This code will be executed when the dialog is closed
     // You can call your API or perform any other action here
-    this.getmyorderbyorderid(orderId);
+    this.getmyorderbyorderidandorderitemid(orderId,orderItemId);
 
   });
 
@@ -1379,7 +1401,7 @@ changestausofproduct(confirmStatus:any,remark:any,orderItemId:any,orderId:any){
     (res: any) => { // Assuming res is of type any for now
       if (res && res.status === 0) { // Check if res exists and has a status property
         this.snackBar.open("Changed successfully", 'x', { duration: 2000 });
-        this.getmyorderbyorderid(orderId)
+        this.getmyorderbyorderidandorderitemid(orderId,orderItemId)
       }
     },
     (error) => {
@@ -1397,7 +1419,7 @@ changestausofproductt(confirmStatus:any,remark:any,orderItemId:any,orderId:any){
     (res: any) => { // Assuming res is of type any for now
       if (res && res.status === 0) { // Check if res exists and has a status property
         this.snackBar.open("Changed successfully", 'x', { duration: 2000 });
-        this.getmyorderbyorderid(orderId);
+        this.getmyorderbyorderidandorderitemid(orderId,orderItemId);
       }
     },
     (error) => {
@@ -1565,7 +1587,7 @@ showChangeProductButton(remark:any,orderItemId:any,orderId:any,productId:any,con
   // let elementPos = this.productdetail.map((x: { orderItemId: any; }) => {return x.orderItemId; }).indexOf(orderItemId);
   // this.productdetail[elementPos].confirmStatus = 'Missing';
   this.dashboardservice.changestatusofproduct(confirmStatus,remark,orderItemId).subscribe((res)=>{
-    this.getmyorderbyorderid(orderId)
+    this.getmyorderbyorderidandorderitemid(orderId,orderItemId)
     if(res['status']==0){
       // this.getmyorderbyorderid(orderId);
       // this.gettorderDetailsById();
@@ -1585,5 +1607,10 @@ keyPressNumbers(event:any) {
   } else {
     return true;
   }
+}
+cancelorder(orderid:any){
+  this.dashboardservice.Cancelorder(orderid).subscribe((res) => {
+    this.getallmyorder()
+  });
 }
 }

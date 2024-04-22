@@ -188,6 +188,10 @@ export class DashboardService {
   // @ts-ignore
     return this.http.put<any>(`${environment.baseurl}/brfooduser/saveOrderPage?orderId=${orderId}`)
   }
+  Cancelorder(orderId:any){
+    // @ts-ignore
+      return this.http.put<any>(`${environment.baseurl}/brfooduser/cancelOrderPage?orderId=${orderId}`)
+    }
   changecheckedstatus(orderItemId:any){
       // @ts-ignore
       return this.http.put<any>(`${environment.baseurl}/product/changeCheckedStatus?orderItemId=${orderItemId}`)
