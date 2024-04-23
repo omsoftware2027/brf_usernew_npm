@@ -85,12 +85,13 @@ if(this.formGroup.valid){
       localStorage.setItem('token', this.loginData.response.token);
       localStorage.setItem('userType', this.loginData.response.userType);
       console.log(this.loginData.response.id, 'loginData');
-      window.location.reload();
+      // window.location.reload();
       this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
+      this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
     
-      if (this.dropdownMenu.nativeElement.classList.contains('show')) {
-        this.dropdownMenu.nativeElement.classList.remove('show');
-      }
+      // if (this.dropdownMenu.nativeElement.classList.contains('show')) {
+      //   this.dropdownMenu.nativeElement.classList.remove('show');
+      // }
       this.formGroup.reset();
     } else if (this.loginData.status === -1) { // Added else if block for -1 status
       this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });

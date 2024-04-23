@@ -38,4 +38,18 @@
 .mat-mdc-dialog-container {
    --mdc-dialog-container-shadow-color: #ffffff !important;
 }
- 
+.btn-secondary,.btn-secondary:focus{
+  box-shadow: none!important;
+  border-color: #F44C4C  ;
+}
+.btn-primary,.btn-primary:focus{
+  box-shadow: none!important;
+  // border-color: #3A51A2  ;
+}
+.form-check-input:checked {
+  background-color: #F44C4C !important;
+  border-color: #F44C4C !important;
+}
+.btn-close{
+  --bs-btn-close-focus-shadow:none !important;
+}
