@@ -13,10 +13,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AllProductComponent {
   currentValue: number = 22;
+  showMoreStates: boolean[] = [];
   firstIconDisabled: boolean = true;
   secondIconDisabled: boolean = false;
   showMoreTextMap: { [key: string]: boolean } = {};
   categoryid:any;
+  maxCharacters:number =17;
   carttotal:any;
   wishlist:any;
   fwishlist:any;
@@ -85,9 +87,7 @@ export class AllProductComponent {
       }
     })
   }
-  toggleShowMore(cardId: string) {
-    this.showMoreTextMap[cardId] = !this.showMoreTextMap[cardId];
-  }
+ 
 
   shouldShowMore(cardId: string, text: string): boolean {
     return text.length > 50;
@@ -271,5 +271,23 @@ export class AllProductComponent {
         }
       })
     }
+  }
+  highlightText(text: string, maxLength: number, index: number): string {
+    // Your existing code here
+    
+    // Check if "Show more" state is true for this card
+    if (this.showMoreStates[index]) {
+      return text; // If "Show more" is clicked, return full text
+    } else {
+      // Otherwise, truncate text
+      if (text.length <= maxLength) {
+        return text;
+      } else {
+        return text.slice(0, maxLength) + '...';
+      }
+    }
+  }
+  toggleShowMore(index: number) {
+    this.showMoreStates[index] = !this.showMoreStates[index]; // Toggle "Show more" state
   }
 }
