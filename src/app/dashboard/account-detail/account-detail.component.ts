@@ -24,7 +24,7 @@ export class AccountDetailComponent {
   quantity1:any;
   myorderdata:any;
   showChangeProduct:boolean[]= [];
-  selectedButton: string | null = null;
+  selectedButton: string = ''; 
   dropdowndata:any;
   dropdowndata1:any;
   dropdowndata2:any;
@@ -102,7 +102,7 @@ driver=''
   usertype:any;
   id:any;
   expandOpen:boolean=false;
-
+  // selectedButton: string = ''; 
   category:any;
   page: number = 0;
   size: number = 30;
@@ -195,6 +195,7 @@ showexpandorderr(){
 }
 selectButton(button: string) {
   this.selectedButton = button;
+  this.getallexpandorder(button); 
 }
 passwordMatchValidator(changepasswordform: FormGroup) {
   const newPassword = changepasswordform.get('newPassword')?.value;
@@ -593,7 +594,7 @@ pageChanged(event: any) {
   this.pageSize = event.pageSize;
   this.currentPage = event.pageIndex;
   // const calculatedPageIndex = this.currentPage * this.pageSize;
-  this.getallstaff(event.pageIndex);
+  this.getallexpandorder(this.selectedButton);
 }
 pageChangedd(event: any) {
   this.pageSize = event.pageSize;
@@ -947,7 +948,7 @@ downoladinvoice(orderid:any){
     window.open(this.data, '_blank');
   })
 }
-getallexpandorder(type:any) {
+getallexpandorder(selectedButton: string) {
   const serach =this.searchText;
   const productname = ''
   const code= ''
@@ -962,7 +963,7 @@ getallexpandorder(type:any) {
   const transationdate= ''
   const driver=''
   const routee=''
-  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
+  this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,selectedButton,productname,code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;
