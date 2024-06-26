@@ -72,7 +72,7 @@ export class AddWishlistComponent {
       })
     }
   }
-  submitcart(productId:any,price:any){
+  submitcart(productId:any,price:any,wishlistId:any){
      
     let data = {
       productId:productId,
@@ -86,8 +86,12 @@ export class AddWishlistComponent {
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
         this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
-        this.reloadCommonService.sendUpdate('reloadWalletDetail');
-      
+        this.dashboardservice.deletewishlist(wishlistId).subscribe(res => {
+          if (res.status == 0) {
+            this.tabelLoad(0);
+            this.reloadCommonService.sendUpdate('reloadWalletDetail');
+          }
+        })
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });

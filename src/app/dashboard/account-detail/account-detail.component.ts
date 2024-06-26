@@ -817,7 +817,7 @@ saveorder(orderid:any){
 //     this.snackBar.open("Qutanity greater  than 0", 'x', { duration: 2000 });
 //   }
 //   }
-  addToCart(productId:any,price:any){
+  addToCart(productId:any,price:any,wishlistId:any){
      
     let data = {
       productId:productId,
@@ -832,7 +832,12 @@ saveorder(orderid:any){
       if (res.status == 0) {
         this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
         this.reloadCommonService.sendUpdate('reloadWalletDetail');
-      
+        this.dashboardservice.deletewishlist(wishlistId).subscribe(res => {
+          if (res.status == 0) {
+            this.getallbulkorder(0);
+            this.reloadCommonService.sendUpdate('reloadWalletDetail');
+          }
+        })
       }
       else {
         this.snackBar.open("Error while updating", 'x', { duration: 2000 });

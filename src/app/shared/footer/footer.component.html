@@ -107,6 +107,9 @@
             <input type="text" class="form-control" formControlName="email" style="width: 180px;height: 37px;border-radius: 10px;border: none;" placeholder=" Email Id" class="col-xs-3"  >&nbsp;&nbsp;
             <button type="button" class="btn btn-danger btn-sm" (click)="submitcart()" style="background-color: #F44C4C;">Submit</button>
           </div>
+          <mat-error>
+            <span *ngIf="(submitted && footeremailform.get('email')?.errors) || !footeremailform.get('email')?.valid && footeremailform.get('email')?.touched">Please enter email </span>
+        </mat-error>
         </form>
 
         <div class="d-flex" style="height: 40px; width: 40px; padding-top: 5px;">

@@ -308,10 +308,13 @@ export class NavbarComponent implements OnInit{
         this.showLine4InSignUp = false;
       }
       logoutaccount(): void {
-        this.dialog.open(SignInComponent, {
+        var dia = this.dialog.open(SignInComponent, {
           width: '400px',
-         
         });
+        dia.afterClosed().subscribe(result => {
+          this.ngOnInit();
+        });
+        
       }
       stopPropagation(event: Event): void {
         event.stopPropagation();
@@ -325,16 +328,13 @@ export class NavbarComponent implements OnInit{
           };
           this.dashboardservice.login(loginpayload).subscribe(data => {
             this.loginData = data;
-            console.log(data, 'this.loginData'); // Log received data
-      
             if (this.loginData.status === 0) {
-              this.router.navigate(['/dashboard']);
+              this.router.navigate(['/dashboard/']);
               localStorage.setItem('id', this.loginData.response.id);
               localStorage.setItem('token', this.loginData.response.token);
               localStorage.setItem('usertype', this.loginData.response.userType);
-
-              console.log(this.loginData.response.id, 'loginData');
-              window.location.reload();
+              //window.location.reload();
+              this.ngOnInit();
               this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
             
               if (this.dropdownMenu.nativeElement.classList.contains('show')) {

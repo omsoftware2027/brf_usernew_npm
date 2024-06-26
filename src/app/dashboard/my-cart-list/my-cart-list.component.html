@@ -49,7 +49,9 @@
                               <p class="mt-4"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
                               <div class="p-2">
                                 <img class="avatar-xs customer-image-elem" alt=""
-                                     [src]="data.image || 'assets/images/download (20).png'" style="width:54px;height:54px;border-radius: 8px;">
+                                     [src]="data.image || 'assets/images/download (20).png'" 
+                                     onerror="this.src='assets/images/download (20).png';"
+                                     style="width:54px;height:54px;border-radius: 8px;">
                               </div>
                             </div>
                             <div class="flex-grow-1 p-3">
@@ -124,7 +126,7 @@
             line-height: 35px;"  [routerLink]="['/dashboard']"> <i class="ri-arrow-left-line"></i> Return to shop</button>
            </div>
                </div>
-               <div class="col-md-4 mt-3">
+               <div class="col-md-4 mt-3" *ngIf="isLogin">
                 <mat-card-body >
                     <div class="card p-4" style="padding: 10px;     margin-left: 16px;
                     border-radius: 10px;">

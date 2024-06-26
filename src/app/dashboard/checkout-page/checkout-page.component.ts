@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SigninPopupComponent } from 'src/app/shared/signin-popup/signin-popup.component';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { MasterService } from 'src/app/services/master-service/master.service';
@@ -36,13 +36,26 @@ ngOnInit(): void {
   this.now = datePipe.transform(new Date(), 'yyyy-MM-dd');
   this.proccedaddressform = this.formBuilder.group({
     shippingAddressId: ['',Validators.required],
-    dateTime: ['', Validators.required],
+    dateTime: ['', [Validators.required,this.dateValidator]],
     notes:[''],
     shippingAddressType:[''],
 
   });
   const now = new Date();
   this.now = now.toISOString().slice(0, 16);
+  this.now = new Date(this.now);
+  console.log('this.now',this.now)
+}
+
+dateValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  if (control?.value) {
+      const today = new Date();
+      const dateToCheck = new Date(control.value);
+      if (dateToCheck < today) {
+          return {'Invalid date': true}
+      }
+  }
+  return null;
 }
   // openeclinicAcessDialog(): void {
   //   this.dialog.open(SigninPopupComponent, {

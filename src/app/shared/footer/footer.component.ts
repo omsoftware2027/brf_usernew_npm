@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup , Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 
@@ -28,10 +28,11 @@ export class FooterComponent implements OnInit{
     cmsEnum2 ='CUSTOMER'
     cmsEnum3 ='ORDER'
     cmsEnum4 ='DELIVERY'
+    submitted:boolean =false;
 
   constructor(private dashboardservice:DashboardService,private snackBar:MatSnackBar,private formBuilder:FormBuilder){
     this.footeremailform=this.formBuilder.group({
-      email:[''],
+      email:['',[Validators.required, Validators.email]],
     })
   }
     ngOnInit() {
@@ -109,7 +110,8 @@ export class FooterComponent implements OnInit{
       window.open(url, '_blank');
     }
     submitcart(){
-     
+      this.submitted=true;
+     if(this.footeremailform.valid){
       this.dashboardservice.savesubscriction(this.footeremailform.value.email).subscribe((res:any) => {
         if (res.status == 0) {
           // this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
@@ -120,7 +122,7 @@ export class FooterComponent implements OnInit{
           this.footeremailform.reset();
         }
       })
-    
+     }
     }
   //   getfooterinstantsaving(linkname:any) {
   //     this.dashboardservice.getalllinkname(linkname).subscribe((res) => {
