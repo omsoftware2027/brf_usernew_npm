@@ -118,7 +118,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">First Name </label>
                                                 <div class="input-group" >
-                                                    <input type="text" placeholder="" class="form-control"formControlName="firstName" >
+                                                    <input type="text" placeholder="" (keypress)="keyPressAlphabets($event)" class="form-control"formControlName="firstName" >
                                                 </div>
                               
                                                 <!-- <mat-error>
@@ -133,7 +133,7 @@
                                           <div class="form-group">
                                               <label for="" class="form-label">Last Name</label>
                                               <div class="input-group" >
-                                                  <input type="text"  placeholder="" class="form-control" formControlName="lastName" >
+                                                  <input type="text"  placeholder="" (keypress)="keyPressAlphabets($event)" class="form-control" formControlName="lastName" >
                                               </div>
                               
                                               <!-- <mat-error>
@@ -148,7 +148,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Business Name</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control" formControlName="businessName" >
+                                                    <input type="text"  placeholder="" (keypress)="keyPressAlphabets($event)" class="form-control" formControlName="businessName" >
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -163,7 +163,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Phone Number</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control" formControlName="mobile" >
+                                                    <input type="text"  placeholder="" (keypress)="keyPressNumbers($event)" class="form-control" formControlName="mobile" >
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -201,7 +201,8 @@
                                            <div class="col-md-6 mt-3 ">
                                                <div class="form-group">
                                                    <label for="" class="form-label">Street Address.1
-                                                    <span class="text-danger">*</span></label>
+                                                    <!-- <span class="text-danger">*</span> -->
+                                                </label>
                                                    <div class="input-group" >
                                                        <input type="text" placeholder="" class="form-control" formControlName="addressLine1" >
                                                    </div>
@@ -234,7 +235,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">City</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control"formControlName="city" >
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="city" (keypress)="keyPressAlphabets($event)">
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -249,7 +250,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">State</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control"formControlName="state" >
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="state" (keypress)="keyPressAlphabets($event)">
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -264,7 +265,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">Country</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control"formControlName="country" >
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="country" (keypress)="keyPressAlphabets($event)">
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -279,7 +280,7 @@
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Pin Code</label>
                                                     <div class="input-group" >
-                                                        <input type="text"  placeholder="" class="form-control"formControlName="pincode" >
+                                                        <input type="text"  placeholder="" class="form-control"formControlName="pincode" (keypress)="keyPressNumbers($event)">
                                                     </div>
                                     
                                                     <!-- <mat-error>
@@ -302,7 +303,8 @@
                                        <div class="col-md-6 mt-3 ">
                                            <div class="form-group">
                                                <label for="" class="form-label">Billing Address.1
-                                                <span class="text-danger">*</span></label>
+                                                <!-- <span class="text-danger">*</span> -->
+                                            </label>
                                                <div class="input-group" >
                                                    <input type="text" placeholder="" class="form-control"formControlName="billingAddressLine1" >
                                                </div>
@@ -335,7 +337,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">City</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCity" >
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCity" (keypress)="keyPressAlphabets($event)">
                                                </div>
                                
                                                <!-- <mat-error>
@@ -350,7 +352,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">State</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingState" >
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingState" (keypress)="keyPressAlphabets($event)">
                                                </div>
                                
                                                <!-- <mat-error>
@@ -365,7 +367,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">Country</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCountry" >
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCountry" (keypress)="keyPressAlphabets($event)">
                                                </div>
                                
                                                <!-- <mat-error>
@@ -380,7 +382,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Pin Code</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control"formControlName="billingPincode" >
+                                                    <input type="text"  placeholder="" class="form-control"formControlName="billingPincode" (keypress)="keyPressNumbers($event)">
                                                 </div>
                                 
                                                 <!-- <mat-error>

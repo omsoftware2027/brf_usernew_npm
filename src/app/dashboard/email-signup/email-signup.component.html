@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label for="" class="form-label">Password</label>
                         <div class="input-group" >
-                            <input type="text"  placeholder="password" class="form-control" formControlName="password">
+                            <input type="password"  placeholder="password" class="form-control" formControlName="password">
                         </div>
         
                         <mat-error>
@@ -166,7 +166,7 @@
                     <div class="form-group">
                         <label for="" class="form-label">First Name </label>
                         <div class="input-group" >
-                            <input type="text" placeholder="first name " class="form-control" formControlName="firstName">
+                            <input type="text" placeholder="first name " (keypress)="keyPressAlphabets($event)" class="form-control" formControlName="firstName">
                         </div>
       
                         <mat-error>
@@ -181,7 +181,7 @@
                     <div class="form-group">
                         <label for="" class="form-label">Last Name</label>
                         <div class="input-group" >
-                            <input type="text"  placeholder="last name" class="form-control" formControlName="lastName">
+                            <input type="text"  placeholder="last name" (keypress)="keyPressAlphabets($event)" class="form-control" formControlName="lastName">
                         </div>
         
                         <mat-error>

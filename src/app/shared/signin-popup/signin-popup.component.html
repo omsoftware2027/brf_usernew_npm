@@ -41,7 +41,7 @@
                     <div class="form-group">
                         <label for="" class="form-label">City</label>
                         <div class="input-group">
-                            <input type="text" formControlName="city" placeholder="City" class="form-control">
+                            <input type="text" formControlName="city" placeholder="City" class="form-control" (keypress)="keyPressAlphabets($event)">
                         </div>
                     </div>
                     <mat-error>
@@ -61,7 +61,7 @@
                 <div class="form-group">
                     <label for="" class="form-label">State</label>
                     <div class="input-group">
-                        <input type="text" formControlName="state" placeholder="state" class="form-control">
+                        <input type="text" formControlName="state" placeholder="state" class="form-control" (keypress)="keyPressAlphabets($event)">
                     </div>
                     <mat-error>
                         <span *ngIf="(submitted && formGroup.get('state')?.errors) || !formGroup.get('state')?.valid && formGroup.get('state')?.touched">Please enter state  </span>
@@ -72,7 +72,7 @@
               <div class="form-group">
                   <label for="" class="form-label">Country</label>
                   <div class="input-group">
-                      <input type="text" formControlName="country" placeholder="country" class="form-control">
+                      <input type="text" formControlName="country" placeholder="country" class="form-control" (keypress)="keyPressAlphabets($event)">
                   </div>
                   <mat-error>
                     <span *ngIf="(submitted && formGroup.get('country')?.errors) || !formGroup.get('country')?.valid && formGroup.get('country')?.touched">Please enter country  </span>
@@ -86,7 +86,7 @@
               <div class="form-group">
                   <label for="" class="form-label">PinCode</label>
                   <div class="input-group">
-                      <input type="text" formControlName="pincode" placeholder="pin code" class="form-control">
+                      <input type="text" formControlName="pincode" placeholder="pin code" class="form-control" (keypress)="keyPressNumbers($event)">
                   </div>
                   <mat-error>
                     <span *ngIf="(submitted && formGroup.get('pincode')?.errors) || !formGroup.get('pincode')?.valid && formGroup.get('pincode')?.touched">Please enter pin code  </span>
@@ -107,7 +107,7 @@
                         <button type="submit" class="btn btn-secondary px-5 text-white" style="background-color: #F44C4C; height: 56px;width:284px" (click)="shppingaddress()" >DELIVER TO THIS ADDRESS</button>
                     </div>
                     <div class="col-6  mt-5" style="text-align: center;"> 
-                        <button type="submit" class="btn btn-primary  px-5 text-white" style="background-color: #3A51A2; height: 56px;width:243px"(click)="closeDialog()"  > CANCLE</button>
+                        <button type="submit" class="btn btn-primary  px-5 text-white" style="background-color: #3A51A2; height: 56px;width:243px"(click)="closeDialog()"  > CANCEL</button>
                     </div>
                   </div>
                 </form>

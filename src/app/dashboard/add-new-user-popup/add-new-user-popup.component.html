@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="" class="form-label">First Name</label>
                         <div class="input-group">
-                            <input type="text" formControlName="firstName" placeholder="first name" class="form-control">
+                            <input type="text" formControlName="firstName" (keypress)="keyPressAlphabets($event)" placeholder="first name" class="form-control">
                         </div>
                         <mat-error>
                             <span *ngIf="(submitted && SignUpForm.get('firstName')?.errors) || !SignUpForm.get('firstName')?.valid && SignUpForm.get('firstName')?.touched">Please enter frist name  </span>
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label for="" class="form-label">Last Name</label>
                     <div class="input-group">
-                        <input type="text" formControlName="lastName" placeholder="Last name" class="form-control">
+                        <input type="text" formControlName="lastName" (keypress)="keyPressAlphabets($event)" placeholder="Last name" class="form-control">
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                         <button type="submit" class="btn btn-secondary px-5 text-white" style="background-color: #F44C4C; height: 56px;width:243px" (click)="submit()"  >Add User</button>
                     </div>
                     <div class="col-6  mt-3" style="text-align: center;"> 
-                        <button type="submit" class="btn btn-primary  px-5 text-white" style="background-color: #3A51A2; height: 56px;width:243px" (click)="closeDialog()"  >Cancle</button>
+                        <button type="submit" class="btn btn-primary  px-5 text-white" style="background-color: #3A51A2; height: 56px;width:243px" (click)="closeDialog()"  >Cancel</button>
                     </div>
                   </div>
                 </form>

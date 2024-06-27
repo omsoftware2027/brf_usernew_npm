@@ -237,6 +237,17 @@ export class NavbarComponent implements OnInit{
         });
 
     }
+
+    keyPressAlphabets(event: any) {
+      var charCode = (event.which) ? event.which : event.keyCode;
+      if ((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90)) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    
     onClick(event: MouseEvent) {
       const clickedElement = event.target as HTMLElement;
 

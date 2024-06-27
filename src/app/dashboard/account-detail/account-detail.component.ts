@@ -168,6 +168,17 @@ driver=''
       })
    
 }
+
+keyPressAlphabets(event: any) {
+  var charCode = (event.which) ? event.which : event.keyCode;
+  if ((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90)) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 showSignInForm() {
   this.showmyprfile = true;
   this.isProfileOpen = true;
