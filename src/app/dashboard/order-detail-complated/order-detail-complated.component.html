@@ -1,4 +1,4 @@
-<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
+<div class="page-breadcrumb d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
 #F2F4F5;">
 <div class="ps-4 container">
     <nav aria-label="breadcrumb" >
@@ -39,56 +39,55 @@
                         <div class="col-md-3"></div>
                         <!-- <div class="col-md-1"><button class="btn1 text-white mt-1" style="background-color: #34BBD9;letter-spacing: 0.5px">PRINT</button></div>
                         <div class="col-md-3"><button class="btn2 text-white mt-1"  style="background-color: #3A51A2;"[routerLink]="['/dashboard/my-cart-list',orderdata.orderId]" (click)="getallreorder(orderdata.orderId)">REORDER</button></div> -->
-                        <div class="col-md-2">   <button class="btn3 text-white mt-1 " style="background-color: #832727 ;margin-left: -20px;letter-spacing: 0.5px">{{allorder.transactionId}}</button></div>
+                        <div class="col-md-2">   <button class="btn3 text-white mt-1 ">{{allorder.transactionId}}</button></div>
                         
+                    </div>         
                     </div>
-                  
-                    
-                    
-                 
-                    </div>
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col" style=" color:#475156 !important">PRODUCTS</th>
-                         
-                            <th scope="col"style=" color:#475156 !important" >ACTIONS</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let data of projectpridations">
-                                <th scope="row">
-                                    <div  class="d-flex align-items-center">
-                                        <div class="flex-shrink-0 me-2">
-                                            <div>
-                                                <img class="avatar-xs  customer-image-elem" alt=""
-                                                    [src]="data.productImage || 'assets/images/download (20).png' " style="width:62px;height:62px">
+                    <div class="scrollwrapper">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col" style=" color:#475156 !important">PRODUCTS</th>
+                             
+                                <th scope="col"style=" color:#475156 !important" >ACTIONS</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of projectpridations">
+                                    <th scope="row">
+                                        <div  class="d-flex align-items-center">
+                                            <div class="flex-shrink-0 me-2">
+                                                <div>
+                                                    <img class="avatar-xs  customer-image-elem" alt=""
+                                                        [src]="data.productImage || 'assets/images/download (20).png' " style="width:62px;height:62px">
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 p-3">
+                                                <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                                        class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.title}}</a></p>
+                                              <div class="d-flex">
+                                                <div ><p style="color:#F44C4C">Price:<span style="color:#475156">{{data.price}} </span></p></div>
+                                                <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity: <span style="color:#475156">{{data.quantity}}</span></p></div>
+                                                <div  style="margin-left: 38px"><p style="color:#F44C4C">Total: <span style="color:#475156">{{data.totalPrice}}$</span></p></div>
+                                              </div>
+                                                        
+    
+    
                                             </div>
                                         </div>
-                                        <div class="flex-grow-1 p-3">
-                                            <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.title}}</a></p>
-                                          <div class="d-flex">
-                                            <div ><p style="color:#F44C4C">Price:<span style="color:#475156">{{data.price}} </span></p></div>
-                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity: <span style="color:#475156">{{data.quantity}}</span></p></div>
-                                            <div  style="margin-left: 38px"><p style="color:#F44C4C">Total: <span style="color:#475156">{{data.totalPrice}}$</span></p></div>
-                                          </div>
-                                                    
-
-
-                                        </div>
-                                    </div>
-                
-                                </th>
-                               
-                                <td>   <button type="button btn-secondary " class="btn mt-3" [routerLink]="['/dashboard/view-product-detail',data.productId]" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
-                                    ">VIEW
-                                      </button></td>
-                              </tr>
-                
-                        
-                        </tbody>
-                      </table>
+                    
+                                    </th>
+                                   
+                                    <td>   <button type="button btn-secondary " class="btn mt-3" [routerLink]="['/dashboard/view-product-detail',data.productId]" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                        ">VIEW
+                                          </button></td>
+                                  </tr>
+                    
+                            
+                            </tbody>
+                          </table>
+                    </div>
+                    
                       <div style="background-color: #F2F4F5; height: 35px;" class="mt-2 mb-3">
                         <div class="col-md-12 d-flex mt-2 container">
                             <div class="col-md-6 text-white">

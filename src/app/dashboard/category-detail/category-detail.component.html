@@ -1,5 +1,5 @@
 <div>
-  <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
+  <div class="page-breadcrumb d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
 #F2F4F5;">
     
     <div class="ps-4 container ">
@@ -27,9 +27,7 @@
 
  </div>
     <div class="mt-4">
-        <a style="font-size:34px;color:
-        #253D4E;    font-family: PT Serif;
-    font-weight: 700;">
+        <a class="t1">
      {{categoryname}}
           </a>
       </div>
@@ -41,9 +39,9 @@
         <h5 class="mb-1">product not available</h5>
       </div>
   <div class="row">
-    <div class="col-md-12  mt-5 ">
+    <div class="col-md-12  mt-3 ">
      <div class="row">
-      <div class="col-md-8 ">
+      <div class="col-md-12 col-lg-8 col-xl-8">
         <div class="row">
           <div class="col-md-3 " *ngFor="let data of category ;let i=index" [ngStyle]="{'margin-top': i < 4 ? '0%' : '-2%'}">
             <div class="card mt-2" >
@@ -103,7 +101,7 @@
         </div>
        </div>
      
-       <div class="col-4 mt-2">
+       <div class="col-md-12 col-lg-4 col-xl-4 mt-2">
         <div class="panel-group" id="accordion">
           <div class="panel panel-default card">
             <div class="panel-heading">
@@ -111,10 +109,9 @@
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
                   <div class="p-1 d-flex col-12"style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
                     <div class="col-6 d-flex">
-                      <i class="las la-shopping-cart mt-3 " style="font-size: 45px;margin-left: -2px;color: black;"></i>
-                      <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  " style="border: 3px solid white !important;margin-left:37px;background-color: #F43C4C;margin-top: 18px;">{{fwishlist}}</span>
-                       <h5 style="padding-left: 27px;font-weight: 400;
-                       font-size: 24px;" class="text-white mt-4 pl-2">My Cart</h5>
+                      <i class="las la-shopping-cart mt-3 "></i>
+                      <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill">{{fwishlist}}</span>
+                       <h5 class="t3 text-white mt-4 pl-2">My Cart</h5>
                      </div>
                    
                      <!-- Amount on the right -->
@@ -128,7 +125,7 @@
                   </div></a>
               </h4>
             </div>
-            <div id="collapse1" class="panel-collapse collapse  show p-3" style="height:700px !important;overflow: auto;">
+            <div id="collapse1" class="panel-collapse collapse  show p-3">
               <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
                 <div class="d-flex col-md-12 col-lg-12 col-xl-12">
                  <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
@@ -211,13 +208,9 @@
                       </div>
       
                       <div class="d-flex flex-column">
-                        <button type="button" class="btn btn-secondary mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
-                        font-size: 15px;
-                        line-height: 42px;letter-spacing: 0.6px;"[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
+                        <button type="button" class="btn btn-secondary mt-4 w-100" [routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
                           <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                        <button type="button" class="btn  btn-primary w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
-                        font-size: 15px;
-                        line-height: 42px;letter-spacing: 0.5px;" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
+                        <button type="button" class="btn  btn-primary w-100 mt-4" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
                           <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
                       </div>
                      

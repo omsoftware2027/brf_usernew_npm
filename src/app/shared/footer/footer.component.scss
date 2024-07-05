@@ -43,3 +43,25 @@ footer{
 .bg-dark{
   background-color: #2D2D2D !important;
 }
+.t6{
+  padding-left: 200px;
+}
+@media (min-width:320px) and (max-width: 767px) {
+  .d-block-mb{
+    display: block!important;
+  }
+  .t5{
+    padding-left: 0px!important;
+  }
+  .t6{
+    padding-left: 0px!important;
+  }
+}
+@media (min-width:768px) and (max-width: 1024px) {
+  .t5{
+    padding-left: 0px!important;
+  }
+  .t6{
+    padding-left: 0px!important;
+  }
+}

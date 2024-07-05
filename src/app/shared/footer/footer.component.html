@@ -5,7 +5,7 @@
 <footer class="bg-dark text-white pt-2 pb-5" style="cursor: pointer;    margin-top: 12%;">
   <div class=" text-md-left">
     <div class="row text-md-left">
-      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto">
+      <div class="col-md-4 col-lg-2 col-xl-2 mx-auto">
         <h5 class="text-white font-weight-bold mt-3 mb-4">General Information</h5>
         <div *ngFor="let item of titlesAndIdsArray1">
           <p [routerLink]="['/dashboard/return-policy',item.cmsId]" style="color:
@@ -32,7 +32,7 @@
 
       </div>
 
-      <div class="col-md-2 col-lg-2 col-xl-2">
+      <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Customer Service</h5>
        <div *ngFor="let item of titlesAndIdsArray">
         <p [routerLink]="['/dashboard/return-policy',item.cmsId]" style="color:
@@ -51,7 +51,7 @@
         </p> -->
       </div>
 
-      <div class="col-md-2 col-lg-2 col-xl-2">
+      <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Ordering Information</h5>
         <p [routerLink]="['/dashboard/new-customers',data.cmsId]"  *ngFor="let data of cmsRes2">
           <a  style="color:
@@ -59,7 +59,7 @@
         </p>
   
       </div>
-      <div class="col-md-2 col-lg-2 col-xl-2">
+      <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Delivery Information</h5>
         <p [routerLink]="['/dashboard/site-map',data.cmsId]"*ngFor="let data of cmsRes3">
           <a  style="color:
@@ -71,7 +71,7 @@
         </p> -->
       </div>
 
-      <div class="col-md-3 col-lg-3 col-xl-3">
+      <div class="col-md-8 col-lg-3 col-xl-3">
         <h5 class="font-weight-bold mt-3 mb-4">Contact Us</h5>
        <div class="d-flex">
         <p class="d-flex mb-2">
@@ -122,11 +122,11 @@
 
     <hr class="mb-2">
     <div class="row align-i tems-center d-flex" style="margin-bottom: -30px;">
-      <div class="col-md-7 col-lg-10 d-flex">
-        <div class="text-white ps-5">© 2024 Wholesale Corporation all rights reserved </div>
-       <div class="d-flex">
+      <div class="col-md-9 col-lg-10 col-xl-10 d-flex d-block-mb">
+        <div class="text-white ps-5 t5">© 2024 Wholesale Corporation all rights reserved </div>
+       <div class="d-flex d-block-mb">
      <div>
-      <a class="text-white" style="padding-left: 200px;" [routerLink]="['/dashboard/pricing','deliveryinstantsavings']" >Delivery Instant Savings | </a>
+      <a class="text-white t6" [routerLink]="['/dashboard/pricing','deliveryinstantsavings']" >Delivery Instant Savings | </a>
      </div>
        <div style="margin-left: 5px;">
         <p [routerLink]="['/dashboard/credit-cards','warehouseinstantsavings']" >Warehouse Instant Saving</p>
@@ -153,7 +153,7 @@
         </div> -->
       </div>
 
-      <div class="col-md-2 lg-2">
+      <div class="col-md-3 col-lg-2 col-xl-2 lg-2">
         <div class="text-center text-md-right">
           <div class="myclass text-md-right">
             <i style="background-color: #F44C4C;" class="fa fa-facebook-official" aria-hidden="true" (click)="openurl(socialmedia.facebookUrl)"></i>

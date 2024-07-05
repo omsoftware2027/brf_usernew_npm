@@ -43,3 +43,43 @@ ul {
     background-color: #F44C4C !important;
     border-color: #F44C4C !important;
 } 
+.card-t{
+    padding: 10px;
+    margin-left: 16px;            
+}
+@media (min-width:320px) and (max-width: 767px) {
+    .d-block-mb{
+      display: block!important;
+    }
+    .scrollwrapper{
+      overflow: auto;
+    }
+    .pm-2{
+       padding: 5px!important;
+     }
+     .btnn{
+        width: auto;
+        font-size: 12px;
+        height: 32px;
+     }
+     .mp-1{
+        margin: 15px !important;
+     }
+     .t1{
+        font-size: 14px;
+     }
+     .card-t{
+        margin-left: 0px;
+      }
+ }
+ @media (min-width:768px) and (max-width: 1024px) {
+    .d-block-mb{
+      display: block!important;
+    }
+    .scrollwrapper{
+      overflow: auto;
+    }
+    .card-t{
+        margin-left: 0px;
+      }
+ }

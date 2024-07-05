@@ -84,6 +84,8 @@ export class NavbarComponent implements OnInit{
     sessionId:any;
     formGroup!:FormGroup
     forgotpasswordform!:FormGroup;
+    toogleBtn:boolean = false;
+    activeRoute:any = 'home';
     tabs: { [key: string]: boolean } = {
         'pills-manage-doc': false,
         'pills-alfa-dev': false,

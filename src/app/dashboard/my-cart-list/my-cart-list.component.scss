@@ -13,3 +13,61 @@ thead{
    color: #475156;
    line-height: 15px;
   }
+table{
+  width: 100%;
+}
+.btn-outline-success{
+  width:200px;height:48px;font-weight: 700;
+  font-size: 15px;line-height: 35px;
+}
+.red-btn{
+  background-color: #F44C4C; color: white;font-weight: 700;
+  font-size: 15px;
+  line-height: 42px;letter-spacing: 0.5px;
+}
+.card-t{
+  padding: 10px;     margin-left: 16px;
+                    border-radius: 10px;
+}
+.btn-success{
+  background-color: #527F1E;border-radius: 2px;    font-weight: 700;
+  font-size: 15px;
+  line-height: 42px;letter-spacing: 0.5px;
+}
+  @media (min-width:320px) and (max-width: 767px) {
+    .d-block-mb{
+      display: block!important;
+    }
+    .scrollwrapper{
+      overflow: auto;
+    }
+    .pm-2{
+      padding: 5px!important;
+    }
+    .btn-outline-success{
+      height:38px;line-height: 26px;
+      font-size: 14px;
+    }
+    .red-btn{
+      height:38px;line-height: 26px;
+      font-size: 14px;
+    }
+    .card-t{
+      margin-left: 0px;
+    }
+    .btn-success{
+      height:38px;line-height: 26px;
+      font-size: 14px;
+    }
+  }
+  @media (min-width:768px) and (max-width: 1024px) {
+    .d-block-mb{
+      display: block!important;
+    }
+    .scrollwrapper{
+      overflow: auto;
+    }
+    .card-t{
+      margin-left: 0px;
+    }
+  }

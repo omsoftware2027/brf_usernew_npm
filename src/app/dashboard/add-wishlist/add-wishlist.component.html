@@ -1,4 +1,4 @@
-<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
+<div class="page-breadcrumb d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
 #F2F4F5;">
     
     <div class="ps-4 container ">
@@ -19,7 +19,7 @@
   </div>
 <div class="container" >
 
- <div class="col-md-12 p-5">
+ <div class="col-md-12 p-5 pm-2">
     <div class="col-md-12 card " style="    border-radius: 9px;">
         <div class="card-title d-flex align-items-center">
             <h5 class="mb-0 main-text p-3"  style="font-weight:600;font-size:20px;line-height:24px; color:
@@ -28,45 +28,48 @@
         <div class="mt-2 cardNA mb-3" *ngIf="!wishlist.length">
             <h5 class="mb-1">Data not available</h5>
           </div>
-        <table class="table mb-3" *ngIf="wishlist.length">
-            <thead>
-              <tr >
-                <th scope="col" style=" color:#475156">PRODUCTS</th>
-                <th scope="col" style=" color:#475156">PRICE</th>
-                <th scope="col" style=" color:#475156">STOCK STATUS</th>
-                <th scope="col" style=" color:#475156">ACTIONS</th>
-              </tr>
-            </thead>
+          <div class="scrollwrapper">
+            <table class="table mb-3" *ngIf="wishlist.length">
+              <thead>
+                <tr >
+                  <th scope="col" style=" color:#475156">PRODUCTS</th>
+                  <th scope="col" style=" color:#475156">PRICE</th>
+                  <th scope="col" style=" color:#475156">STOCK STATUS</th>
+                  <th scope="col" style=" color:#475156">ACTIONS</th>
+                </tr>
+              </thead>
+              
+              <tbody>
             
-            <tbody>
-          
-              <tr *ngFor="let data of  wishlist">
-                <th scope="row">
-                    <div  class="d-flex align-items-center">
-                        <div class="flex-shrink-0 me-2">
-                            <div>
-                                <img class="avatar-xs  customer-image-elem" alt=""
-                                [src]="data.image|| 'assets/images/download (20).png'" 
-                                onerror="this.src='assets/images/download (20).png';"  style="width:52px;height:52px">
-                            </div>
-                        </div>
-                        <div class="flex-grow-1">
-                            <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                    class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.productTitle}}</a></p>
-                        </div>
-                    </div>
-
-                </th>
-                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">${{data.price}}</td>
-                <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
-                <td  class="d-flex">   <button type="button" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;
-                    ">ADD TO CART
-                        <img src="../../../assets/images/Add to cart.png" 
-                        class="" style="width:24px;height: 24px;"> </button> <p class="p-4 mt-2"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p></td>
-              </tr>
-            
-            </tbody>
-          </table>
+                <tr *ngFor="let data of  wishlist">
+                  <th scope="row">
+                      <div  class="d-flex align-items-center">
+                          <div class="flex-shrink-0 me-2">
+                              <div>
+                                  <img class="avatar-xs  customer-image-elem" alt=""
+                                  [src]="data.image|| 'assets/images/download (20).png'" 
+                                  onerror="this.src='assets/images/download (20).png';"  style="width:52px;height:52px">
+                              </div>
+                          </div>
+                          <div class="flex-grow-1">
+                              <p class="fs-base mb-0"><a href="javascript:void(0);"
+                                      class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.productTitle}}</a></p>
+                          </div>
+                      </div>
+  
+                  </th>
+                  <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">${{data.price}}</td>
+                  <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
+                  <td  class="d-flex">   <button type="button" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;
+                      ">ADD TO CART
+                          <img src="../../../assets/images/Add to cart.png" 
+                          class="" style="width:24px;height: 24px;"> </button> <p class="p-4 mt-2"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p></td>
+                </tr>
+              
+              </tbody>
+            </table>
+          </div>
+       
           <div class="col-sm-auto  mt-3 mt-sm-0">
             <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
           </div>

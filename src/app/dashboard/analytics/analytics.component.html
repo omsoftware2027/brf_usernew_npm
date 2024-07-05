@@ -1,13 +1,11 @@
 <div class="container">
 	<div class="col-12" style="margin-top:11%">
-		 <img src="../../../assets/images/advertise page1.png"  style="width: 100%;margin-top: 54px;">
+		 <img class="con-img" src="../../../assets/images/advertise page1.png"  style="width: 100%;margin-top: 75px;">
 
 	</div>
   <div>
     <div class="mt-4">
-      <a style="font-size:34px ;color:
-      #253D4E;font-family: PT Serif;
-    font-weight: 700;">Explore Categories
+      <a class="t1">Explore Categories
 
         </a>
     </div>
@@ -15,530 +13,18 @@
       <h5 class="mb-1">category not available</h5>
     </div>
     <div class="row">
-      <div class="col-12  mt-5 " >
+      <div class="col-12  mt-4 " >
 
       <div class="row">
-        <div class="col-8  ">
-          <div class="row mt-5" >
-            <div class=" col-3 category " *ngFor="let data of category ;let i = index" [ngStyle]="{'margin-top': i < 4 ? '-5%' : '16%'}">
-              <div class="category-card rounded-circle p-1 border bg-white" style="width:174px;height: 174px;border: 3px solid #669038 !important;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);">
-               <img [src]="data.image|| 'assets/images/download (20).png'" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail',data.categoryId]">
-               <p class="mt-5" style="font-size: 23px;text-align: center;
-               font-weight: 500;
-               line-height: 27px;cursor:pointer;" [routerLink]="['/dashboard/category-detail',data.categoryId]" >{{data.categoryName}}</p>
+        <div class="col-lg-8  ">
+          <div class="row" >
+            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 category " *ngFor="let data of category ;let i = index">
+              <div class="category-card rounded-circle p-1 border bg-white cursor-pointer">
+               <img [src]="data.image|| 'assets/images/download (20).png'" class="ms-3 mt-4 ps-3 category-img" 	[routerLink]="['/dashboard/category-detail',data.categoryId]">
              
               </div>
+              <p class="mt-2 t2" [routerLink]="['/dashboard/category-detail',data.categoryId]" >{{data.categoryName}}</p>
              </div>
-             <!-- <div class="col-3">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9b polarty.jpeg" class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 12px;font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9B-Poultry</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-            
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/9a pork.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9A-Pork</a>
-                </div>
-              </div>
-             </div>
-               
-               
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-           
-              border: 3px solid #669038 !important
-          ">
-               <img src="../../../assets/images/turkey.jpeg"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 24px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >Turkey</a>
-                </div>
-              </div>
-             </div>
-             <div class="col-3 mt-5 pt-5">
-              <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
-              height: 174px;
-              
-              border: 3px solid #669038 !important;
-          ">
-               <img src="../../../assets/images/fresh seafood.png"   class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
-               <div class="image-text mt-5 ms-1">
-                 <a style="margin-left: 23px; font-size: 26px;
-                 font-weight: 500;
-                 line-height: 40px;" >9D-Eggs</a>
-                </div>
-              </div>
-             </div> -->
-             
-
           </div>
           <!-- <div class="col-3">
            <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
@@ -574,7 +60,7 @@
             </div> -->
             </div>
             
-            <div class="col-4 mt-2">
+            <div class="col-lg-4 mt-2">
               <div class="panel-group" id="accordion">
                 <div class="panel panel-default card">
                   <div class="panel-heading">
@@ -582,10 +68,9 @@
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
                         <div class="p-1 d-flex col-12"style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
                           <div class="col-6 d-flex">
-                            <i class="las la-shopping-cart mt-3 " style="font-size: 45px;margin-left: -2px;color: black;"></i>
-                            <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  " style="border: 3px solid white !important;margin-left:37px;background-color: #F43C4C;margin-top: 18px;">{{fwishlist}}</span>
-                             <h5 style="padding-left: 27px;font-weight: 400;
-                             font-size: 24px;" class="text-white mt-4 pl-2">My Cart</h5>
+                            <i class="las la-shopping-cart mt-3 "></i>
+                            <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  ">{{fwishlist}}</span>
+                             <h5 class="t3 text-white mt-4 pl-2">My Cart</h5>
                            </div>
                          
                            <!-- Amount on the right -->
@@ -599,7 +84,7 @@
                         </div></a>
                     </h4>
                   </div>
-                  <div id="collapse1" class="panel-collapse collapse  show p-3" style="height:700px !important;overflow: auto;">
+                  <div id="collapse1" class="panel-collapse collapse  show p-3">
                     <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
                       <div class="d-flex col-md-12 col-lg-12 col-xl-12">
                        <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
@@ -682,13 +167,9 @@
                             </div>
             
                             <div class="d-flex flex-column">
-                              <button type="button" class="btn btn-secondary mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
-                              font-size: 15px;
-                              line-height: 42px;letter-spacing: 0.6px;"[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
+                              <button type="button" class="btn btn-secondary mt-4 w-100" [routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
                                 <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                              <button type="button" class="btn  btn-primary w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
-                              font-size: 15px;
-                              line-height: 42px;letter-spacing: 0.5px;" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
+                              <button type="button" class="btn  btn-primary w-100 mt-4" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
                                 <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
                             </div>
                            

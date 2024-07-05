@@ -1,7 +1,7 @@
-<div class="page-breadcrumb d-none d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
+<div class="page-breadcrumb d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
 #F2F4F5;">
     
-    <div class="ps-4 container ">
+    <div class="ps-4 container panel-ac">
         <nav aria-label="breadcrumb" >
             <ol class="breadcrumb mb-0 p-0 mt-2" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
@@ -23,72 +23,75 @@
   </div>
 <div class="container" >
    
-   <div class="col-12 d-flex  ">
-    <div class="col-8  p-3 " style="height: 430px;">
+   <div class="col-12 d-flex d-block-mb">
+    <div class="col-lg-8  p-3 pm-2 h-div">
         <div class="card col-md-12" style="border-radius: 10px;">
-          <div class=" col-md-12 d-flex">
-            <div class="col-md-4 p-2"> 
-              <img [src]="productRes.image|| 'assets/images/download (20).png'" class="img-fluid" style="width:100%;margin-top:5px;margin-left:12px; flex-shrink: 0;height: 62%;"   	>
-          </div>
-           <div class="col-md-8 p-4">
-            <div >
-              <p style="font-size: 20px;">{{productRes.title}}</p>
-           </div>
-           <div class="col-md-12  d-flex">
-            <div class="col-md-6">
-            <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Availability: <span style="color: #00923F;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.avaibeleStock}}</span>
-           </p>
+          <div class="scrollwrapper">
+            <div class=" col-md-12 d-flex d-block-mb">
+              <div class="col-md-4 p-2"> 
+                <img [src]="productRes.image|| 'assets/images/download (20).png'" class="img-fluid">
             </div>
-            <div class="col-md-6">
-             <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Category: <span style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.categoryName}}</span></p>
-            </div>
-            </div>
-           
-            <hr>
-            <div class="col-md-12">
-              <p style="color:#2DA5F3;font-size: 24px;">${{productRes.price}}</p>
+             <div class="col-md-8 p-4 pm-3">
+              <div >
+                <p style="font-size: 20px;">{{productRes.title}}</p>
+             </div>
+             <div class="col-md-12  d-flex">
+              <div class="col-md-6">
+              <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Availability: <span style="color: #00923F;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.avaibeleStock}}</span>
+             </p>
               </div>
+              <div class="col-md-6">
+               <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Category: <span style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.categoryName}}</span></p>
+              </div>
+              </div>
+             
+              <hr>
               <div class="col-md-12">
-                <div class="d-flex">
-                  <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;width:164px">
-                  
-                    <i class="ri-subtract-line ps-3 mt-2 " (click)="decrementValue1(productRes);" style="font-size: 22px;"></i>
-                    <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;padding-left: 34px;" class="mt-3" >{{productRes.quantity || 0}}</p>
-                    <i class="ri-add-line ps-5 mt-2"  (click)="incrementValue1(productRes);" style="font-size: 22px;"> </i>
-                 
+                <p style="color:#2DA5F3;font-size: 24px;">${{productRes.price}}</p>
+                </div>
+                <div class="col-md-12">
+                  <div class="d-flex">
+                    <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;width:164px">
+                    
+                      <i class="ri-subtract-line ps-3 mt-2 " (click)="decrementValue1(productRes);" style="font-size: 22px;"></i>
+                      <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;padding-left: 34px;" class="mt-3" >{{productRes.quantity || 0}}</p>
+                      <i class="ri-add-line ps-5 mt-2"  (click)="incrementValue1(productRes);" style="font-size: 22px;"> </i>
+                   
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-12 mt-2">
-              <p style="font-weight: 300;font-size: 10px;line-height: 18px;">{{productRes.metaDescription}}</p>
-              </div>
-              <div class="row">
-                <div class=" mb-3">
-                  <div class=" d-flex">
-                   <button type="button" class="btn btn-secondary mt-3" style="width: 265px;" (click)="submitcart(productRes.productId,productRes.price,productRes.quantity)">ADD TO CART
-                       <img src="../../../assets/images/Add to cart.png" 
-                       class="" style="width:24px;height: 24px;letter-spacing: 0.5px;"> </button>
-                    <div class="d-flex mt-2 pt-2 ps-3">
-                      <!-- <img src="../../../assets/images/add wishlist icon2 (1).png" style="width:25px;height:25px;"> -->
-                      <div class="icon-container">
-                        <i class="ri-heart-line" style="font-size: 40px; cursor: pointer;" *ngIf="!secondIconDisabled && productRes.isWishlist ==false" (click)="toggleIcons('first');submit(productRes.productId)"></i>
-                        <i class="ri-heart-fill" style="font-size: 40px; color:red; cursor: pointer;" *ngIf="productRes.isWishlist == true " (click)="toggleIcons('second');submit(productRes.productId)"></i>
+                <div class="col-md-12 mt-2">
+                <p style="font-weight: 300;font-size: 10px;line-height: 18px;">{{productRes.metaDescription}}</p>
+                </div>
+                <div class="row">
+                  <div class=" mb-3">
+                    <div class="d-flex d-block-mb">
+                     <button type="button" class="btn btn-secondary btn-secondary2 mt-3" (click)="submitcart(productRes.productId,productRes.price,productRes.quantity)">ADD TO CART
+                         <img src="../../../assets/images/Add to cart.png" 
+                         class="" style="width:24px;height: 24px;letter-spacing: 0.5px;"> </button>
+                      <div class="d-flex mt-2 pt-2 ps-3 psm-0">
+                        <!-- <img src="../../../assets/images/add wishlist icon2 (1).png" style="width:25px;height:25px;"> -->
+                        <div class="icon-container">
+                          <i class="ri-heart-line" style="cursor: pointer;" *ngIf="!secondIconDisabled && productRes.isWishlist ==false" (click)="toggleIcons('first');submit(productRes.productId)"></i>
+                          <i class="ri-heart-fill" style="color:red; cursor: pointer;" *ngIf="productRes.isWishlist == true " (click)="toggleIcons('second');submit(productRes.productId)"></i>
+                        </div>
+                        <p class="mt-3 t2" *ngIf="productRes.isWishlist == false "  (click)="submit(productRes.productId)">Add To Wishlist</p>
+                        <p class="mt-3 t2"  *ngIf="productRes.isWishlist == true " (click)="submit(productRes.productId)">Remove Form Wishlist</p>
                       </div>
-                      <p style="color:#475156;font-size:14px;letter-spacing: 0.5px;" class="mt-3" *ngIf="productRes.isWishlist == false "  (click)="submit(productRes.productId)">Add To Wishlist</p>
-                      <p style="color:#475156;font-size:14px;letter-spacing: 0.5px;" class="mt-3"  *ngIf="productRes.isWishlist == true " (click)="submit(productRes.productId)">Remove Form Wishlist</p>
+                        
                     </div>
-                      
-                  </div>
-              
-                  </div>
-
-              </div>
-           </div>
+                
+                    </div>
+  
+                </div>
+             </div>
+            </div>
           </div>
+          
 
         </div>
       </div>
-      <div class="col-4 mt-2">
+      <div class="col-lg-4 mt-2">
         <div class="panel-group" id="accordion">
           <div class="panel panel-default card">
             <div class="panel-heading">
@@ -96,10 +99,9 @@
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
                   <div class="p-1 d-flex col-12"style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
                     <div class="col-6 d-flex">
-                      <i class="las la-shopping-cart mt-3 " style="font-size: 45px;margin-left: -2px;color: black;"></i>
-                      <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  " style="border: 3px solid white !important;margin-left:37px;background-color: #F43C4C;margin-top: 18px;">{{fwishlist}}</span>
-                       <h5 style="padding-left: 27px;font-weight: 400;
-                       font-size: 24px;" class="text-white mt-4 pl-2">My Cart</h5>
+                      <i class="las la-shopping-cart mt-3"></i>
+                      <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  ">{{fwishlist}}</span>
+                       <h5 class="t3 text-white mt-4 pl-2">My Cart</h5>
                      </div>
                    
                      <!-- Amount on the right -->
@@ -113,7 +115,7 @@
                   </div></a>
               </h4>
             </div>
-            <div id="collapse1" class="panel-collapse collapse  show p-3" style="height:700px !important;overflow: auto;">
+            <div id="collapse1" class="panel-collapse collapse  show p-3">
               <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
                 <div class="d-flex col-md-12 col-lg-12 col-xl-12">
                  <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
@@ -196,13 +198,9 @@
                       </div>
       
                       <div class="d-flex flex-column">
-                        <button type="button" class="btn btn-secondary mt-4 w-100" style="background-color: #F44C4C; color: white;font-weight: 700;
-                        font-size: 15px;
-                        line-height: 42px;letter-spacing: 0.6px;"[routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
+                        <button type="button" class="btn btn-secondary mt-4 w-100" [routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
                           <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                        <button type="button" class="btn  btn-primary w-100 mt-4" style="background-color: #00923F; color: white;font-weight: 700;
-                        font-size: 15px;
-                        line-height: 42px;letter-spacing: 0.5px;" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
+                        <button type="button" class="btn  btn-primary w-100 mt-4" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
                           <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
                       </div>
                      
