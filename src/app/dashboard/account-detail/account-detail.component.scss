@@ -71,7 +71,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 22px;  border: none;
-
+  background-color: #832727 ;margin-left: -20px;letter-spacing: 0.5px
 }
  thead{
     background-color:  #E4E7E9;
@@ -222,6 +222,15 @@
 .ml-2{
   margin-left: 2rem;
 }
+table{
+  width: 100%;
+}
+.pl-17{
+  padding-left:17px
+}
+.pl-15{
+  padding-left:15px
+}
 @media (min-width:320px) and (max-width: 767px) {
   .d-block-mb{
     display: block!important;
@@ -244,12 +253,48 @@
   .btn-secondary{
     width: 100%;
   }
+  .pl-17{
+    padding-left:8px
+  }
+  .btn3{
+    width:150px;
+    margin-left: 8px;
+    font-size: 12px;
+  }
+  .pl-15{
+    padding-left:8px
+  }
+  p {
+    font-size: 13px !important;
+    line-height: 22px !important;
+    padding-top: 0px !important;
+  }
+  .btnn{
+    width: 110px;
+    font-size: 12px;
+  }
+  thead, tbody, tfoot, tr, td, th {
+    padding-left: 10px;
+   }
+   .btn5{
+    line-height: 11px;
+    margin-left: 4px;
+   }
 }
 @media (min-width:768px) and (max-width: 1024px) {
-  .d-block-mb{
-    display: block!important;
-  }
   .scrollwrapper{
     overflow: auto;
+  }
+  .w-78 {
+      width: 71%;
+  }
+  .cartDiv {
+    padding: 10px 5px !important;
+    h6{
+      font-size: 16px!important;
+    }
+  }
+  .card-body{
+    padding: 15px !important;
   }
 }

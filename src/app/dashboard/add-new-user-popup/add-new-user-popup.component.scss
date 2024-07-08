@@ -31,3 +31,32 @@
   .mat-mdc-dialog-container .mdc-dialog__surface {
     overflow: hidden !important;
   }
+  .btn-secondary{
+    background-color: #F44C4C; height: 56px;width:243px
+  }
+  .btn-primary{
+    background-color: #3A51A2; height: 56px;width:243px
+  }
+  @media (min-width:320px) and (max-width: 767px) {
+    .main-text {
+      font-size: 16px !important;
+      padding-bottom: 0px !important;
+    }
+    .pm-2{
+      padding: 12px!important;
+    }
+    .btn-secondary{
+      width: auto;
+      height: auto;
+    width: auto;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    }
+    .btn-primary{
+      width: auto;
+      height: auto;
+    width: auto;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    }
+  }
