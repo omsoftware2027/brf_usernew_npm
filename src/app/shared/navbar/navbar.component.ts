@@ -342,7 +342,7 @@ export class NavbarComponent implements OnInit{
           this.dashboardservice.login(loginpayload).subscribe(data => {
             this.loginData = data;
             if (this.loginData.status === 0) {
-              this.router.navigate(['/dashboard/']);
+              this.router.navigate(['/']);
               localStorage.setItem('id', this.loginData.response.id);
               localStorage.setItem('token', this.loginData.response.token);
               localStorage.setItem('usertype', this.loginData.response.userType);
@@ -358,7 +358,7 @@ export class NavbarComponent implements OnInit{
               this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
               console.log('Snackbar opened for -1 status');
             } else {
-              this.router.navigate(['/dashboard/main/'+this.loginData.response.id+'/'+this.loginData.response.token]);
+              this.router.navigate(['/main/'+this.loginData.response.id+'/'+this.loginData.response.token]);
               
               // Display error message from loginData.response.error or any appropriate field
               // const errorMessage = this.loginData.response || 'Unknown error occurred';
@@ -443,7 +443,7 @@ export class NavbarComponent implements OnInit{
         if (this.data.status === 0) {
           this.product = this.data.response.dataSet;
           this.docSpecializationClone=  this.product;
-          // this.router.navigate(['/dashboard/all-product']);
+          // this.router.navigate(['/all-product']);
         }
         else {
          
@@ -456,9 +456,9 @@ export class NavbarComponent implements OnInit{
         this.data =res;
         if (this.data.status === 0) {
           this.productt = this.data.response.productId;
-          this.router.navigate(['/dashboard/view-product-detail', this.productt]);
+          this.router.navigate(['/view-product-detail', this.productt]);
 
-          // this.router.navigate(['/dashboard/all-product']);
+          // this.router.navigate(['/all-product']);
         }
         else {
          
@@ -471,7 +471,7 @@ export class NavbarComponent implements OnInit{
         this.data =res;
         if (this.data.status === 0) {
           this.carttotal = this.data.response.dataSet;
-          this.router.navigate(['/dashboard/view-product-detail',name]);
+          this.router.navigate(['/view-product-detail',name]);
           
         }
         else {
@@ -485,7 +485,7 @@ export class NavbarComponent implements OnInit{
           this.data = res;
           if (this.data.status === 0) {  
               this.carttotal = this.data.response.dataSet;
-              this.router.navigate(['/dashboard/category-detail', categoryId]);
+              this.router.navigate(['/category-detail', categoryId]);
           } else {
               // Handle other cases if needed
           }
@@ -545,7 +545,7 @@ onProductSelected(event: any) {
   const productId = target.getAttribute('value');
   console.log(productId);
   if (productId) {
-    this.router.navigate(['/dashboard/view-product-detail', productId]);
+    this.router.navigate(['/view-product-detail', productId]);
     this.showDropdown = false;
   }
   
@@ -637,7 +637,7 @@ forgotpassword(){
     if (res.status == 0) {
       this.matsnackbar.open(res.response, 'x', { duration: 2000 });
       this.SignUpForm.reset();
-      // this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+      // this.router.navigate([''], { relativeTo: this.route.parent });
       // const dropdownToggle = document.querySelector('.dropdown-toggle');
       // if (dropdownToggle) {
       //   dropdownToggle.classList.remove('show');

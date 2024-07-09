@@ -104,7 +104,7 @@ export class ViewProductDetailComponent implements OnDestroy {
         this.matSnackBar.open("Quantity  greater  than 0", 'x', { duration: 2000 });
       }
     } else{
-      this.router.navigate(['/dashboard/email-signup']);
+      this.router.navigate(['/email-signup']);
     } 
  
   }
@@ -130,7 +130,7 @@ export class ViewProductDetailComponent implements OnDestroy {
     })
    }
    else{
-    this.router.navigate(['/dashboard/email-signup']);
+    this.router.navigate(['/email-signup']);
   } 
   
   }

@@ -8,24 +8,24 @@
       <div class="col-md-4 col-lg-2 col-xl-2 mx-auto">
         <h5 class="text-white font-weight-bold mt-3 mb-4">General Information</h5>
         <div *ngFor="let item of titlesAndIdsArray1">
-          <p [routerLink]="['/dashboard/return-policy',item.cmsId]" style="color:
+          <p [routerLink]="['/return-policy',item.cmsId]" style="color:
           #BBBBBB;" >
          {{ item.title}}
           </p>
          </div>
-        <!-- <p [routerLink]="['/dashboard/pricing']">
+        <!-- <p [routerLink]="['/pricing']">
           <a class="text-left" style="text-decoration: none; color:
           #BBBBBB;">Pricing and payment</a>
         </p>
         <p>
-          <a [routerLink]="['/dashboard/credit-cards']" class="text-left" style="text-decoration: none; color: 
+          <a [routerLink]="['/credit-cards']" class="text-left" style="text-decoration: none; color: 
           #BBBBBB;">Credit card</a>
         </p>
-        <p [routerLink]="['/dashboard/privacy-right']">
+        <p [routerLink]="['/privacy-right']">
           <a  class="text-left" style="text-decoration: none; color:
           #BBBBBB;">Your Privacy Rights</a>
         </p>
-        <p [routerLink]="['/dashboard/location']">
+        <p [routerLink]="['/location']">
           <a  class="text-left" style="text-decoration: none; color:
           #BBBBBB;">Location</a>
         </p> -->
@@ -35,17 +35,17 @@
       <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Customer Service</h5>
        <div *ngFor="let item of titlesAndIdsArray">
-        <p [routerLink]="['/dashboard/return-policy',item.cmsId]" style="color:
+        <p [routerLink]="['/return-policy',item.cmsId]" style="color:
         #BBBBBB;" >
        {{ item.title}}
         </p>
        </div>
         <!-- <p style="color:
-        #BBBBBB;" [routerLink]="['/dashboard/order-hours']">
+        #BBBBBB;" [routerLink]="['/order-hours']">
         Order Hours
         </p>
         <p style="color:
-        #BBBBBB;"  [routerLink]="['/dashboard/get-reminders']">
+        #BBBBBB;"  [routerLink]="['/get-reminders']">
        Get Reminders from our
        Office
         </p> -->
@@ -53,7 +53,7 @@
 
       <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Ordering Information</h5>
-        <p [routerLink]="['/dashboard/new-customers',data.cmsId]"  *ngFor="let data of cmsRes2">
+        <p [routerLink]="['/new-customers',data.cmsId]"  *ngFor="let data of cmsRes2">
           <a  style="color:
           #BBBBBB; text-decoration: none;">{{data.title}}</a>
         </p>
@@ -61,11 +61,11 @@
       </div>
       <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4">Delivery Information</h5>
-        <p [routerLink]="['/dashboard/site-map',data.cmsId]"*ngFor="let data of cmsRes3">
+        <p [routerLink]="['/site-map',data.cmsId]"*ngFor="let data of cmsRes3">
           <a  style="color:
           #BBBBBB; text-decoration: none;">{{data.title}}</a>
         </p>
-        <!-- <p [routerLink]="['/dashboard/blog']" >
+        <!-- <p [routerLink]="['/blog']" >
           <a  style="color: 
           #BBBBBB; text-decoration: none;">Blog</a>
         </p> -->
@@ -126,10 +126,10 @@
         <div class="text-white ps-5 t5">© 2024 Wholesale Corporation all rights reserved </div>
        <div class="d-flex d-block-mb">
      <div>
-      <a class="text-white t6" [routerLink]="['/dashboard/pricing','deliveryinstantsavings']" >Delivery Instant Savings | </a>
+      <a class="text-white t6" [routerLink]="['/pricing','deliveryinstantsavings']" >Delivery Instant Savings | </a>
      </div>
        <div style="margin-left: 5px;">
-        <p [routerLink]="['/dashboard/credit-cards','warehouseinstantsavings']" >Warehouse Instant Saving</p>
+        <p [routerLink]="['/credit-cards','warehouseinstantsavings']" >Warehouse Instant Saving</p>
        </div>
        </div>
 

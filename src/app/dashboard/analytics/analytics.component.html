@@ -20,10 +20,10 @@
           <div class="row" >
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 category " *ngFor="let data of category ;let i = index">
               <div class="category-card rounded-circle p-1 border bg-white cursor-pointer">
-               <img [src]="data.image|| 'assets/images/download (20).png'" class="ms-3 mt-4 ps-3 category-img" 	[routerLink]="['/dashboard/category-detail',data.categoryId]">
+               <img [src]="data.image|| 'assets/images/download (20).png'" class="ms-3 mt-4 ps-3 category-img" 	[routerLink]="['/category-detail',data.categoryId]">
              
               </div>
-              <p class="mt-2 t2" [routerLink]="['/dashboard/category-detail',data.categoryId]" >{{data.categoryName}}</p>
+              <p class="mt-2 t2" [routerLink]="['/category-detail',data.categoryId]" >{{data.categoryName}}</p>
              </div>
           </div>
           <!-- <div class="col-3">
@@ -31,7 +31,7 @@
            height: 174;   
            border: 3px solid #669038 !important
        ">
-            <img src="../../../assets/images/daily_product.png"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/dashboard/category-detail']">
+            <img src="../../../assets/images/daily_product.png"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"  	[routerLink]="['/category-detail']">
             <div class="image-text mt-5">
               <a style="margin-left: 12px; font-size:24px;" >9B-Poultry</a>
              </div>
@@ -44,7 +44,7 @@
            margin-top: 24px;
           
        ">
-            <img src="../../../assets/images/fresh seafood.png"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/dashboard/category-detail']">
+            <img src="../../../assets/images/fresh seafood.png"  class="ms-3 mt-4 ps-3" style="width:69%;height:68%;"	[routerLink]="['/category-detail']">
             <div class="image-text mt-5">
               <a style="margin-left: 12px; font-size:24px;" >9B-Poultry</a>
              </div>
@@ -92,7 +92,7 @@
                         
                        </div>
                        <div class="col-md-9 col-lg-9 col-xl-9">
-                        <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.productTitle}}</p>
+                        <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"[routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</p>
                        </div>
                        <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
                         <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
@@ -167,9 +167,9 @@
                             </div>
             
                             <div class="d-flex flex-column">
-                              <button type="button" class="btn btn-secondary mt-4 w-100" [routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
+                              <button type="button" class="btn btn-secondary mt-4 w-100" [routerLink]="['/checkout-page']">PROCEED TO CHECKOUT
                                 <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                              <button type="button" class="btn  btn-primary w-100 mt-4" [routerLink]="['/dashboard/all-product']" >CONTINUE SHOPPING CART
+                              <button type="button" class="btn  btn-primary w-100 mt-4" [routerLink]="['/all-product']" >CONTINUE SHOPPING CART
                                 <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
                             </div>
                            

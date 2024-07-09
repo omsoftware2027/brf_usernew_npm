@@ -6,7 +6,7 @@
             <ol class="breadcrumb mb-0 p-0 mt-2" >
                 <li style="cursor:pointer;" class="breadcrumb-item">
                     <a 
-                        href="#/dashboard/analytics" routerLink="/dashboard/analytics" >
+                        href="#/analytics" routerLink="/analytics" >
                         <i class='bx bx-home-alt' style="color:#5F6C72"></i>
                     </a>
                 </li>
@@ -58,7 +58,7 @@
                         <div class="flex-grow-1 p-3">
                           <h5 class="fs-base mb-0">
                             <a href="javascript:void(0);" class="text-reset customer-name-elem"
-                               style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/dashboard/view-product-detail',data.productId]">{{data.productTitle}}</a>
+                               style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</a>
                           </h5>
                         </div>
                       </div>
@@ -124,7 +124,7 @@
                     <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
                   </div>
            <div style="text-align: center;" class="mt-3">
-            <button class="btn btn-outline-success mb-2" [routerLink]="['/dashboard']"> <i class="ri-arrow-left-line"></i> Return to shop</button>
+            <button class="btn btn-outline-success mb-2" [routerLink]="['/']"> <i class="ri-arrow-left-line"></i> Return to shop</button>
            </div>
                </div>
                <div class="col-md-12 col-lg-4 col-xl-4 mt-3" *ngIf="isLogin">
@@ -154,7 +154,7 @@
                           </div>
           
                           <div class="d-flex flex-column">
-                            <button type="button" class="btn mt-4 w-100 red-btn" [routerLink]="['/dashboard/checkout-page']">PROCEED TO CHECKOUT
+                            <button type="button" class="btn mt-4 w-100 red-btn" [routerLink]="['/checkout-page']">PROCEED TO CHECKOUT
                               <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
                           
                           </div>

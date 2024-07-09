@@ -28,7 +28,7 @@ export class MainComponent {
     if(this.type=='user'){
       this.reloadCommonService.sendUpdate('reloadNavbar');
     } 
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/']);
   }
 
   ngOnInit(): void {

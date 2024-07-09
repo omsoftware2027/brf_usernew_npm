@@ -90,14 +90,14 @@ if(this.formGroup.valid){
     console.log(data, 'this.loginData'); // Log received data
 
     if (this.loginData.status === 0) {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/']);
       localStorage.setItem('id', this.loginData.response.id);
       localStorage.setItem('token', this.loginData.response.token);
       localStorage.setItem('userType', this.loginData.response.userType);
       console.log(this.loginData.response.id, 'loginData');
       // window.location.reload();
       this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
-      this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+      this.router.navigate(['/'], { relativeTo: this.route.parent });
     
       // if (this.dropdownMenu.nativeElement.classList.contains('show')) {
       //   this.dropdownMenu.nativeElement.classList.remove('show');
@@ -164,7 +164,7 @@ submit(){
       if (res.status == 0) {
         this.matsnackbar.open("Sign Up  Successfully", 'x', { duration: 2000 });
         this.SignUpForm.reset();
-        this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+        this.router.navigate(['/'], { relativeTo: this.route.parent });
         // const dropdownToggle = document.querySelector('.dropdown-toggle');
         // if (dropdownToggle) {
         //   dropdownToggle.classList.remove('show');
@@ -199,7 +199,7 @@ submit(){
       if (res.status == 0) {
         this.matsnackbar.open(res.response, 'x', { duration: 2000 });
         this.SignUpForm.reset();
-        // this.router.navigate(['/dashboard'], { relativeTo: this.route.parent });
+        // this.router.navigate(['/'], { relativeTo: this.route.parent });
         // const dropdownToggle = document.querySelector('.dropdown-toggle');
         // if (dropdownToggle) {
         //   dropdownToggle.classList.remove('show');

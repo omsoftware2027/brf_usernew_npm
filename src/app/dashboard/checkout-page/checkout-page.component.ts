@@ -111,7 +111,7 @@ dateValidator(control: AbstractControl): { [key: string]: boolean } | null {
       if (res.status == 0) {
         this.orderpalceid=res.response;
         this.reloadCommonService.sendUpdate('reloadWalletDetail');
-        this.route.navigate(['/dashboard/order-detail-complated', this.orderpalceid])
+        this.route.navigate(['/order-detail-complated', this.orderpalceid])
         this.matSnackBar.open("Order place  successfully",'x', { duration: 2000 });
 
       }

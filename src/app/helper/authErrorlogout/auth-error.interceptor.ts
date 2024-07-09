@@ -24,8 +24,8 @@ export class AuthErrorInterceptor implements HttpInterceptor {
         // auto logout if 401 response returned from api
         localStorage.removeItem('id');
         localStorage.removeItem('token');
-        this.router.navigate(['/dashboard/email-signup']);
-        if (document.referrer.toString().includes('/dashboard/email-signup')) {
+        this.router.navigate(['/email-signup']);
+        if (document.referrer.toString().includes('/email-signup')) {
           return throwError('Not Authorized');
         } else {
         // this.document.location.href = `${environment.website}/home`;

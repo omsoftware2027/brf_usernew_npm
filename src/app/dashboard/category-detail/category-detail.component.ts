@@ -125,7 +125,7 @@ export class CategoryDetailComponent {
       })
      }
      else{
-      this.router.navigate(['/dashboard/email-signup']);
+      this.router.navigate(['/email-signup']);
      }
   }
   submitcart(productId:any,price:any){
@@ -157,7 +157,7 @@ export class CategoryDetailComponent {
       })
      }
     else{
-      this.router.navigate(['/dashboard/email-signup']);
+      this.router.navigate(['/email-signup']);
     } 
   }
   getallcarttotal(page: number) {
