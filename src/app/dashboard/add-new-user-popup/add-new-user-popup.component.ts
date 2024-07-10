@@ -31,7 +31,7 @@ export class AddNewUserPopupComponent {
       email: ['',Validators.required],
       firstName: ['', [Validators.required, this.onlyCharactersValidator()]],
       lastName:['', [Validators.required, onlyLettersValidator()]],
-      mobile:['',[Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+      mobile:['',[Validators.required,Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       parentId:['']
     });
 
