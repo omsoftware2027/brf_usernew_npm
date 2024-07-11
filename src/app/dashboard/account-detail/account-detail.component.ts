@@ -114,6 +114,8 @@ driver=''
   Orderguide:boolean=false;
   Mystaff:boolean=false;
   Myaddress:boolean=false;
+  submitted:any=false;
+
   constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService){
 
   }
@@ -136,11 +138,11 @@ driver=''
       this.userid=0
     }
     this.formGroup = this.formBuilder.group({
-      firstName: ['',],
-      lastName: ['', ],
+      firstName: ['',[Validators.required]],
+      lastName: ['', [Validators.required]],
       businessName:[''],
-      mobile:[''],
-      email:[''],
+      mobile:['',[Validators.required]],
+      email:['',[Validators.required, Validators.email]],
       billingAddressLine1:[''],
       billingAddressLine2:[''],
       city:[''], 
@@ -432,70 +434,73 @@ openeclinicAcessDialog(id:any): void {
 // }
 
 submit(){
+  this.submitted=true;
+  if(this.formGroup.valid ){
+    if (this.addOnUpdate) {
+      let formData: FormData = new FormData();
+      formData.append('userId',this.accountTypeRes.userId);
+      formData.append('firstName',this.formGroup.value.firstName);
+      formData.append('lastName',this.formGroup.value.lastName);
+      formData.append('mobile',this.formGroup.value.mobile);
+      formData.append('businessName',this.formGroup.value.businessName);
+      formData.append('email',this.formGroup.value.email);
+      formData.append('billingAddressLine1',this.formGroup.value.billingAddressLine1);
+      formData.append('billingAddressLine2',this.formGroup.value.billingAddressLine2);
+      formData.append('city',this.formGroup.value.city);
+      formData.append('country',this.formGroup.value.country);
+      formData.append('state',this.formGroup.value.state);
+      formData.append('pincode',this.formGroup.value.pincode);
+      formData.append('addressLine2',this.formGroup.value.addressLine2);
+      formData.append('addressLine1',this.formGroup.value.addressLine1);
+      formData.append('billingPincode',this.formGroup.value.billingPincode);
+      formData.append('billingCity',this.formGroup.value.billingCity);
+      formData.append('billingCountry',this.formGroup.value.billingCountry);
+      formData.append('billingState',this.formGroup.value.billingState);
      
-  if (this.addOnUpdate) {
-    let formData: FormData = new FormData();
-    formData.append('userId',this.accountTypeRes.userId);
-    formData.append('firstName',this.formGroup.value.firstName);
-    formData.append('lastName',this.formGroup.value.lastName);
-    formData.append('mobile',this.formGroup.value.mobile);
-    formData.append('businessName',this.formGroup.value.businessName);
-    formData.append('email',this.formGroup.value.email);
-    formData.append('billingAddressLine1',this.formGroup.value.billingAddressLine1);
-    formData.append('billingAddressLine2',this.formGroup.value.billingAddressLine2);
-    formData.append('city',this.formGroup.value.city);
-    formData.append('country',this.formGroup.value.country);
-    formData.append('state',this.formGroup.value.state);
-    formData.append('pincode',this.formGroup.value.pincode);
-    formData.append('addressLine2',this.formGroup.value.addressLine2);
-    formData.append('addressLine1',this.formGroup.value.addressLine1);
-    formData.append('billingPincode',this.formGroup.value.billingPincode);
-    formData.append('billingCity',this.formGroup.value.billingCity);
-    formData.append('billingCountry',this.formGroup.value.billingCountry);
-    formData.append('billingState',this.formGroup.value.billingState);
-   
-    this.dashboardservice.saveprofile(formData).subscribe((res) => {
-      if (res.status == 0) {
-        this.snackBar.open("Updated Successfully", 'x', { duration: 2000 });
-        // this.route.navigate(['/system-settings/master-data'])
-      }
-      else {
-        this.snackBar.open("Error while updating", 'x', { duration: 2000 });
-      }
-    })
+      this.dashboardservice.saveprofile(formData).subscribe((res) => {
+        if (res.status == 0) {
+          this.snackBar.open("Updated Successfully", 'x', { duration: 2000 });
+          // this.route.navigate(['/system-settings/master-data'])
+        }
+        else {
+          this.snackBar.open("Error while updating", 'x', { duration: 2000 });
+        }
+      })
+    }
+    else {
+      const formData: FormData = new FormData();
+  
+      formData.append('userId','0');
+      formData.append('firstName',this.formGroup.value.firstName);
+      formData.append('lastName',this.formGroup.value.lastName);
+      formData.append('mobile',this.formGroup.value.mobile);
+      formData.append('businessName',this.formGroup.value.businessName);
+      formData.append('email',this.formGroup.value.email);
+      formData.append('billingAddressLine1',this.formGroup.value.billingAddressLine1);
+      formData.append('billingAddressLine2',this.formGroup.value.billingAddressLine2);
+      formData.append('city',this.formGroup.value.city);
+      formData.append('country',this.formGroup.value.country);
+      formData.append('state',this.formGroup.value.state);
+      formData.append('pincode',this.formGroup.value.pincode);
+      formData.append('addressLine2',this.formGroup.value.addressLine2);
+      formData.append('addressLine1',this.formGroup.value.addressLine1);
+      formData.append('billingPincode',this.formGroup.value.billingPincode);
+      formData.append('billingCity',this.formGroup.value.billingCity);
+      formData.append('billingCountry',this.formGroup.value.billingCountry);
+      formData.append('billingState',this.formGroup.value.billingState);
+  
+      this.dashboardservice.saveprofile(formData).subscribe((res) => {
+        if (res.status == 0) {
+          this.snackBar.open("Saved Successfully", 'x', { duration: 2000 });
+          this.route.navigate(['/system-settings/master-data'])
+        }
+        else {
+          this.snackBar.open("Error while saving", 'x', { duration: 2000 });
+        }
+      })
+    }
   }
-  else {
-    const formData: FormData = new FormData();
-
-    formData.append('userId','0');
-    formData.append('firstName',this.formGroup.value.firstName);
-    formData.append('lastName',this.formGroup.value.lastName);
-    formData.append('mobile',this.formGroup.value.mobile);
-    formData.append('businessName',this.formGroup.value.businessName);
-    formData.append('email',this.formGroup.value.email);
-    formData.append('billingAddressLine1',this.formGroup.value.billingAddressLine1);
-    formData.append('billingAddressLine2',this.formGroup.value.billingAddressLine2);
-    formData.append('city',this.formGroup.value.city);
-    formData.append('country',this.formGroup.value.country);
-    formData.append('state',this.formGroup.value.state);
-    formData.append('pincode',this.formGroup.value.pincode);
-    formData.append('addressLine2',this.formGroup.value.addressLine2);
-    formData.append('addressLine1',this.formGroup.value.addressLine1);
-    formData.append('billingPincode',this.formGroup.value.billingPincode);
-    formData.append('billingCity',this.formGroup.value.billingCity);
-    formData.append('billingCountry',this.formGroup.value.billingCountry);
-    formData.append('billingState',this.formGroup.value.billingState);
-
-    this.dashboardservice.saveprofile(formData).subscribe((res) => {
-      if (res.status == 0) {
-        this.snackBar.open("Saved Successfully", 'x', { duration: 2000 });
-        this.route.navigate(['/system-settings/master-data'])
-      }
-      else {
-        this.snackBar.open("Error while saving", 'x', { duration: 2000 });
-      }
-    })
-  }
+  
 
 }
 
