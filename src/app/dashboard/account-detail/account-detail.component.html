@@ -481,6 +481,9 @@
                                     </div>
                                     <div class="col-md-12 card mt-4" style="border-radius: 9px;">
                                         <h6 class="p-3" style="font-weight: 500;font-size: 20px;line-height: 24px;color:#000">My Order List </h6>
+                                        <div class="mt-2 cardNA mb-3" *ngIf="!allorder.length">
+                                            <h5  class="mb-1">Data not available</h5>
+                                          </div>
                                         <div *ngFor="let orderdata of allorder">
                                             <div style="background-color: #F44C4C; height: 35px;" >
                                                 <div class="col-md-12 d-flex mt-2 container">
