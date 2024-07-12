@@ -36,7 +36,7 @@
                   <div class="col-md-12 p-3">
                     <input type="text" readonly class="form-control"  value="Default Address" >
                   </div>
-                 <div class="card col-md-4  m-3 d-flex"  style="border-radius:11px" >
+                 <div class=" col-md-4  m-3 d-flex"  style="border-radius:11px" >
                  <div class="col-md-12" >
                  <div *ngFor="let data of shippingaddress">
                   <div class="form-check" style="margin-top: 67px;margin-left: 14px;">
@@ -46,7 +46,7 @@
                    <div style="margin-left: 48px;
                    margin-top: -80px;">
                   
-                    <ul>
+                    <ul class="card p-3">
                         <li>
                           Address: {{data.address}},
                         </li>
@@ -63,17 +63,20 @@
                           Pincode: {{data.pincode}}
                         </li>
                         </ul>
+
+                      
                    </div>
-                  
-                 </div>
-             
-                  <div>
+
                    
-                  </div>
+                 </div>
+                 <mat-error>
+                  <span *ngIf="(submitted && proccedaddressform.get('shippingAddressId')?.errors) || !proccedaddressform.get('shippingAddressId')?.valid && proccedaddressform.get('shippingAddressId')?.touched">Please add  the address</span>
+                </mat-error>
+             
+                
+               
              </div>
-             <mat-error>
-              <span *ngIf="(submitted && proccedaddressform.get('shippingAddressId')?.errors) || !proccedaddressform.get('shippingAddressId')?.valid && proccedaddressform.get('shippingAddressId')?.touched">Please select the address</span>
-          </mat-error>
+              
                    </div>
                    <div class="col-md-12 p-3 ">
                     <input type="text" readonly  value="Order Delivery Date and Time"  class="form-control" >
