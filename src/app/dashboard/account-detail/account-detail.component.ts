@@ -520,7 +520,7 @@ changepassword(){
       }
     })
   }else{
-    this.snackBar.open( 'please check confirm password ','x', { duration: 2000 });
+    this.snackBar.open('Please enter all details.','x', { duration: 2000 });
   }
 
 }

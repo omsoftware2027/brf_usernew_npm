@@ -755,7 +755,7 @@
                                                         </td>
                                                         <td><input type="text" class="form-control" style="width:77px;height:29px;color:#000000;" disabled [value]="data1.unit"></td>
                                                         <td>${{ data1.price }}</td>
-                                                        <td><input type="number" class="form-control" style="width:77px;height:29px;color:#000000;"  [(ngModel)]="data1.quantity" ></td>
+                                                        <td><input type="number" class="form-control" style="width:77px;height:29px;color:#000000;" min="0"  [(ngModel)]="data1.quantity" ></td>
                                                         <td>
                                                           <button type="button" class="btn btn-secondary mt-2" style="background-color: #F44C4C; color: white;width:124px;height: 33px;border-radius: 1px;" (click)="addToCart(data1.productId,data1.price,data1.wishlistId)">ADD TO CART</button>
                                                         </td>
@@ -848,7 +848,7 @@
                                 
                                                 </td>
                                                 <td><input type= "text" class="form-control" style="width:53px;height:20px ;" disabled style="width:77px;height:29px;color:#000000;" [value]="data1.unit"  ></td>
-                                                <td><input type= "number" class="form-control" style="width:53px;height:20px ;"  style="width:77px;height:29px ;color:#000000;" [(ngModel)]="data1.quantity"  [value]="data1.quantity" >
+                                                <td><input type= "number" class="form-control" style="width:53px;height:20px ;" min="0" style="width:77px;height:29px ;color:#000000;" [(ngModel)]="data1.quantity"  [value]="data1.quantity" >
                                                     <!-- <button *ngIf="data1.isCart == false" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">Add to cart</button> 
                                                     <button *ngIf="data1.isCart == true" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">update to cart</button> -->
                                                  </td>
