@@ -420,7 +420,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Old Password </label>
                                                 <div class="input-group" >
-                                                    <input type="text" placeholder="old password" class="form-control" formControlName="oldPassword">
+                                                    <input type="password" placeholder="old password" class="form-control" formControlName="oldPassword">
                                                 </div>
                               
                                                 <!-- <mat-error>
@@ -488,7 +488,7 @@
                                             <div style="background-color: #F44C4C; height: 35px;" >
                                                 <div class="col-md-12 d-flex mt-2 container">
                                                     <div class="col-md-2 text-white mt-2 pl-17">
-                                                        <p>{{orderdata.shippingDate | date:'short'}}</p>
+                                                        <p>{{orderdata.transactionDate| date:'short'}}</p>
                                                     </div>
                                                     <div class="col-md-3"></div>
                                                     <div class="col-md-1  d-none d-sm-block"><button class="btn1 text-white mt-1" style="background-color: #34BBD9;letter-spacing: 0.5px" (click)="downoladinvoice(orderdata.orderId)">PRINT</button></div>
@@ -555,7 +555,7 @@
                                                   <div style="background-color: #F2F4F5; height: 35px;" class="mt-2 mb-3">
                                                     <div class="col-md-12 d-flex mt-2 container">
                                                         <div class="col-md-6 text-white">
-                                                            <p class="text-black mt-2 pl-15">Delivery Date & Time :{{orderdata.transactionDate | date:'short'}} </p>
+                                                            <p class="text-black mt-2 pl-15">Delivery Date & Time :{{orderdata.shippingDate | date:'short'}} </p>
                                                         </div>
                                                         <div class="col-md-4"></div>
                                                      
