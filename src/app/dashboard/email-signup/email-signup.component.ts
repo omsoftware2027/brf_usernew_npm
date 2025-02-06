@@ -19,6 +19,8 @@ export class EmailSignupComponent {
   retryError = false;
   submitted:boolean=false;
   submittedd:boolean=false;
+  fieldTextType: boolean = false;
+  fieldTextType1: boolean = false;
 
 constructor(private formBuilder:FormBuilder,private dashboardservice:DashboardService,private router:Router,    private matsnackbar:MatSnackBar,private route:ActivatedRoute){
 
@@ -37,9 +39,12 @@ ngOnInit() {;
       firstName: ['',Validators.required],
       lastName:['',Validators.required],
       mobile:['',Validators.required],
-      
-
-    });
+      password:['',Validators.required],
+      confirmPassword:['',Validators.required],
+    },{
+      validator: this.checkIfMatchingPasswords('password', 'confirmPassword'),
+    }
+  );
   // if (!this.token) {
   //     localStorage.removeItem('Id');
   //     localStorage.removeItem('token');
@@ -61,6 +66,33 @@ ngOnInit() {;
 
 
 }
+
+  /**
+ * Password Hide/Show
+ */
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+
+  toggleFieldTextType1() {
+    this.fieldTextType1 = !this.fieldTextType1;
+  }
+
+  get confirmPassword(): any {
+    return this.SignUpForm.get('confirmPassword');
+  }
+
+  checkIfMatchingPasswords(newpwd: string, confirmpwd: string): any {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls[newpwd],
+        passwordConfirmationInput = group.controls[confirmpwd];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    };
+  }
 
 keyPressAlphabets(event: any) {
   var charCode = (event.which) ? event.which : event.keyCode;
@@ -158,7 +190,7 @@ submit(){
       firstName: this.SignUpForm.value.firstName,
       lastName: this.SignUpForm.value.lastName,
       mobile:this.SignUpForm.value.mobile,
-    
+      password:this.SignUpForm.value.password,
     }
     this.dashboardservice.signup(data).subscribe((res) => {
       if (res.status == 0) {

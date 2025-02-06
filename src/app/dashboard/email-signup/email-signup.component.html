@@ -168,9 +168,6 @@
                         <mat-error>
                             <span *ngIf="(submitted && SignUpForm.get('email')?.errors) || !SignUpForm.get('email')?.valid && SignUpForm.get('email')?.touched">Please enter email</span>
                         </mat-error>
-        
-                        
-                        
                     </div>
                   </div>
                   <div class="col-md-12 mt-2">
@@ -179,13 +176,38 @@
                         <div class="input-group" >
                             <input type="text"  placeholder="phone number" class="form-control" formControlName="mobile" [maxLength]="10" (keypress)="keyPressNumbers($event)">
                         </div>
-        
                         <mat-error>
                             <span *ngIf="(submitted && SignUpForm.get('mobile')?.errors) || !SignUpForm.get('mobile')?.valid && SignUpForm.get('mobile')?.touched">Please Enter mobile number</span>
                         </mat-error>
-        
-                        
-                        
+                    </div>
+                  </div>
+                  <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label for="" class="form-label">Password</label>
+                        <div class="d-flex position-relative" >
+                            <input type="password" [type]="fieldTextType ? 'text' : 'password'"  placeholder="password" class="form-control" formControlName="password">
+                                <i class="bx bxs-show align-middle position-absolute end-0 top-0 pe-3 pt-2" *ngIf="!fieldTextType" (click)="toggleFieldTextType()" style="font-size: 18px;"></i>
+                                <i class="bx bxs-hide align-middle position-absolute end-0 top-0 pe-3 pt-2" *ngIf="fieldTextType" (click)="toggleFieldTextType()" style="font-size: 18px;"></i>
+                        </div>
+                        <mat-error>
+                            <span *ngIf="(submitted && SignUpForm.get('password')?.errors) || !SignUpForm.get('password')?.valid && SignUpForm.get('password')?.touched">Please enter password </span>
+                        </mat-error>
+                    </div>
+                  </div>
+                  <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label for="" class="form-label">Confrim Password</label>
+                        <div class="d-flex position-relative" >
+                            <input [type]="fieldTextType1 ? 'text' : 'password'"  placeholder="Confrim password" class="form-control" formControlName="confirmPassword">
+                            <i class="bx bxs-show align-middle position-absolute end-0 top-0 pe-3 pt-2" *ngIf="!fieldTextType1" (click)="toggleFieldTextType1()" style="font-size: 18px;"></i>
+                            <i class="bx bxs-hide align-middle position-absolute end-0 top-0 pe-3 pt-2" *ngIf="fieldTextType1" (click)="toggleFieldTextType1()" style="font-size: 18px;"></i>
+                        </div>
+                        <mat-error>
+                            <!-- <span *ngIf="(submitted && SignUpForm.get('confirmPassword')?.errors) || !SignUpForm.get('confirmPassword')?.valid && SignUpForm.get('confirmPassword')?.touched">Please enter password </span> -->
+                            <span class="text-start" *ngIf="confirmPassword.errors?.notEquivalent && SignUpForm.get('confirmPassword')?.touched">
+                                Password does not match
+                            </span>
+                        </mat-error>
                     </div>
                   </div>
                   <div class="col-md-12 text-end mt-3">

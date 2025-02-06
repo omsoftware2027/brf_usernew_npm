@@ -258,7 +258,7 @@
     // background-color: #e51937;
     padding: 7px 0;
     // margin-top: 18px;
-    background-color: #fff;
+    background-color: #F44C4C;
 }
 .catImg {
   width: 28px;
@@ -446,7 +446,9 @@
 }
 .ser-div{
   width: 75%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
+
 @media (min-width:320px) and (max-width: 767px) {
   .d-block-mb{
       display: block!important;

@@ -86,6 +86,8 @@ export class NavbarComponent implements OnInit{
     forgotpasswordform!:FormGroup;
     toogleBtn:boolean = false;
     activeRoute:any = 'home';
+    fieldTextType: boolean = false;
+    fieldTextType1: boolean = false;
     tabs: { [key: string]: boolean } = {
         'pills-manage-doc': false,
         'pills-alfa-dev': false,
@@ -200,9 +202,13 @@ export class NavbarComponent implements OnInit{
             firstName: ['',Validators.required],
             lastName:['',Validators.required],
             mobile:['',Validators.required],
-            
+            password:['',Validators.required],
+            confirmPassword:['',Validators.required],
 
-          });
+          },{
+            validator: this.checkIfMatchingPasswords('password', 'confirmPassword'),
+          }
+        );
         //   interval(0).subscribe(() => {
          
         //     this.getallcount();
@@ -240,6 +246,32 @@ export class NavbarComponent implements OnInit{
 
     }
 
+      /**
+ * Password Hide/Show
+ */
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+
+  toggleFieldTextType1() {
+    this.fieldTextType1 = !this.fieldTextType1;
+  }
+
+  get confirmPassword(): any {
+    return this.SignUpForm.get('confirmPassword');
+  }
+
+  checkIfMatchingPasswords(newpwd: string, confirmpwd: string): any {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls[newpwd],
+        passwordConfirmationInput = group.controls[confirmpwd];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    };
+  }
     keyPressAlphabets(event: any) {
       var charCode = (event.which) ? event.which : event.keyCode;
       if ((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90)) {
@@ -387,7 +419,7 @@ export class NavbarComponent implements OnInit{
           firstName: this.SignUpForm.value.firstName,
           lastName: this.SignUpForm.value.lastName,
           mobile:this.SignUpForm.value.mobile,
-        
+          password:this.SignUpForm.value.password,
         }
         this.dashboardservice.signup(data).subscribe((res) => {
           if (res.status == 0) {

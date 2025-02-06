@@ -5,9 +5,9 @@
 //   font-size: $font-size;
 // }
 .t1{
-  font-size:34px ;
+  font-size:30px ;
   color: #253D4E;
-  font-family: PT Serif;
+  font-family: Prompt;
   font-weight: 700;
 }
 .card-subtext1{
@@ -29,6 +29,7 @@
 }
 .category-card{
   width:174px;height: 174px;border: 3px solid #669038 !important;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 .category-card:hover {
   //bcdc98
@@ -101,7 +102,7 @@
   border-radius: 50% !important;
 }
 .t2{
-  font-size: 22px;text-align: center;
+  font-size: 20px;text-align: center;
               font-weight: 500;font-family: Prompt;
               line-height: 27px;cursor:pointer;
 }

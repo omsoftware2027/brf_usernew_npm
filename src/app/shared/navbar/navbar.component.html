@@ -6,8 +6,8 @@
         <div class="col-2 mt-3" style="margin-left: -14px;">
           <img
           src="../../../assets/images/logo (2).png"
-          class="logo-icon-2"
-          alt=""/>
+          class="logo-icon-2 cursor-pointer"
+          alt="" [routerLink]="['/']" />
         </div>
         <div  class="col-3">
 
@@ -87,12 +87,12 @@
                           <i class="ri-search-line search-icon"></i> 
                          -->
               
-                        <div class="input-group mb-3 ">
+                        <div class="input-group mb-2 pb-1">
                     
                         <div class="input-group-prepend">
                           <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" 
-                          aria-expanded="false"  style="background-color: #F3F3F3;height: 40px;padding-top: 9px;border-radius: 2px;">All Categories</a>
-                          <div class="dropdown-menu mt-3" style="border-radius: 1px;border-radius: 0px;height: 200px;overflow-x: auto;cursor: pointer;">
+                          aria-expanded="false"  style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);background-color: #F3F3F3;height: 40px;padding-top: 9px;border-radius: 2px;">All Categories</a>
+                          <div class="dropdown-menu" style="border-radius: 1px;border-radius: 0px;height: 200px;overflow-x: auto;cursor: pointer;">
                             <a class="dropdown-item" (click)="getallselectcategory(data.categoryId)" *ngFor="let data of category" formControlName="categoryId">
                               <img [src]="data.image || 'assets/images/download (20).png'" style="width: 28px; height: 23px; border-radius: 1px;">
                               <span class="p-3" style="font-size: 16px; line-height: 28px; font-weight: 400;">{{data.categoryName}}</span>
@@ -109,7 +109,7 @@
                           <option *ngFor="let data of product"  [value]="data.productId" style="font-size:16px;line-height: 28px;font-weight: 400;cursor: pointer;background-color: white;">{{data.productName}}
                           </option>
                         </select> -->
-                        <div class="ps-3 ser-div">
+                        <div class="ms-3 ser-div">
                           <div class="d-flex">
                               <input type="text" class="form-control" style="border-radius: 2px 0px 0px 2px !important;background: #F3F3F3;border: none; " aria-label="Text input with dropdown button" placeholder="Search by Product Name" formControlName="productname" (keyup)="handleKeyUp($event)" (input)="specialitySearch($event);getallproduct()" (focus)="showDropdown = true" (click)="onProductSelected($event)">
                               <div>
@@ -147,19 +147,19 @@
       <div class="cartDiv d-flex justify-content-end">
        <div class="wishlist" style="margin-top: 9px;">
         <a style="color:#fff">
-          <i class="bx bx-heart " style="color: #77878F; font-size: 34px;position:absolute;margin-left: -31px;margin-top: -16px;">
+          <i class="bx bx-heart " style="color: #fff; font-size: 34px;position:absolute;margin-left: -31px;margin-top: -16px;">
           </i>
-           <span class=" position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill" style="background-color: #F43C4C; margin-top:-6px"> {{wishcart}}</span>
+           <span class=" position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill" style="background-color: #fff;color: #F43C4C; margin-top:-6px;height: 18px;width: 18px;padding: 5px 4px;">{{wishcart}}</span>
           <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
-          <span class="text-black m-3" [routerLink]="['/add-wishlist']"  style="color:black"> Wishlist</span>
+          <span class="m-3" [routerLink]="['/add-wishlist']"  style="color:#fff"> Wishlist</span>
          </a>
        </div>
        <div class="mycart">
         <a style="color:#fff ; margin-left:72px">
-          <i class="las la-shopping-cart " style="font-size: 37px;position: absolute; margin-left: -34px;color: #77878F;"></i>
-          <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-1" style="background-color: #F43C4C;">{{wishlist}}</span>
-          <span class="text-black m-3" [routerLink]="['/my-cart-list']" style="color:#77878F">My cart</span><br>
-          <span style="color:#E31C1C;font-size: 12px;font-weight: 400;line-height: 14px;margin-right: 23px;font-family: 'Microsoft Sans Serif', sans-serif; ;">${{carttotalt}}</span>
+          <i class="las la-shopping-cart " style="font-size: 37px;position: absolute; margin-left: -34px;color: #fff;"></i>
+          <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-1" style="background-color: #fff;color: #F43C4C;">{{wishlist}}</span>
+          <span class="m-3" [routerLink]="['/my-cart-list']" style="color:#fff">My cart</span><br>
+          <span style="color:#fff;font-size: 12px;font-weight: 400;line-height: 14px;margin-right: 23px;font-family: 'Microsoft Sans Serif', sans-serif; ;">${{carttotalt}}</span>
        
         
          </a>
@@ -170,9 +170,9 @@
         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
           <img *ngIf="logindetail.image" [src]="logindetail.image || 'assets/images/bsup.svg'" onerror="this.src='assets/images/bsup.svg';" width="30" height="30" alt="" class="rounded-circle header-profile-user">
           <img *ngIf="!logindetail.image" src="assets/images/bsup.svg" width="30" height="30" alt="" class="rounded-circle header-profile-user">
-           <a  class="text-black ms-1"> {{logindetail.name || 'sign In'}} </a>
+           <a  class="ms-1" style="color: #fff;"> {{logindetail.name || 'sign In'}} </a>
        
-          <div class="dropdown-menu mt-2" #dropdownMenu aria-labelledby="dropdownMenuLink">
+          <div class="dropdown-menu dd-menu mt-2" #dropdownMenu aria-labelledby="dropdownMenuLink">
             <p class="p-2 text-start mb-0 ms-2 ddm-h" *ngIf="token" (click)="logoutaccount()">Log Out</p>
             <div style="border-radius: 7px; width: 424px;" *ngIf="!token">
               <div class="col-md-12 col-lg-12 col-xl-12 ps-5 mt-3 d-flex">
@@ -387,9 +387,36 @@
                         <mat-error>
                             <span *ngIf="(submitted && SignUpForm.get('mobile')?.errors) || !SignUpForm.get('mobile')?.valid && SignUpForm.get('mobile')?.touched">Please Enter mobile number</span>
                         </mat-error>
-        
-                        
-                        
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 m-3">
+                    <div class="form-group">
+                        <label for="" class="form-label">Password</label>
+                        <div class="d-flex position-relative" style="width: 177%;">
+                            <input type="password" [type]="fieldTextType ? 'text' : 'password'"  placeholder="password" class="form-control" formControlName="password">
+                                <i class="bx bxs-show align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="!fieldTextType" (click)="toggleFieldTextType()" style="font-size: 18px;"></i>
+                                <i class="bx bxs-hide align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="fieldTextType" (click)="toggleFieldTextType()" style="font-size: 18px;"></i>
+                        </div>
+                        <mat-error>
+                            <span *ngIf="(submitted && SignUpForm.get('password')?.errors) || !SignUpForm.get('password')?.valid && SignUpForm.get('password')?.touched">Please enter password </span>
+                        </mat-error>
+                    </div>
+                  </div>
+                  <div class="col-md-6 m-3">
+                    <div class="form-group">
+                        <label for="" class="form-label">Confrim Password</label>
+                        <div class="d-flex position-relative" style="width: 177%;">
+                            <input [type]="fieldTextType1 ? 'text' : 'password'"  placeholder="Confrim password" class="form-control" formControlName="confirmPassword">
+                            <i class="bx bxs-show align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="!fieldTextType1" (click)="toggleFieldTextType1()" style="font-size: 18px;"></i>
+                            <i class="bx bxs-hide align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="fieldTextType1" (click)="toggleFieldTextType1()" style="font-size: 18px;"></i>
+                        </div>
+                        <mat-error>
+                            <!-- <span *ngIf="(submitted && SignUpForm.get('confirmPassword')?.errors) || !SignUpForm.get('confirmPassword')?.valid && SignUpForm.get('confirmPassword')?.touched">Please enter password </span> -->
+                            <span class="text-start" *ngIf="confirmPassword.errors?.notEquivalent && SignUpForm.get('confirmPassword')?.touched">
+                                Password does not match
+                            </span>
+                        </mat-error>
                     </div>
                   </div>
                  

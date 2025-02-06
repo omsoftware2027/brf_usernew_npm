@@ -23,6 +23,12 @@ h6{
 .pr-0{
     padding-right: 0px!important;
 }
+.dd-menu{
+    .dropdown-toggle::after{
+      color: #fff!important;
+    }
+   
+  }
 body::-webkit-scrollbar ,.scroll-div::-webkit-scrollbar {
     width: 0.7em;
   }
