@@ -120,7 +120,7 @@ export class CategoryDetailComponent {
           this.reloadCommonService.sendUpdate('reloadWalletDetail');
         }
         else {
-          this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
+          this.matSnackBar.open(res.response, 'x', { duration: 4000 });
         }
       })
      }

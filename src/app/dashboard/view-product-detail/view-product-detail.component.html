@@ -75,8 +75,8 @@
                           <i class="ri-heart-line" style="cursor: pointer;" *ngIf="!secondIconDisabled && productRes.isWishlist ==false" (click)="toggleIcons('first');submit(productRes.productId)"></i>
                           <i class="ri-heart-fill" style="color:red; cursor: pointer;" *ngIf="productRes.isWishlist == true " (click)="toggleIcons('second');submit(productRes.productId)"></i>
                         </div>
-                        <p class="mt-3 t2" *ngIf="productRes.isWishlist == false "  (click)="submit(productRes.productId)">Add To Wishlist</p>
-                        <p class="mt-3 t2"  *ngIf="productRes.isWishlist == true " (click)="submit(productRes.productId)">Remove Form Wishlist</p>
+                        <p class="mt-3 t2" *ngIf="productRes.isWishlist == false "  (click)="submit(productRes.productId)">Add To Order Guide</p>
+                        <p class="mt-3 t2"  *ngIf="productRes.isWishlist == true " (click)="submit(productRes.productId)">Remove Form Order Guide</p>
                       </div>
                         
                     </div>

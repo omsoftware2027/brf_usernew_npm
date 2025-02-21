@@ -107,10 +107,9 @@ export class AllProductComponent {
     this.dashboardservice.savewishlist(data).subscribe((res) => {
       if (res.status == 0) {
         this.matSnackBar.open("Added To Wishlist", 'x', { duration: 2000 });
-      
       }
       else {
-        this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
+        this.matSnackBar.open(res.response, 'x', { duration: 4000 });
       }
     })
   

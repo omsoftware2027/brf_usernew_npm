@@ -125,7 +125,7 @@ driver=''
     this.getalldropdown('CODE')
     this.getalldropdown('BIN')
     this.userId=localStorage.getItem('id');
-    this.usertype=localStorage.getItem('usertype')
+    this.usertype=localStorage.getItem('userType')
     console.log(this.userid,'userid')
     if( this.usertype ==1){
       this.expandOpen=true;

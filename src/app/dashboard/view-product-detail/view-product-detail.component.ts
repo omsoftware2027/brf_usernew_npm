@@ -125,7 +125,7 @@ export class ViewProductDetailComponent implements OnDestroy {
       
       }
       else {
-        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+        this.matSnackBar.open(res.response, 'x', { duration: 4000 });
       }
     })
    }

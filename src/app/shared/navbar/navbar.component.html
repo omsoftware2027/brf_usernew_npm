@@ -26,7 +26,7 @@
                         <p [routerLink]="['/new-customers',data.cmsId]" style="color: #fff;font-size: 14px;font-weight: 500;" class="ps-2">{{data.title}}</p>
                     </div>
                   </div>
-                  <p [routerLink]="['/add-wishlist']" style="color: #fff;font-size: 14px;font-weight: 500;"> Wishlist({{wishlist}})</p>
+                  <p [routerLink]="['/add-wishlist']" style="color: #fff;font-size: 14px;font-weight: 500;"> Order Guide({{wishlist}})</p>
                   <p [routerLink]="['/my-cart-list']" style="color: #fff;font-size: 14px;font-weight: 500;"> My cart({{wishcart}})</p>
                   <p *ngIf="token" style="color: #fff;font-size: 14px;font-weight: 500;" (click)="logoutaccount()">Log Out </p>
               </div>
@@ -151,7 +151,7 @@
           </i>
            <span class=" position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill" style="background-color: #fff;color: #F43C4C; margin-top:-6px;height: 18px;width: 18px;padding: 5px 4px;">{{wishcart}}</span>
           <!-- <p style="color: black; font-size: 10px;">{{wishlist}}</p> -->
-          <span class="m-3" [routerLink]="['/add-wishlist']"  style="color:#fff"> Wishlist</span>
+          <span class="m-3" [routerLink]="['/add-wishlist']"  style="color:#fff"> Order Guide</span>
          </a>
        </div>
        <div class="mycart">
