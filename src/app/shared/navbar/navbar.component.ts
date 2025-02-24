@@ -647,7 +647,7 @@ login() {
       this.data = res;
       if (this.data.status === 0) {  
           this.logindetail = this.data.response;
-          
+          localStorage.setItem('UserDetails',JSON.stringify(this.logindetail));
       } else {
           // Handle other cases if needed
       }

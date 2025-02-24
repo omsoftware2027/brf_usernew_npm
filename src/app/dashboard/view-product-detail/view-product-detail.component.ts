@@ -28,13 +28,16 @@ export class ViewProductDetailComponent implements OnDestroy {
   currentPage=0;
   pageSize=30;
   data:any;
-
+  userDetails:any;
   productid:any;
+
   constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService  ){
 
   }
+
   ngOnInit(): void {
-    
+    this.userDetails = localStorage.getItem('UserDetails');
+    this.userDetails = JSON.parse(this.userDetails);
     this.productid = this.route.snapshot.params['id'];
     this.userid=localStorage.getItem('id');
     this.routeSubscription = this.route.params.subscribe(params => {

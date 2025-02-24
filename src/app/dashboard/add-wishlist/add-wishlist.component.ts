@@ -23,7 +23,7 @@ export class AddWishlistComponent {
   currentPage = 0;
   pageSize = 30;
   totalrecordLength:any;
-
+  userDetails:any;
 
   incrementValue() {
     this.currentValue += 1;
@@ -32,12 +32,13 @@ export class AddWishlistComponent {
   decrementValue() {
     this.currentValue -= 1;
   }
+
   constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService,private reloadCommonService:MasterService) { }
 
   ngOnInit(): void {
+    this.userDetails = localStorage.getItem('UserDetails');
+    this.userDetails = JSON.parse(this.userDetails);
     this.tabelLoad(0);
-
-   
   }
   tabelLoad(page: number) {
     this.userid=localStorage.getItem('id');

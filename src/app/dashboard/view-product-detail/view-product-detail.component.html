@@ -22,7 +22,11 @@
     </div>
   </div>
 <div class="container" >
-   
+   <div class="col-12">
+    <div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
+      You have not access to change or modify your order guide , Contact  BR Food Admin for the Approval!
+    </div>
+   </div>
    <div class="col-12 d-flex d-block-mb">
     <div class="col-lg-8  p-3 pm-2 h-div">
         <div class="card col-md-12" style="border-radius: 10px;">
@@ -69,7 +73,7 @@
                      <button type="button" class="btn btn-secondary btn-secondary2 mt-3" (click)="submitcart(productRes.productId,productRes.price,productRes.quantity)">ADD TO CART
                          <img src="../../../assets/images/Add to cart.png" 
                          class="" style="width:24px;height: 24px;letter-spacing: 0.5px;"> </button>
-                      <div class="d-flex mt-2 pt-2 ps-3 psm-0">
+                      <div class="d-flex mt-2 pt-2 ps-3 psm-0" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
                         <!-- <img src="../../../assets/images/add wishlist icon2 (1).png" style="width:25px;height:25px;"> -->
                         <div class="icon-container">
                           <i class="ri-heart-line" style="cursor: pointer;" *ngIf="!secondIconDisabled && productRes.isWishlist ==false" (click)="toggleIcons('first');submit(productRes.productId)"></i>

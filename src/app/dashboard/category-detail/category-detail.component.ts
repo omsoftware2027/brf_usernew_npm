@@ -43,9 +43,14 @@ export class CategoryDetailComponent {
   maxCharacters:number =17;
   pageSize = 100;
   totalrecordLength:any;
+  userDetails:any;
+
   constructor(private dashboardservice:DashboardService,private router: Router,
     private route: ActivatedRoute,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService) { }
+
    ngOnInit(): void {
+    this.userDetails = localStorage.getItem('UserDetails');
+    this.userDetails = JSON.parse(this.userDetails);
      this.categoryid = this.route.snapshot.params['id'];
      this.userid=localStorage.getItem('id');
      this.routeSubscription = this.route.params.subscribe(params => {
