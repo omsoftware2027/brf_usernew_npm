@@ -115,7 +115,7 @@
                      <!-- Amount on the right -->
                      <div class="col-6 d-flex justify-content-end mt-2">
                        <a class="btn dropdown-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
-                       font-size: 22px;">${{carttotal.total}} <i   class='bx bx-chevron-down'></i></a>
+                       font-size: 22px;">${{carttotal.total | number:'1.0-2'}} <i   class='bx bx-chevron-down'></i></a>
                        <!-- <div class="dropdown-menu">
                          <a href="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">Item</a>
                        </div> -->
@@ -187,12 +187,12 @@
                     <div class="row">
                       <div class="d-flex justify-content-between p-2">
                         <span  style="color: #5F6C72;">Sub-total</span>
-                        <span class="font-weight-bold">${{carttotal.subTotal}}</span>
+                        <span class="font-weight-bold">${{carttotal.subTotal | number:'1.0-2'}}</span>
                       </div>
                       
                       <div class="d-flex justify-content-between p-2">
                         <a  style="color: #5F6C72;"> Shipping</a>
-                        <span class="font-weight-bold"> {{carttotal.shipping}}</span>
+                        <span class="font-weight-bold"> ${{carttotal.shipping | number:'1.0-2'}}</span>
                       </div>
       
                       <div class="d-flex justify-content-between p-2">
@@ -202,7 +202,7 @@
       
                       <div class="d-flex justify-content-between p-2">
                         <span class="" style="color: #5F6C72;"> Total</span>
-                        <span  class="font-weight-bold">${{carttotal.total}} USD</span>
+                        <span  class="font-weight-bold">${{carttotal.total | number:'1.0-2'}} USD</span>
                       </div>
       
                       <div class="d-flex flex-column">

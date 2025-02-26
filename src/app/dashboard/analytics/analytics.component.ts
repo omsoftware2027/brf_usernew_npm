@@ -35,7 +35,7 @@ export class AnalyticsComponent implements OnInit {
     this.tabelLoad(0);
     this.getallcarttotal(0);
     this.cardload(0);
-    this.  getallcount()
+    this.getallcount()
   }
   tabelLoad(page: number) {
     this.dashboardservice.getAllcategoryy(this.currentPage, this.pageSize).subscribe(res => {

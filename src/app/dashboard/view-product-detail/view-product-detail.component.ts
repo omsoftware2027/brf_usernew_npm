@@ -75,6 +75,11 @@ export class ViewProductDetailComponent implements OnDestroy {
     });
 
   }
+
+  chnageQuantityVal(ev:any){
+    this.productRes.quantity = ev.target.value;
+  }
+
   submitcart(productId:any,price:any,qutantity:any){
     if(this.userid > 0 ) {
       if(qutantity > 0 ){

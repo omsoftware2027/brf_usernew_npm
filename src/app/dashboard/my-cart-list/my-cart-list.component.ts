@@ -97,9 +97,15 @@ export class MyCartListComponent {
       }
     })
   }
-  submitcart(productId:any,quantity:any){
+  submitcart(productId:any,quantity:any,type:any){
+    var quan:any;
+    if(type == 'input'){
+      quan = quantity.target.value;
+    } else{
+      quan = quantity;
+    }
     this.userid=localStorage.getItem('id');
-    this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
+    this.dashboardservice.savequtanity( this.userid,productId,quan).subscribe((res:any) => {
       if (res.status == 0) {
         this.matSnackBar.open("Quantity Added", 'x', { duration: 2000 });
         this.tabelLoad(0);
