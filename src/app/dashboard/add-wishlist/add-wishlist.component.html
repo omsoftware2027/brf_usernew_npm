@@ -36,6 +36,7 @@
               <thead>
                 <tr >
                   <th scope="col" style=" color:#475156">PRODUCTS</th>
+                  <th scope="col" style=" color:#475156">QUANTITY</th>
                   <th scope="col" style=" color:#475156">PRICE</th>
                   <th scope="col" style=" color:#475156">STOCK STATUS</th>
                   <th scope="col" style=" color:#475156">ACTIONS</th>
@@ -59,12 +60,30 @@
                                       class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</a></p>
                           </div>
                       </div>
-  
                   </th>
+                  <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">
+                    <div class="d-flex">
+                      <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;width: 148px;height: 48px">
+                        <div class="col-md-12 d-flex">
+                          <div class="col-md-2 mt-3">
+                            <i class="ri-subtract-line ps-2 cursor-pointer" (click)="decrementValue(data);" style="font-size: 22px;"></i>
+                          </div>
+                          <div class="col-md-7">
+                            <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 6px;padding-left: 14px;" class="">
+                              <input type="number" class="form-control" style="height: 34px;" [value]="data?.quantity || '1'" (change)="updateQuantity($event,data)">
+                            </p>
+                          </div>
+                          <div class="col-md-3 mt-3">
+                            <i class="ri-add-line ps-2 cursor-pointer" (click)="incrementValue(data);" style="font-size: 22px;padding-left: 40px;"> </i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
                   <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">${{data.price}}</td>
                   <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
                   <td  class="d-flex">   
-                    <button type="button" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;
+                    <button type="button" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;
                       ">ADD TO CART <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;"> 
                     </button> 
                     <button type="button" *ngIf="userDetails.isLockOrderGuide == 'No'" class="btn btn-primary mt-4" style="background-color: grey; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">ADD TO CART <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;"> </button>

@@ -25,14 +25,6 @@ export class AddWishlistComponent {
   totalrecordLength:any;
   userDetails:any;
 
-  incrementValue() {
-    this.currentValue += 1;
-  }
-
-  decrementValue() {
-    this.currentValue -= 1;
-  }
-
   constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService,private reloadCommonService:MasterService) { }
 
   ngOnInit(): void {
@@ -73,39 +65,63 @@ export class AddWishlistComponent {
       })
     }
   }
-  submitcart(productId:any,price:any,wishlistId:any){
-     
+
+  updateQuantity(ev:any,data:any){
+    var quan = ev.target.value;
+    data.quantity = quan;
+  }
+
+  submitcart(productId:any,price:any,quantity:any,wishlistId:any){
     let data = {
       productId:productId,
       userId: this.userid,
-      quantity:1,
+      quantity:quantity,
       weight:0,
       shipping:0,
       price:price
-   
     }
     this.dashboardservice.savewishcart(data).subscribe((res) => {
       if (res.status == 0) {
+        this.tabelLoad(0);
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
         this.matSnackBar.open("Added To Cart", 'x', { duration: 2000 });
-        this.dashboardservice.deletewishlist(wishlistId).subscribe(res => {
-          if (res.status == 0) {
-            this.tabelLoad(0);
-            this.reloadCommonService.sendUpdate('reloadWalletDetail');
-          }
-        })
+        // this.dashboardservice.deletewishlist(wishlistId).subscribe(res => {
+        //   if (res.status == 0) {
+        //     this.tabelLoad(0);
+        //     this.reloadCommonService.sendUpdate('reloadWalletDetail');
+        //   }
+        // })
       }
       else {
         this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
       }
     })
-  
   }
+
+  decrementValue(data: any): void {
+    if (data.quantity === undefined || data.quantity <= 0) {
+      return;
+    } else {
+      data.quantity -= 1;
+    }
+  }
+
+  incrementValue(data: any): void {
+    if (data.quantity === undefined) {
+      // If quantity property doesn't exist, initialize it with 1
+      data.quantity = 1;
+    } else {
+      // Increment the quantity
+      data.quantity += 1;
+
+    }
+  }
+
   pageChanged(event: any) {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     // const calculatedPageIndex = this.currentPage * this.pageSize;
     this.tabelLoad(event.pageIndex);
   }
-
 
 }
