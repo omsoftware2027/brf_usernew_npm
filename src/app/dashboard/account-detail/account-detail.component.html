@@ -742,7 +742,8 @@
                                                         <td>
                                                           <div class="d-flex align-items-center">
                                                             <div class="flex-shrink-0 me-2">
-                                                              <div>
+                                                              <div class="d-flex">
+                                                                <img [ngClass]="{'invisible ': !data1.isCart}" class="me-2 mt-3" width="25px" height="25px" src="../../../assets/images/addedCart.png">
                                                                 <img class="avatar-xs customer-image-elem" alt="" [src]="data1.productImage || 'assets/images/download (20).png'" style="width:62px;height:62px">
                                                               </div>
                                                             </div>
@@ -835,7 +836,8 @@
                                                 <td scope="row">
                                                     <div  class="d-flex align-items-center">
                                                         <div class="flex-shrink-0 me-2">
-                                                            <div>
+                                                            <div class="d-flex">
+                                                                <img [ngClass]="{'invisible ': !data1.isCart}" class="me-2 mt-3" width="25px" height="25px" src="../../../assets/images/addedCart.png">
                                                                 <img class="avatar-xs  customer-image-elem" alt=""
                                                                 [src]="data1.productImage || 'assets/images/download (20).png'" style="width:62px;height:62px">
                                                             </div>
@@ -847,11 +849,17 @@
                                                     </div>
                                 
                                                 </td>
-                                                <td><input type= "text" class="form-control" style="width:53px;height:20px ;" disabled style="width:77px;height:29px;color:#000000;" [value]="data1.unit"  ></td>
+                                                <td>
+                                                    <input type= "text" class="form-control" style="width:53px;height:20px ;" disabled style="width:77px;height:29px;color:#000000;" [value]="data1.unit">
+                                                </td>
                                                 <td><input type= "number" class="form-control" style="width:53px;height:20px ;" min="0" style="width:77px;height:29px ;color:#000000;" [(ngModel)]="data1.quantity"  [value]="data1.quantity" >
                                                     <!-- <button *ngIf="data1.isCart == false" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">Add to cart</button> 
                                                     <button *ngIf="data1.isCart == true" class="btn btn-secondary mt-3"style="background-color: #F44C4C;color: white;width:87px;height: 30px;font-size:8px" (click)="submitcart(data1.productId,data1.price,data1.quantity)">update to cart</button> -->
-                                                 </td>
+                                                    <button type="button" class="btn btn-secondary mt-1" (click)="submitcart(data1.productId,data1.price,data1.quantity)" style="background-color: #F44C4C;color: white;width:77px;height: 20px;padding: 0px;font-size: 11px;font-weight: 500;">
+                                                        <span *ngIf="!data1.isCart">Add To Cart</span>
+                                                        <span *ngIf="data1.isCart">Update Cart</span>
+                                                    </button>
+                                                </td>
                                                
                                                 <td>${{data1.price}}</td>
                                              

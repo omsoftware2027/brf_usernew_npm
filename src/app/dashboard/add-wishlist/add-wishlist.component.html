@@ -49,7 +49,8 @@
                   <th scope="row">
                       <div  class="d-flex align-items-center">
                           <div class="flex-shrink-0 me-2">
-                              <div>
+                              <div class="d-flex">
+                                <img [ngClass]="{'invisible ': data.isCartExist=='false'}" class="me-2 mt-3" width="25px" height="25px" src="../../../assets/images/addedCart.png">
                                   <img class="avatar-xs  customer-image-elem" alt=""
                                   [src]="data.image|| 'assets/images/download (20).png'" 
                                   onerror="this.src='assets/images/download (20).png';"  style="width:52px;height:52px">
@@ -83,8 +84,10 @@
                   <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">${{data.price}}</td>
                   <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
                   <td  class="d-flex">   
-                    <button type="button" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;
-                      ">ADD TO CART <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;"> 
+                    <button type="button" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">
+                      <span *ngIf="data.isCartExist=='false'">ADD TO CART</span>
+                      <span *ngIf="data.isCartExist=='true'">UPDATE CART</span>
+                      <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;"> 
                     </button> 
                     <button type="button" *ngIf="userDetails.isLockOrderGuide == 'No'" class="btn btn-primary mt-4" style="background-color: grey; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">ADD TO CART <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;"> </button>
                           <p class="p-4 mt-2" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p></td>

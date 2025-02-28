@@ -766,28 +766,25 @@ deletestaff(id:any) {
   }
 }
 submitcart(productId:any,price:any,quantity:any){
-     
   let data = {
     productId:productId,
     userId: this.userid,
-    quantity:quantity || 0,
+    quantity:quantity || 1,
     weight:0,
     shipping:0,
     price:price
- 
   }
   this.dashboardservice.savewishcart(data).subscribe((res) => {
     if (res.status == 0) {
       this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
-    
       this.getallbulkorder(0);
     }
     else {
       this.snackBar.open(res.response, 'x', { duration: 2000 });
     }
   })
-
 }
+
 getallreorder(orderid:any){
   this.userid=localStorage.getItem('id');
   this.dashboardservice.getallreorder(orderid,this.userid).subscribe((res:any)=>{
