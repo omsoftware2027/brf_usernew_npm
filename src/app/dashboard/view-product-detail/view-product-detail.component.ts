@@ -278,4 +278,7 @@ export class ViewProductDetailComponent implements OnDestroy {
         }
     });
 }
+getPrice():any{
+  return parseFloat(this.productRes.price) * parseInt(this.productRes?.quantity?this.productRes?.quantity:1);
+}
 }
