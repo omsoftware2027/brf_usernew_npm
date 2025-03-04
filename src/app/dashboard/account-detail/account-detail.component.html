@@ -487,16 +487,32 @@
                                         <div *ngFor="let orderdata of allorder">
                                             <div style="background-color: #F44C4C; height: 35px;" >
                                                 <div class="col-md-12 d-flex mt-2 container">
-                                                    <div class="col-md-2 text-white mt-2 pl-17">
+                                                    <div class="d-flex justify-content-between w-100">
+                                                        <div class="text-white mt-2 pl-17">
+                                                            <p>{{orderdata.transactionDate| date:'short'}}</p>
+                                                        </div>
+                                                        <div class="text-white mt-2">
+                                                            <p class="mb-0">Shipping Charges: ${{orderdata.shippingCharges}}</p>
+                                                        </div>
+                                                        <div class="text-white mt-2">
+                                                            <p class="mb-0">Status: {{orderdata.orderStatus}}</p>
+                                                        </div>
+                                                        <div class="d-none d-sm-block"><button class="btn1 text-white mt-1" style="background-color: #34BBD9;letter-spacing: 0.5px" (click)="downoladinvoice(orderdata.orderId)">PRINT</button></div>
+                                                        <div class="d-none d-sm-block"><button class="btn2 text-white mt-1"  style="background-color: #3A51A2;"[routerLink]="['/my-cart-list',orderdata.orderId]" (click)="getallreorder(orderdata.orderId)">REORDER</button></div>
+                                                        <div class="me-2"> <button class="btn3 text-white mt-1 " style="cursor: default;">{{orderdata.transactionId}}</button></div>
+                                                    </div>
+                                                    <!-- <div class="col-md-2 text-white mt-2 pl-17">
                                                         <p>{{orderdata.transactionDate| date:'short'}}</p>
                                                     </div>
                                                     <div class="col-md-3 text-white mt-2">
                                                         <p class="mb-0">Shipping Charges: ${{orderdata.shippingCharges}}</p>
                                                     </div>
+                                                    <div class="col-md-3 text-white mt-2">
+                                                        <p class="mb-0">Status: {{orderdata.orderStatus}}</p>
+                                                    </div>
                                                     <div class="col-md-1  d-none d-sm-block"><button class="btn1 text-white mt-1" style="background-color: #34BBD9;letter-spacing: 0.5px" (click)="downoladinvoice(orderdata.orderId)">PRINT</button></div>
-                                                    <div class="col-md-3 d-none d-sm-block"><button class="btn2 text-white mt-1"  style="background-color: #3A51A2;"[routerLink]="['/my-cart-list',orderdata.orderId]" (click)="getallreorder(orderdata.orderId)">REORDER</button></div>
-                                                    <div class="col-md-2">   <button class="btn3 text-white mt-1 " style="cursor: default;">{{orderdata.transactionId}}</button></div>
-                                                    
+                                                    <div class="col-md-1 d-none d-sm-block"><button class="btn2 text-white mt-1"  style="background-color: #3A51A2;"[routerLink]="['/my-cart-list',orderdata.orderId]" (click)="getallreorder(orderdata.orderId)">REORDER</button></div>
+                                                    <div class="col-md-2"> <button class="btn3 text-white mt-1 " style="cursor: default;">{{orderdata.transactionId}}</button></div> -->
                                                 </div>
                                               
                                                 
