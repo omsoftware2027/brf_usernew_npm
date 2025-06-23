@@ -59,7 +59,7 @@
                     
                       <i class="ri-subtract-line ps-3 mt-2 " (click)="decrementValue1(productRes);" style="font-size: 22px;"></i>
                       <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;padding-left: 10px;" class="mt-2 mb-2" >
-                        <input type="number" class="form-control" style="height: 34px;" [value]="productRes.quantity || '1'" (change)="chnageQuantityVal($event)">
+                        <input type="number" class="form-control" style="height: 34px;" [value]="productRes.quantity || '0'" (change)="chnageQuantityVal($event)">
                         <!-- {{productRes.quantity || 0}} -->
                       </p>
                       <i class="ri-add-line ps-3 mt-2 pe-2"  (click)="incrementValue1(productRes);" style="font-size: 22px;"> </i>
