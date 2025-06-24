@@ -41,6 +41,7 @@ export class MyCartListComponent {
      }
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
+      console.log("first",this.data);
       if (this.data.status === 0) {
         window.scrollTo(0, 0);
         this.totalrecordLength = this.data.response.totalElements;

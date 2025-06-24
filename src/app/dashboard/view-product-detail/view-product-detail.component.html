@@ -40,10 +40,10 @@
                 <p style="font-size: 20px;">{{productRes.title}}</p>
              </div>
              <div class="col-md-12  d-flex">
-              <div class="col-md-6">
+              <!-- <div class="col-md-6">
               <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Availability: <span style="color: #00923F;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.avaibeleStock}}</span>
              </p>
-              </div>
+              </div> -->
               <div class="col-md-6">
                <p style="font-weight: 400; font-size: 14px; line-height: 20px;">Category: <span style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.categoryName}}</span></p>
               </div>
@@ -51,7 +51,7 @@
              
               <hr>
               <div class="col-md-12">
-                <p style="color:#2DA5F3;font-size: 24px;">${{getPrice() | number:'1.0-2'}}</p>
+                <p style="color:#2DA5F3;font-size: 24px;">${{getPrice() | number:'1.0-2'}} / {{productRes.unitName}} </p>
                 </div>
                 <div class="col-md-12">
                   <div class="d-flex">

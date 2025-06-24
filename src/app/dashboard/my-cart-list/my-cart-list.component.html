@@ -63,7 +63,7 @@
                         </div>
                       </div>
                     </th>
-                    <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{ data.price }}</td>
+                    <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{ data.price }} / {{data.unitName}}</td>
                     <td>
                       <div class="d-flex">
                         <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;    width: 148px;
@@ -76,7 +76,9 @@
                           <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 6px;padding-left: 14px;" class="">
                             <input type="number" class="form-control" style="height: 34px;" [value]="data.quantity || '1'" (change)="submitcart(data.productId,$event,'input')">
                             <!-- {{ data.quantity || '1' }} -->
+                              
                           </p>
+                          
                          </div>
                         <div class="col-md-3 mt-3">
                           <i class="ri-add-line ps-2" (click)="incrementValue(data);submitcart(data.productId,data.quantity,'increment')"style="font-size: 22px;padding-left: 40px;"> </i>

@@ -69,7 +69,7 @@ export class ViewProductDetailComponent implements OnDestroy {
     this.dashboardservice.getProductByCategoryId(this.productid,this.userid).subscribe((res) => {
       if (res.status === 0) {
         this.productRes = res['response'];
-
+        console.log("first",this.productRes);
       
       }
     });
