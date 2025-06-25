@@ -7,6 +7,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-checkout-page',
@@ -26,7 +27,7 @@ export class CheckoutPageComponent {
   currentPage=0;
   pageSize=30;
   now:any;
-constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder,private route:Router,private reloadCommonService:MasterService){
+constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder,private route:Router,private reloadCommonService:MasterService, private location: Location){
 
 }
 ngOnInit(): void {
@@ -45,6 +46,10 @@ ngOnInit(): void {
   this.now = now.toISOString().slice(0, 16);
   this.now = new Date(this.now);
   console.log('this.now',this.now)
+}
+
+goBack(): void {
+  this.location.back();
 }
 
 dateValidator(control: AbstractControl): { [key: string]: boolean } | null {

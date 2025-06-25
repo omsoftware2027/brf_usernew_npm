@@ -9,8 +9,14 @@
             <i class='bx bx-home-alt' style="color:#5F6C72"></i>
           </a>
         </li>
-        <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17 !important;font-size: 14px;font-weight: 500
-                ;line-height: 20px;" aria-current="page">My Cart</li>
+       <li 
+  class="breadcrumb-item active" 
+  aria-current="page" 
+  (click)="goBack()" 
+  style="cursor:pointer; color:#4C7C17 !important; font-size: 14px; font-weight: 500; line-height: 20px;"
+>
+  My Cart
+</li>
         <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17 !important;font-size: 14px;font-weight: 500
                       ;line-height: 20px;" aria-current="page">Checkout</li>
 
