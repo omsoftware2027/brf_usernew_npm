@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-view-product-detail',
@@ -31,7 +32,7 @@ export class ViewProductDetailComponent implements OnDestroy {
   userDetails:any;
   productid:any;
 
-  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService  ){
+  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService, private location: Location  ){
 
   }
 
@@ -49,6 +50,10 @@ export class ViewProductDetailComponent implements OnDestroy {
    this.getallcount();
     // this.getAllcategoryproduct();
   }
+goBack(): void {
+  this.location.back();
+}
+
   ngOnDestroy() {
     // Unsubscribe to avoid memory leaks
     this.routeSubscription.unsubscribe();
