@@ -1,5 +1,5 @@
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Prompt'; }
+body { margin: 0; padding: 0; font-family: 'Prompt'; }
 
 h4{
     font-size: 1.3rem;
@@ -356,9 +356,9 @@ td.mat-cell .bx{
         h4{
             font-size: 26px;
         }
-        .form-select{
-            // background-color: #fff;
-        }
+        // .form-select{
+        //     // background-color: #fff;
+        // }
         .btn-info{
             width: 100px;
             border-radius: 10px;

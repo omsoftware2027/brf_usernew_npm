@@ -28,6 +28,16 @@
             <h5 class="mb-0 main-text p-3"  style="font-weight:600;font-size:20px;line-height:24px; color:
             #191C1F;">Order Guide</h5>
         </div>
+        <div class="container">
+          <div class="mb-3">
+            <input
+            type="text"
+            [(ngModel)]="searchText"
+            placeholder="Search product..."
+            class="search-input"
+            (input)="applyFilter()" 
+            />
+          </div>
         <div class="mt-2 cardNA mb-3" *ngIf="!wishlist.length">
             <h5 class="mb-1">Data not available</h5>
           </div>
@@ -45,7 +55,7 @@
               
               <tbody>
             
-                <tr *ngFor="let data of  wishlist">
+                <tr *ngFor="let data of filteredWishlist">
                   <th scope="row">
                       <div  class="d-flex align-items-center">
                           <div class="flex-shrink-0 me-2">
