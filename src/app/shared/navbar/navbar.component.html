@@ -34,7 +34,7 @@
            
             
             <div class="d-none d-sm-block">
-              <ul class="d-flex flex-wrap justify-content-end"> <!-- Modified line -->
+              <ul class="d-flex justify-content-end"> <!-- Modified line -->
                 <li *ngIf="token">
                     <a style="color:#F44C4C;font-size: 14px;font-weight: 400;" (click)="logoutaccount()">Log Out </a>
                 </li>
@@ -77,7 +77,7 @@
         <img src="/assets/images/categoryicon.png" class="catImg">
         <span class="text-white">All Category</span>
       </div> -->
-      <div  class="col-lg-7 col-md-6 col-sm-12 col-xs-12" >
+      <div  class="col-lg-6 col-md-6 col-sm-12 col-xs-12" >
         <form class="form" [formGroup]="searchproduct" >
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-3">
             <!-- <span class="SerchText">Search</span> -->
@@ -87,7 +87,7 @@
                           <i class="ri-search-line search-icon"></i> 
                          -->
               
-                        <div class="input-group mb-2 pb-1">
+                        <div class="input-group mb-2 pb-1 d-flex flex-nowrap">
                     
                         <div class="input-group-prepend">
                           <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" 
@@ -143,7 +143,7 @@
            </div>
         </form>
       </div>
-       <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12 d-none d-sm-block" style="text-align: end;margin-left:10px">
+       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 d-none d-sm-block" style="text-align: end;margin-left:10px">
       <div class="cartDiv d-flex justify-content-end">
        <div class="wishlist" style="margin-top: 9px;">
         <a style="color:#fff">
@@ -331,7 +331,7 @@
             </div> -->
               </div>
               <div class="col-md-12 col-md-12 col-lg-12 col-xl-12 p-3" *ngIf="showSignUp">
-                <form class="g-3"  [formGroup]="SignUpForm"    >
+                <form class="g-3"  [formGroup]="SignUpForm"    >  
                   <div class="col-md-6 m-3">
                       <div class="form-group">
                           <label for="" class="form-label" >First Name </label>
@@ -394,9 +394,9 @@
                     <div class="form-group">
                         <label for="" class="form-label">Password</label>
                         <div class="d-flex position-relative" style="width: 177%;">
-                            <input type="password" [type]="fieldTextType ? 'text' : 'password'"  placeholder="password" class="form-control" formControlName="password">
-                                <i class="bx bxs-show align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="!fieldTextType" (click)="toggleFieldTextType()" style="font-size: 18px;"></i>
-                                <i class="bx bxs-hide align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="fieldTextType" (click)="toggleFieldTextType()" style="font-size: 18px;"></i>
+                            <input type="password" [type]="fieldTextType ? 'text' : 'password'"  placeholder="password" class="form-control" formControlName="password" (click)="stopPropagation($event)">
+                                <i class="bx bxs-show align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="!fieldTextType" (click)="toggleFieldTextType(); stopPropagation($event)" style="font-size: 18px;"></i>
+                                <i class="bx bxs-hide align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="fieldTextType" (click)="toggleFieldTextType(); stopPropagation($event)" style="font-size: 18px;"></i>
                         </div>
                         <mat-error>
                             <span *ngIf="(submitted && SignUpForm.get('password')?.errors) || !SignUpForm.get('password')?.valid && SignUpForm.get('password')?.touched">Please enter password </span>
@@ -407,9 +407,9 @@
                     <div class="form-group">
                         <label for="" class="form-label">Confirm  Password</label>
                         <div class="d-flex position-relative" style="width: 177%;">
-                            <input [type]="fieldTextType1 ? 'text' : 'password'"  placeholder="Confirm password" class="form-control" formControlName="confirmPassword">
-                            <i class="bx bxs-show align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="!fieldTextType1" (click)="toggleFieldTextType1()" style="font-size: 18px;"></i>
-                            <i class="bx bxs-hide align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="fieldTextType1" (click)="toggleFieldTextType1()" style="font-size: 18px;"></i>
+                            <input [type]="fieldTextType1 ? 'text' : 'password'"  placeholder="Confirm password" class="form-control" formControlName="confirmPassword" (click)="stopPropagation($event)" >
+                            <i class="bx bxs-show align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="!fieldTextType1" (click)="toggleFieldTextType1(); stopPropagation($event)" style="font-size: 18px;"></i>
+                            <i class="bx bxs-hide align-middle position-absolute end-0 top-0 pe-3 pt-2 mt-1" *ngIf="fieldTextType1" (click)="toggleFieldTextType1(); stopPropagation($event)" style="font-size: 18px;"></i>
                         </div>
                         <mat-error>
                             <!-- <span *ngIf="(submitted && SignUpForm.get('confirmPassword')?.errors) || !SignUpForm.get('confirmPassword')?.valid && SignUpForm.get('confirmPassword')?.touched">Please enter password </span> -->
