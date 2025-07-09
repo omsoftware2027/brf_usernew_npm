@@ -4,7 +4,7 @@
 	</div> -->
 
 
-<div *ngIf="homeTopBanners.length > 0" id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+<div *ngIf="homeTopBanners.length > 0" id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="margin-top:17%">
   <div class="carousel-inner">
     <div 
       class="carousel-item" 
@@ -19,6 +19,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 
@@ -247,35 +249,24 @@
   </div>
 </div> -->
 
-   <div *ngIf="homeBottomBanners.length > 0" class="bottom-banners my-4">
-  <div id="bottomBannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
-    <div class="carousel-inner">
-      <div 
-        class="carousel-item" 
-        *ngFor="let banner of homeBottomBanners; let i = index" 
-        [class.active]="i === 0"
-      >
-        <div class="card text-center">
-          <img *ngIf="banner.image" [src]="banner.image" class="d-block w-100" alt="Banner" style="height: 300px">
-          <!-- Optional card body
-          <div class="card-body">
-            <h5 class="card-title">{{ banner.title }}</h5>
-          </div> -->
-        </div>
-      </div>
+  <div *ngIf="homeBottomBanners.length > 0" class="bottom-banners my-4">
+  <div class="card text-center">
+    <img 
+      *ngIf="homeBottomBanners[0].image" 
+      [src]="homeBottomBanners[0].image" 
+      class="d-block w-100" 
+      alt="Banner" 
+      style="height: 300px"
+    >
+    <!-- Optional: Add title or content below -->
+    <!--
+    <div class="card-body">
+      <h5 class="card-title">{{ homeBottomBanners[0].title }}</h5>
     </div>
-
-    <!-- Controls (optional) -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#bottomBannerCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#bottomBannerCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+    -->
   </div>
 </div>
+
 
    
        

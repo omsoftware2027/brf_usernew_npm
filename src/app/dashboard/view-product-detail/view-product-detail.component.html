@@ -27,8 +27,35 @@
             </ol>
         </nav>
     </div>
+    
   </div>
+
+
+<div class="container" style="margin-top: -175px; margin-bottom: 10px; " >
+   <div class="col-12">
+<div *ngIf="productTopBanners.length > 0" id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="margin-top:17%">
+  <div class="carousel-inner">
+    <div 
+      class="carousel-item" 
+      *ngFor="let banner of productTopBanners; let i = index" 
+      [class.active]="i === 0">
+      <img 
+        *ngIf="banner.image" 
+        [src]="banner.image" 
+        class="d-block w-100" 
+        [alt]="banner.title || 'Banner Image'" 
+        style="height: 350px;">
+    </div>
+  </div>
+</div>
+   </div>
+  </div>
+
+
+
+  
 <div class="container" >
+  
    <div class="col-12">
     <div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
       You have not access to change or modify your order guide , Contact  BR Food Admin for the Approval!
@@ -230,7 +257,28 @@
       
    </div>
         
-    
+  
+
+
+
+   <div *ngIf="productBottomBanners.length > 0" class="bottom-banners my-4">
+  <div class="card text-center">
+    <img 
+      *ngIf="productBottomBanners[0].image" 
+      [src]="productBottomBanners[0].image" 
+      class="d-block w-100" 
+      alt="Product Bottom Banner" 
+      style="height: 300px"
+    >
+    <!-- Optional: Add title or content below -->
+    <!--
+    <div class="card-body">
+      <h5 class="card-title">{{ productBottomBanners[0].title }}</h5>
+    </div>
+    -->
+  </div>
+</div>
+
     
     
 </div>

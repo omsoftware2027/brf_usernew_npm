@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { Location } from '@angular/common';
+import { BannerService } from 'src/app/banner.service';
 
 @Component({
   selector: 'app-view-product-detail',
@@ -31,8 +32,11 @@ export class ViewProductDetailComponent implements OnDestroy {
   data:any;
   userDetails:any;
   productid:any;
+  banners: any[] = [];
+  productTopBanners: any[] = [];
+  productBottomBanners: any[] = [];
 
-  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService, private location: Location  ){
+  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService, private location: Location,private bannerService: BannerService ){
 
   }
 
@@ -44,12 +48,52 @@ export class ViewProductDetailComponent implements OnDestroy {
     this.routeSubscription = this.route.params.subscribe(params => {
       this.productid = params['id'];
       this.getproductById();
+      this.getBanners();
     });
    this.getallcarttotal(0);
    this.cardload(0);
    this.getallcount();
     // this.getAllcategoryproduct();
   }
+
+
+getBanners() {
+  this.bannerService.getBanners().subscribe({
+    next: (res) => {
+      if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+        this.banners = res.response;
+        console.log("product banner", this.banners)
+        console.log('All banners received:', this.banners.map(b => ({
+  page: b.bannerPage,
+  type: b.bannerType,
+  title: b.title
+})));
+
+       this.productTopBanners = this.banners.filter(b =>
+  b.bannerPage?.toLowerCase().trim() === 'product' &&
+  b.bannerType?.toLowerCase().trim() === 'top_banner'
+);
+
+       this.productBottomBanners = this.banners.filter(b =>
+  b.bannerPage?.toLowerCase().trim() === 'product' &&
+  b.bannerType?.toLowerCase().trim() === 'bottom_banner'
+);
+      } else {
+        this.banners = [];
+        this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+      }
+    },
+    error: (err) => {
+      console.error('Banner fetch failed:', err);
+      this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
+    }
+  });
+}
+
+
+
+
+  
 goBack(): void {
   this.location.back();
 }

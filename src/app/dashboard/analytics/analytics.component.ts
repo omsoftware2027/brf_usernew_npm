@@ -29,6 +29,7 @@ export class AnalyticsComponent implements OnInit {
   totalrecordLength:any;
   banners: any[] = [];
   homeTopBanners: any[] = [];
+  productTopBanners: any[] = [];
 homeBottomBanners: any[] = [];
 homeRightBanners: any[] = [];
 
@@ -60,18 +61,7 @@ homeRightBanners: any[] = [];
       }
     })
   }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      const el = document.querySelector('#carouselExampleSlidesOnly');
-      if (el) {
-        new bootstrap.Carousel(el, {
-          interval: 3000,
-          ride: 'carousel'
-        });
-      }
-    });
-  }
+  
 
 getBanners() {
   this.bannerService.getBanners().subscribe({
@@ -84,6 +74,9 @@ getBanners() {
 
          this.homeTopBanners = this.banners.filter(b =>
           b.bannerPage === 'home_page' && b.bannerType === 'top_banner'
+        );
+         this.productTopBanners = this.banners.filter(b =>
+          b.bannerPage === 'product' && b.bannerType === 'top_banner'
         );
 
         this.homeBottomBanners = this.banners.filter(b =>
