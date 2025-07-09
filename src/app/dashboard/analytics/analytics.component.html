@@ -1,8 +1,50 @@
 <div class="container">
-	<div class="col-12" style="margin-top:11%">
+	<!-- <div class="col-12" style="margin-top:11%">
 		 <img class="con-img" src="../../../assets/images/advertise page1.png"  style="width: 100%;margin-top: 75px;">
+	</div> -->
 
-	</div>
+
+<div *ngIf="homeTopBanners.length > 0" class="top-banners mb-4 " style="margin-top:15%">
+  <!-- <h4>Top Banners</h4> -->
+
+  <div id="topBannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+    <div class="carousel-inner">
+      <div 
+        class="carousel-item" 
+        *ngFor="let banner of homeTopBanners; let i = index" 
+        [class.active]="i === 0"
+      >
+        <div class="card h-100 text-center" >
+          <img *ngIf="banner.image" [src]="banner.image" class="d-block w-100" alt="Banner" style="height:350px">
+          <!-- <div class="card-body">
+            <h5 class="card-title">{{ banner.title }}</h5>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls (optional) -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#topBannerCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#topBannerCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
   <div>
     <div class="mt-4">
       <a class="t1">Explore Categories
@@ -177,14 +219,78 @@
                           </div>
                         </div>
                       </div>
+
                   </div>
+                  
                 </div>
-                
+                <div *ngIf="homeRightBanners.length > 0" class="side_banner_right mb-4">
+  <!-- <h4>Right Banners</h4> -->
+  <div class="row">
+    <div class="col-md-12 d-flex flex-column" *ngFor="let banner of homeRightBanners">
+      <div class="card">
+        <img *ngIf="banner.image" [src]="banner.image" class="card-img-top" alt="Banner">
+        <!-- <div class="card-body">
+          <h5 class="card-title">{{ banner.title }}</h5>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
               </div>
+
+              
             </div>
       </div>
    
-   
+
+
+
+
+
+   <!-- <div *ngIf="homeBottomBanners.length > 0" class="bottom-banners my-4">
+  <h4>Bottom Banners</h4>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let banner of homeBottomBanners">
+      <div class="card">
+        <img *ngIf="banner.image" [src]="banner.image" class="card-img-top" alt="Banner">
+        <div class="card-body">
+          <h5 class="card-title">{{ banner.title }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+   <div *ngIf="homeBottomBanners.length > 0" class="bottom-banners my-4">
+  <div id="bottomBannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+    <div class="carousel-inner">
+      <div 
+        class="carousel-item" 
+        *ngFor="let banner of homeBottomBanners; let i = index" 
+        [class.active]="i === 0"
+      >
+        <div class="card text-center">
+          <img *ngIf="banner.image" [src]="banner.image" class="d-block w-100" alt="Banner" style="height: 300px">
+          <!-- Optional card body
+          <div class="card-body">
+            <h5 class="card-title">{{ banner.title }}</h5>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls (optional) -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#bottomBannerCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#bottomBannerCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
    
        
    </div>

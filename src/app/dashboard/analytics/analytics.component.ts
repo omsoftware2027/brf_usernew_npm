@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
-
+import { BannerService } from 'src/app/banner.service';
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
@@ -26,16 +26,21 @@ export class AnalyticsComponent implements OnInit {
   currentPage = 0;
   pageSize = 100;
   totalrecordLength:any;
+  banners: any[] = [];
+  homeTopBanners: any[] = [];
+homeBottomBanners: any[] = [];
+homeRightBanners: any[] = [];
 
 
  
-  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService) { }
+  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService, private bannerService: BannerService) { }
 
   ngOnInit(): void {
     this.tabelLoad(0);
     this.getallcarttotal(0);
     this.cardload(0);
     this.getallcount()
+    this.getBanners();
   }
   tabelLoad(page: number) {
     this.dashboardservice.getAllcategoryy(this.currentPage, this.pageSize).subscribe(res => {
@@ -54,6 +59,45 @@ export class AnalyticsComponent implements OnInit {
       }
     })
   }
+
+getBanners() {
+  this.bannerService.getBanners().subscribe({
+    next: (res) => {
+      console.log('Banner response:', res);
+
+      if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+        this.banners = res.response;
+        console.log("Loaded banners:", this.banners);
+
+         this.homeTopBanners = this.banners.filter(b =>
+          b.bannerPage === 'home_page' && b.bannerType === 'top_banner'
+        );
+
+        this.homeBottomBanners = this.banners.filter(b =>
+          b.bannerPage === 'home_page' && b.bannerType === 'Bottom_banner'
+        );
+
+        this.homeRightBanners = this.banners.filter(b =>
+          b.bannerPage === 'home_page' && b.bannerType === 'side_banner_right'
+        );
+
+
+      } else {
+        this.banners = [];
+        this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+      }
+    },
+    error: (err) => {
+      console.error('Banner fetch failed:', err);
+      this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
+    }
+  });
+}
+
+
+
+
+
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid');

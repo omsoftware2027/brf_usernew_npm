@@ -8,6 +8,7 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MasterService {
 
   private reload = new Subject<any>();
@@ -20,5 +21,7 @@ export class MasterService {
   getUpdate(): Observable<any> { //the receiver component calls this function 
       return this.reload.asObservable(); //it returns as an observable to which the receiver funtion will subscribe
   }
+
+  
 
 }
