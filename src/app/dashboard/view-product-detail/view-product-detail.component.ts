@@ -35,6 +35,9 @@ export class ViewProductDetailComponent implements OnDestroy {
   banners: any[] = [];
   productTopBanners: any[] = [];
   productBottomBanners: any[] = [];
+  currentProductBannerIndex = 0;
+// productTopBanners: any[] = [];
+bannerInterval: any;
 
   constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService, private location: Location,private bannerService: BannerService ){
 
@@ -49,12 +52,22 @@ export class ViewProductDetailComponent implements OnDestroy {
       this.productid = params['id'];
       this.getproductById();
       this.getBanners();
+       this.startAutoSlide();
     });
    this.getallcarttotal(0);
    this.cardload(0);
    this.getallcount();
     // this.getAllcategoryproduct();
   }
+
+ startAutoSlide() {
+  this.bannerInterval = setInterval(() => {
+    if (this.productTopBanners.length > 0) {
+      this.currentProductBannerIndex = (this.currentProductBannerIndex + 1) % this.productTopBanners.length;
+    }
+  }, 3000); // Slide every 3 seconds
+}
+
 
 
 getBanners() {
