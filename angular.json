@@ -33,6 +33,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/assets/css/icons.css",
               "src/assets/plugins/input-tags/css/tagsinput.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/sass/app.scss",
               "src/styles.scss"
             ],

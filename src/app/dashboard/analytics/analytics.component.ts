@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
 import { BannerService } from 'src/app/banner.service';
+declare var bootstrap: any;
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
@@ -58,6 +59,18 @@ homeRightBanners: any[] = [];
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
       }
     })
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      const el = document.querySelector('#carouselExampleSlidesOnly');
+      if (el) {
+        new bootstrap.Carousel(el, {
+          interval: 3000,
+          ride: 'carousel'
+        });
+      }
+    });
   }
 
 getBanners() {
