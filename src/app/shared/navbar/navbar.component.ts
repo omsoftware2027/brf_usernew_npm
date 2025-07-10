@@ -13,6 +13,7 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
+
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
@@ -457,6 +458,24 @@ export class NavbarComponent implements OnInit{
           }
         })
       }
+
+goToOrderGuide(path: string) {
+  if (this.token) {
+    this.router.navigate(['/add-wishlist']);
+  } else {
+    this.router.navigate(['/email-signup']);
+  }
+}
+goToCart(path: string) {
+  if (this.token) {
+    this.router.navigate(['/my-cart-list']);
+  } else {
+    this.router.navigate(['/email-signup']);
+  }
+}
+
+
+
       getfootergeneral() {
         this.dashboardservice.getallcmsdata(this.cmsEnum).subscribe((res) => {
           if (res.status === 0 && res['response'].length > 0) {
