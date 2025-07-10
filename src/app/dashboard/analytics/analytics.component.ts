@@ -28,10 +28,13 @@ export class AnalyticsComponent implements OnInit {
   pageSize = 100;
   totalrecordLength:any;
   banners: any[] = [];
-  homeTopBanners: any[] = [];
-  productTopBanners: any[] = [];
-homeBottomBanners: any[] = [];
-homeRightBanners: any[] = [];
+ public homeTopBanners: any[] = [];
+public productTopBanners: any[] = [];
+public homeBottomBanners: any[] = [];
+public homeRightBanners: any[] = [];
+currentHomeBannerIndex: number = 0;
+bannerInterval: any;
+
 
 
  
@@ -43,7 +46,16 @@ homeRightBanners: any[] = [];
     this.cardload(0);
     this.getallcount()
     this.getBanners();
+    
   }
+ startAutoSlide() {
+  this.bannerInterval = setInterval(() => {
+    if (this.homeTopBanners.length > 0) {
+      this.currentHomeBannerIndex = (this.currentHomeBannerIndex + 1) % this.homeTopBanners.length;
+    }
+  }, 3000); // Slide every 3 seconds
+}
+  
   tabelLoad(page: number) {
     this.dashboardservice.getAllcategoryy(this.currentPage, this.pageSize).subscribe(res => {
       this.data =res;
@@ -62,6 +74,7 @@ homeRightBanners: any[] = [];
     })
   }
   
+  
 
 getBanners() {
   this.bannerService.getBanners().subscribe({
@@ -72,11 +85,8 @@ getBanners() {
         this.banners = res.response;
         console.log("Loaded banners:", this.banners);
 
-         this.homeTopBanners = this.banners.filter(b =>
+        this.homeTopBanners = this.banners.filter(b =>
           b.bannerPage === 'home_page' && b.bannerType === 'top_banner'
-        );
-         this.productTopBanners = this.banners.filter(b =>
-          b.bannerPage === 'product' && b.bannerType === 'top_banner'
         );
 
         this.homeBottomBanners = this.banners.filter(b =>
@@ -87,6 +97,8 @@ getBanners() {
           b.bannerPage === 'home_page' && b.bannerType === 'side_banner_right'
         );
 
+        // 🔁 Start rotating banners after they are loaded
+        this.startAutoSlide();
 
       } else {
         this.banners = [];
@@ -99,9 +111,6 @@ getBanners() {
     }
   });
 }
-
-
-
 
 
   getallcarttotal(page: number) {

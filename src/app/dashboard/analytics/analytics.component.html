@@ -1,24 +1,23 @@
 <div class="container">
-	<!-- <div class="col-12" style="margin-top:11%">
+	<div *ngIf="homeTopBanners && homeTopBanners.length === 0" class="col-12" style="margin-top:11%">
 		 <img class="con-img" src="../../../assets/images/advertise page1.png"  style="width: 100%;margin-top: 75px;">
-	</div> -->
+	</div>
 
 
-<div *ngIf="homeTopBanners.length > 0" id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="margin-top:17%">
-  <div class="carousel-inner">
-    <div 
-      class="carousel-item" 
-      *ngFor="let banner of homeTopBanners; let i = index" 
-      [class.active]="i === 0">
-      <img 
-        *ngIf="banner.image" 
-        [src]="banner.image" 
-        class="d-block w-100" 
-        [alt]="banner.title || 'Banner Image'" 
-        style="height: 350px;">
-    </div>
+<div class="custom-banner-wrapper" *ngIf="homeTopBanners && homeTopBanners.length > 0" style="margin-top:17%">
+  <div 
+    class="custom-banner" 
+    *ngFor="let banner of homeTopBanners; let i = index"
+    [class.active]="i === currentHomeBannerIndex">
+    <img 
+      *ngIf="banner.image"
+      [src]="banner.image" 
+      alt="{{ banner.title || 'Banner Image' }}" 
+      class="d-block w-100"
+      style="height: 350px;" />
   </div>
 </div>
+
 
 
 
@@ -211,7 +210,7 @@
                   </div>
                   
                 </div>
-                <div *ngIf="homeRightBanners.length > 0" class="side_banner_right mb-4">
+                <div *ngIf="homeRightBanners&&homeRightBanners.length > 0" class="side_banner_right mb-4">
   <!-- <h4>Right Banners</h4> -->
   <div class="row">
     <div class="col-md-12 d-flex flex-column" *ngFor="let banner of homeRightBanners">
@@ -249,7 +248,7 @@
   </div>
 </div> -->
 
-  <div *ngIf="homeBottomBanners.length > 0" class="bottom-banners my-4">
+  <div *ngIf="homeBottomBanners&&homeBottomBanners.length > 0" class="bottom-banners my-4">
   <div class="card text-center">
     <img 
       *ngIf="homeBottomBanners[0].image" 
