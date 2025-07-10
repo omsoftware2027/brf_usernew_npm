@@ -830,45 +830,43 @@ saveorder(orderid:any){
 //     this.snackBar.open("Qutanity greater  than 0", 'x', { duration: 2000 });
 //   }
 //   }
-  addToCart(productId:any,price:any,wishlistId:any){
-     
-    let data = {
-      productId:productId,
-      userId: this.userid,
-      quantity:1,
-      weight:0,
-      shipping:0,
-      price:price
-   
+ addToCart(productId: any, price: any, wishlistId: any) {
+  let data = {
+    productId: productId,
+    userId: this.userid,
+    quantity: 1,
+    weight: 0,
+    shipping: 0,
+    price: price
+  };
+
+  this.dashboardservice.savewishcart(data).subscribe((res) => {
+    if (res.status == 0) {
+      this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
+      this.reloadCommonService.sendUpdate('reloadWalletDetail');
+      this.getallbulkorder(0);
+    } else {
+      this.snackBar.open("Error while updating", 'x', { duration: 2000 });
     }
-    this.dashboardservice.savewishcart(data).subscribe((res) => {
-      if (res.status == 0) {
-        this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
-        this.reloadCommonService.sendUpdate('reloadWalletDetail');
-        this.dashboardservice.deletewishlist(wishlistId).subscribe(res => {
-          if (res.status == 0) {
-            this.getallbulkorder(0);
-            this.reloadCommonService.sendUpdate('reloadWalletDetail');
-          }
-        })
-      }
-      else {
-        this.snackBar.open("Error while updating", 'x', { duration: 2000 });
-      }
-    })
-  
-  }
+  });
+}
+
 sumbiCart() {
   let bulkAddArray = [];
 
   for (let categoryData of this.bulkorderguide) {
     for (let data1 of categoryData.bulkOrderResponses) {
+      // Check for invalid quantity
+      if (!data1.quantity || data1.quantity <= 0) {
+        this.snackBar.open("Please update the quantity to at to the cart",'x', { duration: 3000 });
+        return; // stop execution if any quantity is invalid
+      }
+
       bulkAddArray.push({
         price: data1.price,
         quantity: data1.quantity,
-        productId:data1.productId,
-        isCart:data1.isCart
-      
+        productId: data1.productId,
+        isCart: data1.isCart
       });
     }
   }
@@ -879,7 +877,7 @@ sumbiCart() {
   };
 
   this.dashboardservice.bulkcartadd(data).subscribe((res) => {
-    if (res.status == 0) {
+    if (res.status === 0) {
       this.snackBar.open("Added To Cart", 'x', { duration: 2000 });
       this.getallbulkorder(0);
       this.reloadCommonService.sendUpdate('reloadWalletDetail');
@@ -888,6 +886,7 @@ sumbiCart() {
     }
   });
 }
+
 openeAcessDialog(): void {
   // Open the dialog
   const dialogRef: MatDialogRef<SigninPopupComponent> = this.dialog.open(SigninPopupComponent, {
