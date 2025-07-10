@@ -114,6 +114,9 @@ goBack(): void {
   ngOnDestroy() {
     // Unsubscribe to avoid memory leaks
     this.routeSubscription.unsubscribe();
+     if (this.bannerInterval) {
+    clearInterval(this.bannerInterval);
+  }
   }
   toggleIcons(iconClicked: string) {
     if (iconClicked === 'first') {
