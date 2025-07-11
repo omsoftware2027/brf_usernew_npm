@@ -577,7 +577,7 @@ getallbulkorder(page:number){
   this.dashboardservice.getallbulkorder(categoryid,this.userid).subscribe((res:any)=>{
     if(res.status ==0){
     this.bulkorderguide=res.response
-    console.log(this.bulkorderespons,'bulkorderesponse')
+    console.log(this.bulkorderguide,'bulkorderguideeeeeee')
     this.totalrecordLength = this.data.response.totalElements;
      
     setTimeout(() => {
@@ -830,11 +830,11 @@ saveorder(orderid:any){
 //     this.snackBar.open("Qutanity greater  than 0", 'x', { duration: 2000 });
 //   }
 //   }
- addToCart(productId: any, price: any, wishlistId: any) {
+ addToCart(productId: any, price: any, wishlistId: any,quantity:any) {
   let data = {
     productId: productId,
     userId: this.userid,
-    quantity: 1,
+    quantity:quantity || 1,
     weight: 0,
     shipping: 0,
     price: price
@@ -862,6 +862,8 @@ sumbiCart() {
         return; // stop execution if any quantity is invalid
       }
 
+      
+
       bulkAddArray.push({
         price: data1.price,
         quantity: data1.quantity,
@@ -870,12 +872,12 @@ sumbiCart() {
       });
     }
   }
-
+  
   let data = {
     bulkAdd: bulkAddArray,
     userId: this.userid
   };
-
+  
   this.dashboardservice.bulkcartadd(data).subscribe((res) => {
     if (res.status === 0) {
       this.snackBar.open("Added To Cart", 'x', { duration: 2000 });

@@ -18,6 +18,52 @@
     </div>
   </div>
 
+
+
+
+
+
+<div class="container" style="margin-bottom: 10px; " >
+   <div class="col-12">
+
+
+
+<div class="custom-banner-wrapper" *ngIf="cartTopBanners && cartTopBanners.length > 0">
+  <div 
+    class="custom-banner" 
+    *ngFor="let banner of cartTopBanners; let i = index"
+    [class.active]="i === currentcartBannerIndex">
+    <img 
+      [src]="banner.image" 
+      alt="Cart Banner" 
+      class="d-block w-100"
+      style="height: 350px; object-fit: cover;"
+    />
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+   </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
   <div class="container" >
     
     <div class="col-md-12 p-5 pt-2 pm-2" >
@@ -182,6 +228,25 @@
                   </mat-card-body>
                </div>
         </div>
+
+<!-- My Cart Bottom Banner -->
+<div *ngIf="cartBottomBanners.length > 0" class="bottom-banners my-4">
+  <div class="card text-center">
+    <img 
+      *ngIf="cartBottomBanners[0].image" 
+      [src]="cartBottomBanners[0].image" 
+      class="d-block w-100" 
+      alt="Cart Bottom Banner" 
+      style="height: 300px; object-fit: cover;"
+    >
+    <!-- Optional: Add title or description -->
+    <!--
+    <div class="card-body">
+      <h5 class="card-title">{{ cartBottomBanners[0].title }}</h5>
+    </div>
+    -->
+  </div>
+</div>
 
     </div>
    </div>

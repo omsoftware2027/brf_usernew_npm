@@ -4,6 +4,7 @@ import { DashboardService } from '../dashboard.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { BannerService } from 'src/app/banner.service';
 
 @Component({
   selector: 'app-add-wishlist',
@@ -24,19 +25,33 @@ filteredWishlist: any[] = [];
   currentPage = 0;
   pageSize = 30;
   totalrecordLength: any;
+  bannerInterval: any;
+  banners: any[] = [];
+  wishlistTopBanners: any[] = [];
+  wishlistBottomBanners: any[] = [];
+  currentwishlistBannerIndex = 0;
 
   displayedColumns: string[] = ['productTitle']; // Add more columns as needed
 
   constructor(
     private matSnackBar: MatSnackBar,
     private dashboardservice: DashboardService,
-    private reloadCommonService: MasterService
+    private reloadCommonService: MasterService,
+    private bannerService: BannerService
   ) { }
 
   ngOnInit(): void {
     this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
     this.tabelLoad(0);
+    this.getBanners();          // <-- Fetch banners on init
+  this.startAutoSlide();
   }
+
+  ngOnDestroy(): void {
+  if (this.bannerInterval) {
+    clearInterval(this.bannerInterval);
+  }
+}
 
  tabelLoad(page: number): void {
   const userIdFromStorage = localStorage.getItem('id');
@@ -67,6 +82,50 @@ filteredWishlist: any[] = [];
     },
     error: () => {
       this.matSnackBar.open("Error fetching wishlist.", 'x', { duration: 2000 });
+    }
+  });
+}
+
+
+startAutoSlide() {
+  this.bannerInterval = setInterval(() => {
+    if (this.wishlistTopBanners.length > 0) {
+      this.currentwishlistBannerIndex = (this.currentwishlistBannerIndex + 1) % this.wishlistTopBanners.length;
+    }
+  }, 3000); // Slide every 3 seconds
+}
+
+
+
+getBanners() {
+  this.bannerService.getBanners().subscribe({
+    next: (res) => {
+      if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+        this.banners = res.response;
+        console.log("product banner", this.banners)
+        console.log('All banners received:', this.banners.map(b => ({
+  page: b.bannerPage,
+  type: b.bannerType,
+  title: b.title
+})));
+
+       this.wishlistTopBanners = this.banners.filter(b =>
+  b.bannerPage?.toLowerCase().trim() === 'order_guide' &&
+  b.bannerType?.toLowerCase().trim() === 'top_banner'
+);
+
+       this.wishlistBottomBanners = this.banners.filter(b =>
+  b.bannerPage?.toLowerCase().trim() === 'order_guide' &&
+  b.bannerType?.toLowerCase().trim() === 'bottom_banner'
+);
+      } else {
+        this.banners = [];
+        this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+      }
+    },
+    error: (err) => {
+      console.error('Banner fetch failed:', err);
+      this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
     }
   });
 }

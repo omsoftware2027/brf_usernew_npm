@@ -33,43 +33,7 @@
 
 <div class="container" style="margin-bottom: 10px; " >
    <div class="col-12">
-<!-- <div *ngIf="productTopBanners.length > 0" id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" style="margin-top:17%">
-  <div class="carousel-inner">
-    <div 
-      class="carousel-item" 
-      *ngFor="let banner of productTopBanners; let i = index" 
-      [class.active]="i === 0">
-      <img 
-        *ngIf="banner.image" 
-        [src]="banner.image" 
-        class="d-block w-100" 
-        [alt]="banner.title || 'Banner Image'" 
-        style="height: 350px;">
-    </div>
-  </div>
-</div>
 
-
-<div *ngIf="productTopBanners.length > 0" class="manual-carousel-container" style="overflow: hidden; height: 350px; margin-top: 17%;">
-  <div 
-    class="slide-wrapper"
-    [style.transform]="'translateX(-' + currentProductBannerIndex * 100 + '%)'"
-    [style.width.%]="productTopBanners.length * 100"
-  >
-    <div 
-      *ngFor="let banner of productTopBanners"
-      class="slide"
-      style="min-width: 100%; height: 350px; flex-shrink: 0;"
-    >
-      <img 
-        *ngIf="banner.image" 
-        [src]="banner.image" 
-        class="d-block w-100" 
-        [alt]="banner.title || 'Banner Image'" 
-        style="height: 100%; object-fit: cover;">
-    </div>
-  </div>
-</div> -->
 
 <div class="custom-banner-wrapper">
   <div 

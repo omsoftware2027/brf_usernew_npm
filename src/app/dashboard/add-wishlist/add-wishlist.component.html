@@ -17,6 +17,43 @@
         </nav>
     </div>
   </div>
+
+
+
+
+
+
+
+
+<div class="container" style="margin-bottom: 10px;">
+  <div class="col-12">
+    <div class="custom-banner-wrapper" *ngIf="wishlistTopBanners && wishlistTopBanners.length > 0">
+      <div 
+        class="custom-banner" 
+        *ngFor="let banner of wishlistTopBanners; let i = index"
+        [class.active]="i === currentwishlistBannerIndex">
+        <img 
+          [src]="banner.image" 
+          alt="Wishlist Banner" 
+          class="d-block w-100"
+          style="height: 350px; object-fit: cover;"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container" >
 
  <div class="col-md-12 px-5 py-3 pm-2">
@@ -111,5 +148,30 @@
             <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
           </div>
     </div>
+
+
+
+
+
  </div>
+ 
+
+</div>
+<!-- Wishlist Bottom Banner -->
+<div *ngIf="wishlistBottomBanners.length > 0" class="bottom-banners my-4">
+  <div class="card text-center">
+    <img 
+      *ngIf="wishlistBottomBanners[0].image" 
+      [src]="wishlistBottomBanners[0].image" 
+      class="d-block w-100" 
+      alt="Wishlist Bottom Banner" 
+      style="height: 300px; object-fit: cover;"
+    >
+    <!-- Optional: Add title or description -->
+    <!--
+    <div class="card-body">
+      <h5 class="card-title">{{ wishlistBottomBanners[0].title }}</h5>
+    </div>
+    -->
+  </div>
 </div>

@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { BannerService } from 'src/app/banner.service';
 
 @Component({
   selector: 'app-my-cart-list',
@@ -21,8 +22,13 @@ export class MyCartListComponent {
   carttotal:any;
   pageSize=30;
   isLogin:any = false;
+  banners: any[] = [];
+  cartTopBanners: any[] = [];
+  cartBottomBanners: any[] = [];
+  currentcartBannerIndex = 0;
+  bannerInterval: any;
 
- constructor(private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService){
+ constructor(private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,private bannerService: BannerService){
 
  }
  ngOnInit(){
@@ -30,6 +36,8 @@ export class MyCartListComponent {
   if(token){ this.isLogin = true; }
   this.tabelLoad(0);
   this.getallcarttotal(0)
+  this.getBanners();           // fetch banners
+  this.startAutoSlide(); 
  }
   currentValue: number = 22;
   
@@ -58,6 +66,51 @@ export class MyCartListComponent {
       }
     })
   }
+
+
+  startAutoSlide() {
+  this.bannerInterval = setInterval(() => {
+    if (this.cartTopBanners.length > 0) {
+      this.currentcartBannerIndex = (this.currentcartBannerIndex + 1) % this.cartTopBanners.length;
+    }
+  }, 3000); // Slide every 3 seconds
+}
+
+
+
+getBanners() {
+  this.bannerService.getBanners().subscribe({
+    next: (res) => {
+      if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+        this.banners = res.response;
+        console.log("product banner", this.banners)
+        console.log('All banners received:', this.banners.map(b => ({
+  page: b.bannerPage,
+  type: b.bannerType,
+  title: b.title
+})));
+
+       this.cartTopBanners = this.banners.filter(b =>
+  b.bannerPage?.toLowerCase().trim() === 'my_cart' &&
+  b.bannerType?.toLowerCase().trim() === 'top_banner'
+);
+
+       this.cartBottomBanners = this.banners.filter(b =>
+  b.bannerPage?.toLowerCase().trim() === 'my_cart' &&
+  b.bannerType?.toLowerCase().trim() === 'bottom_banner'
+);
+      } else {
+        this.banners = [];
+        this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+      }
+    },
+    error: (err) => {
+      console.error('Banner fetch failed:', err);
+      this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
+    }
+  });
+}
+
   incrementValue(data: any): void {
     if (data.quantity === undefined) {
       // If quantity property doesn't exist, initialize it with 1
