@@ -151,6 +151,18 @@ export class NavbarComponent implements OnInit{
       });      
          } 
 
+         @HostListener('document:click', ['$event'])
+onClickOutside(event: MouseEvent) {
+  const target = event.target as HTMLElement;
+  const clickedInsideInput = this.dropdownMenu?.nativeElement.contains(target);
+  const clickedOnInput = this.elementRef.nativeElement.querySelector('input')?.contains(target);
+
+  if (!clickedInsideInput && !clickedOnInput) {
+    this.showDropdown = false;
+  }
+}
+
+
     toggleTab(tabId: string): void {
             this.tabs[tabId] = !this.tabs[tabId];
     }
@@ -181,15 +193,30 @@ export class NavbarComponent implements OnInit{
         this.getallcart() ;
         this.login();
         this.getallcarttotal(0);
-        this.renderer.listen('document', 'click', (event) => {
-          // Check if the click target is not within the input field or the dropdown list
-          if (!this.elementRef.nativeElement.contains(event.target)) {
-              // Clear the input field
-              this.searchproduct?.get('productname')?.setValue('');
-              // Hide the dropdown
-              this.showDropdown = false;
-          }
-      });
+      //   this.renderer.listen('document', 'click', (event) => {
+      //     // Check if the click target is not within the input field or the dropdown list
+      //     if (!this.elementRef.nativeElement.contains(event.target)) {
+      //         // Clear the input field
+      //         this.searchproduct?.get('productname')?.setValue('');
+      //         // Hide the dropdown
+      //         this.showDropdown = false;
+      //     }
+      // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
         this.formGroup = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required]],
