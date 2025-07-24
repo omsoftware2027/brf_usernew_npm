@@ -707,9 +707,17 @@ clear(){
   this.getallproduct()
 }
 handleKeyUp(event: any) {
-  // Check if the input field is empty
+  const input = event.target.value;
+
+  // Remove leading space(s)
+  if (input.startsWith(' ')) {
+    event.target.value = input.trimStart(); // or input.replace(/^\s+/, '')
+  }
+
+  // Update the flag after trimming
   this.isInputFilled = event.target.value.trim() !== '';
 }
+
 clearr() {
   const inputElement = this.elementRef.nativeElement.querySelector('.form-control');
   if (inputElement) {
