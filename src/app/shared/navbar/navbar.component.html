@@ -18,17 +18,17 @@
                 <img width="38px" *ngIf="!toogleBtn" (click)="toogleBtn=!toogleBtn" src="../../../assets/images/menu-icon.svg" class="mt-1 cursor-pointer">
                 <img class="mt-2 cursor-pointer" *ngIf="toogleBtn" width="22px" (click)="toogleBtn=!toogleBtn" src="../../../assets/images/crossIcon.svg">
                 <div class="sidenav-panel" *ngIf="toogleBtn">
-                  <p *ngIf="!token" [routerLink]="['/email-signup']" style="color: #fff;font-size: 14px;font-weight: 500;">Email Sign-Up</p>
+                  <p *ngIf="!token" [routerLink]="['/email-signup']" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;">Email Sign-Up</p>
                   
-                  <p *ngIf="token" [routerLink]="['/account-detail']" style="color: #fff;font-size: 14px;font-weight: 500;">My Account</p>
+                  <p *ngIf="token" [routerLink]="['/account-detail']" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;">My Account</p>
                   <div *ngFor="let data of titlesAndIdsArray2 ">
                     <div [routerLink]="['/statement',data.cmsId]">
-                        <p [routerLink]="['/new-customers',data.cmsId]" style="color: #fff;font-size: 14px;font-weight: 500;" class="ps-2">{{data.title}}</p>
+                        <p [routerLink]="['/new-customers',data.cmsId]" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;" class="ps-2">{{data.title}}</p>
                     </div>
                   </div>
-                  <p [routerLink]="['/add-wishlist']" style="color: #fff;font-size: 14px;font-weight: 500;"> Order Guide({{wishlist}})</p>
-                  <p [routerLink]="['/my-cart-list']" style="color: #fff;font-size: 14px;font-weight: 500;"> My cart({{wishcart | number:'1.0-2'}})</p>
-                  <p *ngIf="token" style="color: #fff;font-size: 14px;font-weight: 500;" (click)="logoutaccount()">Log Out </p>
+                  <p [routerLink]="['/add-wishlist']"  (click)="toogleBtn=!toogleBtn"style="color: #fff;font-size: 14px;font-weight: 500;"> Order Guide({{wishlist}})</p>
+                  <p [routerLink]="['/my-cart-list']" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;"> My cart({{wishcart | number:'1.0-2'}})</p>
+                  <p *ngIf="token" style="color: #fff;font-size: 14px;font-weight: 500;" (click)="logoutaccount()" (click)="toogleBtn=!toogleBtn">Log Out </p>
               </div>
             </div>
            
