@@ -150,18 +150,7 @@ export class NavbarComponent implements OnInit{
                 }
       });      
          } 
-
-         @HostListener('document:click', ['$event'])
-onClickOutside(event: MouseEvent) {
-  const target = event.target as HTMLElement;
-  const clickedInsideInput = this.dropdownMenu?.nativeElement.contains(target);
-  const clickedOnInput = this.elementRef.nativeElement.querySelector('input')?.contains(target);
-
-  if (!clickedInsideInput && !clickedOnInput) {
-    this.showDropdown = false;
-  }
-}
-
+         
 
     toggleTab(tabId: string): void {
             this.tabs[tabId] = !this.tabs[tabId];
@@ -764,10 +753,13 @@ onInputBlur() {
 // }
 openDropdown() {
   this.showDropdown = true;
-  if (this.listItem) {
-    this.listItem.nativeElement.focus();
-  }
+  setTimeout(() => {
+    if (this.listItem && this.listItem.nativeElement) {
+      this.listItem.nativeElement.focus();
+    }
+  });
 }
+
 updateInput(productName: string) {
   // Update the input field value if searchproduct and productname exist
   this.searchproduct?.get('productname')?.setValue(productName);
