@@ -517,21 +517,31 @@ goToCart(path: string) {
         }
       })
     }
-    searchproductbyname(){
-      const name = this.searchproduct.value.productname || '';
-      this.dashboardservice.getproductbyname(name,this.userId).subscribe(res => {
-        this.data =res;
-        if (this.data.status === 0) {
-          this.productt = this.data.response.productId;
-          this.router.navigate(['/view-product-detail', this.productt]);
+   searchproductbyname() {
+  const name = this.searchproduct.value.productname || '';
+  this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name).subscribe(res => {
+    this.data = res;
 
-          // this.router.navigate(['/all-product']);
-        }
-        else {
-         
-        }
-      })
+    if (this.data.status === 0) {
+      const productList = this.data.response.dataSet;
+
+      if (productList.length > 1) {
+        this.productt = productList;
+        this.dashboardservice.setSearchResults(this.productt);
+        this.router.navigate(['/all-product']);
+      } else if (productList.length === 1) {
+        const productId = productList[0].productId;
+        this.router.navigate(['/view-product-detail', productId]);
+      } else {
+        // Optional: handle no products found
+        // e.g., show a toast message
+      }
+    } else {
+      // Optional: handle error status from API
     }
+  });
+}
+
     getallselectproduct() {
       const name = this.searchproduct.value.productname || '';
       this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
@@ -756,7 +766,7 @@ openDropdown() {
   setTimeout(() => {
     if (this.listItem && this.listItem.nativeElement) {
       this.listItem.nativeElement.focus();
-    }
+    } 
   });
 }
 

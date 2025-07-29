@@ -24,6 +24,7 @@ export class AllProductComponent {
   fwishlist:any;
   showMoreText:any;
   toggleStates: boolean[] = [];
+  productt: any;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   category:any;
@@ -39,7 +40,7 @@ export class AllProductComponent {
   pageSize = 100;
   totalrecordLength:any;
   constructor(private dashboardservice:DashboardService,private router: Router,
-    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private formBuilder :FormBuilder) {
+    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private formBuilder :FormBuilder,private dashboardService: DashboardService ) {
       this.searchproduct = this.formBuilder.group({
         name: [''],
       });
@@ -53,6 +54,10 @@ export class AllProductComponent {
     // this.getallcarttotal(0);
      this.cardload(0)
     // this.getallproduct() 
+      this.dashboardService.productSearchResults$.subscribe((data) => {
+    this.productt = data;
+    console.log("Productt====",this.productt)
+  });
     
      // this.getAllcategoryproduct();
    }
@@ -64,6 +69,7 @@ export class AllProductComponent {
       this.toggleStates[index] = true;
     }
   }
+  
   tabelLoad(page: number) {
    const categoryid=this.categoryid || '';
     this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,categoryid,this.userid).subscribe(res => {

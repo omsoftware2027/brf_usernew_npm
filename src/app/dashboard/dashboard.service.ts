@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {map, tap} from "rxjs/operators";
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -220,5 +221,15 @@ export class DashboardService {
     return this.http.get<any>(`${environment.baseurl}/brfooduser/changeProduct?orderId=${orderId}&originalProductId=${originalProductId}&replaceProductId=${replaceProductId}&orderItemId=${orderItemId}`);
    }
 
-   
+   private productSearchResults = new BehaviorSubject<any[]>([]);
+  productSearchResults$ = this.productSearchResults.asObservable();
+
+  setSearchResults(data: any[]) {
+    this.productSearchResults.next(data);
+  }
 }
+
+
+  
+   
+ 
