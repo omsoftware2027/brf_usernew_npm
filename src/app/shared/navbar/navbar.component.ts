@@ -518,6 +518,7 @@ goToCart(path: string) {
       })
     }
    searchproductbyname() {
+    this.showDropdown = false;
   const name = this.searchproduct.value.productname || '';
   this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name).subscribe(res => {
     this.data = res;
