@@ -1,22 +1,28 @@
 <div class="container">
-	<div *ngIf="homeTopBanners && homeTopBanners.length === 0" class="col-12" style="margin-top:11%">
-		 <img class="con-img" src="../../../assets/images/advertise page1.png"  style="width: 100%;margin-top: 75px;">
-	</div>
-
-
-<div class="custom-banner-wrapper" *ngIf="homeTopBanners && homeTopBanners.length > 0" style="margin-top:17%">
-  <div 
-    class="custom-banner" 
-    *ngFor="let banner of homeTopBanners; let i = index"
-    [class.active]="i === currentHomeBannerIndex">
-    <img 
-      *ngIf="banner.image"
-      [src]="banner.image" 
-      alt="{{ banner.title || 'Banner Image' }}" 
-      class="d-block w-100"
-       />
+	<!-- Show banner if available, else show default image -->
+<ng-container *ngIf="homeTopBanners && homeTopBanners.length > 0; else noBanners">
+  <div class="custom-banner-wrapper" style="margin-top:17%">
+    <div 
+      class="custom-banner" 
+      *ngFor="let banner of homeTopBanners; let i = index"
+      [class.active]="i === currentHomeBannerIndex">
+      <img 
+        *ngIf="banner.image"
+        [src]="banner.image" 
+        alt="{{ banner.title || 'Banner Image' }}" 
+        class="d-block w-100"
+      />
+    </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #noBanners>
+  <div *ngIf="showNoBanner" class="col-12" style="margin-top:11%">
+    <img class="con-img" src="../../../assets/images/advertise page1.png" style="width: 100%; margin-top: 75px;">
+  </div>
+</ng-template>
+
+
 
 
 

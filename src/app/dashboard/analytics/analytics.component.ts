@@ -28,7 +28,9 @@ export class AnalyticsComponent implements OnInit {
   pageSize = 100;
   totalrecordLength:any;
   banners: any[] = [];
+  showNoBanner: boolean = false;
  public homeTopBanners: any[] = [];
+ homeBannersLoaded: boolean = false;
 public productTopBanners: any[] = [];
 public homeBottomBanners: any[] = [];
 public homeRightBanners: any[] = [];
@@ -46,6 +48,13 @@ bannerInterval: any;
     this.cardload(0);
     this.getallcount()
     this.getBanners();
+    
+ setTimeout(() => {
+    if (!this.homeTopBanners || this.homeTopBanners.length === 0) {
+      this.showNoBanner = true;
+    }
+  }, 1050);
+   
     
   }
  startAutoSlide() {
@@ -96,17 +105,19 @@ getBanners() {
         this.homeRightBanners = this.banners.filter(b =>
           b.bannerPage === 'home_page' && b.bannerType === 'side_banner_right'
         );
-
+ this.homeBannersLoaded = true;
         // 🔁 Start rotating banners after they are loaded
         this.startAutoSlide();
 
       } else {
         this.banners = [];
+        this.homeBannersLoaded = true;
         this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
       }
     },
     error: (err) => {
       console.error('Banner fetch failed:', err);
+       this.homeBannersLoaded = true;
       this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
     }
   });
