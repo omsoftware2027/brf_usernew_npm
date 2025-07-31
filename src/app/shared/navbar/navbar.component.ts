@@ -27,6 +27,8 @@ export class NavbarComponent implements OnInit{
   // @HostListener('document:click', ['$event'])
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild('dropdownWrapper') dropdownWrapper!: ElementRef;
+
   showDropdown: boolean = false;
     titlesAndIdsArray2:any;
     carttotal:any;
@@ -150,7 +152,14 @@ export class NavbarComponent implements OnInit{
                 }
       });      
          } 
-         
+    
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    if (!this.showDropdown) return;
+    if (this.dropdownWrapper && !this.dropdownWrapper.nativeElement.contains(event.target)) {
+      this.showDropdown = false;
+    }
+  }
 
     toggleTab(tabId: string): void {
             this.tabs[tabId] = !this.tabs[tabId];
@@ -740,6 +749,7 @@ clear(){
   this.getallproduct()
 }
 handleKeyUp(event: any) {
+  this.showDropdown = true
   const input = event.target.value;
 
   // Remove leading space(s)
@@ -778,6 +788,7 @@ openDropdown() {
 }
 
 updateInput(productName: string) {
+  this.showDropdown =false
   // Update the input field value if searchproduct and productname exist
   this.searchproduct?.get('productname')?.setValue(productName);
 }

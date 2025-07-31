@@ -171,6 +171,16 @@ driver=''
    
 }
 
+keyPressAlphabetsWithSpace(event: any) {
+  var charCode = (event.which) ? event.which : event.keyCode;
+  if ((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90) || charCode === 32 ) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 keyPressAlphabets(event: any) {
   var charCode = (event.which) ? event.which : event.keyCode;
   if ((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90)) {
@@ -1643,6 +1653,23 @@ keyPressNumbers(event:any) {
     return true;
   }
 }
+
+  keyPressPincodes(event: any) {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (
+      (charCode >= 48 && charCode <= 57) ||
+      (charCode >= 65 && charCode <= 90) ||
+      (charCode >= 97 && charCode <= 122) ||
+      charCode === 32 ||
+      charCode === 45
+    ) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
+
 cancelorder(orderid:any){
   this.dashboardservice.Cancelorder(orderid).subscribe((res) => {
     this.getallmyorder()

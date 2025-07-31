@@ -86,7 +86,7 @@
               <div class="form-group">
                   <label for="" class="form-label">PinCode</label>
                   <div class="input-group">
-                      <input type="text" formControlName="pincode" placeholder="pin code" class="form-control" (keypress)="keyPressNumbers($event)">
+                      <input type="text" formControlName="pincode" placeholder="pin code" class="form-control" (keypress)="keyPressPincodes($event)">
                   </div>
                   <mat-error>
                     <span *ngIf="(submitted && formGroup.get('pincode')?.errors) || !formGroup.get('pincode')?.valid && formGroup.get('pincode')?.touched">Please enter pin code  </span>

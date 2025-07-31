@@ -53,10 +53,12 @@ export class AllProductComponent {
     this.getallcount();
     // this.getallcarttotal(0);
      this.cardload(0)
-    this.getallproduct() 
       this.dashboardService.productSearchResults$.subscribe((data) => {
-    this.productt = data;
-    console.log("Productt====",this.productt)
+        if (data.length) {
+          this.productt = data;
+        } else {
+          this.getallproduct() 
+        }
   });
     
      // this.getAllcategoryproduct();

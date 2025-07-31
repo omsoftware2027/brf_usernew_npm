@@ -29,7 +29,7 @@
         <div *ngIf="this.usertype == 0">
             <div class="d-flex " (click)="showSignInForm()" [class.profile-open]="isProfileOpen" >
                 <span class=""><i class="bx bxs-user m-2 "></i></span>
-                <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">My Profile</h6>
+                <h6 class="m-1 " style="font-size: 16px;line-height: 28px;font-weight: 400;">My Profile</h6>
                 
             </div>
             <!-- <hr class="mt-1" style="border-radius:2px;color:#223d06;height: 2px;
@@ -39,44 +39,46 @@
             </div>
             <div  class="d-flex" (click)="showpassword()" [class.password-open]="isPasswordOpen">
                 <span class=""><i class="bx bxs-lock m-2"></i></span>
-                <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">Change Password</h6>
+                <h6 class="m-1 " style="font-size: 16px;line-height: 28px;font-weight: 400;">Change Password</h6>
             </div>
             <div>
                 <img src="../../../assets/images/line 1.png"  class="" style="width: 100%"  >
             </div>
             <div class="d-flex"(click)="myorder();getallorder(0)" [class.password-open]="isorderOpen">
                 <span class=""><i class='bx bxs-briefcase m-2' ></i></span>
-                <h6 class="m-1 "style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order</h6>
+                <h6 class="m-1 "style="font-size: 16px;line-height: 28px;font-weight: 400;">My Order</h6>
             </div>
             <div>
                 <img src="../../../assets/images/line 1.png"  class=""  style="width: 100%"  >
             </div>
             <div class="d-flex" (click)="bulkorder();getallbulkorder(0)" [class.password-open]="isbulkOpen">
                 <span class=""><i class="bx bxs-heart m-2"></i></span>
-                <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
+                <h6 class="m-1 " style="font-size: 16px;line-height: 28px;font-weight: 400;">Bulk Order</h6>
             </div>
             <div>
                 <img src="../../../assets/images/line 1.png"  class="" style="width: 100%"   >
             </div>
             <div class="d-flex" (click)="orderguide();getallcategory(0);getallbulkorder(0)" [class.password-open]="isguideOpen">
                 <span class=""><i class="bx bxs-heart m-2"></i></span>
-                <h6 class="m-1 " style="font-size: 20px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
+                <h6 class="m-1 " style="font-size: 16px;line-height: 28px;font-weight: 400;">My Order Guide</h6>
             </div>
             <div>
                 <img src="../../../assets/images/line 1.png"  class="" style="width: 100%"   >
             </div> 
             <!-- <div class="d-flex" (click)="mystaff();getallstaff(0)" [class.password-open]="staffOpen">
                 <span class=""><i class="bx bxs-user m-2"></i></span>
-                <h6 class="m-1 "style="font-size: 20px;line-height: 28px;font-weight: 400;">My Staff</h6>
+                <h6 class="m-1 "style="font-size: 16px;line-height: 28px;font-weight: 400;">My Staff</h6>
             </div> -->
             <!-- <div>
                 <img src="../../../assets/images/line 1.png"  class="" style="width: 100%"   >
             </div> -->
             <div class="d-flex" (click)="myaddress();getalladdress(0)" [class.password-open]="addressOpen">
                 <span class=""><i class="bx bxs-home m-2"></i></span>
-                <h6 class="m-1" style="font-size: 20px;line-height: 28px;font-weight: 400;">My Address</h6>
+                <h6 class="m-1" style="font-size: 16px;line-height: 28px;font-weight: 400;">My Address</h6>
             </div>
         </div>
+
+
          <div *ngIf="this.usertype == 1">
             <div class="d-flex" (click)="expandorder();getallexpandorder('')"   [class.password-open]="expandOpen">
                 <span class=""><i class="bx bxs-briefcase m-2"></i></span>
@@ -147,7 +149,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Business Name</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" (keypress)="keyPressAlphabets($event)" class="form-control" formControlName="businessName" >
+                                                    <input type="text"  placeholder="" (keypress)="keyPressAlphabetsWithSpace($event)" class="form-control" formControlName="businessName" >
                                                 </div>
                                 
                                                 <!-- <mat-error>
@@ -234,7 +236,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">City</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control"formControlName="city" (keypress)="keyPressAlphabets($event)">
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="city" (keypress)="keyPressAlphabetsWithSpace($event)">
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -249,7 +251,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">State</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control"formControlName="state" (keypress)="keyPressAlphabets($event)">
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="state" (keypress)="keyPressAlphabetsWithSpace($event)">
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -264,7 +266,7 @@
                                                <div class="form-group">
                                                    <label for="" class="form-label">Country</label>
                                                    <div class="input-group" >
-                                                       <input type="text"  placeholder="" class="form-control"formControlName="country" (keypress)="keyPressAlphabets($event)">
+                                                       <input type="text"  placeholder="" class="form-control"formControlName="country" (keypress)="keyPressAlphabetsWithSpace($event)">
                                                    </div>
                                    
                                                    <!-- <mat-error>
@@ -279,7 +281,7 @@
                                                 <div class="form-group">
                                                     <label for="" class="form-label">Pin Code</label>
                                                     <div class="input-group" >
-                                                        <input type="text"  placeholder="" class="form-control"formControlName="pincode" (keypress)="keyPressNumbers($event)">
+                                                        <input type="text"  placeholder="" class="form-control"formControlName="pincode" (keypress)="keyPressPincodes($event)">
                                                     </div>
                                     
                                                     <!-- <mat-error>
@@ -336,7 +338,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">City</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCity" (keypress)="keyPressAlphabets($event)">
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCity" (keypress)="keyPressAlphabetsWithSpace($event)">
                                                </div>
                                
                                                <!-- <mat-error>
@@ -351,7 +353,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">State</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingState" (keypress)="keyPressAlphabets($event)">
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingState" (keypress)="keyPressAlphabetsWithSpace($event)">
                                                </div>
                                
                                                <!-- <mat-error>
@@ -366,7 +368,7 @@
                                            <div class="form-group">
                                                <label for="" class="form-label">Country</label>
                                                <div class="input-group" >
-                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCountry" (keypress)="keyPressAlphabets($event)">
+                                                   <input type="text"  placeholder="" class="form-control"formControlName="billingCountry" (keypress)="keyPressAlphabetsWithSpace($event)">
                                                </div>
                                
                                                <!-- <mat-error>
@@ -381,7 +383,7 @@
                                             <div class="form-group">
                                                 <label for="" class="form-label">Pin Code</label>
                                                 <div class="input-group" >
-                                                    <input type="text"  placeholder="" class="form-control"formControlName="billingPincode" (keypress)="keyPressNumbers($event)">
+                                                    <input type="text"  placeholder="" class="form-control"formControlName="billingPincode" (keypress)="keyPressPincodes($event)">
                                                 </div>
                                 
                                                 <!-- <mat-error>
