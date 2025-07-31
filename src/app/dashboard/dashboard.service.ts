@@ -82,8 +82,8 @@ export class DashboardService {
     // @ts-ignore
    return this.http.post(`${environment.baseurl}/wishlistCart/saveQuantity?userId=`+userId+'&productId='+productId+'&quantity='+quantity);
     }
-  getallproduct(no:any,size:any,productName:any){
-      return this.http.get<any>(`${environment.baseurl}/product/getAllProduct?pageNo=${no}&pageSize=${size}&productName=${productName}`)
+  getallproduct(no:any,size:any,productName:any,userid:any){
+      return this.http.get<any>(`${environment.baseurl}/product/getAllProduct?pageNo=${no}&pageSize=${size}&productName=${productName}&userId=${userid}`)
     }
   getallshppingaddress(no:any,size:any,userid:any){
       return this.http.get<any>(`${environment.baseurl}/master/getAllShippingAddress?pageNo=${no}&pageSize=${size}&userId=${userid}`)

@@ -505,7 +505,9 @@ goToCart(path: string) {
     }
      getallproduct() {
       const name = this.searchproduct.value.productname || '';
-      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
+      this.userid=localStorage.getItem('id');
+    console.log(this.userid,'userid')
+      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name,this.userid).subscribe(res => {
         this.data =res;
         if (this.data.status === 0) {
           this.product = this.data.response.dataSet;
@@ -520,7 +522,9 @@ goToCart(path: string) {
    searchproductbyname() {
     this.showDropdown = false;
   const name = this.searchproduct.value.productname || '';
-  this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name).subscribe(res => {
+  this.userid=localStorage.getItem('id');
+    console.log(this.userid,'userid')
+  this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name, this.userid).subscribe(res => {
     this.data = res;
 
     if (this.data.status === 0) {
@@ -545,7 +549,9 @@ goToCart(path: string) {
 
     getallselectproduct() {
       const name = this.searchproduct.value.productname || '';
-      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
+      this.userid=localStorage.getItem('id');
+    console.log(this.userid,'userid')
+      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name, this.userid).subscribe(res => {
         this.data =res;
         if (this.data.status === 0) {
           this.carttotal = this.data.response.dataSet;

@@ -53,7 +53,7 @@ export class AllProductComponent {
     this.getallcount();
     // this.getallcarttotal(0);
      this.cardload(0)
-    // this.getallproduct() 
+    this.getallproduct() 
       this.dashboardService.productSearchResults$.subscribe((data) => {
     this.productt = data;
     console.log("Productt====",this.productt)
@@ -165,6 +165,7 @@ export class AllProductComponent {
   cardload(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
+
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -213,10 +214,12 @@ export class AllProductComponent {
   // }
   getallproduct() {
     const name =   this.productname || '';
-    this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name).subscribe(res => {
+    this.userid=localStorage.getItem('id');
+    console.log(this.userid,'userid')
+    this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name, this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
-        this.carttotal = this.data.response.dataSet;
+        this.productt = this.data.response.dataSet;
       
       }
       else {
