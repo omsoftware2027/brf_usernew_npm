@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
 import { BannerService } from 'src/app/banner.service';
+import { Router } from '@angular/router';
 declare var bootstrap: any;
 @Component({
   selector: 'app-analytics',
@@ -36,11 +37,12 @@ public homeBottomBanners: any[] = [];
 public homeRightBanners: any[] = [];
 currentHomeBannerIndex: number = 0;
 bannerInterval: any;
+firstTimeLogin: string | null = null;
 
 
 
  
-  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService, private bannerService: BannerService) { }
+  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService, private bannerService: BannerService, private router: Router) { }
 
   ngOnInit(): void {
     this.tabelLoad(0);
@@ -54,6 +56,13 @@ bannerInterval: any;
       this.showNoBanner = true;
     }
   }, 1050);
+
+      setTimeout(() => {
+      this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
+      if (this.firstTimeLogin == 'true') {
+        this.router.navigateByUrl('/account-detail');
+      }
+    }, 6000);
    
     
   }

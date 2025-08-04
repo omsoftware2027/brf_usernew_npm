@@ -5,6 +5,7 @@ import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-all-product',
@@ -39,13 +40,18 @@ export class AllProductComponent {
   currentPage = 0;
   pageSize = 100;
   totalrecordLength:any;
-  constructor(private dashboardservice:DashboardService,private router: Router,
-    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private formBuilder :FormBuilder,private dashboardService: DashboardService ) {
+  userDetails: any;
+ preventScrollToTop: boolean = false
+  
+  constructor(public dashboardservice:DashboardService,private router: Router,
+    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private formBuilder :FormBuilder,public dashboardService: DashboardService, private reloadCommonService:MasterService ) {
       this.searchproduct = this.formBuilder.group({
         name: [''],
       });
      }
    ngOnInit(): void {
+     this.userDetails = localStorage.getItem('UserDetails');
+     this.userDetails = JSON.parse(this.userDetails);
      this.categoryid = this.route.snapshot.params['id'];
      this.productname = this.route.snapshot.params['name'];
      this.userid=localStorage.getItem('id');
@@ -77,7 +83,9 @@ export class AllProductComponent {
     this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,categoryid,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
-        window.scrollTo(0, 0);
+        if (!this.preventScrollToTop) {
+          window.scrollTo(0, 0);
+        }
 
         this.totalrecordLength = this.data.response.totalElements;
         this.category = this.data.response.projectResponse.dataSet;
@@ -114,7 +122,10 @@ export class AllProductComponent {
     }
     this.dashboardservice.savewishlist(data).subscribe((res) => {
       if (res.status == 0) {
-        this.matSnackBar.open("Added To Order guide", 'x', { duration: 2000 });
+        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+        this.tabelLoad(0);
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
+        this.getallproduct()
       }
       else {
         this.matSnackBar.open(res.response, 'x', { duration: 4000 });
@@ -171,13 +182,19 @@ export class AllProductComponent {
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
+        if(!this.preventScrollToTop){
         window.scrollTo(0, 0);
+        }
         this.totalrecordLength = this.data.response.totalElements;
         this.wishlist = this.data.response.dataSet;
         setTimeout(() => {
           this.paginator.pageIndex = this.currentPage;   
           this.paginator.length = this.totalrecordLength;
         });
+
+        setTimeout(()=>{
+          this.preventScrollToTop = false
+        }, 3000)
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })

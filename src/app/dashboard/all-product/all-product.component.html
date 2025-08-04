@@ -68,27 +68,19 @@
                   <img src="../../../assets/images/Add to cart.png" 
                   class="" style="width:15px;height: 15px;"> </button>
 
-
-
-
-                 <div class="ps-2 mt-3">
-                  <div class="icon-container" >
-                    <i class="ri-heart-fill p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
-                       *ngIf="toggleStates[i] && data.isWishlist == true"
-                        (click)="toggleIcons('second', i);submit(data.productId)"
-                        ></i>
-                        <i class="ri-heart-line p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
-                        *ngIf="toggleStates[i] && data.isWishlist == false"
-                        (click)="toggleIcons('first', i);submit(data.productId)"
-                        ></i>
-                        
-                  </div>
-                  {{toggleStates[i] && data.isWishlist == true | json}}
-                  {{toggleStates[i] && data.isWishlist == false | json}}
-                  {{data.isWishlist == false | json}}
-                 </div>
-                
-
+              <div class="ps-2 mt-3">
+                <div class="icon-container" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
+                  <i *ngIf="toggleStates[i]== true  && data.isWishlist == 'true'" class="ri-heart-fill p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
+                     (click)=" preventScrollToTop = true; toggleIcons('second', i);submit(data.productId)">
+                  </i>
+                  <i *ngIf="toggleStates[i]== true && data.isWishlist == 'false'" class="ri-heart-line p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
+                     (click)=" preventScrollToTop = true; toggleIcons('first', i);submit(data.productId)">
+                  </i>
+                </div>                  
+                <div class="icon-container" *ngIf="userDetails.isLockOrderGuide == 'No'">
+                  <i class="ri-heart-fill p-1" style="font-size: 19px; color:grey;border: 1px solid grey;"></i>
+                </div>
+              </div>
                   <!-- <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1"> -->
              </div>          
            

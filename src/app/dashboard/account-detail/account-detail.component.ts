@@ -116,8 +116,13 @@ driver=''
   Myaddress:boolean=false;
   submitted:any=false;
 
-  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService){
+  firstTimeLogin: string | null = null;
 
+  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService){
+    this.firstTimeLogin =localStorage.getItem('firstTimeLogin');
+    if (this.firstTimeLogin == 'true') {
+      this.showpassword()
+    }
   }
   ngOnInit() {
     this.getallbulkorder(0);
@@ -524,6 +529,10 @@ changepassword(){
     this.dashboardservice.changepassword(data).subscribe((res) => {
       if (res.status == 0) {
         this.snackBar.open(res.response ,'x', { duration: 2000 });
+        if (this.firstTimeLogin == 'true') {
+          localStorage.removeItem('firstTimeLogin');
+          this.route.navigateByUrl('');
+        }
       }
       else {
         this.snackBar.open("Error while updating", 'x', { duration: 2000 });

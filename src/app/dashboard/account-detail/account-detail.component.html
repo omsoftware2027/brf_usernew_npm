@@ -23,9 +23,11 @@
 </div>
 
 <div class="container" >
+    <h5 *ngIf="firstTimeLogin == 'true'" class="py-3 main-text text-center" style="font-size:24px">
+         <i class="fas fa-triangle-exclamation me-2"></i>You are using a default startup password. Please change it for your account's security.</h5>
     
-    <div class="col-md-12 d-flex d-block-mb">
-        <div class="col-md-3 card p-3 cartDiv" style="border-radius: 10px;height: 50%;">
+    <div class="col-md-12 d-flex d-block-mb" [ngClass]="{ 'pt-3': firstTimeLogin == 'true' }">
+        <div class="col-md-3 card p-3 cartDiv" style="border-radius: 10px;height: 50%;"  [ngStyle]="{ display: firstTimeLogin == 'true' ? 'none' : 'block' }">
         <div *ngIf="this.usertype == 0">
             <div class="d-flex " (click)="showSignInForm()" [class.profile-open]="isProfileOpen" >
                 <span class=""><i class="bx bxs-user m-2 "></i></span>
@@ -93,7 +95,7 @@
             </div>
          </div>
         </div>
-        <div class="col-md-9 w-78">
+        <div class="col-md-9 w-78" [ngClass]="{ 'mx-auto': firstTimeLogin == 'true' }">
             <div class="row">
                 <div class="col-xl-11 ml-2">
                     <div class="content-wrapper">

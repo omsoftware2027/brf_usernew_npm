@@ -29,6 +29,7 @@ export class NavbarComponent implements OnInit{
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild('dropdownWrapper') dropdownWrapper!: ElementRef;
 
+  firstTimeLogin: string | null = null
   showDropdown: boolean = false;
     titlesAndIdsArray2:any;
     carttotal:any;
@@ -206,7 +207,12 @@ export class NavbarComponent implements OnInit{
 
 
 
-
+    setTimeout(() => {
+      this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
+      if (this.firstTimeLogin == 'true') {
+        this.router.navigateByUrl('/account-detail');
+      }
+    }, 6000);
 
 
 
@@ -404,6 +410,7 @@ export class NavbarComponent implements OnInit{
               localStorage.setItem('id', this.loginData.response.id);
               localStorage.setItem('token', this.loginData.response.token);
               localStorage.setItem('usertype', this.loginData.response.userType);
+              localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
               //window.location.reload();
               this.ngOnInit();
               this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
