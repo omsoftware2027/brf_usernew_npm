@@ -165,6 +165,7 @@ export class AllProductComponent {
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
+    if (this.userid) {
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -175,10 +176,12 @@ export class AllProductComponent {
       }
     })
   }
+  }
   cardload(page: number) {
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
 
+    if (this.userid) {
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -200,6 +203,7 @@ export class AllProductComponent {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
       }
     })
+  }
   }
   incrementValue(data: any): void {
     if (data.quantity === undefined) {
@@ -235,7 +239,7 @@ export class AllProductComponent {
     const name =   this.productname || '';
     this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
-    this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name, this.userid).subscribe(res => {
+    this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name, this.userid || '').subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
         this.productt = this.data.response.dataSet;

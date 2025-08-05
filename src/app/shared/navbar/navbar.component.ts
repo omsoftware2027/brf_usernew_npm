@@ -306,7 +306,7 @@ export class NavbarComponent implements OnInit{
   }
     keyPressAlphabets(event: any) {
       var charCode = (event.which) ? event.which : event.keyCode;
-      if ((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90)) {
+      if ((charCode >= 97 && charCode <= 122) || (charCode >= 65 && charCode <= 90) ||  charCode === 32) {
         return true;
       }
       else {
@@ -523,7 +523,7 @@ goToCart(path: string) {
       const name = this.searchproduct.value.productname || '';
       this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
-      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name,this.userid).subscribe(res => {
+      this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name,this.userid || '').subscribe(res => {
         this.data =res;
         if (this.data.status === 0) {
           this.product = this.data.response.dataSet;
@@ -540,7 +540,7 @@ goToCart(path: string) {
   const name = this.searchproduct.value.productname || '';
   this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
-  this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name, this.userid).subscribe(res => {
+  this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name, this.userid || '').subscribe(res => {
     this.data = res;
 
     if (this.data.status === 0) {
