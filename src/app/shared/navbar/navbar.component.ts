@@ -159,6 +159,7 @@ export class NavbarComponent implements OnInit{
     if (!this.showDropdown) return;
     if (this.dropdownWrapper && !this.dropdownWrapper.nativeElement.contains(event.target)) {
       this.showDropdown = false;
+      document.body.style.overflow = '';
     }
   }
 
@@ -537,6 +538,7 @@ goToCart(path: string) {
     }
    searchproductbyname() {
     this.showDropdown = false;
+    document.body.style.overflow = '';
   const name = this.searchproduct.value.productname || '';
   this.userid=localStorage.getItem('id');
     console.log(this.userid,'userid')
@@ -647,6 +649,7 @@ onProductSelected(event: any) {
   if (productId) {
     this.router.navigate(['/view-product-detail', productId]);
     this.showDropdown = false;
+    document.body.style.overflow = '';
   }
   
 }
@@ -756,7 +759,8 @@ clear(){
   this.getallproduct()
 }
 handleKeyUp(event: any) {
-  this.showDropdown = true
+  this.showDropdown = true;
+  document.body.style.overflow = 'hidden';
   const input = event.target.value;
 
   // Remove leading space(s)
@@ -779,6 +783,7 @@ clearr() {
 onInputBlur() {
   // Hide dropdown when input field loses focus
   this.showDropdown = false;
+  document.body.style.overflow = '';
 
 }
 // oninputblur()
@@ -787,6 +792,7 @@ onInputBlur() {
 // }
 openDropdown() {
   this.showDropdown = true;
+  document.body.style.overflow = 'hidden';
   setTimeout(() => {
     if (this.listItem && this.listItem.nativeElement) {
       this.listItem.nativeElement.focus();
@@ -796,6 +802,7 @@ openDropdown() {
 
 updateInput(productName: string) {
   this.showDropdown =false
+  document.body.style.overflow = '';
   // Update the input field value if searchproduct and productname exist
   this.searchproduct?.get('productname')?.setValue(productName);
 }
