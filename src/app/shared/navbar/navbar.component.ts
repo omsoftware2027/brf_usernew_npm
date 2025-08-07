@@ -13,6 +13,7 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
     selector: 'app-navbar',
@@ -79,7 +80,7 @@ export class NavbarComponent implements OnInit{
    currentPage = 0;
     pageSize = 500;
     loginn:boolean=true;
-    token: any;
+    token: string | null = null;
     orangeline=true;
     showLine3: boolean = true;
     showLine4: boolean = false;
@@ -127,7 +128,7 @@ export class NavbarComponent implements OnInit{
     @ViewChild('filterModal') filterModal!: TemplateRef<any>;
     private loggedIn = new BehaviorSubject<boolean>(false);
 
-    constructor(private router: Router,private renderer: Renderer2,
+    constructor(private router: Router,private renderer: Renderer2, public authService: AuthService,
         public sidebarservice: SidebarService,private elementRef: ElementRef,public dialog: MatDialog,private formBuilder: FormBuilder,private matsnackbar:MatSnackBar,private dashboardservice:DashboardService,private route: ActivatedRoute,private reloadCommonService:MasterService ) {
           this.searchproduct = this.formBuilder.group({
             productname: [''],
@@ -179,9 +180,11 @@ export class NavbarComponent implements OnInit{
     }
 
     ngOnInit() {
+        this.authService.token$.subscribe(token => {
+          this.token = token;
+        });
         this.name = localStorage.getItem('name');
         this.userId=localStorage.getItem('id');
-        this.token = localStorage.getItem('token');
         this.usertype = localStorage.getItem('usertype');
         console.log(this.usertype,'this.usertype')
         this.loginTime = localStorage.getItem('loginTime');
@@ -332,7 +335,8 @@ export class NavbarComponent implements OnInit{
 
     logout(e:any):any{
         localStorage.removeItem('Id');
-        localStorage.removeItem('token');
+        this.authService.clearToken();
+        // localStorage.removeItem('token');
         localStorage.removeItem('loginTime');
         // this.teamsService.updateCompanyLogoutTime(this.sessionId).subscribe((res)=>{
         //     if(res.status==0){
@@ -407,12 +411,14 @@ export class NavbarComponent implements OnInit{
           this.dashboardservice.login(loginpayload).subscribe(data => {
             this.loginData = data;
             if (this.loginData.status === 0) {
-              this.router.navigate(['/']);
               localStorage.setItem('id', this.loginData.response.id);
-              localStorage.setItem('token', this.loginData.response.token);
+              // localStorage.setItem('token', this.loginData.response.token);
+              const token = this.loginData.response.token;
+              this.authService.setToken(token);
               localStorage.setItem('usertype', this.loginData.response.userType);
               localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
               //window.location.reload();
+              this.router.navigate(['/']);
               this.ngOnInit();
               this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
             

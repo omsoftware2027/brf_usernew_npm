@@ -27,6 +27,9 @@ export class AuthService {
   loggedInUserSubject = new BehaviorSubject<any>('');
   loggedInUserObservable$ = this.loggedInUserSubject.asObservable();
 
+  tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
+  token$ = this.tokenSubject.asObservable();
+
   constructor(private http: HttpClient, private router: Router) { }
 
   login(data:any) {
@@ -36,7 +39,8 @@ export class AuthService {
           this.rolePrivelegesDataObservable(LData['response']['rolePriveleges']);
           if (LData.status === 0) {
             localStorage.setItem('id', LData.response.teamId);
-            localStorage.setItem('token',LData.response.token);
+            // localStorage.setItem('token',LData.response.token);
+            this.setToken(LData.response.token);
             localStorage.setItem('name',LData.response.name);
             localStorage.setItem('usertype',LData.response.userType);
             this.loggedInUserObservable(LData.response.name);
@@ -70,5 +74,19 @@ export class AuthService {
 
   public loggedInUserObservable(data:any){
     this.loggedInUserSubject.next(data);
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+    this.tokenSubject.next(token);
+  }
+
+  getToken(): string | null {
+    return this.tokenSubject.value;
+  }
+
+  clearToken() {
+    localStorage.removeItem('token');
+    this.tokenSubject.next(null);
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-email-signup',
@@ -22,7 +23,7 @@ export class EmailSignupComponent {
   fieldTextType: boolean = false;
   fieldTextType1: boolean = false;
 
-constructor(private formBuilder:FormBuilder,private dashboardservice:DashboardService,private router:Router,    private matsnackbar:MatSnackBar,private route:ActivatedRoute){
+constructor(private formBuilder:FormBuilder,private dashboardservice:DashboardService,private router:Router,    private matsnackbar:MatSnackBar,private route:ActivatedRoute, public authService: AuthService){
 
 }
 ngOnInit() {;
@@ -124,7 +125,8 @@ if(this.formGroup.valid){
     if (this.loginData.status === 0) {
       this.router.navigate(['/']);
       localStorage.setItem('id', this.loginData.response.id);
-      localStorage.setItem('token', this.loginData.response.token);
+      // localStorage.setItem('token', this.loginData.response.token);
+      this.authService.setToken(this.loginData.response.token)
       localStorage.setItem('userType', this.loginData.response.userType);
       localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
       console.log(this.loginData.response.id, 'loginData');

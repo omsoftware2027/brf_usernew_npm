@@ -34,8 +34,12 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
-    if(localStorage.getItem('token')){
-      localStorage.removeItem('token');
+    // if(localStorage.getItem('token')){
+    //   localStorage.removeItem('token');
+    // }
+    
+    if (this.authService.getToken()) {
+      this.authService.clearToken();
     }
   }
 

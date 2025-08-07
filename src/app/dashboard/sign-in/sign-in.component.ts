@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SignInComponent {
   formGroup!:FormGroup;
-  constructor(private formBuilder:FormBuilder, private dialogRef: MatDialogRef<SignInComponent>,private router: Router){
+  constructor(private formBuilder:FormBuilder, private dialogRef: MatDialogRef<SignInComponent>,private router: Router, public authService: AuthService){
 
   }
   ngOnInit() {
@@ -28,6 +29,7 @@ closeDialog(){
 logout(){
   this.dialogRef.close();
   localStorage.removeItem('token');
+  this.authService.clearToken();
   localStorage.removeItem('id');
   localStorage.removeItem('userType');
   localStorage.removeItem('firstTimeLogin')

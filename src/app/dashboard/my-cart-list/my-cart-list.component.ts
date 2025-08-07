@@ -5,6 +5,7 @@ import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { BannerService } from 'src/app/banner.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-my-cart-list',
@@ -28,12 +29,18 @@ export class MyCartListComponent {
   currentcartBannerIndex = 0;
   bannerInterval: any;
 
- constructor(private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,private bannerService: BannerService){
+ constructor(private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,private bannerService: BannerService, public authService: AuthService){
 
  }
  ngOnInit(){
-  var token = localStorage.getItem('token');
-  if(token){ this.isLogin = true; }
+  // var token = localStorage.getItem('token');
+  // if(token){ this.isLogin = true; }
+
+  this.authService.token$.subscribe(token => {
+    if (token) {
+      this.isLogin = true;
+    }
+  });
   this.tabelLoad(0);
   this.getallcarttotal(0)
   this.getBanners();           // fetch banners
