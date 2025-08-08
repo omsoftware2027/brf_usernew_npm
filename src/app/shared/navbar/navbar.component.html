@@ -170,9 +170,9 @@
       
       <div class="signin">
         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
-          <img *ngIf="logindetail.image" [src]="logindetail.image || 'assets/images/bsup.svg'" onerror="this.src='assets/images/bsup.svg';" width="30" height="30" alt="" class="rounded-circle header-profile-user">
-          <img *ngIf="!logindetail.image" src="assets/images/bsup.svg" width="30" height="30" alt="" class="rounded-circle header-profile-user">
-           <a  class="ms-1" style="color: #fff;"> {{logindetail.name || 'sign In'}} </a>
+          <img *ngIf="logindetail?.image" [src]="logindetail?.image || 'assets/images/bsup.svg'" onerror="this.src='assets/images/bsup.svg';" width="30" height="30" alt="" class="rounded-circle header-profile-user">
+          <img *ngIf="!logindetail?.image" src="assets/images/bsup.svg" width="30" height="30" alt="" class="rounded-circle header-profile-user">
+           <a  class="ms-1" style="color: #fff;"> {{logindetail?.name || 'sign In'}} </a>
        
           <div class="dropdown-menu dd-menu mt-2" #dropdownMenu aria-labelledby="dropdownMenuLink">
             <p class="p-2 text-start mb-0 ms-2 ddm-h" *ngIf="token" (click)="logoutaccount()">Log Out</p>
