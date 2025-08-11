@@ -27,7 +27,8 @@ export class MainComponent {
     localStorage.setItem('id', this.userid);
     // localStorage.setItem('token',this.token);
     this.authService.setToken(this.token)
-    localStorage.setItem('usertype',this.usertype);
+    // localStorage.setItem('usertype',this.usertype);
+    this.authService.setUserType(this.usertype);
     // localStorage.setItem('isPathologyAccessible',this.accesstype);
     if(this.type=='user'){
       this.reloadCommonService.sendUpdate('reloadNavbar');

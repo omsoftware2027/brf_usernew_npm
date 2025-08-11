@@ -11,6 +11,7 @@ import { MasterService } from 'src/app/services/master-service/master.service';
 import { InventoryPopupComponent } from './inventory-popup/inventory-popup.component';
 import { ChangeProductPopupComponent } from '../change-product-popup/change-product-popup.component';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-account-detail',
@@ -118,7 +119,7 @@ driver=''
 
   firstTimeLogin: string | null = null;
 
-  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService){
+  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService, public authService: AuthService){
     this.firstTimeLogin =localStorage.getItem('firstTimeLogin');
     if (this.firstTimeLogin == 'true') {
       this.showpassword()
@@ -130,7 +131,10 @@ driver=''
     this.getalldropdown('CODE')
     this.getalldropdown('BIN')
     this.userId=localStorage.getItem('id');
-    this.usertype=localStorage.getItem('usertype')
+    // this.usertype=localStorage.getItem('usertype')
+    this.authService.userType$.subscribe(userType=>{
+      this.usertype = userType;
+    })
     console.log(this.userid,'userid')
     if( this.usertype ==1){
       this.expandOpen=true;

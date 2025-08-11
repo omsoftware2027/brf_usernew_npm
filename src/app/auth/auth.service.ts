@@ -30,6 +30,9 @@ export class AuthService {
   tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
   token$ = this.tokenSubject.asObservable();
 
+  userTypeSubject = new BehaviorSubject<string | null>(localStorage.getItem('usertype'));
+  userType$ = this.userTypeSubject.asObservable();
+
   constructor(private http: HttpClient, private router: Router) { }
 
   login(data:any) {
@@ -42,7 +45,8 @@ export class AuthService {
             // localStorage.setItem('token',LData.response.token);
             this.setToken(LData.response.token);
             localStorage.setItem('name',LData.response.name);
-            localStorage.setItem('usertype',LData.response.userType);
+            // localStorage.setItem('usertype',LData.response.userType);
+            this.setUserType(LData.response.userType)
             this.loggedInUserObservable(LData.response.name);
             return {value: '0'};
           } else {
@@ -89,4 +93,19 @@ export class AuthService {
     localStorage.removeItem('token');
     this.tokenSubject.next(null);
   }
+
+  setUserType(usertype: string) {
+    localStorage.setItem('usertype', usertype);
+    this.userTypeSubject.next(usertype);
+  }
+
+  getUserType(): string | null {
+    return this.userTypeSubject.value;
+  }
+
+  clearUserType() {
+    localStorage.removeItem('usertype');
+    this.userTypeSubject.next(null);
+  }
+
 }

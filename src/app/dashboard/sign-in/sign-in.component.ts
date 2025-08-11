@@ -32,6 +32,7 @@ logout(){
   this.authService.clearToken();
   localStorage.removeItem('id');
   localStorage.removeItem('userType');
+  this.authService.clearUserType();
   localStorage.removeItem('firstTimeLogin')
   this.dialogRef.close();
   this.router.navigate(['/email-signup']);

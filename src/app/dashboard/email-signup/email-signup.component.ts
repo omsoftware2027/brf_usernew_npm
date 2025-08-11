@@ -127,7 +127,8 @@ if(this.formGroup.valid){
       localStorage.setItem('id', this.loginData.response.id);
       // localStorage.setItem('token', this.loginData.response.token);
       this.authService.setToken(this.loginData.response.token)
-      localStorage.setItem('userType', this.loginData.response.userType);
+      // localStorage.setItem('userType', this.loginData.response.userType);
+      this.authService.setUserType(this.loginData.response.userType)
       localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
       console.log(this.loginData.response.id, 'loginData');
       // window.location.reload();

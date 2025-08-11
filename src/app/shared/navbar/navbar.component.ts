@@ -183,9 +183,12 @@ export class NavbarComponent implements OnInit{
         this.authService.token$.subscribe(token => {
           this.token = token;
         });
+        this.authService.userType$.subscribe(userType => {
+          this.usertype = userType;
+        })
         this.name = localStorage.getItem('name');
         this.userId=localStorage.getItem('id');
-        this.usertype = localStorage.getItem('usertype');
+        // this.usertype = localStorage.getItem('usertype');
         console.log(this.usertype,'this.usertype')
         this.loginTime = localStorage.getItem('loginTime');
         this.sessionId = localStorage.getItem('sessionId');
@@ -415,7 +418,8 @@ export class NavbarComponent implements OnInit{
               // localStorage.setItem('token', this.loginData.response.token);
               const token = this.loginData.response.token;
               this.authService.setToken(token);
-              localStorage.setItem('usertype', this.loginData.response.userType);
+              // localStorage.setItem('usertype', this.loginData.response.userType);
+              this.authService.setUserType(this.loginData.response.userType)
               localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
               //window.location.reload();
               this.router.navigate(['/']);

@@ -26,8 +26,8 @@
                         <p [routerLink]="['/new-customers',data.cmsId]" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;" class="ps-2">{{data.title}}</p>
                     </div>
                   </div>
-                  <p [routerLink]="['/add-wishlist']"  (click)="toogleBtn=!toogleBtn"style="color: #fff;font-size: 14px;font-weight: 500;"> Order Guide({{wishlist}})</p>
-                  <p [routerLink]="['/my-cart-list']" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;"> My cart({{wishcart | number:'1.0-2'}})</p>
+                  <p [routerLink]="['/add-wishlist']"  (click)="toogleBtn=!toogleBtn"style="color: #fff;font-size: 14px;font-weight: 500;"> Order Guide [ {{wishcart}} ]</p>
+                  <p [routerLink]="['/my-cart-list']" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;"> My cart [ {{ wishlist | number:'1.0-2'}} ] ${{carttotalt | number:'1.0-2'}}</p>
                   <p *ngIf="token" style="color: #fff;font-size: 14px;font-weight: 500;" (click)="logoutaccount()" (click)="toogleBtn=!toogleBtn">Log Out </p>
               </div>
             </div>
