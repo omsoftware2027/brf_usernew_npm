@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SigninPopupComponent } from 'src/app/shared/signin-popup/signin-popup.component';
@@ -118,6 +118,10 @@ driver=''
   submitted:any=false;
 
   firstTimeLogin: string | null = null;
+
+ @ViewChild('confirmDialog') confirmDialog!: TemplateRef<any>;
+  cartItemsCount = 0;
+  private dialogRef!: MatDialogRef<any>;
 
   constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService, public authService: AuthService){
     this.firstTimeLogin =localStorage.getItem('firstTimeLogin');
@@ -808,16 +812,49 @@ submitcart(productId:any,price:any,quantity:any){
   })
 }
 
-getallreorder(orderid:any){
-  this.userid=localStorage.getItem('id');
-  this.dashboardservice.getallreorder(orderid,this.userid).subscribe((res:any)=>{
-    if(res.status ==0){
-    this.reorder=res.response
-    this.snackBar.open(res.response,'X', { duration: 2000 })
-    }
+  getallreorder(orderid: any) {
+    this.userid = localStorage.getItem('id');
+    this.dashboardservice.getallcart(this.currentPage, this.pageSize, this.userid).subscribe(res => {
+      this.cartItemsCount = res?.response?.totalElements || 0;
+      if (this.cartItemsCount > 0) {
+        this.dialogRef = this.dialog.open(this.confirmDialog, { width: '400px' });
+        this.dialogRef.afterClosed().subscribe(result => {
+          if (result === 'clear') {
+            this.dashboardservice.clearAllCart(this.userId).subscribe({
+              next: (res: any) => {
+              this.snackBar.open('Cart cleared successfully.', 'X', { duration: 2000 });
+              this.doReorder(orderid);
+            },
+            error: (err) => {
+              console.error('Error clearing cart:', err);
+              this.snackBar.open('Failed to clear cart. Please try again.', 'X', { duration: 3000 });
+            }
+            })
+          } else if (result === 'add') {
+            this.doReorder(orderid);
+          }
+        });
+      } else {
+        this.doReorder(orderid);
+      }
+    });
   }
-  )
-}
+
+  onDialogAction(action?: string) {
+    this.dialogRef.close(action);
+  }
+
+  private doReorder(orderid: any) {
+    this.dashboardservice.getallreorder(orderid, this.userid).subscribe((res: any) => {
+      if (res.status === 0) {
+        this.reorder = res.response;
+        this.snackBar.open('Reorder successful', 'X', { duration: 2000 });
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
+        this.route.navigate(['/my-cart-list', orderid])
+      }
+    });
+  }
+
 saveorder(orderid:any){
   this.dashboardservice.saveorder(orderid).subscribe((res:any)=>{
     if(res.status ==0){

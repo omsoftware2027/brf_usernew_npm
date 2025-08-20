@@ -63,6 +63,9 @@ export class DashboardService {
   getallcart(no:any,size:any,userid:any){
     return this.http.get<any>(`${environment.baseurl}/wishlistCart/getAllCart?pageNo=${no}&pageSize=${size}&userId=${userid}`)
   }
+  clearAllCart(userId: any) {
+    return this.http.delete<any>(`${environment.baseurl}/order/clearCart?userId=${userId}`);
+  }
   deletewishlist(wishlistId:any) {
     return this.http.delete<any>(`${environment.baseurl}/wishlistCart/deleteWishlistByWishlistId?wishlistId=${wishlistId}`);
   }
