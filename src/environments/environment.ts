@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   defaultauth: 'fackbackend',
-  baseurl:'https://api.brfood.us:4201/api',
+  baseurl:'https://api-brfood.omsdev.in:4201/api',
 };
 
 /*
