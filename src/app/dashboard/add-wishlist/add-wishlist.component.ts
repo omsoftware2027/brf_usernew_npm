@@ -57,7 +57,7 @@ filteredWishlist: any[] = [];
   const userIdFromStorage = localStorage.getItem('id');
   this.userid = userIdFromStorage !== null ? userIdFromStorage : 0;
 
-  this.dashboardservice.getallwishlist(this.currentPage, this.pageSize, this.userid).subscribe({
+  this.dashboardservice.getallwishlist(this.currentPage, this.pageSize, this.userid, '').subscribe({
     next: (res: any) => {
       if (res.status === 0) {
         window.scrollTo(0, 0);
@@ -131,12 +131,46 @@ getBanners() {
 }
 
 
-  applyFilter() {
-    const lowerSearch = this.searchText.toLowerCase();
-    this.filteredWishlist = this.wishlist.filter(product =>
-      product.productTitle.toLowerCase().includes(lowerSearch)
-    );
+  getWishlist() {
+    this.dashboardservice.getallwishlist(this.currentPage, this.pageSize, this.userid, '').subscribe({
+      next: (res: any) => {
+        if (res.status === 0) {
+          this.totalrecordLength = res.response.totalElements;
+          this.wishlist = res.response.dataSet || [];
+          this.filteredWishlist = [...this.wishlist];
+
+          setTimeout(() => {
+            if (this.paginator) {
+              this.paginator.pageIndex = this.currentPage;
+              this.paginator.length = this.totalrecordLength;
+            }
+          });
+        } else {
+          this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 });
+        }
+      },
+      error: () => {
+        this.matSnackBar.open("Error fetching wishlist.", 'x', { duration: 2000 });
+      }
+    });
   }
+
+applyFilter() {
+  if (!this.searchText || !this.searchText.trim()) {
+    this.getWishlist();
+    return;
+  }
+  this.dashboardservice.searchWishlist(this.userid, this.searchText.trim()).subscribe({
+    next: (res: any) => {
+      if (res.status === 0) {
+        this.filteredWishlist = res.response.dataSet || [];
+      }
+    },
+    error: () => {
+      this.matSnackBar.open("Error searching wishlist.", 'x', { duration: 2000 });
+    }
+  })
+}
 
   deletewishlist(id: any) {
     if (confirm("Are you sure you want to remove from wishlist?")) {

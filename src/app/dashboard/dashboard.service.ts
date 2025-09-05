@@ -54,8 +54,16 @@ export class DashboardService {
   getUserByUserId(userId:any){
     return this.http.get<any>(`${environment.baseurl}/user/getSignUpUserDataById?userId=${userId}`)
   }
-  getallwishlist(no:any,size:any,userid:any){
-    return this.http.get<any>(`${environment.baseurl}/wishlistCart/getAllWishlist?pageNo=${no}&pageSize=${size}&userId=${userid}`)
+  getallwishlist(no:any,size:any,userid:any, search: any){
+    return this.http.get<any>(`${environment.baseurl}/wishlistCart/getAllWishlist?pageNo=${no}&pageSize=${size}&userId=${userid}&search=${search}`)
+  }
+  searchWishlist(userId: any, search: string) {
+    return this.http.get<any>(`${environment.baseurl}/wishlistCart/getAllWishlist`, {
+      params: {
+        userId: userId.toString(),
+        search: search
+      }
+    });
   }
   getproductbyname(productName:any,userId:any){
     return this.http.get<any>(`${environment.baseurl}/product/getProductByName?productName=${productName}&userId=${userId}`)
