@@ -485,7 +485,7 @@ export class NavbarComponent implements OnInit{
       
       }
       tabelLoad(page: number) {
-        this.dashboardservice.getAllcategoryy(this.currentPage, this.pageSize).subscribe(res => {
+        this.dashboardservice.getAllcategoryy().subscribe(res => {
           this.data =res;
           if (this.data.status === 0) {
             window.scrollTo(0, 0);

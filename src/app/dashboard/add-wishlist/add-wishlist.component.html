@@ -117,7 +117,7 @@
                           </div>
                           <div class="col-md-7">
                             <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 6px;padding-left: 14px;" class="">
-                              <input type="number" class="form-control" style="height: 34px;" [value]="data?.quantity || '1'" (change)="updateQuantity($event,data)">
+                              <input type="number" min="1" class="form-control" style="height: 34px;" [value]="data?.quantity" (input)="updateQuantity($event,data)">
                             </p>
                           </div>
                           <div class="col-md-3 mt-3">
@@ -130,7 +130,7 @@
                   <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">${{data.price}}</td>
                   <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
                   <td  class="d-flex">   
-                    <button type="button" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">
+                    <button [disabled]="data.quantity < 1" type="button" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">
                       <span *ngIf="data.isCartExist=='false'">ADD TO CART</span>
                       <span *ngIf="data.isCartExist=='true'">UPDATE CART</span>
                       <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;"> 

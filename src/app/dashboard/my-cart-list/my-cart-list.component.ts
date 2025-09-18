@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { BannerService } from 'src/app/banner.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-cart-list',
@@ -29,7 +30,7 @@ export class MyCartListComponent {
   currentcartBannerIndex = 0;
   bannerInterval: any;
 
- constructor(private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,private bannerService: BannerService, public authService: AuthService){
+ constructor(private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,private bannerService: BannerService, public authService: AuthService, private router: Router){
 
  }
  ngOnInit(){
@@ -39,6 +40,8 @@ export class MyCartListComponent {
   this.authService.token$.subscribe(token => {
     if (token) {
       this.isLogin = true;
+    } else {
+      this.router.navigate(['/email-signup']);
     }
   });
   this.tabelLoad(0);
@@ -132,13 +135,15 @@ getBanners() {
   }
   
   decrementValue(data: any): void {
-    if (data.quantity === undefined || data.quantity <= 0) {
-      this.reloadCommonService.sendUpdate('reloadWalletDetail');
+    if (data.quantity === undefined || data.quantity <= 1) {
+      this.matSnackBar.open('Minimum quantity should be 1', 'x', { duration: 2000 });
+      // this.reloadCommonService.sendUpdate('reloadWalletDetail');
       // If quantity property doesn't exist or is already 0, do nothing
       return;
     } else {
       // Decrement the quantity
       data.quantity -= 1;
+      this.submitcart2(data);
       this.reloadCommonService.sendUpdate('reloadWalletDetail');
     }
   }
@@ -158,15 +163,20 @@ getBanners() {
       }
     })
   }
-  submitcart(productId:any,quantity:any,type:any){
+
+  submitcart(product:any,quantity:any,type:any){
     var quan:any;
     if(type == 'input'){
       quan = quantity.target.value;
     } else{
       quan = quantity;
     }
+    if (!quan || isNaN(quan) || quan < 1) {
+      this.matSnackBar.open('Minimum quantity should be 1', 'x', { duration: 2000 });
+      return
+    } else {
     this.userid=localStorage.getItem('id');
-    this.dashboardservice.savequtanity( this.userid,productId,quan).subscribe((res:any) => {
+    this.dashboardservice.savequtanity( this.userid,product?.productId,quan).subscribe((res:any) => {
       if (res.status == 0) {
         this.matSnackBar.open("Quantity Added", 'x', { duration: 2000 });
         this.tabelLoad(0);
@@ -177,11 +187,17 @@ getBanners() {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
       }
     })
+  }
   
   }
-  submitcart2(productId:any,quantity:any){
+  submitcart2(data: any){
+    let quan = Number(data.quantity);
+    if (!quan || isNaN(quan) || quan < 1) {
+      this.matSnackBar.open('Minimum quantity should be 1', 'x', { duration: 2000 });
+      return
+    } else {
     this.userid=localStorage.getItem('id');
-    this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
+    this.dashboardservice.savequtanity( this.userid,data.productId,data.quantity).subscribe((res:any) => {
       if (res.status == 0) {
         this.matSnackBar.open("Quantity Removed", 'x', { duration: 2000 });
         this.tabelLoad(0);
@@ -193,7 +209,7 @@ getBanners() {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
       }
     })
-  
+    }
   }
   deletewishlist(id:any) {
     if (confirm("Are you sure wants to remove form the cart list?") == true) {

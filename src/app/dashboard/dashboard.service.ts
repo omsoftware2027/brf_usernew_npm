@@ -42,8 +42,8 @@ export class DashboardService {
   savewishcart(data:any){
     return this.http.post<any>(`${environment.baseurl}/wishlistCart/saveCart`, data);
   }
-  getAllcategoryy(no:any,size:any){
-    return this.http.get<any>(`${environment.baseurl}/category/getAllCategory?pageNo=${no}&pageSize=${size}`)
+  getAllcategoryy(){ 
+    return this.http.get<any>(`${environment.baseurl}/category/getAllCategory`)
   }
   getAllProductByCategoryId(no:any,size:any,categoryId:any,userId:any){
     return this.http.get<any>(`${environment.baseurl}/category/getAllProductByCategoryId?pageNo=${no}&pageSize=${size}&categoryId=${categoryId}&userId=${userId}`)
@@ -118,8 +118,8 @@ export class DashboardService {
   getallstaff(no:any,size:any,userId:any){
     return this.http.get<any>(`${environment.baseurl}/user/getUsersByUserId?pageNo=${no}&pageSize=${size}&UserId=${userId}`)
   }
-  getallorder(no:any,size:any,userId:any){
-    return this.http.get<any>(`${environment.baseurl}/order/getAllOrder?pageNo=${no}&pageSize=${size}&userId=${userId}`)
+  getallorder(userId:any){
+    return this.http.get<any>(`${environment.baseurl}/order/getAllOrder?userId=${userId}`)
   }
   deleteshippingaddress(shippingaddressid:any) {
     return this.http.delete<any>(`${environment.baseurl}/master/deleteShippingAddressById?shippingaddressid=${shippingaddressid}`);
