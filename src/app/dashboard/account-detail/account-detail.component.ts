@@ -620,7 +620,7 @@ getallorder(page:number){
   if(this.userid == null){
     this.userid = 0
   }
-  this.dashboardservice.getallorder(this.currentPage,this.pageSize,this.userid).subscribe((res:any)=>{
+  this.dashboardservice.getallorder(this.userid).subscribe((res:any)=>{
     if(res.status ==0){
       this.allorder=res.response.dataSet
       this.totalrecordLength = this.data.response.totalElements;
@@ -668,7 +668,8 @@ getallstaff(page:number){
   })
 }
 getallcategory(page: number) {
-  this.dashboardservice.getAllcategoryy(this.currentPage, this.pageSize).subscribe(res => {
+  
+  this.dashboardservice.getAllcategoryy().subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
       this.category = this.data.response.dataSet;

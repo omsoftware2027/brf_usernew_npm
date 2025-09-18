@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { BannerService } from 'src/app/banner.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-wishlist',
@@ -37,8 +39,16 @@ filteredWishlist: any[] = [];
     private matSnackBar: MatSnackBar,
     private dashboardservice: DashboardService,
     private reloadCommonService: MasterService,
-    private bannerService: BannerService
-  ) { }
+    private bannerService: BannerService,
+    private authService: AuthService,
+    private router: Router
+  ) { 
+    this.authService.token$.subscribe(token => {
+      if (!token || token.length<1) {
+        this.router.navigate(['/email-signup']);
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
@@ -184,7 +194,11 @@ applyFilter() {
   }
 
   updateQuantity(ev: any, data: any) {
-    data.quantity = ev.target.value;
+    let quan = ev.target.value;
+    if (!quan || isNaN(quan) || quan < 1) {
+      this.matSnackBar.open('Minimum quantity should be 1', 'x', { duration: 2000 });
+    }
+    data.quantity = quan;
   }
 
   submitcart(productId: any, price: any, quantity: any, wishlistId: any) {
@@ -209,12 +223,16 @@ applyFilter() {
 
   decrementValue(data: any): void {
     if (data.quantity && data.quantity > 0) {
+      if (data.quantity == 1) {
+        this.matSnackBar.open('Minimum quantity should be 1', 'x', { duration: 2000 });
+        return;
+      }
       data.quantity -= 1;
     }
   }
 
   incrementValue(data: any): void {
-    data.quantity = (data.quantity || 0) + 1;
+    data.quantity = Number(data.quantity || 0) + 1;
   }
 
   pageChanged(event: any) {

@@ -115,18 +115,18 @@
                         height: 48px">
                      <div class="col-md-12 d-flex">
                       <div class="col-md-2 mt-3">
-                        <i class="ri-subtract-line ps-2 " (click)="decrementValue(data);submitcart2(data.productId,data.quantity)" style="font-size: 22px;"></i>
+                        <i class="ri-subtract-line ps-2 " (click)="decrementValue(data)" style="font-size: 22px;"></i>
                        </div>
                          <div class="col-md-7">
                           <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 6px;padding-left: 14px;" class="">
-                            <input type="number" class="form-control" style="height: 34px;" [value]="data.quantity || '1'" (change)="submitcart(data.productId,$event,'input')">
+                            <input type="number" min="1" class="form-control" style="height: 34px;" [value]="data.quantity" (input)="submitcart(data,$event,'input')">
                             <!-- {{ data.quantity || '1' }} -->
                               
                           </p>
                           
                          </div>
                         <div class="col-md-3 mt-3">
-                          <i class="ri-add-line ps-2" (click)="incrementValue(data);submitcart(data.productId,data.quantity,'increment')"style="font-size: 22px;padding-left: 40px;"> </i>
+                          <i class="ri-add-line ps-2" (click)="incrementValue(data);submitcart(data,data.quantity,'increment')"style="font-size: 22px;padding-left: 40px;"> </i>
                         </div>
                      </div>
                         </div>
