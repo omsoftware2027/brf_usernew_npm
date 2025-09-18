@@ -18,5 +18,6 @@ pipelines:
        - ng config -g cli.warnings.versionMismatch false
        - ng build --configuration production
        - echo "$(ls -la dist/)"
-       - scp -r dist/* brfserver@72.167.45.111:/var/www/site/
+       - scp -r dist/* brfserver@72.167.45.111:/var/www/site/brfoodmain/
+
 
