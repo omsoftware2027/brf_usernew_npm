@@ -1,23 +1,35 @@
-#  Template NodeJS build
-
-#  This template allows you to validate your NodeJS code.
-#  The workflow allows running tests and code linting on the default branch.
+# Template NodeJS + Angular build & deploy
 
 image: node:16.14.0
+
 pipelines:
   default:
-  - step:
-     name: Build
-     size: 2x
-     caches:
-       - node
-     script: # Modify the commands below to build your repository.
-       - echo "$(ls -la)"
-       - npm install
-       - npm install -g @angular/cli@~16.2.0 -g
-       - ng config -g cli.warnings.versionMismatch false
-       - ng build --configuration production
-       - echo "$(ls -la dist/)"
-       - scp -r dist/* brfserver@72.167.45.111:/var/www/site/brfoodmain/
-
-
+    - step:
+        name: Build & Deploy Angular App
+        size: 2x
+        caches:
+          - node
+        script:
+          # Debug: list repo files
+          - echo ">>> Listing repo files"
+          - ls -la
+          
+          # Install dependencies
+          - npm install
+          
+          # Install Angular CLI (specific version)
+          - npm install -g @angular/cli@~16.2.0
+          - ng config -g cli.warnings.versionMismatch false
+          
+          # Build production
+          - ng build --configuration production
+          
+          # Debug: check build output
+          - echo ">>> Build output inside dist/brfoodmain"
+          - ls -la dist/brfoodmain/
+          
+          # Clean remote directory (remove old hashed files)
+          - ssh brfserver@72.167.45.111 "rm -rf /var/www/site/brfoodmain/*"
+          
+          # Deploy only the correct Angular build folder
+          - scp -r dist/brfoodmain/* brfserver@72.167.45.111:/var/www/site/brfoodmain/
