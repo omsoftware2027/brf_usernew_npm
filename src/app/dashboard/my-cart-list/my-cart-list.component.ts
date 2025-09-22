@@ -173,6 +173,8 @@ getBanners() {
     }
     if (!quan || isNaN(quan) || quan < 1) {
       this.matSnackBar.open('Minimum quantity should be 1', 'x', { duration: 2000 });
+      quan = product.quantity;
+      quantity.target.value = quan;
       return
     } else {
     this.userid=localStorage.getItem('id');
@@ -227,6 +229,10 @@ getBanners() {
     this.currentPage = event.pageIndex;
     // const calculatedPageIndex = this.currentPage * this.pageSize;
     this.tabelLoad(event.pageIndex);
+  }
+
+  checkEmptyQuantity(){
+
   }
 
 }

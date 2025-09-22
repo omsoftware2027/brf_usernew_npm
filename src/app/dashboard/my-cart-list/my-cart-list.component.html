@@ -119,7 +119,7 @@
                        </div>
                          <div class="col-md-7">
                           <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 6px;padding-left: 14px;" class="">
-                            <input type="number" min="1" class="form-control" style="height: 34px;" [value]="data.quantity" (input)="submitcart(data,$event,'input')">
+                            <input type="number" min="1" class="form-control" style="height: 34px;" [value]="data.quantity" (change)="submitcart(data,$event,'input')">
                             <!-- {{ data.quantity || '1' }} -->
                               
                           </p>
