@@ -70,7 +70,7 @@ filteredWishlist: any[] = [];
   this.dashboardservice.getallwishlist(this.currentPage, this.pageSize, this.userid, '').subscribe({
     next: (res: any) => {
       if (res.status === 0) {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         this.totalrecordLength = res.response.totalElements;
         this.wishlist = res.response.dataSet || [];
         this.filteredWishlist = [...this.wishlist];
