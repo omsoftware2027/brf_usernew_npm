@@ -61,7 +61,7 @@ export class MyCartListComponent {
       this.data =res;
       console.log("first",this.data);
       if (this.data.status === 0) {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         this.totalrecordLength = this.data.response.totalElements;
         this.wishlist = this.data.response.dataSet;
         this.getallcarttotal(0);
