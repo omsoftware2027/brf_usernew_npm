@@ -489,21 +489,21 @@
                                             <h5  class="mb-1">Data not available</h5>
                                           </div>
                                         <div *ngFor="let orderdata of allorder">
-                                            <div style="background-color: #F44C4C; height: 35px;" >
-                                                <div class="col-md-12 d-flex mt-2 container">
-                                                    <div class="d-flex justify-content-between w-100">
-                                                        <div class="text-white mt-2 pl-17">
-                                                            <p>{{orderdata.transactionDate| date:'short'}}</p>
+                                            <div style="background-color: #F44C4C; height: auto;" >
+                                                <div class="mt-2 container p-2">
+                                                    <div class="d-flex w-100 flex-wrap gap-2">
+                                                        <div class="text-white text-nowrap">
+                                                            <p class="mb-0">{{orderdata.transactionDate| date:'short'}}</p>
                                                         </div>
-                                                        <div class="text-white mt-2">
+                                                        <div class="text-white text-nowrap">
                                                             <p class="mb-0">Shipping Charges: ${{orderdata.shippingCharges}}</p>
                                                         </div>
-                                                        <div class="text-white mt-2">
+                                                        <div class="text-white text-nowrap">
                                                             <p class="mb-0">Status: {{orderdata.orderStatus}}</p>
                                                         </div>
-                                                        <div class="d-none d-sm-block"><button class="btn1 text-white mt-1" style="background-color: #34BBD9;letter-spacing: 0.5px" (click)="downoladinvoice(orderdata.orderId)">PRINT</button></div>
-                                                        <div class="d-none d-sm-block"><button class="btn2 text-white mt-1"  style="background-color: #3A51A2;" (click)="getallreorder(orderdata.orderId)">REORDER</button></div>
-                                                        <div class="me-2"> <button class="btn3 text-white mt-1 " style="cursor: default;">{{orderdata.transactionId}}</button></div>
+                                                        <div class=""><button class="btn1 text-white " style="background-color: #34BBD9;letter-spacing: 0.5px" (click)="downoladinvoice(orderdata.orderId)">PRINT</button></div>
+                                                        <div class=""><button class="btn2 text-white "  style="background-color: #3A51A2;" (click)="getallreorder(orderdata.orderId)">REORDER</button></div>
+                                                        <div class=""> <button class="btn3 text-white  " style="cursor: default;">{{orderdata.transactionId}}</button></div>
                                                     </div>
                                                     <!-- <div class="col-md-2 text-white mt-2 pl-17">
                                                         <p>{{orderdata.transactionDate| date:'short'}}</p>
@@ -724,14 +724,10 @@
                                   </div>
                                  
                                   <div class="col-md-12 " *ngIf="Bulkorder">
-                                    <div class="card-title d-flex align-items-center">
-                                        <div class="col-md-12 col-lg-12 col-xl-12 d-flex">
-                                         <div class="col-md-6 col-lg-6 col-xl-6"> 
+                                    <div class="card-title">
+                                        <div class="d-flex justify-content-between gap-1 flex-wrap">
                                             <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Bulk Order</h5>
-                                         </div>
-                                         <div class="col-md-6 col-lg-6 col-xl-6 text-end"> 
                                             <button class="btnn  btn-primary text-white" style="background-color: #3A51A2;letter-spacing: 0.5px " (click)="sumbiCart()">ADD TO CART</button>
-                                         </div>
                                         </div>
                                       
                                     </div>
