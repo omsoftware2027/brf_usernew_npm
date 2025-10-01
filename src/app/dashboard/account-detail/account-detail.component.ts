@@ -435,7 +435,8 @@ myexpandorder(){
 openeclinicAcessDialog(id:any): void {
   this.dialog.open(SigninPopupComponent, {
     width: '914px',
-    height:'584px',
+    height:'400px',
+    panelClass: 'py-2',
     data: {
       id:id
     }
