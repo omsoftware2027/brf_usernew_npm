@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
 import { BannerService } from 'src/app/banner.service';
 import { Router } from '@angular/router';
+import { MasterService } from 'src/app/services/master-service/master.service';
 declare var bootstrap: any;
 @Component({
   selector: 'app-analytics',
@@ -42,7 +43,7 @@ firstTimeLogin: string | null = null;
 
 
  
-  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService, private bannerService: BannerService, private router: Router) { }
+  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService, private bannerService: BannerService, private router: Router, public reloadCommonService:MasterService) { }
 
   ngOnInit(): void {
     this.tabelLoad(0);
@@ -50,6 +51,8 @@ firstTimeLogin: string | null = null;
     this.cardload(0);
     this.getallcount()
     this.getBanners();
+    // this.reloadCommonService.sendUpdate('reloadWalletDetail');
+    this.reloadCommonService.sendUpdate('reloadNavbar');
     
  setTimeout(() => {
     if (!this.homeTopBanners || this.homeTopBanners.length === 0) {

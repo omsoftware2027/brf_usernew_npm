@@ -242,7 +242,7 @@
     //   width: 89%;
   }
   .d-flex li {
-    display: inline;
+    // display: inline;
     white-space: nowrap;
     margin-right: 10px; /* Optional: Add some spacing between items */
   }
@@ -286,7 +286,7 @@
 @media screen and (max-width: 768px) {
   .headRight{
     flex: 0 0 auto;
-    width: 25%;
+    // width: 25%;
 }
 }
 .dropdown-item:hover{
@@ -494,7 +494,7 @@
 }
 @media (min-width:768px) and (max-width: 1024px) {
   .sidenav-panel{
-    top: 46px;
+    top: 68px;
     padding: 25px 30px;
     height:auto;
     width: 100%;

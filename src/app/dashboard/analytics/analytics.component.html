@@ -1,26 +1,20 @@
 <div class="container">
-	<!-- Show banner if available, else show default image -->
-<ng-container *ngIf="homeTopBanners && homeTopBanners.length > 0; else noBanners">
-  <div class="custom-banner-wrapper" style="margin-top:17%">
-    <div 
-      class="custom-banner" 
-      *ngFor="let banner of homeTopBanners; let i = index"
-      [class.active]="i === currentHomeBannerIndex">
-      <img 
-        *ngIf="banner.image"
-        [src]="banner.image" 
-        alt="{{ banner.title || 'Banner Image' }}" 
-        class="d-block w-100"
-      />
+  <!-- Show banner if available, else show default image -->
+  <ng-container *ngIf="homeTopBanners && homeTopBanners.length > 0; else noBanners">
+    <div class="custom-banner-wrapper" style="margin-top:17%">
+      <div class="custom-banner" *ngFor="let banner of homeTopBanners; let i = index"
+        [class.active]="i === currentHomeBannerIndex">
+        <img *ngIf="banner.image" [src]="banner.image" alt="{{ banner.title || 'Banner Image' }}"
+          class="d-block w-100" />
+      </div>
     </div>
-  </div>
-</ng-container>
+  </ng-container>
 
-<ng-template #noBanners>
-  <div *ngIf="showNoBanner" class="col-12" style="margin-top:11%">
-    <img class="con-img" src="../../../assets/images/advertise page1.png" style="width: 100%; margin-top: 75px;">
-  </div>
-</ng-template>
+  <ng-template #noBanners>
+    <div *ngIf="showNoBanner" class="col-12" style="margin-top:11%">
+      <img class="con-img" src="../../../assets/images/advertise page1.png" style="width: 100%; margin-top: 75px;">
+    </div>
+  </ng-template>
 
 
 
@@ -42,26 +36,27 @@
     <div class="mt-4">
       <a class="t1">Explore Categories
 
-        </a>
+      </a>
     </div>
     <div class="mt-2 cardNA" *ngIf="!category.length">
       <h5 class="mb-1">category not available</h5>
     </div>
     <div class="row">
-      <div class="col-12  mt-4 " >
+      <div class="col-12  mt-4 ">
 
-      <div class="row">
-        <div class="col-lg-8  ">
-          <div class="row" >
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 category " *ngFor="let data of category ;let i = index">
-              <div class="category-card p-1 border bg-white cursor-pointer">
-               <img [src]="data.image|| 'assets/images/download (20).png'" class="ms-3 mt-4 ps-3 category-img" 	[routerLink]="['/category-detail',data.categoryId]">
-             
+        <div class="row">
+          <div class="col-lg-6 col-xl-8  ">
+            <div class="row">
+              <div class="col-6 col-md-4 col-xl-3" *ngFor="let data of category ;let i = index">
+                <div class="p-2 border bg-white cursor-pointer card-container">
+                  <img [src]="data.image|| 'assets/images/download (20).png'" class="card-image"
+                    [routerLink]="['/category-detail',data.categoryId]">
+                </div>
+                <p class="mt-2 t2" [routerLink]="['/category-detail',data.categoryId]">{{data.categoryName}}</p>
               </div>
-              <p class="mt-2 t2" [routerLink]="['/category-detail',data.categoryId]" >{{data.categoryName}}</p>
-             </div>
-          </div>
-          <!-- <div class="col-3">
+            </div>
+            
+            <!-- <div class="col-3">
            <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
            height: 174;   
            border: 3px solid #669038 !important
@@ -72,7 +67,7 @@
              </div>
            </div>
           </div> -->
-          <!-- <div class="col-3">
+            <!-- <div class="col-3">
            <div class="category-card rounded-circle p-1 border bg-white" style="    width:160px;
            height: 150px;
            margin-left: 28px;
@@ -93,154 +88,172 @@
                <a style="margin-left: 16px; font-size:20px;">9B-Poultry</a>
               </div>
             </div> -->
-            </div>
-            
-            <div class="col-lg-4 mt-2">
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-default card">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
-                        <div class="p-1 d-flex col-12"style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
-                          <div class="col-6 d-flex">
-                            <i class="las la-shopping-cart mt-3 "></i>
-                            <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  ">{{fwishlist}}</span>
-                             <h5 class="t3 text-white mt-4 pl-2">My Cart</h5>
-                           </div>
-                         
-                           <!-- Amount on the right -->
-                           <div class="col-6 d-flex justify-content-end mt-2">
-                             <a class="btn dropdown-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
-                             font-size: 22px;">${{carttotal.total | number:'1.0-2'}} <i   class='bx bx-chevron-down'></i></a>
-                             <!-- <div class="dropdown-menu">
+          </div>
+
+          <div class="col-lg-6 col-xl-4 p-1 p-md-0 mt-2 mt-lg-0 ps-lg-1">
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default card">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                      <div class="p-1 d-flex col-12"
+                        style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
+                        <div class="col-6 d-flex">
+                          <i class="las la-shopping-cart mt-3 "></i>
+                          <span
+                            class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill  ">{{fwishlist}}</span>
+                          <h5 class="t3 text-white mt-4 pl-2">My Cart</h5>
+                        </div>
+
+                        <!-- Amount on the right -->
+                        <div class="col-6 d-flex justify-content-end mt-2">
+                          <a class="btn dropdown-toggle" data-toggle="collapse" data-parent="#accordion"
+                            href="#collapse1" aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
+                             font-size: 22px;">${{carttotal.total | number:'1.0-2'}} <i
+                              class='bx bx-chevron-down'></i></a>
+                          <!-- <div class="dropdown-menu">
                                <a href="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">Item</a>
                              </div> -->
-                           </div>
-                        </div></a>
-                    </h4>
-                  </div>
-                  <div id="collapse1" class="panel-collapse collapse  show p-3">
-                    <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
-                      <div class="d-flex col-md-12 col-lg-12 col-xl-12">
-                       <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
-                         <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
-                        
-                       </div>
-                       <div class="col-md-9 col-lg-9 col-xl-9">
-                        <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"[routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</p>
-                       </div>
-                       <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
-                        <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
-      
-                       </div>
+                        </div>
                       </div>
-                        <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
-                          <div>
-                            <p style="font-size: 15px;
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse  show p-3">
+                  <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
+                    <div class="d-flex col-md-12 col-lg-12 col-xl-12">
+                      <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
+                        <img [src]="data.image || 'assets/images/download (20).png'"
+                          style="width:74px; height: 74px; border-radius: 5px;">
+
+                      </div>
+                      <div class="col-md-9 col-lg-9 col-xl-9">
+                        <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"
+                          [routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</p>
+                      </div>
+                      <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
+                        <p><mat-icon style="color: #929FA5;"
+                            (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
+
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
+                      <div>
+                        <p style="font-size: 15px;
                             font-weight: 500;
                             line-height: 14px;">PRICE</p>
-                          </div>
-                          <div style="padding-left: 10px;">
-                            <p style="font-size: 15px;
+                      </div>
+                      <div style="padding-left: 10px;">
+                        <p style="font-size: 15px;
                             font-weight: 500;
-                            line-height: 14px;" >QUANTITY</p>
-                          </div>
-                          <div style="padding-left: 10px;">
-                            <p style="font-size: 15px;
+                            line-height: 14px;">QUANTITY</p>
+                      </div>
+                      <div style="padding-left: 10px;">
+                        <p style="font-size: 15px;
                             font-weight: 500;
                             line-height: 14px;">SUB-TOTAL</p>
-                          </div>
-                        </div>
-                
-                        <div class="d-flex justify-content-between p-1 mb-2 col-md-12 col-lg-12 col-xl-12" style="padding-top: 0px;">
-                          <div class="mt-2  col-md-4 col-lg-4 col-xl-4">
-                            <h5 >${{data.price}}</h5>
-                          </div>
-                          <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
-                           <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
-                       
-                            <div class="col-md-3">
-                              <i class="ri-subtract-line ps-1 "   (click)="decrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"></i>
-                            </div>
-                            <div  class="col-md-6">
-                             <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-4">{{data.quantity || '1' }}</p>
-                            </div>
-                             <div class="col-md-3">
-                               <i class="ri-add-line ps-1" (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
-                             </div>
-                          
-                           </div>
-                          </div>
-                          <div class="mt-2 col-md-4 col-lg-4 col-xl-4" style="text-align: end">
-                            <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
-                          </div>
-                        </div>
                       </div>
-            
-                      <div class="card p-4" style=" border-radius: 10px; ">
-                        <div class="align-items-center">
-                          <p style="font-weight: 600;font-size:16px;line-height: 21px;">Card Totals</p>
-                          <div class="row">
-                            <div class="d-flex justify-content-between p-2">
-                              <span  style="color: #5F6C72;">Sub-total</span>
-                              <span class="font-weight-bold">${{carttotal.subTotal | number:'1.0-2'}}</span>
-                            </div>
-                            
-                            <div class="d-flex justify-content-between p-2">
-                              <a  style="color: #5F6C72;"> Shipping</a>
-                              <span class="font-weight-bold"> ${{carttotal.shipping | number:'1.0-2'}}</span>
-                            </div>
-            
-                            <div class="d-flex justify-content-between p-2">
-                               <a style="color: #5F6C72;"> Discount</a>
-                               <span class="font-weight-bold"> ${{carttotal.discount}}</span>
-                            </div><hr>
-            
-                            <div class="d-flex justify-content-between p-2">
-                              <span class="" style="color: #5F6C72;"> Total</span>
-                              <span  class="font-weight-bold">${{carttotal.total | number:'1.0-2'}} USD</span>
-                            </div>
-            
-                            <div class="d-flex flex-column">
-                              <button type="button" class="btn btn-secondary mt-4 w-100" [routerLink]="['/checkout-page']">PROCEED TO CHECKOUT
-                                <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                              <button type="button" class="btn  btn-primary w-100 mt-4" [routerLink]="['/all-product']" >CONTINUE SHOPPING CART
-                                <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                            </div>
-                           
-                            
-                          </div>
-                        </div>
-                      </div>
+                    </div>
 
+                    <div class="d-flex justify-content-between p-1 mb-2 col-md-12 col-lg-12 col-xl-12"
+                      style="padding-top: 0px;">
+                      <div class="mt-2  col-md-4 col-lg-4 col-xl-4">
+                        <h5>${{data.price}}</h5>
+                      </div>
+                      <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
+                        <div class="d-flex"
+                          style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
+
+                          <div class="col-md-3">
+                            <i class="ri-subtract-line ps-1 "
+                              (click)="decrementValue(data);savequantity(data.productId,data.quantity)"
+                              style="font-size: 22px;"></i>
+                          </div>
+                          <div class="col-md-6">
+                            <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156"
+                              class="mt-2 ps-4">{{data.quantity || '1' }}</p>
+                          </div>
+                          <div class="col-md-3">
+                            <i class="ri-add-line ps-1"
+                              (click)="incrementValue(data);savequantity(data.productId,data.quantity)"
+                              style="font-size: 22px;"> </i>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="mt-2 col-md-4 col-lg-4 col-xl-4" style="text-align: end">
+                        <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
+                      </div>
+                    </div>
                   </div>
-                  
+
+                  <div class="card p-4" style=" border-radius: 10px; ">
+                    <div class="align-items-center">
+                      <p style="font-weight: 600;font-size:16px;line-height: 21px;">Card Totals</p>
+                      <div class="row">
+                        <div class="d-flex justify-content-between p-2">
+                          <span style="color: #5F6C72;">Sub-total</span>
+                          <span class="font-weight-bold">${{carttotal.subTotal | number:'1.0-2'}}</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between p-2">
+                          <a style="color: #5F6C72;"> Shipping</a>
+                          <span class="font-weight-bold"> ${{carttotal.shipping | number:'1.0-2'}}</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between p-2">
+                          <a style="color: #5F6C72;"> Discount</a>
+                          <span class="font-weight-bold"> ${{carttotal.discount}}</span>
+                        </div>
+                        <hr>
+
+                        <div class="d-flex justify-content-between p-2">
+                          <span class="" style="color: #5F6C72;"> Total</span>
+                          <span class="font-weight-bold">${{carttotal.total | number:'1.0-2'}} USD</span>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                          <button type="button" class="btn btn-secondary mt-4 w-100"
+                            [routerLink]="['/checkout-page']">PROCEED TO CHECKOUT
+                            <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                          <button type="button" class="btn  btn-primary w-100 mt-4"
+                            [routerLink]="['/all-product']">CONTINUE SHOPPING CART
+                            <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
-                <div *ngIf="homeRightBanners&&homeRightBanners.length > 0" class="side_banner_right mb-4">
-  <!-- <h4>Right Banners</h4> -->
-  <div class="row">
-    <div class="col-md-12 d-flex flex-column" *ngFor="let banner of homeRightBanners">
-      <div class="card">
-        <img *ngIf="banner.image" [src]="banner.image" class="card-img-top" alt="Banner">
-        <!-- <div class="card-body">
+
+              </div>
+              <div *ngIf="homeRightBanners&&homeRightBanners.length > 0" class="side_banner_right mb-4">
+                <!-- <h4>Right Banners</h4> -->
+                <div class="row">
+                  <div class="col-md-12 d-flex flex-column" *ngFor="let banner of homeRightBanners">
+                    <div class="card">
+                      <img *ngIf="banner.image" [src]="banner.image" class="card-img-top" alt="Banner">
+                      <!-- <div class="card-body">
           <h5 class="card-title">{{ banner.title }}</h5>
         </div> -->
-      </div>
-    </div>
-  </div>
-</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              
             </div>
-      </div>
-   
+
+
+          </div>
+        </div>
 
 
 
 
 
-   <!-- <div *ngIf="homeBottomBanners.length > 0" class="bottom-banners my-4">
+
+        <!-- <div *ngIf="homeBottomBanners.length > 0" class="bottom-banners my-4">
   <h4>Bottom Banners</h4>
   <div class="row">
     <div class="col-md-4" *ngFor="let banner of homeBottomBanners">
@@ -254,25 +267,21 @@
   </div>
 </div> -->
 
-  <div *ngIf="homeBottomBanners&&homeBottomBanners.length > 0" class="bottom-banners my-4">
-  <div class="card text-center">
-    <img 
-      *ngIf="homeBottomBanners[0].image" 
-      [src]="homeBottomBanners[0].image" 
-      class="d-block w-100" 
-      alt="Banner" 
-    >
-    <!-- Optional: Add title or content below -->
-    <!--
+        <div *ngIf="homeBottomBanners&&homeBottomBanners.length > 0" class="bottom-banners my-4">
+          <div class="card text-center">
+            <img *ngIf="homeBottomBanners[0].image" [src]="homeBottomBanners[0].image" class="d-block w-100"
+              alt="Banner">
+            <!-- Optional: Add title or content below -->
+            <!--
     <div class="card-body">
       <h5 class="card-title">{{ homeBottomBanners[0].title }}</h5>
     </div>
     -->
-  </div>
-</div>
+          </div>
+        </div>
 
 
-   
-       
-   </div>
+
+
+      </div>
     </div>

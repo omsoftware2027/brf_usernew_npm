@@ -3,18 +3,15 @@
 	<nav class="navbar navbar-expand" style="background-color: #fff;">
 		<div class="container">
       <div class="d-flex col-12">
-        <div class="col-2 mt-3" style="margin-left: -14px;">
+        <div class="col-6 col-md-auto mt-3" style="margin-left: -14px;">
           <img
           src="../../../assets/images/logo (2).png"
           class="logo-icon-2 cursor-pointer"
           alt="" [routerLink]="['/']" />
         </div>
-        <div  class="col-3">
-
-        </div>
-        <div class="col-7 mt-3" style="margin-left:  11px !important;">
+        <div class="col mt-3" style="margin-left:  11px !important;">
           <div class="headRight mt-2">
-            <div class="d-block-mb d-none">
+            <div class="d-lg-none">
                 <img width="38px" *ngIf="!toogleBtn" (click)="toogleBtn=!toogleBtn" src="../../../assets/images/menu-icon.svg" class="mt-1 cursor-pointer">
                 <img class="mt-2 cursor-pointer" *ngIf="toogleBtn" width="22px" (click)="toogleBtn=!toogleBtn" src="../../../assets/images/crossIcon.svg">
                 <div class="sidenav-panel" *ngIf="toogleBtn">
@@ -33,29 +30,29 @@
             </div>
            
             
-            <div class="d-none d-sm-block">
-              <ul class="d-flex justify-content-end"> <!-- Modified line -->
-                <li *ngIf="token">
+            <div class="d-none d-lg-block">
+              <ul class="d-flex justify-content-end flex-wrap"> <!-- Modified line -->
+                <li style="height: max-content" *ngIf="token">
                     <a style="color:#F44C4C;font-size: 14px;font-weight: 400;" (click)="logoutaccount()">Log Out </a>
                 </li>
-                <li *ngIf="token">
-                    <p class="ms-2"> |</p>                
+                <li style="height: max-content" *ngIf="token">
+                    <p class="ms-2 mb-0"> |</p>                
                 </li>
-                <li *ngIf="token">
-                    <p [routerLink]="['/account-detail']" style="color: #000000;font-size: 14px;font-weight: 400;">My Account</p>
+                <li style="height: max-content" *ngIf="token">
+                    <p [routerLink]="['/account-detail']" style="color: #000000;font-size: 14px;font-weight: 400;" class="mb-0">My Account</p>
                 </li>
-                <li *ngIf="token">
-                    <p class="ms-2">|</p>
+                <li style="height: max-content" *ngIf="token">
+                    <p class="ms-2 mb-0">|</p>
                 </li>
-                <li *ngIf="!token">
-                    <p  [routerLink]="['/email-signup']"style="color: #000000;font-size: 14px;font-weight: 400;">Email Sign-Up</p>
+                <li style="height: max-content" *ngIf="!token">
+                    <p  [routerLink]="['/email-signup']"style="color: #000000;font-size: 14px;font-weight: 400;" class="mb-0">Email Sign-Up</p>
                 </li>
-                <li *ngIf="!token">
-                  <p class="ms-2">|</p>
+                <li style="height: max-content" *ngIf="!token">
+                  <p class="ms-2 mb-0">|</p>
                 </li>
-                <div *ngFor="let data of titlesAndIdsArray2 ">
-                    <li [routerLink]="['/statement',data.cmsId]">
-                        <p [routerLink]="['/new-customers',data.cmsId]" style="color: #000000;font-size: 14px;font-weight: 400;" class="ps-2">{{data.title}}  <span class="ms-2">|</span></p>
+                <div *ngFor="let data of titlesAndIdsArray2 " style="height: max-content;">
+                    <li style="height: max-content" [routerLink]="['/statement',data.cmsId]">
+                        <p [routerLink]="['/new-customers',data.cmsId]" style="color: #000000;font-size: 14px;font-weight: 400;" class="ps-2 mb-0">{{data.title}}  <span class="ms-2">|</span></p>
                     </li>
                 </div>
               </ul>
@@ -71,7 +68,7 @@
 
 	</nav>
   <div class="topMenus" style="border: 1px solid #F2F4F5 !important;">
-    <div class="container mt-2 px-2 px-md-0">
+    <div class="container mt-2">
       <div class="d-flex col-lg-12 col-md-12 col-sm-12 col-xs-12 d-block-mb">
       <!-- <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 mt-0">
         <img src="/assets/images/categoryicon.png" class="catImg">
@@ -143,7 +140,7 @@
            </div>
         </form>
       </div>
-       <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12 d-none d-md-block" style="text-align: end;margin-left:2px">
+       <div class="col-lg-6 col-md-7 col-sm-12 col-xs-12 d-none d-md-block" style="text-align: end;margin-left:10px">
       <div class="cartDiv d-flex justify-content-end">
        <div class="wishlist" style="margin-top: 9px;" (click)="goToOrderGuide('/add-wishlist')">
         <a style="color:#fff">
@@ -161,7 +158,7 @@
           <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill mt-1" style="background-color: #fff;color: #F43C4C;">{{wishlist}}</span>
           <!-- <span class="m-3" [routerLink]="['/my-cart-list']" style="color:#fff">My cart</span><br> -->
           <span class="m-3" style="color:#fff">My cart</span><br>
-          <span style="color:#fff;font-size: 12px;font-weight: 400;line-height: 14px;margin-right: 23px;font-family: 'Microsoft Sans Serif', sans-serif; ;">${{carttotalt | number:'1.0-2'}}</span>
+          <span style="color:#fff;font-size: 12px;font-weight: 400;line-height: 14px;font-family: 'Microsoft Sans Serif', sans-serif; ;">${{carttotalt | number:'1.0-2'}}</span>
        
         
          </a>
@@ -170,9 +167,9 @@
       
       <div class="signin">
         <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; margin-left: 20px;">
-          <img *ngIf="logindetail?.image" [src]="logindetail?.image || 'assets/images/bsup.svg'" onerror="this.src='assets/images/bsup.svg';" width="30" height="30" alt="" class="rounded-circle header-profile-user">
-          <img *ngIf="!logindetail?.image" src="assets/images/bsup.svg" width="30" height="30" alt="" class="rounded-circle header-profile-user">
-           <a  class="ms-1" style="color: #fff;"> {{logindetail?.name || 'sign In'}} </a>
+          <img *ngIf="logindetail.image" [src]="logindetail.image || 'assets/images/bsup.svg'" onerror="this.src='assets/images/bsup.svg';" width="30" height="30" alt="" class="rounded-circle header-profile-user">
+          <img *ngIf="!logindetail.image" src="assets/images/bsup.svg" width="30" height="30" alt="" class="rounded-circle header-profile-user">
+           <a  class="ms-1" style="color: #fff;"> {{logindetail.name || 'sign In'}} </a>
        
           <div class="dropdown-menu dd-menu mt-2" #dropdownMenu aria-labelledby="dropdownMenuLink">
             <p class="p-2 text-start mb-0 ms-2 ddm-h" *ngIf="token" (click)="logoutaccount()">Log Out</p>
