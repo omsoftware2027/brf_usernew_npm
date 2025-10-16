@@ -40,7 +40,7 @@
     class="custom-banner" 
     *ngFor="let banner of productTopBanners; let i = index"
     [class.active]="i === currentProductBannerIndex">
-    <img 
+    <img  loading="lazy"
       [src]="banner.image" 
       alt="Product Banner" 
       class="d-block w-100"
@@ -74,7 +74,7 @@
           <div class="scrollwrapper">
             <div class=" col-md-12 d-flex d-block-mb">
               <div class="col-md-4 p-2"> 
-                <img [src]="productRes.image|| 'assets/images/download (20).png'" class="img-fluid">
+                <img  loading="lazy" [src]="productRes.image|| 'assets/images/download (20).png'" class="img-fluid">
             </div>
              <div class="col-md-8 p-4 pm-3">
               <div >
@@ -116,7 +116,7 @@
                   <div class=" mb-3">
                     <div class="d-flex d-block-mb">
                      <button type="button" class="btn btn-secondary btn-secondary2 mt-3" (click)="submitcart(productRes.productId,productRes.price,productRes.quantity)">ADD TO CART
-                         <img src="../../../assets/images/Add to cart.png" 
+                         <img  loading="lazy" src="../../../assets/images/Add to cart.png" 
                          class="" style="width:24px;height: 24px;letter-spacing: 0.5px;"> </button>
                       <div class="d-flex mt-2 pt-2 ps-3 psm-0" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
                         <!-- <img src="../../../assets/images/add wishlist icon2 (1).png" style="width:25px;height:25px;"> -->
@@ -168,7 +168,7 @@
               <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
                 <div class="d-flex col-md-12 col-lg-12 col-xl-12">
                  <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
-                   <img [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
+                   <img  loading="lazy" [src]="data.image || 'assets/images/download (20).png'"style="width:74px; height: 74px; border-radius: 5px;">
                   
                  </div>
                  <div class="col-md-9 col-lg-9 col-xl-9">
@@ -272,6 +272,7 @@
    <div *ngIf="productBottomBanners.length > 0" class="bottom-banners my-4">
   <div class="card text-center">
     <img 
+      loading="lazy"
       *ngIf="productBottomBanners[0].image" 
       [src]="productBottomBanners[0].image" 
       class="d-block w-100" 

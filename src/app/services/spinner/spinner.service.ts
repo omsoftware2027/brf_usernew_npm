@@ -38,6 +38,6 @@ export class SpinnerService {
   stopLoading() {
      setTimeout(() => {
       this.loading = false;
-    }, 1000);
+    }, 100);
   }
 }

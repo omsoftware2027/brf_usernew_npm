@@ -111,7 +111,7 @@ getBanners() {
 );
       } else {
         this.banners = [];
-        this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+        // this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
       }
     },
     error: (err) => {
