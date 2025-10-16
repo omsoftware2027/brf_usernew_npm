@@ -32,7 +32,7 @@
         class="custom-banner" 
         *ngFor="let banner of wishlistTopBanners; let i = index"
         [class.active]="i === currentwishlistBannerIndex">
-        <img 
+        <img loading="lazy"
           [src]="banner.image" 
           alt="Wishlist Banner" 
           class="d-block w-100"
@@ -159,7 +159,7 @@
 <!-- Wishlist Bottom Banner -->
 <div *ngIf="wishlistBottomBanners.length > 0" class="bottom-banners my-4">
   <div class="card text-center">
-    <img 
+    <img loading="lazy"
       *ngIf="wishlistBottomBanners[0].image" 
       [src]="wishlistBottomBanners[0].image" 
       class="d-block w-100" 

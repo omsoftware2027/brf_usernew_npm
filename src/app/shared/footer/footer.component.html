@@ -7,7 +7,7 @@
     <div class="row text-md-left">
       <div class="col-md-4 col-lg-2 col-xl-2 mx-auto">
         <h5 class="text-white font-weight-bold mt-3 mb-4" style="cursor: default;">General Information</h5>
-        <div *ngFor="let item of titlesAndIdsArray1">
+        <div *ngFor="let item of footerDetails?.GENERAL">
           <p [routerLink]="['/return-policy',item.cmsId]" style="color:
           #BBBBBB;" >
          {{ item.title}}
@@ -34,7 +34,7 @@
 
       <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4" style="cursor: default;">Customer Service</h5>
-       <div *ngFor="let item of titlesAndIdsArray">
+       <div *ngFor="let item of footerDetails?.CUSTOMER">
         <p [routerLink]="['/return-policy',item.cmsId]" style="color:
         #BBBBBB;" >
        {{ item.title}}
@@ -53,7 +53,7 @@
 
       <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4" style="cursor: default;">Ordering Information</h5>
-        <p [routerLink]="['/new-customers',data.cmsId]"  *ngFor="let data of cmsRes2">
+        <p [routerLink]="['/new-customers',data.cmsId]"  *ngFor="let data of footerDetails?.ORDER">
           <a  style="color:
           #BBBBBB; text-decoration: none;">{{data.title}}</a>
         </p>
@@ -61,7 +61,7 @@
       </div>
       <div class="col-md-4 col-lg-2 col-xl-2">
         <h5 class="font-weight-bold mt-3 mb-4" style="cursor: default;">Delivery Information</h5>
-        <p [routerLink]="['/site-map',data.cmsId]"*ngFor="let data of cmsRes3">
+        <p [routerLink]="['/site-map',data.cmsId]"*ngFor="let data of footerDetails?.DELIVERY">
           <a  style="color:
           #BBBBBB; text-decoration: none;">{{data.title}}</a>
         </p>

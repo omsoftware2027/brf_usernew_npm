@@ -33,7 +33,7 @@
     class="custom-banner" 
     *ngFor="let banner of cartTopBanners; let i = index"
     [class.active]="i === currentcartBannerIndex">
-    <img 
+    <img loading="lazy"
       [src]="banner.image" 
       alt="Cart Banner" 
       class="d-block w-100"
@@ -231,7 +231,7 @@
 <!-- My Cart Bottom Banner -->
 <div *ngIf="cartBottomBanners.length > 0" class="bottom-banners my-4">
   <div class="card text-center">
-    <img 
+    <img loading="lazy"
       *ngIf="cartBottomBanners[0].image" 
       [src]="cartBottomBanners[0].image" 
       class="d-block w-100" 

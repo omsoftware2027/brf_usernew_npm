@@ -30,60 +30,28 @@ export class FooterComponent implements OnInit{
     cmsEnum4 ='DELIVERY'
     submitted:boolean =false;
 
+    footerDetails: any;
+
   constructor(private dashboardservice:DashboardService,private snackBar:MatSnackBar,private formBuilder:FormBuilder){
     this.footeremailform=this.formBuilder.group({
       email:['',[Validators.required, Validators.email]],
     })
   }
     ngOnInit() {
-       this.getfootergeneral();
-       this.getfootercustomer();
-       this.getfooterorder();
-       this.getfooterdelivery();
+      this.getFooterData();
        this. getcustomercontact();
        this. getsocialmediaurl();
-
       
     }
 
-    getfootergeneral() {
-        this.dashboardservice.getallcmsdata(this.cmsEnum).subscribe((res) => {
-          if (res.status === 0 && res['response'].length > 0) {
-            this.titlesAndIdsArray1 = res['response'].map((item: { title: any; cmsId: any; }) => ({
-              title: item.title,
-              cmsId: item.cmsId
-            }));
+    getFooterData() {
+        this.dashboardservice.getallcmsdata('').subscribe((res) => {
+          if (res.status === 0) {
+            this.footerDetails = res.response ?? {}
           }
         });
-    
-    } 
-    getfootercustomer() {
-      this.dashboardservice.getallcmsdata(this.cmsEnum2).subscribe((res) => {
-        if (res.status === 0 && res['response'].length > 0) {
-          this.titlesAndIdsArray = res['response'].map((item: { title: any; cmsId: any; }) => ({
-            title: item.title,
-            cmsId: item.cmsId
-          }));
-        }
-      });
     }
-    getfooterorder() {
-        this.dashboardservice.getallcmsdata(this.cmsEnum3).subscribe((res) => {
-          if (res.status === 0) {
-            this.cmsRes2 = res['response'];
-          
-          }
-        });
-    
-    } 
-    getfooterdelivery() {
-        this.dashboardservice.getallcmsdata(this.cmsEnum4).subscribe((res) => {
-          if (res.status === 0) {
-            this.cmsRes3 = res['response']; 
-          }
-        });
-    
-    } 
+
     getcustomercontact() {
       this.dashboardservice.getcontactus().subscribe((res) => {
         if (res.status === 0) {

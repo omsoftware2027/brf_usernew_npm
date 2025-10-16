@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {map, tap} from "rxjs/operators";
-import { BehaviorSubject } from 'rxjs';
+import {map, shareReplay, tap} from "rxjs/operators";
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
+  private cmsCache = new Map<string, Observable<any>>();
 
   constructor(private http: HttpClient) { }
 

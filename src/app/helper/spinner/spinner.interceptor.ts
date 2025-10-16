@@ -12,6 +12,8 @@ import { finalize } from 'rxjs/operators';
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {  
   activeRequests = 0;
+  public spinnerTimeout: any;
+
   constructor(private spinnerService: SpinnerService) { }
 
 
@@ -22,7 +24,9 @@ export class SpinnerInterceptor implements HttpInterceptor {
       return next.handle(request);
   }
     if (this.activeRequests === 0) {
+       this.spinnerTimeout = setTimeout(() => {
       this.spinnerService.startLoading();
+       }, 1000); 
   }
 
     this.activeRequests++;
@@ -31,6 +35,9 @@ export class SpinnerInterceptor implements HttpInterceptor {
       finalize(() => {
           this.activeRequests--;
           if (this.activeRequests === 0) {
+                // If spinner hasn't shown yet, cancel timer
+          clearTimeout(this.spinnerTimeout);
+          this.spinnerTimeout = null;
               this.spinnerService.stopLoading();
           }
       })
