@@ -95,7 +95,8 @@ export class DashboardService {
    return this.http.post(`${environment.baseurl}/wishlistCart/saveQuantity?userId=`+userId+'&productId='+productId+'&quantity='+quantity);
     }
   getallproduct(no:any,size:any,productName:any,userid:any){
-      return this.http.get<any>(`${environment.baseurl}/product/getAllProduct?pageNo=${no}&pageSize=${size}&productName=${productName}&userId=${userid}`)
+    const encodedName = encodeURIComponent(productName);
+      return this.http.get<any>(`${environment.baseurl}/product/getAllProduct?pageNo=${no}&pageSize=${size}&productName=${encodedName}&userId=${userid}`)
     }
   getallshppingaddress(no:any,size:any,userid:any){
       return this.http.get<any>(`${environment.baseurl}/master/getAllShippingAddress?pageNo=${no}&pageSize=${size}&userId=${userid}`)

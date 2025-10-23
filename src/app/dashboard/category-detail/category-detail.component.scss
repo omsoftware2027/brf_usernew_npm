@@ -98,6 +98,20 @@
 .panel-collapse{
   height:700px !important;overflow: auto;
 }
+
+  .img-container {
+    margin-top: 7px;
+    width: 100%;
+    max-height: 250px;
+  }
+
+  .category-images {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: fill;
+    border-radius: 5px;
+  }
 @media (min-width:320px) and (max-width: 767px) {
   .d-block-mb{
     display: block!important;
@@ -151,5 +165,20 @@
 @media (min-width:768px) and (max-width: 1024px) {
   .panel-collapse{
     height: auto !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .img-container {
+    margin-top: 7px;
+    width: 100%;
+    height: 125px;
+  }
+
+  .category-images {
+    width: 100%;
+    height: 125px;
+    object-fit: fill;
+    border-radius: 5px;
   }
 }
