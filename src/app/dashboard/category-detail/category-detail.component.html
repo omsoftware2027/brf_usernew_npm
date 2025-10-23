@@ -51,9 +51,10 @@
             <div class="card mt-2" >
               <div class="card-contain container col-md-12">
                <div class="col-md-12">
-                 <img [src]="data.image|| 'assets/images/download (20).png'" 
-                 onerror="this.src='assets/images/download (20).png';" style="width:100%;margin-top: 24px;height: 116px; display: grid;" class=""  	[routerLink]="['/view-product-detail',data.productId]">
-         
+                  <div class="img-container">
+                    <img [src]="data.image|| 'assets/images/download (20).png'" 
+                        onerror="this.src='assets/images/download (20).png';" class="category-images"  	[routerLink]="['/view-product-detail',data.productId]">
+                  </div>
                  <div class="image-text mt-4">
                   <p 	[routerLink]="['/view-product-detail',data.productId]" style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050;cursor: pointer;white-space: break-spaces;word-break: break-all;
               " [innerHTML]="highlightText(data.title, maxCharacters, i)"[innerHTML]="highlightText(data.title, maxCharacters, i)">

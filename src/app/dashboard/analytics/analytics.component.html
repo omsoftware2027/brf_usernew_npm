@@ -4,7 +4,7 @@
     <div class="custom-banner-wrapper" style="margin-top:17%">
       <div class="custom-banner" *ngFor="let banner of homeTopBanners; let i = index"
         [class.active]="i === currentHomeBannerIndex">
-        <img loading="lazy" *ngIf="banner.image" [src]="banner.image" alt="{{ banner.title || 'Banner Image' }}"
+        <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
           class="d-block w-100" />
       </div>
     </div>
