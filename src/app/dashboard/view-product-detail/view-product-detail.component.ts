@@ -83,13 +83,11 @@ getBanners() {
 })));
 
        this.productTopBanners = this.banners.filter(b =>
-  b.bannerPage?.toLowerCase().trim() === 'product' &&
-  b.bannerType?.toLowerCase().trim() === 'top_banner'
+  b.bannerPage?.includes('product') && b.bannerType?.includes('top_banner')
 );
 
        this.productBottomBanners = this.banners.filter(b =>
-  b.bannerPage?.toLowerCase().trim() === 'product' &&
-  b.bannerType?.toLowerCase().trim() === 'bottom_banner'
+  b.bannerPage?.includes('product') && b.bannerType?.includes('bottom_banner')
 );
       } else {
         this.banners = [];

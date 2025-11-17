@@ -88,38 +88,36 @@ export class MyCartListComponent {
 
 
 
-getBanners() {
-  this.bannerService.getBanners().subscribe({
-    next: (res) => {
-      if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
-        this.banners = res.response;
-        console.log("product banner", this.banners)
-        console.log('All banners received:', this.banners.map(b => ({
-  page: b.bannerPage,
-  type: b.bannerType,
-  title: b.title
-})));
+  getBanners() {
+    this.bannerService.getBanners().subscribe({
+      next: (res) => {
+        if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+          this.banners = res.response;
+          console.log("product banner", this.banners)
+          console.log('All banners received:', this.banners.map(b => ({
+            page: b.bannerPage,
+            type: b.bannerType,
+            title: b.title
+          })));
 
-       this.cartTopBanners = this.banners.filter(b =>
-  b.bannerPage?.toLowerCase().trim() === 'my_cart' &&
-  b.bannerType?.toLowerCase().trim() === 'top_banner'
-);
+          this.cartTopBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('my_cart') && b.bannerType === 'top_banner'
+          );
 
-       this.cartBottomBanners = this.banners.filter(b =>
-  b.bannerPage?.toLowerCase().trim() === 'my_cart' &&
-  b.bannerType?.toLowerCase().trim() === 'bottom_banner'
-);
-      } else {
-        this.banners = [];
-        // this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+          this.cartBottomBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('my_cart') && b.bannerType === 'bottom_banner'
+          );
+        } else {
+          this.banners = [];
+          // this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+        }
+      },
+      error: (err) => {
+        console.error('Banner fetch failed:', err);
+        this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
       }
-    },
-    error: (err) => {
-      console.error('Banner fetch failed:', err);
-      this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
-    }
-  });
-}
+    });
+  }
 
   incrementValue(data: any): void {
     if (data.quantity === undefined) {

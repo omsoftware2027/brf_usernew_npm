@@ -1,5 +1,5 @@
 <div>
-  <div class="page-breadcrumb d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
+  <div class="page-breadcrumb d-md-flex align-items-center mb-3" style="height: 72px;background-color: 
 #F2F4F5;">
     
     <div class="ps-4 container ">
@@ -39,7 +39,7 @@
         You have not access to change or modify your order guide , Contact  BR Food Admin for the Approval!
       </div>
 
-      <div class="mt-2 cardNA" *ngIf="!category.length">
+      <div class="mt-2 cardNA" *ngIf="!category?.length">
         <h5 class="mb-1">product not available</h5>
       </div>
   <div class="row">
@@ -125,7 +125,7 @@
                      <!-- Amount on the right -->
                      <div class="col-6 d-flex justify-content-end mt-2">
                        <a class="btn dropdown-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
-                       font-size: 22px;">${{carttotal.total | number:'1.0-2'}} <i   class='bx bx-chevron-down'></i></a>
+                       font-size: 22px;">${{carttotal?.total | number:'1.0-2'}} <i   class='bx bx-chevron-down'></i></a>
                        <!-- <div class="dropdown-menu">
                          <a href="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">Item</a>
                        </div> -->
@@ -197,22 +197,22 @@
                     <div class="row">
                       <div class="d-flex justify-content-between p-2">
                         <span  style="color: #5F6C72;">Sub-total</span>
-                        <span class="font-weight-bold">${{carttotal.subTotal | number:'1.0-2'}}</span>
+                        <span class="font-weight-bold">${{carttotal?.subTotal | number:'1.0-2'}}</span>
                       </div>
                       
                       <div class="d-flex justify-content-between p-2">
                         <a  style="color: #5F6C72;"> Shipping</a>
-                        <span class="font-weight-bold"> ${{carttotal.shipping | number:'1.0-2'}}</span>
+                        <span class="font-weight-bold"> ${{carttotal?.shipping | number:'1.0-2'}}</span>
                       </div>
       
                       <div class="d-flex justify-content-between p-2">
                          <a style="color: #5F6C72;"> Discount</a>
-                         <span class="font-weight-bold"> ${{carttotal.discount}}</span>
+                         <span class="font-weight-bold"> ${{carttotal?.discount}}</span>
                       </div><hr>
       
                       <div class="d-flex justify-content-between p-2">
                         <span class="" style="color: #5F6C72;"> Total</span>
-                        <span  class="font-weight-bold">${{carttotal.total | number:'1.0-2'}} USD</span>
+                        <span  class="font-weight-bold">${{carttotal?.total | number:'1.0-2'}} USD</span>
                       </div>
       
                       <div class="d-flex flex-column">

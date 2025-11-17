@@ -533,9 +533,9 @@ td.mat-cell .bx{
       display: block!important;
     }
     .page-breadcrumb{
-        margin-top: 138px!important;
         height: 40px!important;
         padding-top: 2px!important;
+        min-height: fit-content;
     }
     .pm-2{
         padding: 5px!important;

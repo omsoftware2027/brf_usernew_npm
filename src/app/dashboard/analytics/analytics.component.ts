@@ -107,15 +107,15 @@ getBanners() {
         console.log("Loaded banners:", this.banners);
 
         this.homeTopBanners = this.banners.filter(b =>
-          b.bannerPage === 'home_page' && b.bannerType === 'top_banner'
+          b.bannerPage?.includes('home_page') && b.bannerType === 'top_banner'
         );
 
         this.homeBottomBanners = this.banners.filter(b =>
-          b.bannerPage === 'home_page' && b.bannerType === 'Bottom_banner'
+          b.bannerPage?.includes('home_page') && b.bannerType === 'Bottom_banner'
         );
 
         this.homeRightBanners = this.banners.filter(b =>
-          b.bannerPage === 'home_page' && b.bannerType === 'side_banner_right'
+          b.bannerPage?.includes('home_page') && b.bannerType === 'side_banner_right'
         );
  this.homeBannersLoaded = true;
         // 🔁 Start rotating banners after they are loaded

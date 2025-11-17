@@ -1,4 +1,4 @@
-<div class="page-breadcrumb d-md-flex align-items-center mb-3" style="margin-top:192px;height: 72px;background-color: 
+<div class="page-breadcrumb d-md-flex align-items-center mb-3" style="height: 72px;background-color: 
 #F2F4F5;">
     
     <div class="ps-4 container panel-ac">
@@ -31,32 +31,17 @@
   </div>
 
 
-<div class="container" style="margin-bottom: 10px; " >
-   <div class="col-12">
-
-
-<div class="custom-banner-wrapper">
-  <div 
-    class="custom-banner" 
-    *ngFor="let banner of productTopBanners; let i = index"
-    [class.active]="i === currentProductBannerIndex">
-    <img  loading="lazy"
-      [src]="banner.image" 
-      alt="Product Banner" 
-      class="d-block w-100"
-    />
-  </div>
+<div class="container" style="margin-bottom: 10px; ">
+  <ng-container *ngIf="productTopBanners && productTopBanners.length > 0">
+    <div class="custom-banner-wrapper mt-2">
+      <div class="custom-banner" *ngFor="let banner of productTopBanners; let i = index"
+        [class.active]="i === currentProductBannerIndex">
+        <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
+          class="d-block w-100" />
+      </div>
+    </div>
+  </ng-container>
 </div>
-
-
-
-
-
-
-
-
-   </div>
-  </div>
 
 
 

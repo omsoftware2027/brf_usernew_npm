@@ -1,7 +1,7 @@
 <div class="container">
   <!-- Show banner if available, else show default image -->
-  <ng-container *ngIf="homeTopBanners && homeTopBanners.length > 0; else noBanners">
-    <div class="custom-banner-wrapper" style="margin-top:17%">
+  <ng-container *ngIf="homeTopBanners && homeTopBanners.length > 0">
+    <div class="custom-banner-wrapper mt-2">
       <div class="custom-banner" *ngFor="let banner of homeTopBanners; let i = index"
         [class.active]="i === currentHomeBannerIndex">
         <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
@@ -9,27 +9,6 @@
       </div>
     </div>
   </ng-container>
-
-  <ng-template #noBanners>
-    <div *ngIf="showNoBanner" class="col-12" style="margin-top:11%">
-      <img class="con-img"  loading="lazy" src="../../../assets/images/advertise page1 (3).png" style="width: 100%; margin-top: 75px;">
-    </div>
-  </ng-template>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   <div>
@@ -55,7 +34,7 @@
                 <p class="mt-2 t2" [routerLink]="['/category-detail',data.categoryId]">{{data.categoryName}}</p>
               </div>
             </div>
-            
+
             <!-- <div class="col-3">
            <div class="category-card rounded-circle p-1 border bg-white" style="    width:174px;
            height: 174;   
@@ -285,3 +264,6 @@
 
       </div>
     </div>
+  </div>
+
+</div>
