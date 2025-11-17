@@ -59,6 +59,10 @@ table{
       height:38px;line-height: 26px;
       font-size: 14px;
     }
+
+    .custom-banner {
+      height: 230px;
+    }
   }
   @media (min-width:768px) and (max-width: 1024px) {
     .d-block-mb{
@@ -72,6 +76,12 @@ table{
     }
   } 
 
+  @media (min-width:769px) {
+    .custom-banner {
+      height: 300px;
+    }
+  }
+
 
   
 .custom-banner-wrapper {
@@ -83,7 +93,6 @@ table{
 .custom-banner {
   position: absolute;
   width: 100%;
-  height: 100%;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }

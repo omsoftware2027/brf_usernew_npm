@@ -1,10 +1,10 @@
 <div class="wrapper" [ngClass]="{'nav-collapsed' : getSideBarState()}">
-	<div class="wrapper-bg">
+	<div class="wrapper-bg d-flex flex-column justify-content-between gap-2">
 		<!-- <app-sidebar></app-sidebar> -->
 		<app-navbar></app-navbar>
 		<div class="page-wrapper">
 			<div class="page-content-wrapper">
-				<div class="page-content">
+				<div class="page-content pt-0 pt-lg-4">
 					<router-outlet></router-outlet>
 					<!-- <div class="overlay" (click)="toggleSidebar()" [ngClass]="{'show' : getSideBarState()}"></div> -->
 				</div>

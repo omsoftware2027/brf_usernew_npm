@@ -30,7 +30,7 @@ export class CategoryDetailComponent {
   toggleStates: boolean[] = [];
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
-  category:any;
+  category:any[] = [];
   routeSubscription!: Subscription;
   categoryname:any;
   data:any;
@@ -86,7 +86,7 @@ export class CategoryDetailComponent {
 
 
         this.totalrecordLength = this.data.response.totalElements;
-        this.category = this.data.response.projectResponse.dataSet;
+        this.category = this.data.response.projectResponse.dataSet || [];
         this.categoryname=this.data.response.category;
         this.toggleStates = new Array(this.category.length).fill(true);
         setTimeout(() => {
