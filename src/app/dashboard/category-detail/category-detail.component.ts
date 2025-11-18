@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { BannerService } from 'src/app/banner.service';
 
 @Component({
   selector: 'app-category-detail',
@@ -45,10 +46,17 @@ export class CategoryDetailComponent {
   totalrecordLength:any;
   userDetails:any;
 
+  banners: any[] = [];
+  topBanners: any[] = [];
+  currentTopBannerIndex: number = 0;
+  bannerInterval: any;
+
   constructor(private dashboardservice:DashboardService,private router: Router,
-    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService) { }
+    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,
+  public bannerService: BannerService) { }
 
    ngOnInit(): void {
+    this.getBanners();
     this.userDetails = localStorage.getItem('UserDetails');
     this.userDetails = JSON.parse(this.userDetails);
      this.categoryid = this.route.snapshot.params['id'];
@@ -299,5 +307,30 @@ focusCard(event: MouseEvent,index: number) {
   event.stopPropagation();
   this.focusedCardIndex = index;
 }
+
+ startAutoSlide() {
+  this.bannerInterval = setInterval(() => {
+    if (this.topBanners.length > 0) {
+      this.currentTopBannerIndex = (this.currentTopBannerIndex + 1) % this.topBanners.length;
+    }
+  }, 3000); // Slide every 3 seconds
+}
+
+
+  getBanners() {
+    this.bannerService.getBanners().subscribe({
+      next: (res) => {
+        if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+          this.banners = res.response;
+          this.topBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('category_page') && b.bannerType === 'top_banner'
+          );
+          this.startAutoSlide();
+        } else {
+          this.banners = [];
+        }
+      }
+    });
+  }
 }
        

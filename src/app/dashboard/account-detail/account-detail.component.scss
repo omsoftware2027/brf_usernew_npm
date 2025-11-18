@@ -279,6 +279,9 @@ table{
     line-height: 11px;
     margin-left: 4px;
    }
+  .custom-banner {
+    height: 220px;
+  }
 }
 @media (min-width:768px) and (max-width: 1024px) {
   .scrollwrapper{
@@ -299,4 +302,34 @@ table{
   .main-text{
     font-size: 24px;
   }
+}
+
+@media (min-width:769px) {
+  .custom-banner {
+    height: 300px;
+  }
+}
+
+.custom-banner-wrapper {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.custom-banner {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.custom-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.custom-banner.active {
+  opacity: 1;
+  position: relative;
 }
