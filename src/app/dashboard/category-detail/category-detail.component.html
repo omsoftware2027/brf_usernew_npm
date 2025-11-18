@@ -24,11 +24,18 @@
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="col-12" >
-    <!-- <img src="../../../assets/images/advertise page1.png" style="width: 100%;"> -->
 
- </div>
+<div class="container">
+   <ng-container *ngIf="topBanners && topBanners.length > 0">
+    <div class="custom-banner-wrapper mt-2">
+      <div class="custom-banner" *ngFor="let banner of topBanners; let i = index"
+        [class.active]="i === currentTopBannerIndex">
+        <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
+          class="d-block w-100" />
+      </div>
+    </div>
+  </ng-container>
+</div>
     <div class="mt-4">
         <a class="t1">
      {{categoryname}}

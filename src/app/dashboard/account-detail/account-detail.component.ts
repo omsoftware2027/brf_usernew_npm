@@ -12,6 +12,7 @@ import { InventoryPopupComponent } from './inventory-popup/inventory-popup.compo
 import { ChangeProductPopupComponent } from '../change-product-popup/change-product-popup.component';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/auth/auth.service';
+import { BannerService } from 'src/app/banner.service';
 
 @Component({
   selector: 'app-account-detail',
@@ -119,17 +120,23 @@ driver=''
 
   firstTimeLogin: string | null = null;
 
+  banners: any[] = [];
+  topBanners: any[] = [];
+  currentTopBannerIndex: number = 0;
+  bannerInterval: any;
+
  @ViewChild('confirmDialog') confirmDialog!: TemplateRef<any>;
   cartItemsCount = 0;
   private dialogRef!: MatDialogRef<any>;
 
-  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService, public authService: AuthService){
+  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar,private dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService, public authService: AuthService, public bannerService: BannerService){
     this.firstTimeLogin =localStorage.getItem('firstTimeLogin');
     if (this.firstTimeLogin == 'true') {
       this.showpassword()
     }
   }
   ngOnInit() {
+    this.getBanners()
     this.getallbulkorder(0);
     this.getalldropdown('PRODUCTNAME')
     this.getalldropdown('CODE')
@@ -1727,4 +1734,28 @@ cancelorder(orderid:any){
     this.getallmyorder()
   });
 }
+
+ startAutoSlide() {
+  this.bannerInterval = setInterval(() => {
+    if (this.topBanners.length > 0) {
+      this.currentTopBannerIndex = (this.currentTopBannerIndex + 1) % this.topBanners.length;
+    }
+  }, 3000); // Slide every 3 seconds
+}
+
+  getBanners() {
+    this.bannerService.getBanners().subscribe({
+      next: (res) => {
+        if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+          this.banners = res.response;
+          this.topBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('category_page') && b.bannerType === 'top_banner'
+          );
+          this.startAutoSlide();
+        } else {
+          this.banners = [];
+        }
+      }
+    });
+  }
 }

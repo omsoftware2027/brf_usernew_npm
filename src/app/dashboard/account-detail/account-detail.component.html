@@ -22,7 +22,19 @@
 </div>
 </div>
 
-<div class="container" >
+<div class="container">
+   <ng-container *ngIf="topBanners && topBanners.length > 0">
+    <div class="custom-banner-wrapper mt-2">
+      <div class="custom-banner" *ngFor="let banner of topBanners; let i = index"
+        [class.active]="i === currentTopBannerIndex">
+        <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
+          class="d-block w-100" />
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="container mt-4" >
     <h5 *ngIf="firstTimeLogin == 'true'" class="py-3 main-text text-center" style="font-size:24px">
          <i class="fas fa-triangle-exclamation me-2"></i>You are using a default startup password. Please change it for your account's security.</h5>
     
