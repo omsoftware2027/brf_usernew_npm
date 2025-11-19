@@ -178,6 +178,7 @@ export class MyCartListComponent {
     this.userid=localStorage.getItem('id');
     this.dashboardservice.savequtanity( this.userid,product?.productId,quan).subscribe((res:any) => {
       if (res.status == 0) {
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
         this.matSnackBar.open("Quantity Added", 'x', { duration: 2000 });
         this.tabelLoad(0);
         this.getallcarttotal(0);

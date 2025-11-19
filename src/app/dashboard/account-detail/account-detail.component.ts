@@ -927,7 +927,7 @@ sumbiCart() {
     for (let data1 of categoryData.bulkOrderResponses) {
       // Check for invalid quantity
       if (!data1.quantity || data1.quantity <= 0) {
-        this.snackBar.open("Please update the quantity to at to the cart",'x', { duration: 3000 });
+        this.snackBar.open("Please update the quantity to add to the cart",'x', { duration: 3000 });
         return; // stop execution if any quantity is invalid
       }
 
