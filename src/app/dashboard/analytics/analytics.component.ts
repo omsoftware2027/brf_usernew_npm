@@ -202,6 +202,7 @@ getBanners() {
     if (confirm("Are you sure wants to delete this Product?") == true) {
       this.dashboardservice.deletecard(id).subscribe(res => {
         if (res.status == 0) {
+          this.reloadCommonService.sendUpdate('reloadWalletDetail');
           this.cardload(0);
           this.getallcarttotal(0);
           this.getallcount();
@@ -214,6 +215,7 @@ getBanners() {
     this.userid=localStorage.getItem('id');
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
+        this.reloadCommonService.sendUpdate('reloadWalletDetail');
         this.matSnackBar.open("Quantity Update ", 'x', { duration: 2000 });
         this.getallcarttotal(0);
         this.cardload(0);
