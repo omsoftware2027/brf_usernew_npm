@@ -207,7 +207,7 @@ submit(){
         // }
       }
       else {
-        this.matsnackbar.open("Error while updating", 'x', { duration: 2000 });
+        this.matsnackbar.open(res.response, 'x', { duration: 2000 });
       }
     })
    }
