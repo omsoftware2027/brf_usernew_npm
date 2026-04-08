@@ -76,41 +76,41 @@
           
              
             </form>
-            <form class="g-3"  [formGroup]="forgotpasswordform"   *ngIf="login==false" >
-                <div class="col-md-12 card" style="border-radius: 9px;">
-                 <div class="row p-4" > 
-                   <!-- <h5>User Details</h5> -->
-                  <div >
-                   <div class="col-md-12 mt-3 ">
-                       <div class="form-group">
-                           <label for="" class="form-label">Email</label>
-                           <div class="input-group" >
-                               <input type="text" placeholder="email" class="form-control" formControlName="email">
-                           </div>
-         
-                           <mat-error>
-                               <span *ngIf="(submittedd && formGroup.get('email')?.errors) || !formGroup.get('email')?.valid && formGroup.get('email')?.touched">Please enter email </span>
-                           </mat-error>
-         
-                           
-                           
-                       </div>
-                   </div>
-                   <div class="col-md-12 mt-3">
-                   
-                   </div>
-                 
-                     <div class="col-md-12 mt-3">
-                       <span class="text-info" style="margin-left: 6px;cursor: pointer;" (click)="signin()">Sign In </span>
-                     </div>
-                  </div>
-                 </div>
+                <form class="g-3"  [formGroup]="forgotpasswordform"   *ngIf="login==false" >
+                    <div class="col-md-12 card" style="border-radius: 9px;">
+                    <div class="row p-4" > 
+                    <!-- <h5>User Details</h5> -->
+                    <div >
+                    <div class="col-md-12 mt-3 ">
+                        <div class="form-group">
+                            <label for="" class="form-label">Email</label>
+                            <div class="input-group" >
+                                <input type="text" placeholder="email" class="form-control" formControlName="email">
+                            </div>
+            
+                            <mat-error>
+                                <span *ngIf="(submittedd && forgotpasswordform.get('email')?.errors) || !forgotpasswordform.get('email')?.valid && forgotpasswordform.get('email')?.touched">Please enter email </span>
+                            </mat-error>
+            
+                            
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-3">
+                    
+                    </div>
+                    
+                        <div class="col-md-12 mt-3">
+                        <span class="text-info" style="margin-left: 6px;cursor: pointer;" (click)="signin()">Sign In </span>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="col-md-12 text-end">
+                    <button class="btnn btn-secondary text-white" style="background-color:#F44C4C;letter-spacing: 0.5px" (click)="forgotpassword()">Forgot Password</button>
                 </div>
-                <div class="col-md-12 text-end">
-                   <button class="btnn btn-secondary text-white" style="background-color:#F44C4C;letter-spacing: 0.5px" (click)="forgotpassword()">Forgot Password</button>
-               </div>
-                
-               </form>
+                    
+                </form>
           
            
         

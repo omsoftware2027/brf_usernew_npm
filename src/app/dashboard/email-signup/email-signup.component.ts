@@ -226,7 +226,10 @@ submit(){
     this.login =false;
   }
   forgotpassword(){
-   
+   if(this.forgotpasswordform.invalid) {
+    this.forgotpasswordform.markAllAsTouched();
+    return
+   }
     let data =
     {
       username:this.forgotpasswordform.value.email
