@@ -22,7 +22,7 @@ export class MyCartListComponent {
   currentPage=0;
   userid:any;
   carttotal:any;
-  pageSize=30;
+  pageSize=35000;
   isLogin:any = false;
   banners: any[] = [];
   cartTopBanners: any[] = [];
