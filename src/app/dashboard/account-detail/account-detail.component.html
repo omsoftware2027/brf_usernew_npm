@@ -739,7 +739,7 @@
                                     <div class="card-title">
                                         <div class="d-flex justify-content-between gap-1 flex-wrap">
                                             <h5 class="mb-0 main-text"  style="font-weight:400;font-size:30px;line-height:28px; color:#F44C4C">My Bulk Order</h5>
-                                            <button class="btnn  btn-primary text-white" style="background-color: #3A51A2;letter-spacing: 0.5px " (click)="sumbiCart()">ADD TO CART</button>
+                                            <button class="btnn  btn-primary text-white" style="background-color: #3A51A2;letter-spacing: 0.5px " [disabled]="bulkorderguide.length === 0" (click)="sumbiCart()">ADD TO CART</button>
                                         </div>
                                       
                                     </div>
@@ -848,11 +848,11 @@
                                             
                                         </div>
                                        </div>
-                                       <div class="mt-2 cardNA mb-3" *ngIf="!bulkorderguide.length">
+                                       <div class="mt-2 cardNA mb-3" *ngIf="!bulkorderguide?.length">
                                         <h5 class="mb-1">Product not available</h5>
                                       </div>
                                       <div class="scrollwrapper">
-                                        <table class="table" *ngIf="bulkorderguide.length">
+                                        <table class="table" *ngIf="bulkorderguide?.length">
                                             <thead>
                                               <tr>
                                                 <th scope="col" style=" color:#475156 !important">PRODUCTS</th>

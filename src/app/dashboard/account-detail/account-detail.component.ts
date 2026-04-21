@@ -78,7 +78,7 @@ driver=''
   productDetails:any;
   myorderOpen:boolean=false;
   bulkorderespons:any
-  bulkorderguide:any;
+  bulkorderguide:any[] = [];
   bulkoderguid:any;
   getallstafff:any;
   data:any;
@@ -611,7 +611,7 @@ getallbulkorder(page:number){
   }
   this.dashboardservice.getallbulkorder(categoryid,this.userid).subscribe((res:any)=>{
     if(res.status ==0){
-    this.bulkorderguide=res.response
+    this.bulkorderguide=res.response || [];
     console.log(this.bulkorderguide,'bulkorderguideeeeeee')
     this.totalrecordLength = this.data.response.totalElements;
      
