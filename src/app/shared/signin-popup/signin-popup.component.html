@@ -18,6 +18,20 @@
                 
              <div class="col-xl-12 p-3" style="height: 330px;overflow:auto">
                 <form class="row g-3" [formGroup]="formGroup"  >
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label for="customerName" class="form-label">Customer Name</label>
+                            <div class="input-group">
+                                <input type="text" formControlName="city" placeholder="Customer Name" class="form-control"
+                                    (keypress)="keyPressAlphabets($event)">
+                            </div>
+                        </div>
+                        <mat-error>
+                            <span
+                                *ngIf="(submitted && formGroup.get('city')?.errors) || !formGroup.get('city')?.valid && formGroup.get('city')?.touched">Please
+                                enter customer name </span>
+                        </mat-error>
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="" class="form-label">Address</label>
@@ -37,17 +51,6 @@
                           </div>
                       </div>
                   </div> -->
-                  <div class="col-md-6 ">
-                    <div class="form-group">
-                        <label for="" class="form-label">City</label>
-                        <div class="input-group">
-                            <input type="text" formControlName="city" placeholder="City" class="form-control" (keypress)="keyPressAlphabets($event)">
-                        </div>
-                    </div>
-                    <mat-error>
-                        <span *ngIf="(submitted && formGroup.get('city')?.errors) || !formGroup.get('city')?.valid && formGroup.get('city')?.touched">Please enter city  </span>
-                    </mat-error>
-                </div>
 
                 <!-- <div class="col-md-6">
                   <div class="form-group">
