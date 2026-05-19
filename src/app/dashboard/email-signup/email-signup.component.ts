@@ -4,7 +4,6 @@ import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-email-signup',
@@ -24,10 +23,7 @@ export class EmailSignupComponent {
   fieldTextType: boolean = false;
   fieldTextType1: boolean = false;
 
-  loginMail: string = '';
-  redirectUrl: string = '';
-
-constructor(private formBuilder:FormBuilder,private dashboardservice:DashboardService,private router:Router,    private matsnackbar:MatSnackBar,private route:ActivatedRoute, public authService: AuthService, private reloadCommonService:MasterService){
+constructor(private formBuilder:FormBuilder,private dashboardservice:DashboardService,private router:Router,    private matsnackbar:MatSnackBar,private route:ActivatedRoute, public authService: AuthService){
 
 }
 ngOnInit() {;
@@ -69,41 +65,8 @@ ngOnInit() {;
   //     });
   // });
 
-  this.route.queryParams.subscribe(params => {
-    this.loginMail = params['email'];
-    this.redirectUrl = params['redirect'] || '/';
-    if (this.loginMail && this.redirectUrl) {
-      this.loginAndRedirect(this.loginMail, this.redirectUrl)
-    }
-  });
 
 }
-
-  loginAndRedirect(loginMail: any, path: any) {
-    this.submittedd = true;
-    if (loginMail) {
-      const loginpayload = {
-        email: loginMail,
-        t: 'ADMIN',
-      };
-      this.dashboardservice.login(loginpayload).subscribe(data => {
-        this.loginData = data;
-        if (this.loginData.status === 0) {
-          localStorage.setItem('id', this.loginData.response.id);
-          this.authService.setToken(this.loginData.response.token)
-          this.authService.setUserType(this.loginData.response.userType)
-          localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
-          this.reloadCommonService.sendUpdate('reloadNavbar');
-          this.router.navigate([`/${path}`]);
-        } else if (this.loginData.status === -1) {
-          this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
-        }
-      },
-        error => {
-          this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });; // Log error
-        });
-    }
-  }
 
   /**
  * Password Hide/Show
