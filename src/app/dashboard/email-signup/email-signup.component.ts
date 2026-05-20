@@ -4,6 +4,7 @@ import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { MasterService } from 'src/app/services/master-service/master.service';
 
 @Component({
   selector: 'app-email-signup',
@@ -23,7 +24,10 @@ export class EmailSignupComponent {
   fieldTextType: boolean = false;
   fieldTextType1: boolean = false;
 
-constructor(private formBuilder:FormBuilder,private dashboardservice:DashboardService,private router:Router,    private matsnackbar:MatSnackBar,private route:ActivatedRoute, public authService: AuthService){
+  loginToken: string = '';
+  redirectUrl: string = '';
+
+constructor(private formBuilder:FormBuilder,private dashboardservice:DashboardService,private router:Router,    private matsnackbar:MatSnackBar,private route:ActivatedRoute, public authService: AuthService, private reloadCommonService:MasterService){
 
 }
 ngOnInit() {;
@@ -64,9 +68,50 @@ ngOnInit() {;
   //         $(".search-bar").removeClass("full-search-bar");
   //     });
   // });
-
+  this.route.queryParams.subscribe(params => {
+    this.loginToken = params['token'];
+    this.redirectUrl = params['redirect'] || '/';
+    if (this.loginToken && this.redirectUrl) {
+      this.loginAndRedirect(this.loginToken, this.redirectUrl)
+    }
+  });
 
 }
+
+
+  loginAndRedirect(loginToken: string, path: any) {
+    this.submittedd = true;
+    if (loginToken) {
+      const req = {
+        "token": loginToken
+      }
+      this.dashboardservice.emailTokenLogin(req).subscribe(res => {
+        this.loginData = res?.response || {};
+        if (res?.status === 0) {
+          const loginpayload = {
+            email: this.loginData?.email,
+            t: 'ADMIN',
+          };
+          this.dashboardservice.login(loginpayload).subscribe(data => {
+            this.loginData = data;
+            if (this.loginData.status === 0) {
+              localStorage.setItem('id', this.loginData.response.id);
+              this.authService.setToken(this.loginData.response.token)
+              this.authService.setUserType(this.loginData.response.userType)
+              localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
+              this.router.navigate([`${path}`]);
+              this.reloadCommonService.sendUpdate('reloadNavbar');
+            } else if (res.status === -1) {
+              this.matsnackbar.open(this.loginData, 'x', { duration: 2000 });
+            }
+          },
+            error => {
+              this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });; // Log error
+            });
+        }
+      })
+    }
+  }
 
   /**
  * Password Hide/Show

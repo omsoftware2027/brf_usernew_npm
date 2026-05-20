@@ -30,6 +30,9 @@ export class DashboardService {
         })
       );
   }
+  emailTokenLogin(request: any) {
+    return this.http.post<any>(`${environment.baseurl}/auth/email-token-login`, request);
+  }
   signup(data:any){
     return this.http.post<any>(`${environment.baseurl}/user/signupUser`, data);
   }
