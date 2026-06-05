@@ -611,8 +611,8 @@ getallbulkorder(page:number){
   }
   this.dashboardservice.getallbulkorder(categoryid,this.userid).subscribe((res:any)=>{
     if(res.status ==0){
-    this.bulkorderguide=res.response || [];
-    console.log(this.bulkorderguide,'bulkorderguideeeeeee')
+    this.bulkorderguide=res?.response || [];
+    // console.log(this.bulkorderguide,'bulkorderguideeeeeee')
     this.totalrecordLength = this.data.response.totalElements;
      
     setTimeout(() => {
@@ -1536,7 +1536,7 @@ getalldropdown(type:any) {
    this.dashboardservice.getalldropdowndata(type).subscribe(res => {
      this.data =res;
      if (this.data.status === 0) {
-       this.dropdowndata = this.data.response.dataSet;
+       this.dropdowndata = this.data?.response?.dataSet || [];
      }
      else {
        this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })

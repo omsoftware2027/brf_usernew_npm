@@ -124,7 +124,14 @@
                       </div>
                     </div>
                   </td>
-                  <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">${{data.price}}</td>
+                <td style="font-weight: 500; font-size: 14px; line-height: 20px;">
+                  <div *ngIf="data.specialPrice" style="text-decoration: line-through; color: #6c757d;">
+                    ${{ data.price }}
+                  </div>
+                  <div style="color: black;">
+                    ${{ data.specialPrice || data.price }}
+                  </div>
+                </td>
                   <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
                   <td  class="d-flex">   
                     <button [disabled]="data.quantity < 1" type="button" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4" (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)" style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">

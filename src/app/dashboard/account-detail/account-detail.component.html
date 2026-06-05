@@ -785,7 +785,14 @@
                                                           </div>
                                                         </td>
                                                         <td><input type="text" class="form-control" style="width:77px;height:29px;color:#000000;" disabled [value]="data1.unit"></td>
-                                                        <td>${{ data1.price }}</td>
+                                                        <td>
+                                                            <div *ngIf="data1?.specialPrice" style="text-decoration: line-through; color: #818589; line-height: 20px;">
+                                                                ${{ data1?.price }}
+                                                            </div>
+                                                            <div>
+                                                                ${{ data1?.specialPrice || data1?.price }}
+                                                            </div>
+                                                        </td>
                                                         <td><input type="number" class="form-control" style="width:77px;height:29px;color:#000000;" min="0"  [(ngModel)]="data1.quantity" ></td>
                                                         <td>
                                                           <button [ngClass]="{'d-none ': data1.isCart}" type="button" class="btn btn-secondary mt-2" style="background-color: #F44C4C; color: white;width:124px;height: 33px;border-radius: 1px;" (click)="addToCart(data1.productId,data1.price,data1.wishlistId,data1.quantity)">ADD TO CART</button>
