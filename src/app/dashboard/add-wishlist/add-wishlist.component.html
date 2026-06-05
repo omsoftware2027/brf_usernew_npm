@@ -95,7 +95,7 @@
                               <div class="d-flex">
                                 <img [ngClass]="{'invisible ': data.isCartExist=='false'}" class="me-2 mt-3" width="25px" height="25px" src="../../../assets/images/addedCart.png">
                                   <img class="avatar-xs  customer-image-elem" alt=""
-                                  [src]="data.image|| 'assets/images/download (20).png'" 
+                                  [src]="data?.image|| 'assets/images/download (20).png'" 
                                   onerror="this.src='assets/images/download (20).png';"  style="width:52px;height:52px">
                               </div>
                           </div>
