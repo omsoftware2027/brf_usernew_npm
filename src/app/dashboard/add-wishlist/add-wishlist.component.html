@@ -125,11 +125,11 @@
                     </div>
                   </td>
                 <td style="font-weight: 500; font-size: 14px; line-height: 20px;">
-                  <div *ngIf="data.specialPrice" style="text-decoration: line-through; color: #6c757d;">
+                  <!-- <div *ngIf="data.specialPrice" style="text-decoration: line-through; color: #6c757d;">
                     ${{ data.price }}
-                  </div>
+                  </div> -->
                   <div style="color: black;">
-                    ${{ data.specialPrice || data.price }}
+                    ${{ (data.specialPrice || data.price) | number: '1.2-2' }}
                   </div>
                 </td>
                   <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
