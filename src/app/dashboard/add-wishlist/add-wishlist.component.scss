@@ -42,7 +42,8 @@ thead{
 }
 @media (min-width:768px) {
   .custom-banner {
-    height: 300px;
+    // height: 300px
+    max-height: 500px;
   }
 }
 
@@ -75,5 +76,5 @@ thead{
 .custom-banner img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
