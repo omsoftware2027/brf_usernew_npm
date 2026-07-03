@@ -60,9 +60,6 @@ table{
       font-size: 14px;
     }
 
-    .custom-banner {
-      height: 230px;
-    }
   }
   @media (min-width:768px) and (max-width: 1024px) {
     .d-block-mb{
@@ -78,8 +75,8 @@ table{
 
   @media (min-width:769px) {
     .custom-banner {
-      // height: 300px;
-      max-height: 500px;
+      // max-height: 500px;
+      max-height: auto;
     }
   }
 
