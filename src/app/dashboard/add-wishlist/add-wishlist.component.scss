@@ -28,9 +28,6 @@ thead{
    .pm-2{
       padding: 5px!important;
     }
-    .custom-banner {
-      height: 230px;
-    }
 }
 @media (min-width:768px) and (max-width: 1024px) {
    .d-block-mb{
@@ -42,8 +39,8 @@ thead{
 }
 @media (min-width:768px) {
   .custom-banner {
-    // height: 300px
-    max-height: 500px;
+    // max-height: 500px
+    height: auto;
   }
 }
 
