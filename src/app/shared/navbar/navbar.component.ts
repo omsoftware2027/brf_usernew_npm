@@ -548,7 +548,9 @@ goToCart(path: string) {
         this.router.navigate(['/all-product']);
       } else if (productList.length === 1) {
         const productId = productList[0].productId;
-        this.router.navigate(['/view-product-detail', productId]);
+        const productName = productList[0].productName;
+        
+        this.router.navigate(['/product', productId, this.dashboardservice.generateSlug(productName)]);
       } else {
         // Optional: handle no products found
         // e.g., show a toast message
@@ -627,7 +629,7 @@ onProductSelected(event: any) {
   const target = event.target as HTMLLIElement;
   const productId = target.getAttribute('value');
   if (productId) {
-    this.router.navigate(['/view-product-detail', productId]);
+    this.router.navigate(['/product', productId, this.dashboardservice.generateSlug('')]);
     this.showDropdown = false;
     document.body.style.overflow = '';
   }

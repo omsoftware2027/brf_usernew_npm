@@ -49,10 +49,10 @@
                     <div class="img-container">
                       <img [src]="data.image|| 'assets/images/download (20).png'"
                         class="product-images"
-                        [routerLink]="['/view-product-detail',data.productId]">
+                        [routerLink]="['/product', data?.productId, dashboardservice.generateSlug(data?.productName)]">
                     </div>
                     <div class="image-text mt-4">
-                      <p [routerLink]="['/view-product-detail',data.productId]" style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050;cursor: pointer;white-space: break-spaces;word-break: break-all;
+                      <p [routerLink]="['/product', data?.productId, dashboardservice.generateSlug(data?.productName)]" style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050;cursor: pointer;white-space: break-spaces;word-break: break-all;
               " [innerHTML]="highlightText(data.productName, maxCharacters, i)"
                         [innerHTML]="highlightText(data.productName, maxCharacters, i)">
 
@@ -149,7 +149,7 @@
                     </div>
                     <div class="col-md-9 col-lg-9 col-xl-9">
                       <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"
-                        [routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</p>
+                        [routerLink]="['/product', data?.productId, dashboardservice.generateSlug(data?.productTitle)]">{{data?.productTitle}}</p>
                     </div>
                     <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
                       <p><mat-icon style="color: #929FA5;"

@@ -559,7 +559,7 @@
                                                                         </div>
                                                                         <div class="flex-grow-1 p-3">
                                                                             <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;"[routerLink]="['/view-product-detail',data.productId]">{{data.title}}</a></p>
+                                                                                    class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;"[routerLink]="['/product',data?.productId, dashboardservice.generateSlug(data?.title)]">{{data?.title}}</a></p>
                                                                           <div class="d-flex">
                                                                             <div ><p style="color:#F44C4C">Price: <span style="color:#475156">{{data.price}}</span></p></div>
                                                                             <div  style="margin-left: 38px"><p style="color:#F44C4C">Quantity: <span style="color:#475156">{{data.quantity}}</span></p></div>
@@ -573,7 +573,7 @@
                                                 
                                                                 </th>
                                                                
-                                                                <td>   <button type="button btn-secondary " class="btn mt-3" [routerLink]="['/view-product-detail',data.productId]" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
+                                                                <td>   <button type="button btn-secondary " class="btn mt-3" [routerLink]="['/product',data?.productId, dashboardservice.generateSlug(data?.title)]" style="background-color: #F44C4C; color: white;width:80px;height: 33px;
                                                                     ">VIEW
                                                                       </button></td>
                                                               </tr>
@@ -779,7 +779,7 @@
                                                             </div>
                                                             <div class="flex-grow-1">
                                                               <h5 class="fs-base mb-0">
-                                                                <a class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;" [routerLink]="['/view-product-detail',data1.productId]">{{ data1.title }}</a>
+                                                                <a class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;" [routerLink]="['/product',data1?.productId, dashboardservice.generateSlug(data1?.title)]">{{ data1.title }}</a>
                                                               </h5>
                                                             </div>
                                                           </div>
@@ -906,7 +906,7 @@
                                                         </div>
                                                         <div class="flex-grow-1">
                                                             <h5 class="fs-base mb-0"><a 
-                                                                class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;" [routerLink]="['/view-product-detail',data1.productId]"> {{data1.title}}</a></h5>
+                                                                class="text-reset customer-name-elem" style="color:#032088 !important;font-weight: 500;font-size:14px;line-height: 15px;" [routerLink]="['/product',data1?.productId, dashboardservice.generateSlug(data1?.title)]"> {{data1.title}}</a></h5>
                                                         </div>
                                                     </div>
                                 
@@ -927,7 +927,7 @@
                                              
                                                 <td>   
                                                       <button type="button" class="btn btn-primary mt-3" style="background-color: #3A51A2;color: white;width:124px;height: 33px;
-                                                      "[routerLink]="['/view-product-detail',data1.productId]">View
+                                                      "[routerLink]="['/product',data1?.productId, dashboardservice.generateSlug(data1?.title)]">View
                                                         </button><br>
                                                         <button type="button" (click)="deletewishlist(data1.wishlistId)" class="btn btn-secondary mt-3" style="background-color: #F44C4C;color: white;width:124px;height: 33px;">Remove
                                                           </button>

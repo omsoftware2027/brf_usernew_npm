@@ -30,6 +30,7 @@ export class ViewProductDetailComponent implements OnDestroy {
   data:any;
   userDetails:any;
   productid:any;
+  slug: string = '';
   banners: any[] = [];
   productTopBanners: any[] = [];
   productBottomBanners: any[] = [];
@@ -45,6 +46,7 @@ bannerInterval: any;
     this.userDetails = localStorage.getItem('UserDetails');
     this.userDetails = JSON.parse(this.userDetails);
     this.productid = this.route.snapshot.params['id'];
+    this.slug = this.route.snapshot.params['slug'] || 'product name';
     this.userid=localStorage.getItem('id');
     this.routeSubscription = this.route.params.subscribe(params => {
       this.productid = params['id'];
@@ -123,6 +125,10 @@ goBack(): void {
     this.dashboardservice.getProductByCategoryId(this.productid,this.userid).subscribe((res) => {
       if (res.status === 0) {
         this.productRes = res['response'];
+        const convertedSlug = this.dashboardservice.generateSlug(this.productRes?.title);
+        this.slug !== convertedSlug ? this.router.navigate(
+          ['/product', this.productid, convertedSlug],
+          { replaceUrl: true }) : '';
       }
     });
 
