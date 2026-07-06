@@ -13,7 +13,7 @@ export class ManageCarttComponent {
   pageSize=30;
   reorder:any;
   orderid:any;
-constructor(private dashboardservice:DashboardService,private route:ActivatedRoute){
+constructor(public dashboardservice:DashboardService,private route:ActivatedRoute){
 
 }
 ngOnInit() {

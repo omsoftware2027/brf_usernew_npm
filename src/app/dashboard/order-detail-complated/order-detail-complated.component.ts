@@ -14,7 +14,7 @@ export class OrderDetailComplatedComponent {
   projectpridations: any[] = [];
   currentPage=0;
   pageSize=30
- constructor(private dashboardservice:DashboardService,private route: ActivatedRoute){
+ constructor(public dashboardservice:DashboardService,private route: ActivatedRoute){
 
  }
  ngOnInit(): void{

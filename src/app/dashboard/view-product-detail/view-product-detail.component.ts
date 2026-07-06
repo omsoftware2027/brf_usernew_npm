@@ -39,7 +39,7 @@ export class ViewProductDetailComponent implements OnDestroy {
 // productTopBanners: any[] = [];
 bannerInterval: any;
 
-  constructor(private dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService, private location: Location,private bannerService: BannerService ){
+  constructor(public dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService, private location: Location,private bannerService: BannerService ){
 
   }
 
@@ -344,6 +344,6 @@ goBack(): void {
     });
 }
 getPrice():any{
-  return parseFloat(this.productRes.price) * parseInt(this.productRes?.quantity?this.productRes?.quantity:1);
+  return parseFloat(this.productRes?.price) * parseInt(this.productRes?.quantity?this.productRes?.quantity:1);
 }
 }

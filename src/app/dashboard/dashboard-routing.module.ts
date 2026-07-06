@@ -42,7 +42,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'category-detail/:id',
+        path: 'category/:id/:slug',
         component: CategoryDetailComponent,
         data: {
           title: 'categorydetail'

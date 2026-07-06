@@ -36,7 +36,7 @@
     <div class="custom-banner-wrapper mt-2">
       <div class="custom-banner" *ngFor="let banner of productTopBanners; let i = index"
         [class.active]="i === currentProductBannerIndex">
-        <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
+        <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner?.title || 'Banner Image' }}"
           class="d-block w-100" />
       </div>
     </div>
@@ -59,11 +59,11 @@
         <div class="scrollwrapper">
           <div class=" col-md-12 d-flex d-block-mb">
             <div class="col-md-4 p-2">
-              <img loading="lazy" [src]="productRes.image|| 'assets/images/download (20).png'" class="img-fluid">
+              <img loading="lazy" [src]="productRes?.image|| 'assets/images/download (20).png'" class="img-fluid">
             </div>
             <div class="col-md-8 p-4 pm-3">
               <div>
-                <p style="font-size: 20px;">{{productRes.title}}</p>
+                <p style="font-size: 20px;">{{productRes?.title}}</p>
               </div>
               <div class="col-md-12  d-flex">
                 <!-- <div class="col-md-6">
@@ -72,17 +72,17 @@
               </div> -->
                 <div class="col-md-6">
                   <p style="font-weight: 400; font-size: 14px; line-height: 20px;"><span
-                      style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.categoryName}}</span>
+                      style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes?.categoryName}}</span>
                   </p>
                   <p style="font-weight: 400; font-size: 14px; line-height: 20px;"> <span
-                      style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes.shortDescription}}</span>
+                      style="color: #000;font-weight: 400;font-size: 14px;line-height: 20px;">{{productRes?.shortDescription}}</span>
                   </p>
                 </div>
               </div>
 
               <hr>
               <div class="col-md-12">
-                <p style="color:#2DA5F3;font-size: 24px;">${{getPrice() | number:'1.0-2'}} / {{productRes.unitName}}
+                <p style="color:#2DA5F3;font-size: 24px;">${{getPrice() | number:'1.0-2'}} / {{productRes?.unitName}}
                 </p>
               </div>
               <div class="col-md-12">
@@ -94,8 +94,8 @@
                     <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;padding-left: 10px;"
                       class="mt-2 mb-2">
                       <input type="number" class="form-control" style="height: 34px;"
-                        [value]="productRes.quantity || '0'" (change)="chnageQuantityVal($event)">
-                      <!-- {{productRes.quantity || 0}} -->
+                        [value]="productRes?.quantity || '0'" (change)="chnageQuantityVal($event)">
+                      <!-- {{productRes?.quantity || 0}} -->
                     </p>
                     <i class="ri-add-line ps-3 mt-2 pe-2" (click)="incrementValue1(productRes);"
                       style="font-size: 22px;"> </i>
@@ -104,13 +104,13 @@
                 </div>
               </div>
               <div class="col-md-12 mt-4">
-                <p style="font-weight: 400; font-size: 14px; line-height: 20px;">{{productRes.description}}</p>
+                <p style="font-weight: 400; font-size: 14px; line-height: 20px;">{{productRes?.description}}</p>
               </div>
               <div class="row">
                 <div class=" mb-3">
                   <div class="d-flex d-block-mb">
                     <button type="button" class="btn btn-secondary btn-secondary2 mt-3"
-                      (click)="submitcart(productRes.productId,productRes.price,productRes.quantity)">ADD TO CART
+                      (click)="submitcart(productRes?.productId,productRes?.price,productRes?.quantity)">ADD TO CART
                       <img loading="lazy" src="../../../assets/images/Add to cart.png" class=""
                         style="width:24px;height: 24px;letter-spacing: 0.5px;"> </button>
                     <div class="d-flex mt-2 pt-2 ps-3 psm-0"
@@ -118,15 +118,15 @@
                       <!-- <img src="../../../assets/images/add wishlist icon2 (1).png" style="width:25px;height:25px;"> -->
                       <div class="icon-container">
                         <i class="ri-heart-line" style="cursor: pointer;"
-                          *ngIf="!secondIconDisabled && productRes.isWishlist ==false"
-                          (click)="toggleIcons('first');submit(productRes.productId)"></i>
+                          *ngIf="!secondIconDisabled && productRes?.isWishlist ==false"
+                          (click)="toggleIcons('first');submit(productRes?.productId)"></i>
                         <i class="ri-heart-fill" style="color:red; cursor: pointer;"
-                          *ngIf="productRes.isWishlist == true "
-                          (click)="toggleIcons('second');submit(productRes.productId)"></i>
+                          *ngIf="productRes?.isWishlist == true "
+                          (click)="toggleIcons('second');submit(productRes?.productId)"></i>
                       </div>
-                      <p class="mt-3 t2" *ngIf="productRes.isWishlist == false " (click)="submit(productRes.productId)">
+                      <p class="mt-3 t2" *ngIf="productRes?.isWishlist == false " (click)="submit(productRes?.productId)">
                         Add To Order Guide</p>
-                      <p class="mt-3 t2" *ngIf="productRes.isWishlist == true " (click)="submit(productRes.productId)">
+                      <p class="mt-3 t2" *ngIf="productRes?.isWishlist == true " (click)="submit(productRes?.productId)">
                         Remove Form Order Guide</p>
                     </div>
 
@@ -173,7 +173,7 @@
             <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
               <div class="d-flex col-md-12 col-lg-12 col-xl-12">
                 <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
-                  <img loading="lazy" [src]="data.image || 'assets/images/download (20).png'"
+                  <img loading="lazy" [src]="data?.image || 'assets/images/download (20).png'"
                     style="width:74px; height: 74px; border-radius: 5px;">
 
                 </div>
@@ -288,7 +288,7 @@
 
   <div *ngIf="productBottomBanners.length > 0" class="bottom-banners my-4">
     <div class="card text-center">
-      <img loading="lazy" *ngIf="productBottomBanners[0].image" [src]="productBottomBanners[0].image"
+      <img loading="lazy" *ngIf="productBottomBanners[0]?.image" [src]="productBottomBanners[0]?.image"
         class="d-block w-100" alt="Product Bottom Banner">
       <!-- Optional: Add title or content below -->
       <!--

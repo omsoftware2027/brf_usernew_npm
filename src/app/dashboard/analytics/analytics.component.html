@@ -29,9 +29,9 @@
               <div class="col-6 col-md-4 col-xl-3" *ngFor="let data of category ;let i = index">
                 <div class="p-2 border bg-white cursor-pointer card-container">
                   <img [src]="data.image|| 'assets/images/download (20).png'" class="card-image"
-                    [routerLink]="['/category-detail',data.categoryId]">
+                    [routerLink]="['/category', data?.categoryId, dashboardservice.generateSlug(data?.categoryName)]">
                 </div>
-                <p class="mt-2 t2" [routerLink]="['/category-detail',data.categoryId]">{{data.categoryName}}</p>
+                <p class="mt-2 t2" [routerLink]="['/category', data?.categoryId, dashboardservice.generateSlug(data?.categoryName)]">{{data?.categoryName}}</p>
               </div>
             </div>
 

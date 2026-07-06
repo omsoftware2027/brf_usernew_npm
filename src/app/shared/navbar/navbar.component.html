@@ -19,8 +19,8 @@
                   
                   <p *ngIf="token" [routerLink]="['/account-detail']" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;">My Account</p>
                   <div *ngFor="let data of titlesAndIdsArray2 ">
-                    <div [routerLink]="['/statement',data.cmsId]">
-                        <p [routerLink]="['/new-customers',data.cmsId]" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;" class="ps-2">{{data.title}}</p>
+                    <div [routerLink]="['/statement',data?.cmsId]">
+                        <p [routerLink]="['/new-customers',data?.cmsId]" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;" class="ps-2">{{data?.title}}</p>
                     </div>
                   </div>
                   <p [routerLink]="['/add-wishlist']"  (click)="toogleBtn=!toogleBtn"style="color: #fff;font-size: 14px;font-weight: 500;"> Order Guide [ {{wishcart}} ]</p>
@@ -51,8 +51,8 @@
                   <p class="ms-2 mb-0">|</p>
                 </li>
                 <div *ngFor="let data of titlesAndIdsArray2 " style="height: max-content;">
-                    <li style="height: max-content" [routerLink]="['/statement',data.cmsId]">
-                        <p [routerLink]="['/new-customers',data.cmsId]" style="color: #000000;font-size: 14px;font-weight: 400;" class="ps-2 mb-0">{{data.title}}  <span class="ms-2">|</span></p>
+                    <li style="height: max-content" [routerLink]="['/statement',data?.cmsId]">
+                        <p [routerLink]="['/new-customers',data?.cmsId]" style="color: #000000;font-size: 14px;font-weight: 400;" class="ps-2 mb-0">{{data?.title}}  <span class="ms-2">|</span></p>
                     </li>
                 </div>
               </ul>
@@ -90,9 +90,9 @@
                           <a class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" 
                           aria-expanded="false"  style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);background-color: #F3F3F3;height: 40px;padding-top: 9px;border-radius: 2px;">All Categories</a>
                           <div class="dropdown-menu" style="border-radius: 1px;border-radius: 0px;height: 60vh;overflow-x: auto;cursor: pointer;">
-                            <a class="dropdown-item" (click)="getallselectcategory(data.categoryId)" *ngFor="let data of category" formControlName="categoryId">
-                              <img [src]="data.image || 'assets/images/download (20).png'" style="width: 28px; height: 23px; border-radius: 1px;">
-                              <span class="p-3" style="font-size: 16px; line-height: 28px; font-weight: 400;">{{data.categoryName}}</span>
+                            <a class="dropdown-item" (click)="getallselectcategory(data?.categoryId, data?.categoryName)" *ngFor="let data of category" formControlName="categoryId">
+                              <img [src]="data?.image || 'assets/images/download (20).png'" style="width: 28px; height: 23px; border-radius: 1px;">
+                              <span class="p-3" style="font-size: 16px; line-height: 28px; font-weight: 400;">{{data?.categoryName}}</span>
                             </a>
                           </div>
                         </div>
@@ -117,8 +117,8 @@
                           </div>
                           <div>
                               <ul *ngIf="showDropdown && product.length > 0" class="card dd-p" style="position: absolute;width: 490px;margin-left: -1px;height: 400px;overflow-x: auto;">
-                                  <li *ngFor="let data of product" style="white-space: break-spaces;margin-left: -24px;margin-top: 14px;cursor:pointer;" [value]="data.productId" (click)="updateInput(data.productName)">
-                                      {{data.productName}}
+                                  <li *ngFor="let data of product" style="white-space: break-spaces;margin-left: -24px;margin-top: 14px;cursor:pointer;" [value]="data?.productId" (click)="updateInput(data?.productName)">
+                                      {{data?.productName}}
                                   </li>
                               </ul>
                           </div>

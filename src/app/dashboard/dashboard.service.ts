@@ -243,6 +243,26 @@ export class DashboardService {
   setSearchResults(data: any[]) {
     this.productSearchResults.next(data);
   }
+
+  generateSlug(name: any): string {
+    try {
+      if (name === null || name === undefined) {
+        return '';
+      }
+
+      return String(name)
+        .toLowerCase()
+        .trim()
+        .replace(/&/g, ' ')
+        .replace(/[()'",./\\]/g, '')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    } catch (error) {
+      return String(name);
+    }
+  }
 }
 
 
