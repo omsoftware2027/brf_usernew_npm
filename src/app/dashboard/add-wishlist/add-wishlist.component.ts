@@ -110,13 +110,6 @@ startAutoSlide() {
       next: (res) => {
         if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
           this.banners = res.response;
-          console.log("product banner", this.banners)
-          console.log('All banners received:', this.banners.map(b => ({
-            page: b.bannerPage,
-            type: b.bannerType,
-            title: b.title
-          })));
-
           this.wishlistTopBanners = this.banners.filter(b =>
             b.bannerPage?.includes('order_guide') && b.bannerType === 'top_banner'
           );
@@ -135,7 +128,6 @@ startAutoSlide() {
       },
       error: (err) => {
         this.wishlistBannersLoaded = true;
-        console.error('Banner fetch failed:', err);
         this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
       }
     });

@@ -33,7 +33,7 @@ export class AuthErrorInterceptor implements HttpInterceptor {
         // this.document.location.href = `${environment.website}/home`;
         }
       }
-      const error = err.error.message || err.statusText;
+      const error = err?.error?.message || err?.statusText;
       return throwError(error);
      }
 

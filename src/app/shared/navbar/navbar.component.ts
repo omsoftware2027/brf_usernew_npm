@@ -11,7 +11,6 @@ import { SignInComponent } from 'src/app/dashboard/sign-in/sign-in.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -27,7 +26,6 @@ export class NavbarComponent implements OnInit{
   @ViewChild('dropdownMenu') dropdownMenu!: ElementRef;
   // @HostListener('document:click', ['$event'])
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild('dropdownWrapper') dropdownWrapper!: ElementRef;
 
   firstTimeLogin: string | null = null
@@ -189,7 +187,6 @@ export class NavbarComponent implements OnInit{
         this.name = localStorage.getItem('name');
         this.userId=localStorage.getItem('id');
         // this.usertype = localStorage.getItem('usertype');
-        console.log(this.usertype,'this.usertype')
         this.loginTime = localStorage.getItem('loginTime');
         this.sessionId = localStorage.getItem('sessionId');
         this.getfootergeneral();
@@ -361,10 +358,6 @@ export class NavbarComponent implements OnInit{
         });
       }
 
-
-      ondropdownclick(){
-        console.log('dropdownopen')
-      }
       showSignInForm(event: Event) {
         event.stopPropagation();
         this.showSignIn = true;
@@ -432,7 +425,6 @@ export class NavbarComponent implements OnInit{
               this.formGroup.reset();
             } else if (this.loginData.status === -1) { // Added else if block for -1 status
               this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
-              console.log('Snackbar opened for -1 status');
             } else {
               this.router.navigate(['/main/'+this.loginData.response.id+'/'+this.loginData.response.token]);
               
@@ -455,9 +447,7 @@ export class NavbarComponent implements OnInit{
 
       submit(){
       this.submitted=true;
-      console.log('hk')
        if(this.SignUpForm.valid){
-        console.log('hk')
         let data = {
           email: this.SignUpForm.value.email,
           firstName: this.SignUpForm.value.firstName,
@@ -487,14 +477,10 @@ export class NavbarComponent implements OnInit{
       tabelLoad(page: number) {
         this.dashboardservice.getAllcategoryy().subscribe(res => {
           this.data =res;
-          if (this.data.status === 0) {
+          if (this.data?.status === 0) {
             window.scrollTo(0, 0);
-            this.totalrecordLength = this.data.response.totalElements;
-            this.category = this.data.response.dataSet;
-            setTimeout(() => {
-              this.paginator.pageIndex = this.currentPage;
-              this.paginator.length = this.totalrecordLength;
-            });
+            this.totalrecordLength = this.data?.response?.totalElements;
+            this.category = this.data?.response?.dataSet;
           }
           else {
             this.matsnackbar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -533,11 +519,10 @@ goToCart(path: string) {
      getallproduct() {
       const name = this.searchproduct.value.productname || '';
       this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
       this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name,this.userid || '').subscribe(res => {
         this.data =res;
-        if (this.data.status === 0) {
-          this.product = this.data.response.dataSet;
+        if (this.data?.status === 0) {
+          this.product = this.data?.response?.dataSet;
           this.docSpecializationClone=  this.product;
           // this.router.navigate(['/all-product']);
         }
@@ -551,12 +536,11 @@ goToCart(path: string) {
     document.body.style.overflow = '';
   const name = this.searchproduct.value.productname || '';
   this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
   this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name, this.userid || '').subscribe(res => {
     this.data = res;
 
-    if (this.data.status === 0) {
-      const productList = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      const productList = this.data?.response.dataSet || [];
 
       if (productList.length > 1) {
         this.productt = productList;
@@ -576,12 +560,15 @@ goToCart(path: string) {
 }
 
     getallselectcategory(categoryId: string, categoryName: string) {
+      this.searchproduct.patchValue({
+        categoryId : categoryId
+      })
       this.userid=localStorage.getItem('id');
       const slug = this.dashboardservice.generateSlug(categoryName);
       this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize, categoryId,this.userid).subscribe(res => {
           this.data = res;
-          if (this.data.status === 0) {  
-              this.carttotal = this.data.response.dataSet;
+          if (this.data?.status === 0) {  
+              this.carttotal = this.data?.response?.dataSet;
               this.router.navigate(['/category', categoryId, slug]);
           } else {
               // Handle other cases if needed
@@ -595,8 +582,8 @@ goToCart(path: string) {
     }
     this.dashboardservice.getcountcart(this.userid).subscribe(res => {
         this.data = res;
-        if (this.data.status === 0) {  
-            this.wishlist = this.data.response;
+        if (this.data?.status === 0) {  
+            this.wishlist = this.data?.response;
             
         } else {
             // Handle other cases if needed
@@ -611,8 +598,8 @@ getallcart() {
   }
   this.dashboardservice.getcartcount(this.userid).subscribe(res => {
       this.data = res;
-      if (this.data.status === 0) {  
-          this.wishcart = this.data.response;
+      if (this.data?.status === 0) {  
+          this.wishcart = this.data?.response;
           
       } else {
           // Handle other cases if needed
@@ -621,7 +608,6 @@ getallcart() {
 }
 getallcarttotal(page: number) {
   this.userid=localStorage.getItem('id');
-  console.log(this.userid,'userid');
   if(this.userid != null ){
     this.userId =this.userid
   }else{
@@ -629,8 +615,8 @@ getallcarttotal(page: number) {
   }
   this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userId).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.carttotalt = this.data.response.total;
+    if (this.data?.status === 0) {
+      this.carttotalt = this.data?.response?.total;
     }
     // else {
     //   this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -640,7 +626,6 @@ getallcarttotal(page: number) {
 onProductSelected(event: any) {
   const target = event.target as HTMLLIElement;
   const productId = target.getAttribute('value');
-  console.log(productId);
   if (productId) {
     this.router.navigate(['/view-product-detail', productId]);
     this.showDropdown = false;
@@ -677,12 +662,10 @@ specializationSelect(query: string): any[] {
   const result: any[] = [];
   // Check if this.docSpecializationClone is defined and not null
   if (this.docSpecializationClone) {
-    console.log(this.docSpecializationClone,'this.docSpecializationClone')
     for (const b of this.docSpecializationClone) {
       // Check if b.name is defined and not null
       if (b.productName && b.productName.toLowerCase().indexOf(query) > -1) {
         result.push(b);
-        console.log(result,'result')
       }
     }
   }
@@ -690,13 +673,10 @@ specializationSelect(query: string): any[] {
 }
 specialitySearch(event: Event): void {
   const query = (event.target as HTMLInputElement).value.toLowerCase();
-  console.log('fd');
   const result = this.specializationSelect(query);
   if (query === '') {
-    console.log('fd');
     this.product = this.docSpecializationClone;
   } else {
-    console.log('fdd');
     this.product = result;
   }
 }
@@ -711,8 +691,8 @@ login() {
   }
   this.dashboardservice.getlogin(this.userid).subscribe(res => {
       this.data = res;
-      if (this.data.status === 0) {  
-          this.logindetail = this.data.response;
+      if (this.data?.status === 0) {  
+          this.logindetail = this.data?.response;
           localStorage.setItem('UserDetails',JSON.stringify(this.logindetail));
       } else {
           // Handle other cases if needed
@@ -805,20 +785,14 @@ getmyorderbyorderid() {
   const serach ='';
   const orderitemid=''
   this.orderId=localStorage.getItem('orderid');
-  console.log('hksk')
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,this.orderId,this.userId,serach,orderitemid).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.customerdetail=this.data.response.dataSet.customerDetails;
-      this.addressdetail=this.data.response.dataSet.shippingDetails;
-      this.productDetails=this.data.response.dataSet.productDetails;
-      this.orderDetails=this.data.response.dataSet.orderDetails;
-      this.totalrecordLengthh = this.data.response.totalElements;
-      console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLengthh;
-      });
+    if (this.data?.status === 0) {
+      this.customerdetail=this.data?.response?.dataSet?.customerDetails;
+      this.addressdetail=this.data?.response?.dataSet?.shippingDetails;
+      this.productDetails=this.data?.response?.dataSet?.productDetails;
+      this.orderDetails=this.data?.response?.dataSet?.orderDetails;
+      this.totalrecordLengthh = this.data?.response?.totalElements;
     }
     else {
       // this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -830,20 +804,14 @@ getorderbyorderid() {
   const serach ='';
   this.orderId=localStorage.getItem('orderid');
   this.orderItemId=localStorage.getItem('orderItemId');
-  console.log('hksk')
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,this.orderId,this.userId,serach,this.orderItemId).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.customerdetail=this.data.response.dataSet.customerDetails;
-      this.addressdetail=this.data.response.dataSet.shippingDetails;
-      this.productDetails=this.data.response.dataSet.productDetails;
-      this.orderDetails=this.data.response.dataSet.orderDetails;
-      this.totalrecordLengthh = this.data.response.totalElements;
-      console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLengthh;
-      });
+    if (this.data?.status === 0) {
+      this.customerdetail=this.data?.response?.dataSet?.customerDetails;
+      this.addressdetail=this.data?.response?.dataSet?.shippingDetails;
+      this.productDetails=this.data?.response?.dataSet?.productDetails;
+      this.orderDetails=this.data?.response?.dataSet?.orderDetails;
+      this.totalrecordLengthh = this.data?.response?.totalElements;
     }
     else {
       // this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })

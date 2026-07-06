@@ -160,7 +160,7 @@
                   <div class="col-6 d-flex justify-content-end mt-2">
                     <a class="btn dropdown-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1"
                       aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
-                       font-size: 22px;">${{carttotal.total | number:'1.0-2'}} <i class='bx bx-chevron-down'></i></a>
+                       font-size: 22px;">${{carttotal?.total | number:'1.0-2'}} <i class='bx bx-chevron-down'></i></a>
                     <!-- <div class="dropdown-menu">
                          <a href="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">Item</a>
                        </div> -->
@@ -179,10 +179,10 @@
                 </div>
                 <div class="col-md-9 col-lg-9 col-xl-9">
                   <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"
-                    [routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</p>
+                    [routerLink]="['/view-product-detail',data?.productId]">{{data?.productTitle}}</p>
                 </div>
                 <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
-                  <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon>
+                  <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data?.cartId)">highlight_off</mat-icon>
                   </p>
 
                 </div>
@@ -208,30 +208,30 @@
               <div class="d-flex justify-content-between p-1 mb-2 col-md-12 col-lg-12 col-xl-12"
                 style="padding-top: 0px;">
                 <div class="mt-2  col-md-4 col-lg-4 col-xl-4">
-                  <h5>${{data.price}}</h5>
+                  <h5>${{data?.price}}</h5>
                 </div>
                 <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
                   <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
 
                     <div class="col-md-3">
                       <i class="ri-subtract-line  ps-1"
-                        (click)="decrementValue(data);savequantity(data.productId,data.quantity)"
+                        (click)="decrementValue(data);savequantity(data?.productId,data?.quantity)"
                         style="font-size: 22px;"></i>
                     </div>
                     <div class="col-md-6">
                       <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-4">
-                        {{data.quantity || '1' }}</p>
+                        {{data?.quantity || '1' }}</p>
                     </div>
                     <div class="col-md-3">
                       <i class="ri-add-line  ps-1 "
-                        (click)="incrementValue(data);savequantity(data.productId,data.quantity)"
+                        (click)="incrementValue(data);savequantity(data?.productId,data?.quantity)"
                         style="font-size: 22px;"> </i>
                     </div>
 
                   </div>
                 </div>
                 <div class="mt-2 col-md-4 col-lg-4 col-xl-4" style="text-align: end">
-                  <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
+                  <h5 style="margin-right:23px;">${{data?.subTotal}}</h5>
                 </div>
               </div>
             </div>
@@ -242,23 +242,23 @@
                 <div class="row">
                   <div class="d-flex justify-content-between p-2">
                     <span style="color: #5F6C72;">Sub-total</span>
-                    <span class="font-weight-bold">${{carttotal.subTotal | number:'1.0-2'}}</span>
+                    <span class="font-weight-bold">${{carttotal?.subTotal | number:'1.0-2'}}</span>
                   </div>
 
                   <div class="d-flex justify-content-between p-2">
                     <a style="color: #5F6C72;"> Shipping</a>
-                    <span class="font-weight-bold"> ${{carttotal.shipping | number:'1.0-2'}}</span>
+                    <span class="font-weight-bold"> ${{carttotal?.shipping | number:'1.0-2'}}</span>
                   </div>
 
                   <div class="d-flex justify-content-between p-2">
                     <a style="color: #5F6C72;"> Discount</a>
-                    <span class="font-weight-bold"> ${{carttotal.discount}}</span>
+                    <span class="font-weight-bold"> ${{carttotal?.discount}}</span>
                   </div>
                   <hr>
 
                   <div class="d-flex justify-content-between p-2">
                     <span class="" style="color: #5F6C72;"> Total</span>
-                    <span class="font-weight-bold">${{carttotal.total | number:'1.0-2'}} USD</span>
+                    <span class="font-weight-bold">${{carttotal?.total | number:'1.0-2'}} USD</span>
                   </div>
 
                   <div class="d-flex flex-column">

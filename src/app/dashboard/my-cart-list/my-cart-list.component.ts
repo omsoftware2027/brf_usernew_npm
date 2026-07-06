@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class MyCartListComponent {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   totalrecordLength:any;
   data:any;
   wishlist:any
@@ -53,23 +51,16 @@ export class MyCartListComponent {
   
   tabelLoad(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
     if(this.userid == null){
       this.userid = 0 ;
      }
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
-      console.log("first",this.data);
       if (this.data.status === 0) {
         // window.scrollTo(0, 0);
         this.totalrecordLength = this.data.response.totalElements;
         this.wishlist = this.data.response.dataSet;
         this.getallcarttotal(0);
-        
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;   
-          this.paginator.length = this.totalrecordLength;
-        });
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -93,13 +84,6 @@ export class MyCartListComponent {
       next: (res) => {
         if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
           this.banners = res.response;
-          console.log("product banner", this.banners)
-          console.log('All banners received:', this.banners.map(b => ({
-            page: b.bannerPage,
-            type: b.bannerType,
-            title: b.title
-          })));
-
           this.cartTopBanners = this.banners.filter(b =>
             b.bannerPage?.includes('my_cart') && b.bannerType === 'top_banner'
           );
@@ -113,7 +97,6 @@ export class MyCartListComponent {
         }
       },
       error: (err) => {
-        console.error('Banner fetch failed:', err);
         this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
       }
     });
@@ -150,7 +133,6 @@ export class MyCartListComponent {
     if(this.userid == null){
       this.userid = 0 ;
      }
-    console.log(this.userid,'userid')
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
