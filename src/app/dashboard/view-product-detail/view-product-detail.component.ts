@@ -2,7 +2,6 @@ import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { Location } from '@angular/common';
@@ -14,7 +13,6 @@ import { BannerService } from 'src/app/banner.service';
   styleUrls: ['./view-product-detail.component.scss']
 })
 export class ViewProductDetailComponent implements OnDestroy {
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   currentValue: number = 22;
   firstIconDisabled: boolean = true;
   secondIconDisabled: boolean = false;
@@ -75,13 +73,6 @@ getBanners() {
     next: (res) => {
       if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
         this.banners = res.response;
-        console.log("product banner", this.banners)
-        console.log('All banners received:', this.banners.map(b => ({
-  page: b.bannerPage,
-  type: b.bannerType,
-  title: b.title
-})));
-
        this.productTopBanners = this.banners.filter(b =>
   b.bannerPage?.includes('product') && b.bannerType?.includes('top_banner')
 );
@@ -132,8 +123,6 @@ goBack(): void {
     this.dashboardservice.getProductByCategoryId(this.productid,this.userid).subscribe((res) => {
       if (res.status === 0) {
         this.productRes = res['response'];
-        console.log("first",this.productRes);
-      
       }
     });
 
@@ -211,7 +200,6 @@ goBack(): void {
     if(this.userid == null){
       this.userid = 0;
     }
-    console.log(this.userid,'userid')
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -224,7 +212,6 @@ goBack(): void {
   }
   cardload(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid');
     if(this.userid == null){
       this.userid = 0;
     }
@@ -234,10 +221,6 @@ goBack(): void {
         
         this.totalrecordLength = this.data.response.totalElements;
         this.wishlist = this.data.response.dataSet;
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;   
-          this.paginator.length = this.totalrecordLength;
-        });
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })

@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild,AfterViewInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
@@ -14,7 +13,6 @@ declare var bootstrap: any;
 })
 export class AnalyticsComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   currentValue: number = 22;
   category:any;
   carttotal:any;
@@ -80,14 +78,10 @@ firstTimeLogin: string | null = null;
   tabelLoad(page: number) {
     this.dashboardservice.getAllcategoryy().subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
+      if (this.data?.status === 0) {
         window.scrollTo(0, 0);
-        this.totalrecordLength = this.data.response.totalElements;
-        this.category = this.data.response.dataSet;
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = this.totalrecordLength;
-        });
+        this.totalrecordLength = this.data?.response?.totalElements;
+        this.category = this.data?.response?.dataSet || [];
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -100,12 +94,8 @@ firstTimeLogin: string | null = null;
 getBanners() {
   this.bannerService.getBanners().subscribe({
     next: (res) => {
-      console.log('Banner response:', res);
-
       if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
         this.banners = res.response;
-        console.log("Loaded banners:", this.banners);
-
         this.homeTopBanners = this.banners.filter(b =>
           b.bannerPage?.includes('home_page') && b.bannerType === 'top_banner'
         );
@@ -138,7 +128,6 @@ getBanners() {
 
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid');
     if(this.userid != null ){
       this.userId =this.userid
     }else{
@@ -162,17 +151,12 @@ getBanners() {
       this.userid=0
     }
    
-    console.log(this.userid,'userid')
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
+      if (this.data?.status === 0) {
        
-        this.totalrecordLength = this.data.response.totalElements;
-        this.wishlist = this.data.response.dataSet;
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;   
-          this.paginator.length = this.totalrecordLength;
-        });
+        this.totalrecordLength = this.data?.response?.totalElements;
+        this.wishlist = this.data?.response?.dataSet || [];
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })

@@ -29,7 +29,7 @@
       <div class="custom-banner-wrapper mt-2">
         <div class="custom-banner" *ngFor="let banner of cartTopBanners; let i = index"
           [class.active]="i === currentcartBannerIndex">
-          <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
+          <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner?.title || 'Banner Image' }}"
             class="d-block w-100" />
         </div>
       </div>
@@ -58,11 +58,11 @@
                 <h5 class="mb-0 main-text p-3"  style="font-weight:600;font-size:20px;line-height:24px; color:
                 #191C1F;">Shopping Cart</h5>
             </div>
-            <div class="mt-2 cardNA mb-3" *ngIf="!wishlist.length">
+            <div class="mt-2 cardNA mb-3" *ngIf="!wishlist?.length">
               <h5 class="mb-1">Data  not available</h5>
             </div>
             <div class="scrollwrapper">
-              <table class="table" *ngIf="wishlist.length">
+              <table class="table" *ngIf="wishlist?.length">
                 <thead>
                   <tr>
                     <th scope="col" style=" color:#475156;width: 60%;">PRODUCTS</th>
@@ -77,10 +77,10 @@
                     <th scope="row">
                       <div class="d-flex align-items-center">
                         <div class="d-flex">
-                          <p class="mt-4"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
+                          <p class="mt-4"><mat-icon style="color: #929FA5;" (click)="deletewishlist(data?.cartId)">highlight_off</mat-icon></p>
                           <div class="p-2">
                             <img class="avatar-xs customer-image-elem" alt=""
-                                 [src]="data.image || 'assets/images/download (20).png'" 
+                                 [src]="data?.image || 'assets/images/download (20).png'" 
                                  onerror="this.src='assets/images/download (20).png';"
                                  style="width:54px;height:54px;border-radius: 8px;">
                           </div>
@@ -88,12 +88,12 @@
                         <div class="flex-grow-1 p-3">
                           <h5 class="fs-base mb-0">
                             <a href="javascript:void(0);" class="text-reset customer-name-elem"
-                               style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</a>
+                               style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/view-product-detail',data?.productId]">{{data?.productTitle}}</a>
                           </h5>
                         </div>
                       </div>
                     </th>
-                    <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{ data.price }} / {{data.unitName}}</td>
+                    <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{ data?.price }} / {{data?.unitName}}</td>
                     <td>
                       <div class="d-flex">
                         <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;    width: 148px;
@@ -104,20 +104,20 @@
                        </div>
                          <div class="col-md-7">
                           <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 6px;padding-left: 14px;" class="">
-                            <input type="number" min="1" class="form-control" style="height: 34px;" [value]="data.quantity" (change)="submitcart(data,$event,'input')">
+                            <input type="number" min="1" class="form-control" style="height: 34px;" [value]="data?.quantity" (change)="submitcart(data,$event,'input')">
                             <!-- {{ data.quantity || '1' }} -->
                               
                           </p>
                           
                          </div>
                         <div class="col-md-3 mt-3">
-                          <i class="ri-add-line ps-2" (click)="incrementValue(data);submitcart(data,data.quantity,'increment')"style="font-size: 22px;padding-left: 40px; cursor: pointer"> </i>
+                          <i class="ri-add-line ps-2" (click)="incrementValue(data);submitcart(data,data?.quantity,'increment')"style="font-size: 22px;padding-left: 40px; cursor: pointer"> </i>
                         </div>
                      </div>
                         </div>
                       </div>
                     </td>
-                    <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{ data.subTotal || '0' }}</td>
+                    <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156">${{ data?.subTotal || '0' }}</td>
                   </tr>
                   
                   <!-- <tr>
@@ -170,22 +170,22 @@
                         <div class="row">
                           <div class="d-flex justify-content-between p-2">
                             <span>Sub-total</span>
-                            <span class="font-weight-bold">${{carttotal.subTotal | number:'1.0-2'}}</span>
+                            <span class="font-weight-bold">${{carttotal?.subTotal | number:'1.0-2'}}</span>
                           </div>
                           
                           <div class="d-flex justify-content-between p-2">
                             <a> Shipping</a>
-                            <span class="font-weight-bold"> ${{carttotal.shipping | number:'1.0-2'}}</span>
+                            <span class="font-weight-bold"> ${{carttotal?.shipping | number:'1.0-2'}}</span>
                           </div>
           
                           <div class="d-flex justify-content-between p-2">
                              <a> Discount</a>
-                             <span class="font-weight-bold"> ${{carttotal.discount}}</span>
+                             <span class="font-weight-bold"> ${{carttotal?.discount}}</span>
                           </div><hr>
           
                           <div class="d-flex justify-content-between p-2">
                             <span class="font-weight-bold"> Total</span>
-                            <span  class="font-weight-bold">${{carttotal.total | number:'1.0-2'}} USD</span>
+                            <span  class="font-weight-bold">${{carttotal?.total | number:'1.0-2'}} USD</span>
                           </div>
           
                           <div class="d-flex flex-column">

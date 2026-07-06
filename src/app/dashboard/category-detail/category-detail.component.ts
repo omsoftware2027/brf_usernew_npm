@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
@@ -30,7 +29,6 @@ export class CategoryDetailComponent {
   showMoreText:any;
   toggleStates: boolean[] = [];
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   category:any[] = [];
   routeSubscription!: Subscription;
   categoryname: string = '';
@@ -105,10 +103,6 @@ export class CategoryDetailComponent {
           { replaceUrl: true }) : '';
 
         this.toggleStates = new Array(this.category.length).fill(true);
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = this.totalrecordLength;
-        });
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -183,7 +177,6 @@ export class CategoryDetailComponent {
   }
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid');
     if(this.userid == null){
       this.userid = 0;
     }
@@ -199,7 +192,6 @@ export class CategoryDetailComponent {
   }
   cardload(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid');
     if(this.userid == null){
       this.userid = 0;
     }
@@ -208,10 +200,6 @@ export class CategoryDetailComponent {
       if (this.data.status === 0) {
         this.totalrecordLength = this.data.response.totalElements;
         this.wishlist = this.data.response.dataSet;
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;   
-          this.paginator.length = this.totalrecordLength;
-        });
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })

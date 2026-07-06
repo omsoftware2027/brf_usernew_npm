@@ -15,7 +15,6 @@ export class DashboardService {
     return this.http.post<any>(`${environment.baseurl}/auth/login`, data)
       .pipe(
         map((apiResponse) => {
-          console.log('hj')
           // Check if the 'response' property exists
           if (apiResponse && apiResponse.response) {
           
