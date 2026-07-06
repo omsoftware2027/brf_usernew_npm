@@ -36,7 +36,7 @@ filteredWishlist: any[] = [];
 
   constructor(
     private matSnackBar: MatSnackBar,
-    private dashboardservice: DashboardService,
+    public dashboardservice: DashboardService,
     private reloadCommonService: MasterService,
     private bannerService: BannerService,
     private authService: AuthService,

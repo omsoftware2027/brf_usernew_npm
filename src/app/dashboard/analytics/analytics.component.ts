@@ -43,7 +43,7 @@ firstTimeLogin: string | null = null;
 
 
  
-  constructor(private matSnackBar:MatSnackBar,private dashboardservice:DashboardService, private bannerService: BannerService, private router: Router, public reloadCommonService:MasterService) { }
+  constructor(private matSnackBar:MatSnackBar, public dashboardservice:DashboardService, private bannerService: BannerService, private router: Router, public reloadCommonService:MasterService) { }
 
   ngOnInit(): void {
     this.tabelLoad(0);

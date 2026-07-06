@@ -33,7 +33,8 @@ export class CategoryDetailComponent {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   category:any[] = [];
   routeSubscription!: Subscription;
-  categoryname:any;
+  categoryname: string = '';
+  slug: string = '';
   data:any;
   userid:any;
   page: number = 0;
@@ -51,7 +52,7 @@ export class CategoryDetailComponent {
   currentTopBannerIndex: number = 0;
   bannerInterval: any;
 
-  constructor(private dashboardservice:DashboardService,private router: Router,
+  constructor(public dashboardservice:DashboardService,private router: Router,
     private route: ActivatedRoute,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,
   public bannerService: BannerService) { }
 
@@ -60,6 +61,7 @@ export class CategoryDetailComponent {
     this.userDetails = localStorage.getItem('UserDetails');
     this.userDetails = JSON.parse(this.userDetails);
      this.categoryid = this.route.snapshot.params['id'];
+     this.slug = this.route.snapshot.params['slug'] || 'Category';
      this.userid=localStorage.getItem('id');
      this.routeSubscription = this.route.params.subscribe(params => {
       this.categoryid = params['id'];
@@ -95,7 +97,13 @@ export class CategoryDetailComponent {
 
         this.totalrecordLength = this.data.response.totalElements;
         this.category = this.data.response.projectResponse.dataSet || [];
-        this.categoryname=this.data.response.category;
+        this.categoryname=this.data.response.category || '';
+
+        const convertedSlug = this.dashboardservice.generateSlug(this.categoryname);
+        this.slug !== convertedSlug ? this.router.navigate(
+          ['/category', this.categoryid, convertedSlug],
+          { replaceUrl: true }) : '';
+
         this.toggleStates = new Array(this.category.length).fill(true);
         setTimeout(() => {
           this.paginator.pageIndex = this.currentPage;
