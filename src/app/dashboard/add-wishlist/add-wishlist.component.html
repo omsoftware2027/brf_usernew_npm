@@ -101,7 +101,7 @@
                           </div>
                           <div class="flex-grow-1">
                               <p class="fs-base mb-0"><a href="javascript:void(0);"
-                                      class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/view-product-detail',data.productId]">{{data.productTitle}}</a></p>
+                                      class="text-reset customer-name-elem" style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"[routerLink]="['/product', data?.productId, dashboardservice.generateSlug(data.productTitle)]">{{data.productTitle}}</a></p>
                           </div>
                       </div>
                   </th>

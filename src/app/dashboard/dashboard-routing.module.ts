@@ -49,7 +49,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'view-product-detail/:id',
+        path: 'product/:id/:slug',
         component: ViewProductDetailComponent,
         data: {
           title: 'viewcategorydetail'
