@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { Location } from '@angular/common';
 import { BannerService } from 'src/app/banner.service';
+import { SeoService } from 'src/app/services/seo/seo.service';
 
 @Component({
   selector: 'app-view-product-detail',
@@ -38,7 +39,15 @@ export class ViewProductDetailComponent implements OnDestroy {
 // productTopBanners: any[] = [];
 bannerInterval: any;
 
-  constructor(public dashboardservice:DashboardService,private route: ActivatedRoute ,private matSnackBar:MatSnackBar,private router: Router,private reloadCommonService:MasterService, private location: Location,private bannerService: BannerService ){
+  constructor(public dashboardservice:DashboardService,
+    private route: ActivatedRoute ,
+    private matSnackBar:MatSnackBar,
+    private router: Router,
+    private reloadCommonService:MasterService, 
+    private location: Location,
+    private bannerService: BannerService,
+    public seoService: SeoService,
+   ){
 
   }
 
@@ -103,6 +112,8 @@ goBack(): void {
 }
 
   ngOnDestroy() {
+    // metadata is incomplete for other multiple component, setDefault before dynamic applied seo page destroy 
+    this.seoService.setDefaultSeo();
     // Unsubscribe to avoid memory leaks
     this.routeSubscription.unsubscribe();
      if (this.bannerInterval) {
@@ -129,6 +140,13 @@ goBack(): void {
         this.slug !== convertedSlug ? this.router.navigate(
           ['/product', this.productid, convertedSlug],
           { replaceUrl: true }) : '';
+          
+          // SEO
+        this.seoService.setProductSeo(
+          this.productid,
+          this.productRes?.title,
+          this.productRes?.image
+        );
       }
     });
 
