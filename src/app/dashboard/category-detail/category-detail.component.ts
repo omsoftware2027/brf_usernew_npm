@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, Output, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
@@ -6,6 +6,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { BannerService } from 'src/app/banner.service';
+import { Meta, Title } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
+import { SeoService } from 'src/app/services/seo/seo.service';
 
 @Component({
   selector: 'app-category-detail',
@@ -50,9 +53,15 @@ export class CategoryDetailComponent {
   currentTopBannerIndex: number = 0;
   bannerInterval: any;
 
-  constructor(public dashboardservice:DashboardService,private router: Router,
-    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,
-  public bannerService: BannerService) { }
+  constructor(
+    public dashboardservice: DashboardService, 
+    private router: Router,
+    private route: ActivatedRoute, 
+    private matSnackBar: MatSnackBar, 
+    private reloadCommonService: MasterService,
+    public bannerService: BannerService,
+    public seoService: SeoService,
+  ) { }
 
    ngOnInit(): void {
     this.getBanners();
@@ -73,9 +82,11 @@ export class CategoryDetailComponent {
     
      // this.getAllcategoryproduct();
    }
-   ngOnDestroy() {
+  ngOnDestroy() {
+    // metadata is incomplete for other multiple component, setDefault before dynamic applied seo page destroy 
+    this.seoService.setDefaultSeo();
     // Unsubscribe to avoid memory leaks
-    this.routeSubscription.unsubscribe();
+    this.routeSubscription?.unsubscribe();
   }
   toggleIcons(iconClicked: string, index: number) {
     if (iconClicked === 'first') {
@@ -92,7 +103,6 @@ export class CategoryDetailComponent {
       this.data =res;
       if (this.data.status === 0) {
 
-
         this.totalrecordLength = this.data.response.totalElements;
         this.category = this.data.response.projectResponse.dataSet || [];
         this.categoryname=this.data.response.category || '';
@@ -101,6 +111,12 @@ export class CategoryDetailComponent {
         this.slug !== convertedSlug ? this.router.navigate(
           ['/category', this.categoryid, convertedSlug],
           { replaceUrl: true }) : '';
+          // SEO
+        this.seoService.setCategorySeo(
+          this.categoryid,
+          this.categoryname,
+          this.data?.response?.categoryImage || this.category?.[0]?.categoryImage
+        );
 
         this.toggleStates = new Array(this.category.length).fill(true);
       }

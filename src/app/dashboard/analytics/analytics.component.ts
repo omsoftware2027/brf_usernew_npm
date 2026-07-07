@@ -5,6 +5,7 @@ import { DashboardService } from '../dashboard.service';
 import { BannerService } from 'src/app/banner.service';
 import { Router } from '@angular/router';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { SeoService } from 'src/app/services/seo/seo.service';
 declare var bootstrap: any;
 @Component({
   selector: 'app-analytics',
@@ -41,9 +42,17 @@ firstTimeLogin: string | null = null;
 
 
  
-  constructor(private matSnackBar:MatSnackBar, public dashboardservice:DashboardService, private bannerService: BannerService, private router: Router, public reloadCommonService:MasterService) { }
+  constructor(
+    private matSnackBar: MatSnackBar,
+    public dashboardservice: DashboardService,
+    private bannerService: BannerService,
+    private router: Router,
+    public reloadCommonService: MasterService,
+    public seoService: SeoService,
+  ) { }
 
   ngOnInit(): void {
+     this.seoService.setDefaultSeo();
     this.tabelLoad(0);
     this.getallcarttotal(0);
     this.cardload(0);
