@@ -209,6 +209,12 @@
 
 }
 
+.quantity-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: #D9D9D9 !important;
+}
+
 @media (min-width:768px) and (max-width: 1024px) {
   .panel-collapse {
     height: auto !important;

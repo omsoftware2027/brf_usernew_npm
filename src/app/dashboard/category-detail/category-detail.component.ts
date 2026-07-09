@@ -159,12 +159,16 @@ export class CategoryDetailComponent {
       this.router.navigate(['/email-signup']);
      }
   }
-  submitcart(productId:any,price:any){
+  submitcart(productId:any,price:any, quantity: number){
+    if (quantity <= 0) {
+      this.matSnackBar.open("Quantity must be at least 1", 'x', { duration: 3000 });
+      return;
+    }
      if( this.userid > 0  ){
       let data = {
         productId:productId,
         userId: this.userid,
-        quantity:1,
+        quantity: quantity,
         weight:0,
         shipping:0,
         price:price
@@ -250,6 +254,7 @@ export class CategoryDetailComponent {
           this.cardload(0);
           this.getallcount();
           this.getallcart();
+          this.tabelLoad(0)
         }
       })
     }
@@ -260,9 +265,10 @@ export class CategoryDetailComponent {
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
         this.reloadCommonService.sendUpdate('reloadWalletDetail');
-        this.matSnackBar.open("Quantity Update ", 'x', { duration: 2000 });
+        this.matSnackBar.open("Quantity Updated", 'x', { duration: 2000 });
         this.getallcarttotal(0);
         this.cardload(0);
+        this.tabelLoad(0);
       }
       else {
         this.matSnackBar.open(res.response, 'x', { duration: 2000 });
@@ -346,5 +352,44 @@ focusCard(event: MouseEvent,index: number) {
       }
     });
   }
+
+  // decrementValue1(data: any): void {
+  //   if (data.quantity === undefined || data.quantity <= 0) {
+  //     return;
+  //   } else {
+  //     data.quantity -= 1;
+  //   }
+  // }
+  // incrementValue1(data: any): void {
+  //   if (data.quantity === undefined) {
+  //     data.quantity = 1;
+  //   } else {
+  //     data.quantity += 1;
+  //   }
+  // }
+
+  // chnageQuantityVal(ev: any) {
+  //   this.productRes.quantity = ev.target.value;
+  // }
+
+  decrementQty(item: any): void {
+    if (!item.quantity || item.quantity <= 0) {
+      item.quantity = 0;
+      return;
+    }
+    item.quantity--;
+  }
+
+  incrementQty(item: any): void {
+    if (item?.quantity < 1) {
+      item.quantity = 1;
+    } else {
+      item.quantity = item.quantity + 1;
+    }
+  }
+  onQuantityChange(item: any): void {
+    item.quantity = Math.floor(item.quantity);
+  }
+
 }
        
