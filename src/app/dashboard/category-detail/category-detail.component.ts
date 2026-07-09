@@ -182,6 +182,7 @@ export class CategoryDetailComponent {
           this.getallcarttotal(0);
           this.getallcount();
           this.getallcart();
+          this.tabelLoad(0);
           // this.apiCallSuccess.emit();
           
   
@@ -237,12 +238,14 @@ export class CategoryDetailComponent {
   }
   
   decrementValue(data: any): void {
-    if (data.quantity === undefined || data.quantity <= 0) {
+    if (data.quantity === undefined || data.quantity <= 1) {
       // If quantity property doesn't exist or is already 0, do nothing
+      this.matSnackBar.open("Minimum quantity should be 1", 'x', { duration: 2000 });
       return;
     } else {
       // Decrement the quantity
       data.quantity -= 1;
+      this.savequantity(data?.productId, data?.quantity);
     }
   }
   deletewishlist(id:any) {
@@ -352,25 +355,6 @@ focusCard(event: MouseEvent,index: number) {
       }
     });
   }
-
-  // decrementValue1(data: any): void {
-  //   if (data.quantity === undefined || data.quantity <= 0) {
-  //     return;
-  //   } else {
-  //     data.quantity -= 1;
-  //   }
-  // }
-  // incrementValue1(data: any): void {
-  //   if (data.quantity === undefined) {
-  //     data.quantity = 1;
-  //   } else {
-  //     data.quantity += 1;
-  //   }
-  // }
-
-  // chnageQuantityVal(ev: any) {
-  //   this.productRes.quantity = ev.target.value;
-  // }
 
   decrementQty(item: any): void {
     if (!item.quantity || item.quantity <= 0) {
