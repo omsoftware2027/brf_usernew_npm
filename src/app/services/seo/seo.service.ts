@@ -1,28 +1,66 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { Observable, shareReplay } from 'rxjs';
+import { DashboardService } from 'src/app/dashboard/dashboard.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeoService {
 
+  private defaultSeo: any = null;
+  private defaultSeoRequest$?: Observable<any>;
+
   constructor(
     private title: Title,
     private meta: Meta,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    private dashboardService: DashboardService
   ) { }
 
 
   // Default SEO (same as index.html)
   setDefaultSeo(): void {
-    const title = 'B&R Food Services Inc. | Wholesale Restaurant Supplies & Food Packaging USA';
-    const description = 'B&R Food Services Inc. is your trusted wholesale supplier of food packaging, restaurant supplies, janitorial products, kitchen essentials, and disposable products with fast delivery across the USA.';
-    const keywords = 'B&R Food Services Inc., wholesale restaurant supplies, food packaging, disposable food containers, takeout containers, kitchen supplies, janitorial supplies, restaurant packaging, catering supplies, food service products, wholesale food containers, commercial kitchen supplies';
-    const canonical = 'https://brfood.us/';
-    const image = 'https://assets.brfood.us/1692711907309_logo.png';
+    if (this.defaultSeo) {
+      this.applyDefaultSeo(this.defaultSeo);
+      return;
+    }
+    if (!this.defaultSeoRequest$) {
+      this.defaultSeoRequest$ = this.dashboardService.getcontactus().pipe(shareReplay(1));
+    }
+    this.defaultSeoRequest$.subscribe({
+      next: (res: any) => {
+        if (res?.status === 0 && res?.response) {
+          this.defaultSeo = res.response;
+          this.applyDefaultSeo(this.defaultSeo);
+        } else {
+          this.applyDefaultSeo();
+        }
+      },
+      error: () => {
+        this.applyDefaultSeo();
+      }
+    });
+  }
 
-    this.applySeo({ title, description, keywords, canonical, image });
+  private applyDefaultSeo(data?: any): void {
+    const title =
+      data?.metaTitle ||
+      'B&R Food Services Inc. | Wholesale Restaurant Supplies & Food Packaging USA';
+    const description =
+      data?.metaDescription ||
+      'B&R Food Services Inc. is your trusted wholesale supplier of food packaging, restaurant supplies, janitorial products, kitchen essentials, and disposable products with fast delivery across the USA.';
+    const keywords =
+      data?.metaTags ||
+      'B&R Food Services Inc., wholesale restaurant supplies, food packaging, disposable food containers, takeout containers, kitchen supplies, janitorial supplies, restaurant packaging, catering supplies, food service products, wholesale food containers, commercial kitchen supplies';
+    this.applySeo({
+      title,
+      description,
+      keywords,
+      canonical: window.location.origin + '/',
+      image: 'https://assets.brfood.us/1692711907309_logo.png'
+    });
   }
 
   // Category SEO
@@ -31,7 +69,7 @@ export class SeoService {
     this.applySeo({
       title: `${categoryName} | Wholesale Restaurant Supplies | B&R Food Services Inc.`,
       description: `Shop wholesale ${categoryName} products from B&R Food Services Inc. Browse premium restaurant supplies with competitive pricing and fast delivery across the USA.`,
-      keywords: 'B&R Food Services Inc., wholesale restaurant supplies, food packaging, disposable food containers, takeout containers, kitchen supplies, janitorial supplies, restaurant packaging, catering supplies, food service products',
+      keywords: this.getDefaultKeywords(),
       canonical: `${window.location.origin}/category/${categoryId}/${slug}`,
       image: image || 'https://assets.brfood.us/1692711907309_logo.png',
       ogTitle: `${categoryName} Food Packaging | Wholesale Restaurant Supplies`,
@@ -46,7 +84,7 @@ export class SeoService {
     this.applySeo({
       title: `${productName} | B&R Food Services Inc.`,
       description: `Buy ${productName} from B&R Food Services Inc. Premium restaurant supplies with fast delivery across the USA.`,
-      keywords: `${productName}, restaurant supplies, food packaging, wholesale products`,
+      keywords: this.getDefaultKeywords(),
       canonical: `${window.location.origin}/product/${productId}/${slug}`,
       image: image || 'https://assets.brfood.us/1692711907309_logo.png'
     });
@@ -98,5 +136,10 @@ export class SeoService {
     } catch (error) {
       return String(name);
     }
+  }
+
+  private getDefaultKeywords(): string {
+    return this.defaultSeo?.metaTags ||
+      'B&R Food Services Inc., wholesale restaurant supplies, food packaging, disposable food containers, takeout containers, kitchen supplies, janitorial supplies, restaurant packaging, catering supplies, food service products, wholesale food containers, commercial kitchen supplies';
   }
 }
