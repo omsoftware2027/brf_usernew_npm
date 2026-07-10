@@ -554,7 +554,7 @@
                                                                         <div class="flex-shrink-0 me-2">
                                                                             <div>
                                                                                 <img class="avatar-xs  customer-image-elem" alt=""
-                                                                                    [src]="data?.image || 'assets/images/download (20).png' " style="width:62px;height:62px">
+                                                                                    [src]="data?.image || 'assets/images/download (20).png' " onerror="this.src='assets/images/download (20).png';" style="width:62px;height:62px">
                                                                             </div>
                                                                         </div>
                                                                         <div class="flex-grow-1 p-3">
@@ -774,7 +774,7 @@
                                                             <div class="flex-shrink-0 me-2">
                                                               <div class="d-flex">
                                                                 <img [ngClass]="{'invisible ': !data1.isCart}" class="me-2 mt-3" width="25px" height="25px" src="../../../assets/images/addedCart.png">
-                                                                <img class="avatar-xs customer-image-elem" alt="" [src]="data1.productImage || 'assets/images/download (20).png'" style="width:62px;height:62px">
+                                                                <img class="avatar-xs customer-image-elem" alt="" [src]="data1.productImage || 'assets/images/download (20).png'" onerror="this.src='assets/images/download (20).png';" style="width:62px;height:62px">
                                                               </div>
                                                             </div>
                                                             <div class="flex-grow-1">
@@ -901,7 +901,7 @@
                                                             <div class="d-flex">
                                                                 <img [ngClass]="{'invisible ': !data1.isCart}" class="me-2 mt-3" width="25px" height="25px" src="../../../assets/images/addedCart.png">
                                                                 <img class="avatar-xs  customer-image-elem" alt=""
-                                                                [src]="data1.productImage || 'assets/images/download (20).png'" style="width:62px;height:62px">
+                                                                [src]="data1.productImage || 'assets/images/download (20).png'" onerror="this.src='assets/images/download (20).png';" style="width:62px;height:62px">
                                                             </div>
                                                         </div>
                                                         <div class="flex-grow-1">
@@ -1386,7 +1386,7 @@
 
                                                                 </td>
                                                                 <td >
-                                                                    <img class="avatar-xs customer-image-elem" alt="" [src]="data.image || 'assets/images/download (20).png'" style="width:62px;height:62px">
+                                                                    <img class="avatar-xs customer-image-elem" alt="" [src]="data.image || 'assets/images/download (20).png'" onerror="this.src='assets/images/download (20).png';" style="width:62px;height:62px">
 
                                                                 </td>
                                                                 <td style="color:#000000">

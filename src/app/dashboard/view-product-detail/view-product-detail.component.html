@@ -59,7 +59,7 @@
         <div class="scrollwrapper">
           <div class=" col-md-12 d-flex d-block-mb">
             <div class="col-md-4 p-2">
-              <img loading="lazy" [src]="productRes?.image|| 'assets/images/download (20).png'" class="img-fluid">
+              <img loading="lazy" [src]="productRes?.image|| 'assets/images/download (20).png'" onerror="this.src='assets/images/download (20).png';" class="img-fluid">
             </div>
             <div class="col-md-8 p-4 pm-3">
               <div>
@@ -173,7 +173,7 @@
             <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
               <div class="d-flex col-md-12 col-lg-12 col-xl-12">
                 <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
-                  <img loading="lazy" [src]="data?.image || 'assets/images/download (20).png'"
+                  <img loading="lazy" [src]="data?.image || 'assets/images/download (20).png'" onerror="this.src='assets/images/download (20).png';"
                     style="width:74px; height: 74px; border-radius: 5px;">
 
                 </div>
