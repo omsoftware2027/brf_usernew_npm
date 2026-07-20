@@ -69,8 +69,8 @@ filteredWishlist: any[] = [];
     next: (res: any) => {
       if (res.status === 0) {
         // window.scrollTo(0, 0);
-        this.totalrecordLength = res.response.totalElements;
-        this.wishlist = res.response.dataSet || [];
+        this.totalrecordLength = res?.response?.totalElements;
+        this.wishlist = res?.response?.dataSet || [];
         this.filteredWishlist = [...this.wishlist];
 
         // Apply active search filter if any
