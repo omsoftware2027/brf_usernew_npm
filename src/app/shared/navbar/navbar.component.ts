@@ -510,7 +510,8 @@ goToCart(path: string) {
           if (res.status === 0 && res['response'].length > 0) {
             this.titlesAndIdsArray2 = res['response'].map((item: { title: any; cmsId: any; }) => ({
               title: item.title,
-              cmsId: item.cmsId
+              cmsId: item.cmsId,
+              slug: this.dashboardservice.generateSlug(item.title)
             }));
           }
         });
