@@ -91,7 +91,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'statement/:id',
+        path: 'resources/:slug',
         component: StatementComponent,
         data: {
           title: 'statement'

@@ -19,8 +19,8 @@
                   
                   <p *ngIf="token" [routerLink]="['/account-detail']" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;">My Account</p>
                   <div *ngFor="let data of titlesAndIdsArray2 ">
-                    <div [routerLink]="['/statement',data?.cmsId]">
-                        <p [routerLink]="['/new-customers',data?.cmsId]" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;" class="ps-2">{{data?.title}}</p>
+                    <div [routerLink]="['/resources', data.slug]">
+                        <p [routerLink]="['/resources', data.slug]" (click)="toogleBtn=!toogleBtn" style="color: #fff;font-size: 14px;font-weight: 500;" class="ps-2">{{data?.title}}</p>
                     </div>
                   </div>
                   <p [routerLink]="['/add-wishlist']"  (click)="toogleBtn=!toogleBtn"style="color: #fff;font-size: 14px;font-weight: 500;"> Order Guide [ {{wishcart}} ]</p>
@@ -51,8 +51,8 @@
                   <p class="ms-2 mb-0">|</p>
                 </li>
                 <div *ngFor="let data of titlesAndIdsArray2 " style="height: max-content;">
-                    <li style="height: max-content" [routerLink]="['/statement',data?.cmsId]">
-                        <p [routerLink]="['/new-customers',data?.cmsId]" style="color: #000000;font-size: 14px;font-weight: 400;" class="ps-2 mb-0">{{data?.title}}  <span class="ms-2">|</span></p>
+                    <li style="height: max-content" [routerLink]="['/resources', data.slug]">
+                        <p [routerLink]="['/resources', data.slug]" style="color: #000000;font-size: 14px;font-weight: 400;" class="ps-2 mb-0">{{data?.title}}  <span class="ms-2">|</span></p>
                     </li>
                 </div>
               </ul>

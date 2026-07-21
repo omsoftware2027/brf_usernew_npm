@@ -44,13 +44,20 @@ export class FooterComponent implements OnInit{
       
     }
 
-    getFooterData() {
-        this.dashboardservice.getallcmsdata('').subscribe((res) => {
-          if (res.status === 0) {
-            this.footerDetails = res.response ?? {}
-          }
+  getFooterData() {
+    this.dashboardservice.getallcmsdata('').subscribe((res) => {
+      if (res.status === 0) {
+        const footerData = res.response ?? {};
+        Object.keys(footerData).forEach((key: string) => {
+          footerData[key] = footerData[key].map((item: any) => ({
+            ...item,
+            slug: this.dashboardservice.generateSlug(item.title)
+          }));
         });
-    }
+        this.footerDetails = footerData;
+      }
+    });
+  }
 
     getcustomercontact() {
       this.dashboardservice.getcontactus().subscribe((res) => {
