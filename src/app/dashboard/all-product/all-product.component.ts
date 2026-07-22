@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
@@ -12,7 +12,7 @@ import { MasterService } from 'src/app/services/master-service/master.service';
   templateUrl: './all-product.component.html',
   styleUrls: ['./all-product.component.scss']
 })
-export class AllProductComponent {
+export class AllProductComponent implements OnInit, OnDestroy {
   currentValue: number = 22;
   showMoreStates: boolean[] = [];
   firstIconDisabled: boolean = true;
@@ -59,13 +59,11 @@ export class AllProductComponent {
     this.getallcount();
     // this.getallcarttotal(0);
      this.cardload(0)
-      this.dashboardService.productSearchResults$.subscribe((data) => {
-        if (data.length) {
-          this.productt = data;
-        } else {
-          this.getallproduct() 
-        }
-  });
+     this.route.queryParams.subscribe(params => {
+       this.productname = params['search'] || '';
+       this.dashboardservice.setSearchText(this.productname);
+       this.getallproduct();
+     });     
     
      // this.getAllcategoryproduct();
    }
@@ -93,10 +91,6 @@ export class AllProductComponent {
         this.toggleStates = new Array(this.category.length).fill(true);
         this.getallcarttotal(0);
         this.cardload(0);
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;
-          this.paginator.length = this.totalrecordLength;
-        });
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -166,7 +160,6 @@ export class AllProductComponent {
   }
   getallcarttotal(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
     if (this.userid) {
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
@@ -181,7 +174,6 @@ export class AllProductComponent {
   }
   cardload(page: number) {
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
 
     if (this.userid) {
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
@@ -192,11 +184,6 @@ export class AllProductComponent {
         }
         this.totalrecordLength = this.data.response.totalElements;
         this.wishlist = this.data.response.dataSet;
-        setTimeout(() => {
-          this.paginator.pageIndex = this.currentPage;   
-          this.paginator.length = this.totalrecordLength;
-        });
-
         setTimeout(()=>{
           this.preventScrollToTop = false
         }, 3000)
@@ -238,17 +225,12 @@ export class AllProductComponent {
   //   }
   // }
   getallproduct() {
-    const name =   this.productname || '';
+    const name =  (this.productname || '').trim();
     this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid')
-    this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name, this.userid || '').subscribe(res => {
+    this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name, this.userid || '').subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
         this.productt = this.data.response.dataSet;
-      
-      }
-      else {
-       
       }
     })
   }
@@ -324,5 +306,9 @@ export class AllProductComponent {
   }
   toggleShowMore(index: number) {
     this.showMoreStates[index] = !this.showMoreStates[index]; // Toggle "Show more" state
+  }
+
+  ngOnDestroy(): void {
+    this.dashboardservice.setSearchText('');
   }
 }

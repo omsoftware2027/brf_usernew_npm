@@ -1,12 +1,10 @@
 import { Component , ElementRef, HostListener, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { Router, ActivatedRoute } from "@angular/router";
-import { BehaviorSubject, interval } from 'rxjs';
-import { ModalDirective } from 'ngx-bootstrap/modal';
+import { BehaviorSubject } from 'rxjs';
 import { SigninPopupComponent } from '../signin-popup/signin-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup,Validators } from '@angular/forms';
-import { LoginComponent } from 'src/app/auth/login/login.component';
 import { SignInComponent } from 'src/app/dashboard/sign-in/sign-in.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
@@ -177,39 +175,38 @@ export class NavbarComponent implements OnInit{
         this.sidebarservice.setSidebarState(true);
     }
 
-    ngOnInit() {
-        this.authService.token$.subscribe(token => {
-          this.token = token;
-        });
-        this.authService.userType$.subscribe(userType => {
-          this.usertype = userType;
-        })
-        this.name = localStorage.getItem('name');
-        this.userId=localStorage.getItem('id');
-        // this.usertype = localStorage.getItem('usertype');
-        this.loginTime = localStorage.getItem('loginTime');
-        this.sessionId = localStorage.getItem('sessionId');
-        this.getfootergeneral();
-        this.tabelLoad(0);
-        this.getallcount();
-        this.getallproduct();
-        this.getallcart() ;
-        this.login();
-        this.getallcarttotal(0);
-      //   this.renderer.listen('document', 'click', (event) => {
-      //     // Check if the click target is not within the input field or the dropdown list
-      //     if (!this.elementRef.nativeElement.contains(event.target)) {
-      //         // Clear the input field
-      //         this.searchproduct?.get('productname')?.setValue('');
-      //         // Hide the dropdown
-      //         this.showDropdown = false;
-      //     }
-      // });
+  ngOnInit() {
+    this.dashboardservice.searchText$.subscribe(search => {
+      this.searchproduct.patchValue(
+        {
+          productname: search
+        },
+        { emitEvent: false }
+      );
+      if (!search) {
+        this.product = [];
+        this.showDropdown = false;
+      }
+    });
 
-
-
-
-
+    this.authService.token$.subscribe(token => {
+      this.token = token;
+    });
+    this.authService.userType$.subscribe(userType => {
+      this.usertype = userType;
+    })
+    this.name = localStorage.getItem('name');
+    this.userId = localStorage.getItem('id');
+    // this.usertype = localStorage.getItem('usertype');
+    this.loginTime = localStorage.getItem('loginTime');
+    this.sessionId = localStorage.getItem('sessionId');
+    this.getfootergeneral();
+    this.tabelLoad(0);
+    this.getallcount();
+    this.getallproduct();
+    this.getallcart();
+    this.login();
+    this.getallcarttotal(0);
 
     setTimeout(() => {
       this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
@@ -218,69 +215,36 @@ export class NavbarComponent implements OnInit{
       }
     }, 6000);
 
+    this.formGroup = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
+    this.forgotpasswordform = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
 
+    });
+    this.SignUpForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      mobile: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
 
-
-
-
-
-      
-        this.formGroup = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required]],
-          });
-          this.forgotpasswordform = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.email]],
-       
-          });
-          this.SignUpForm = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.email]],
-            firstName: ['',Validators.required],
-            lastName:['',Validators.required],
-            mobile:['',Validators.required],
-            password:['',Validators.required],
-            confirmPassword:['',Validators.required],
-
-          },{
-            validator: this.checkIfMatchingPasswords('password', 'confirmPassword'),
-          }
-        );
-        //   interval(0).subscribe(() => {
-         
-        //     this.getallcount();
-        //     this.getallcart();
-
-        // });
-       
-
-        // if (!this.token) {
-        //     localStorage.removeItem('Id');
-        //     localStorage.removeItem('token');
-        //     localStorage.removeItem('name')
-        //     localStorage.clear();
-        //     this.loggedIn.next(false);
-        //     this.router.navigate(['/login']);
-        // }
-
-        /* Search Bar */
-        // $(document).ready(function () {
-        //     $(".search-btn-mobile").on("click", function () {
-        //         $(".search-bar").addClass("full-search-bar");
-        //     });
-        //     $(".search-arrow-back").on("click", function () {
-        //         $(".search-bar").removeClass("full-search-bar");
-        //     });
-        // });
-        const tabContents = document.querySelectorAll(".tab-pane");
-
-        tabContents.forEach(tabContent => {
-          tabContent.addEventListener("click", () => {
-            tabContent.classList.toggle("show");
-            //  tabContent.classList.toggle("tab-content");
-          });
-        });
-
+    }, {
+      validator: this.checkIfMatchingPasswords('password', 'confirmPassword'),
     }
+    );
+
+    const tabContents = document.querySelectorAll(".tab-pane");
+    tabContents.forEach(tabContent => {
+      tabContent.addEventListener("click", () => {
+        tabContent.classList.toggle("show");
+        //  tabContent.classList.toggle("tab-content");
+      });
+    });
+
+  }
 
       /**
  * Password Hide/Show
@@ -546,7 +510,7 @@ goToCart(path: string) {
       if (productList.length > 1) {
         this.productt = productList;
         this.dashboardservice.setSearchResults(this.productt);
-        this.router.navigate(['/all-product']);
+        this.router.navigate(['/all-product'], {queryParams: { search: name}});
       } else if (productList.length === 1) {
         const productId = productList[0].productId;
         const productName = productList[0].productName;

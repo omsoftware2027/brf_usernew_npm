@@ -2,12 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import {map, shareReplay, tap} from "rxjs/operators";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
   private cmsCache = new Map<string, Observable<any>>();
+
+  private searchTextSubject = new BehaviorSubject<string>('');
+  searchText$ = this.searchTextSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -261,6 +264,10 @@ export class DashboardService {
     } catch (error) {
       return String(name);
     }
+  }
+
+  setSearchText(value: string) {
+    this.searchTextSubject.next(value);
   }
 }
 
