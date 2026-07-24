@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild,AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild,AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
@@ -6,6 +6,7 @@ import { BannerService } from 'src/app/banner.service';
 import { Router } from '@angular/router';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
+import { isPlatformBrowser } from '@angular/common';
 declare var bootstrap: any;
 @Component({
   selector: 'app-analytics',
@@ -49,6 +50,8 @@ firstTimeLogin: string | null = null;
     private router: Router,
     public reloadCommonService: MasterService,
     public seoService: SeoService,
+    // dear developer he ssr sati kela ahe, ssr node mde render hote before browser so we can not use browser feat in node
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
   ngOnInit(): void {
@@ -68,7 +71,9 @@ firstTimeLogin: string | null = null;
   }, 1050);
 
       setTimeout(() => {
-      this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
+      if (isPlatformBrowser(this.platformId)) {
+        this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
+      }
       if (this.firstTimeLogin == 'true') {
         this.router.navigateByUrl('/account-detail');
       }
@@ -88,7 +93,9 @@ firstTimeLogin: string | null = null;
     this.dashboardservice.getAllcategoryy().subscribe(res => {
       this.data =res;
       if (this.data?.status === 0) {
-        window.scrollTo(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo(0, 0);
+        }
         this.totalrecordLength = this.data?.response?.totalElements;
         this.category = this.data?.response?.dataSet || [];
       }
@@ -136,7 +143,9 @@ getBanners() {
 
 
   getallcarttotal(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid != null ){
       this.userId =this.userid
     }else{
@@ -153,7 +162,9 @@ getBanners() {
     })
   }
   cardload(page: number) {
-    this.userId=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userId=localStorage.getItem('id');
+    }
     if(this.userId != null ){
       this.userid =this.userId
     }else{
@@ -205,7 +216,9 @@ getBanners() {
     }
   }
   savequantity(productId:any,quantity:any){
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
         this.reloadCommonService.sendUpdate('reloadWalletDetail');
@@ -220,7 +233,9 @@ getBanners() {
   
   }
   getallcount() {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0;
     }
@@ -235,7 +250,9 @@ getBanners() {
     });
 }
 getallcart() {
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
   this.dashboardservice.getcartcount(this.userid).subscribe(res => {
       this.data = res;
       if (this.data.status === 0) {  

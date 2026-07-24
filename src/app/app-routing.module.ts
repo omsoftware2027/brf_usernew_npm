@@ -24,5 +24,6 @@ export class AppRoutingModule {
   routing = RouterModule.forRoot(routes, {
     onSameUrlNavigation: 'reload',
     useHash: true,
-  });
+    initialNavigation: 'enabledBlocking'
+});
 }

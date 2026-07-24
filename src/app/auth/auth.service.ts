@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import {map} from "rxjs/operators";
 import { BehaviorSubject } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -27,13 +28,26 @@ export class AuthService {
   loggedInUserSubject = new BehaviorSubject<any>('');
   loggedInUserObservable$ = this.loggedInUserSubject.asObservable();
 
-  tokenSubject = new BehaviorSubject<string | null>(localStorage.getItem('token'));
+  tokenSubject = new BehaviorSubject<string | null>(null);
   token$ = this.tokenSubject.asObservable();
 
-  userTypeSubject = new BehaviorSubject<string | null>(localStorage.getItem('usertype'));
+  userTypeSubject = new BehaviorSubject<string | null>(null);
   userType$ = this.userTypeSubject.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  private isBrowser = false;
+  
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+
+    if (this.isBrowser) {
+      this.tokenSubject.next(localStorage.getItem('token'));
+      this.userTypeSubject.next(localStorage.getItem('usertype'));
+    }
+  }
 
   login(data:any) {
     return this.http.post<any>(`${environment.baseurl}/auth/login`, data)
@@ -41,11 +55,13 @@ export class AuthService {
         map(LData => {
           this.rolePrivelegesDataObservable(LData['response']['rolePriveleges']);
           if (LData.status === 0) {
-            localStorage.setItem('id', LData.response.teamId);
-            // localStorage.setItem('token',LData.response.token);
+            if (this.isBrowser) {
+              localStorage.setItem('id', LData.response.teamId);
+            }
             this.setToken(LData.response.token);
-            localStorage.setItem('name',LData.response.name);
-            // localStorage.setItem('usertype',LData.response.userType);
+            if (this.isBrowser) {
+              localStorage.setItem('name',LData.response.name);
+            }
             this.setUserType(LData.response.userType)
             this.loggedInUserObservable(LData.response.name);
             return {value: '0'};
@@ -81,7 +97,9 @@ export class AuthService {
   }
 
   setToken(token: string) {
-    localStorage.setItem('token', token);
+    if (this.isBrowser) {
+      localStorage.setItem('token', token);
+    }
     this.tokenSubject.next(token);
   }
 
@@ -90,12 +108,16 @@ export class AuthService {
   }
 
   clearToken() {
-    localStorage.removeItem('token');
+    if (this.isBrowser) {
+      localStorage.removeItem('token');
+    } 
     this.tokenSubject.next(null);
   }
 
   setUserType(usertype: string) {
-    localStorage.setItem('usertype', usertype);
+    if (this.isBrowser) {
+      localStorage.setItem('usertype', usertype);
+    } 
     this.userTypeSubject.next(usertype);
   }
 
@@ -104,7 +126,9 @@ export class AuthService {
   }
 
   clearUserType() {
-    localStorage.removeItem('usertype');
+    if (this.isBrowser) {
+      localStorage.removeItem('usertype');
+    } 
     this.userTypeSubject.next(null);
   }
 

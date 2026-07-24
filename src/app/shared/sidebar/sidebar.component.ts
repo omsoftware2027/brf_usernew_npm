@@ -3,7 +3,7 @@ import { ROUTES } from './sidebar-routes.config';
 import { Router, Event, NavigationStart, NavigationEnd, NavigationError } from '@angular/router';
 import { SidebarService } from "../sidebar/sidebar.service";
 
-import * as $ from 'jquery';
+import $ from 'jquery';
 
 
 @Component({

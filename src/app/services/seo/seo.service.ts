@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Observable, shareReplay } from 'rxjs';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
@@ -16,7 +16,8 @@ export class SeoService {
     private title: Title,
     private meta: Meta,
     @Inject(DOCUMENT) private document: Document,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
 
@@ -58,7 +59,7 @@ export class SeoService {
       title,
       description,
       keywords,
-      canonical: window.location.origin + '/',
+      canonical: isPlatformBrowser(this.platformId)? window.location.origin + '/' : 'https://brfood.us/',
       image: 'https://assets.brfood.us/1692711907309_logo.png'
     });
   }
@@ -70,7 +71,7 @@ export class SeoService {
       title: `${categoryName} | Wholesale Restaurant Supplies | B&R Food Services Inc.`,
       description: `Shop wholesale ${categoryName} products from B&R Food Services Inc. Browse premium restaurant supplies with competitive pricing and fast delivery across the USA.`,
       keywords: this.getDefaultKeywords(),
-      canonical: `${window.location.origin}/category/${categoryId}/${slug}`,
+      canonical: isPlatformBrowser(this.platformId) ? `${window.location.origin}/category/${categoryId}/${slug}` : 'https://brfood.us/',
       image: image || 'https://assets.brfood.us/1692711907309_logo.png',
       ogTitle: `${categoryName} Food Packaging | Wholesale Restaurant Supplies`,
       twitterTitle: `${categoryName} Food Packaging`
@@ -85,7 +86,7 @@ export class SeoService {
       title: `${productName} | B&R Food Services Inc.`,
       description: `Buy ${productName} from B&R Food Services Inc. Premium restaurant supplies with fast delivery across the USA.`,
       keywords: this.getDefaultKeywords(),
-      canonical: `${window.location.origin}/product/${productId}/${slug}`,
+      canonical: isPlatformBrowser(this.platformId) ? `${window.location.origin}/product/${productId}/${slug}` : 'https://brfood.us/',
       image: image || 'https://assets.brfood.us/1692711907309_logo.png'
     });
   }

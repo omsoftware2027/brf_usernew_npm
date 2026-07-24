@@ -1,4 +1,4 @@
-import { Component , ElementRef, HostListener, OnInit, Renderer2, TemplateRef, ViewChild } from '@angular/core';
+import { Component , ElementRef, HostListener, Inject, OnInit, PLATFORM_ID, Renderer2, TemplateRef, ViewChild } from '@angular/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { BehaviorSubject } from 'rxjs';
@@ -11,6 +11,7 @@ import { DashboardService } from 'src/app/dashboard/dashboard.service';
 import { MatSort } from '@angular/material/sort';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
     selector: 'app-navbar',
@@ -124,39 +125,73 @@ export class NavbarComponent implements OnInit{
     @ViewChild('filterModal') filterModal!: TemplateRef<any>;
     private loggedIn = new BehaviorSubject<boolean>(false);
 
-    constructor(private router: Router,private renderer: Renderer2, public authService: AuthService,
-        public sidebarservice: SidebarService,private elementRef: ElementRef,public dialog: MatDialog,private formBuilder: FormBuilder,private matsnackbar:MatSnackBar,private dashboardservice:DashboardService,private route: ActivatedRoute,private reloadCommonService:MasterService ) {
-          this.searchproduct = this.formBuilder.group({
-            productname: [''],
-            categoryId:['']
-          });
-            setInterval(() => {
-                this.currentDataTime = new Date();
-              }, 1);
+  constructor(
+    private router: Router,
+    private renderer: Renderer2,
+    public authService: AuthService,
+    public sidebarservice: SidebarService,
+    private elementRef: ElementRef,
+    public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private matsnackbar: MatSnackBar,
+    private dashboardservice: DashboardService,
+    private route: ActivatedRoute,
+    private reloadCommonService: MasterService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ) {
+    this.searchproduct = this.formBuilder.group({
+      productname: [''],
+      categoryId: ['']
+    });
 
-              this.reloadCommonService.getUpdate().subscribe
-              (message => {
-              this.messageReceived = message;
-                if(this.messageReceived.text == 'reloadNavbar'){
-                  this.ngOnInit();
-                } else if(this.messageReceived.text == 'reloadWalletDetail'){
-                  this.getallcart();
-                  this.getallcount();
-                  this.getmyorderbyorderid();
-                  this.getallcarttotal(0);
-                  this.getorderbyorderid() ;
+    this.formGroup = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
+    this.forgotpasswordform = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
+    this.SignUpForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      mobile: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    }, {
+      validator: this.checkIfMatchingPasswords('password', 'confirmPassword'),
+    }
+    );
+
+    setInterval(() => {
+      this.currentDataTime = new Date();
+    }, 1);
+
+    this.reloadCommonService.getUpdate().subscribe
+      (message => {
+        this.messageReceived = message;
+        if (this.messageReceived.text == 'reloadNavbar') {
+          this.ngOnInit();
+        } else if (this.messageReceived.text == 'reloadWalletDetail') {
+          this.getallcart();
+          this.getallcount();
+          this.getmyorderbyorderid();
+          this.getallcarttotal(0);
+          this.getorderbyorderid();
 
 
-                }
-      });      
-         } 
+        }
+      });
+  } 
     
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     if (!this.showDropdown) return;
     if (this.dropdownWrapper && !this.dropdownWrapper.nativeElement.contains(event.target)) {
       this.showDropdown = false;
+    if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflow = '';
+    }
     }
   }
 
@@ -195,11 +230,12 @@ export class NavbarComponent implements OnInit{
     this.authService.userType$.subscribe(userType => {
       this.usertype = userType;
     })
-    this.name = localStorage.getItem('name');
-    this.userId = localStorage.getItem('id');
-    // this.usertype = localStorage.getItem('usertype');
-    this.loginTime = localStorage.getItem('loginTime');
-    this.sessionId = localStorage.getItem('sessionId');
+    if (isPlatformBrowser(this.platformId)) {
+      this.name = localStorage.getItem('name');
+      this.userId = localStorage.getItem('id');
+      this.loginTime = localStorage.getItem('loginTime');
+      this.sessionId = localStorage.getItem('sessionId');
+    }
     this.getfootergeneral();
     this.tabelLoad(0);
     this.getallcount();
@@ -209,46 +245,25 @@ export class NavbarComponent implements OnInit{
     this.getallcarttotal(0);
 
     setTimeout(() => {
-      this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
+      if (isPlatformBrowser(this.platformId)) {
+        this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
+      } 
       if (this.firstTimeLogin == 'true') {
         this.router.navigateByUrl('/account-detail');
       }
     }, 6000);
 
-    this.formGroup = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
-    });
-    this.forgotpasswordform = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-
-    });
-    this.SignUpForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      mobile: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-
-    }, {
-      validator: this.checkIfMatchingPasswords('password', 'confirmPassword'),
-    }
-    );
-
-    const tabContents = document.querySelectorAll(".tab-pane");
-    tabContents.forEach(tabContent => {
-      tabContent.addEventListener("click", () => {
-        tabContent.classList.toggle("show");
-        //  tabContent.classList.toggle("tab-content");
+    if (isPlatformBrowser(this.platformId)) {
+      const tabContents = document.querySelectorAll(".tab-pane");
+      tabContents.forEach(tabContent => {
+        tabContent.addEventListener("click", () => {
+          tabContent.classList.toggle("show");
+        });
       });
-    });
+    }
 
   }
 
-      /**
- * Password Hide/Show
- */
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }
@@ -285,35 +300,20 @@ export class NavbarComponent implements OnInit{
     onClick(event: MouseEvent) {
       const clickedElement = event.target as HTMLElement;
 
-      // Check if the clicked element is not the input field
       if (!clickedElement.closest('.form-control')) {
-        // Clear the input field
         this.productname.setValue('');
       }
     }
 
-    // onInputChange(value:any): void {
-    //   const isFilled = value.trim() !== '';
-    //   this.reloadCommonService.setInputFilled(isFilled);
-    // }
 
-    logout(e:any):any{
+    logout(e: any): any {
+      if (isPlatformBrowser(this.platformId)) {
         localStorage.removeItem('Id');
-        this.authService.clearToken();
-        // localStorage.removeItem('token');
+      }
+      this.authService.clearToken();
+      if (isPlatformBrowser(this.platformId)) {
         localStorage.removeItem('loginTime');
-        // this.teamsService.updateCompanyLogoutTime(this.sessionId).subscribe((res)=>{
-        //     if(res.status==0){
-        //         localStorage.removeItem('sessionId');
-        //     }
-        // })
-        // this.snackBar.open('Logout Successfully', '', {
-        //     duration: 3000,
-        //     panelClass: ['success-snackbar']
-        // });
-        // e.preventDefault();
-        // this.loggedIn.next(false);
-        // this.router.navigate(['/login']);
+      }
     }
     openeclinicAcessDialog(): void {
         this.dialog.open(SigninPopupComponent, {
@@ -371,14 +371,15 @@ export class NavbarComponent implements OnInit{
           this.dashboardservice.login(loginpayload).subscribe(data => {
             this.loginData = data;
             if (this.loginData.status === 0) {
-              localStorage.setItem('id', this.loginData.response.id);
-              // localStorage.setItem('token', this.loginData.response.token);
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem('id', this.loginData.response.id);
+              }
               const token = this.loginData.response.token;
               this.authService.setToken(token);
-              // localStorage.setItem('usertype', this.loginData.response.userType);
               this.authService.setUserType(this.loginData.response.userType)
-              localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
-              //window.location.reload();
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin);
+              }
               this.router.navigate(['/']);
               this.ngOnInit();
               this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
@@ -387,22 +388,14 @@ export class NavbarComponent implements OnInit{
                 this.dropdownMenu.nativeElement.classList.remove('show');
               }
               this.formGroup.reset();
-            } else if (this.loginData.status === -1) { // Added else if block for -1 status
+            } else if (this.loginData.status === -1) { 
               this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
             } else {
               this.router.navigate(['/main/'+this.loginData.response.id+'/'+this.loginData.response.token]);
-              
-              // Display error message from loginData.response.error or any appropriate field
-              // const errorMessage = this.loginData.response || 'Unknown error occurred';
-              // this.matsnackbar.open(errorMessage, 'x', { duration: 2000 });
             }
           },
           error => {
-            // Handle HTTP errors
-            this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });; // Log error
-            // Uncomment below line if you need to access loginData here
-            // console.log(this.loginData.response,'d')
-            // this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
+            this.matsnackbar.open(this.loginData.response, 'x', { duration: 2000 });
           });
         }
       }
@@ -426,10 +419,6 @@ export class NavbarComponent implements OnInit{
               this.dropdownMenu.nativeElement.classList.remove('show');
             }
             this.SignUpForm.reset();
-            // const dropdownToggle = document.querySelector('.dropdown-toggle');
-            // if (dropdownToggle) {
-            //   dropdownToggle.classList.remove('show');
-            // }
           }
           else {
             this.matsnackbar.open(res.response, 'x', { duration: 2000 });
@@ -442,7 +431,9 @@ export class NavbarComponent implements OnInit{
         this.dashboardservice.getAllcategoryy().subscribe(res => {
           this.data =res;
           if (this.data?.status === 0) {
-            window.scrollTo(0, 0);
+            if (isPlatformBrowser(this.platformId)) {
+              window.scrollTo(0, 0);
+            }
             this.totalrecordLength = this.data?.response?.totalElements;
             this.category = this.data?.response?.dataSet;
           }
@@ -483,13 +474,14 @@ goToCart(path: string) {
     }
      getallproduct() {
       const name = this.searchproduct.value.productname || '';
-      this.userid=localStorage.getItem('id');
+      if (isPlatformBrowser(this.platformId)) {
+        this.userid=localStorage.getItem('id');
+      }
       this.dashboardservice.getallproduct(this.currentPage, this.pageSize ,name,this.userid || '').subscribe(res => {
         this.data =res;
         if (this.data?.status === 0) {
           this.product = this.data?.response?.dataSet;
           this.docSpecializationClone=  this.product;
-          // this.router.navigate(['/all-product']);
         }
         else {
          
@@ -498,9 +490,11 @@ goToCart(path: string) {
     }
    searchproductbyname() {
     this.showDropdown = false;
+    const name = this.searchproduct.value.productname || '';
+    if (isPlatformBrowser(this.platformId)) {
     document.body.style.overflow = '';
-  const name = this.searchproduct.value.productname || '';
-  this.userid=localStorage.getItem('id');
+    this.userid=localStorage.getItem('id');
+  }
   this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name, this.userid || '').subscribe(res => {
     this.data = res;
 
@@ -517,11 +511,8 @@ goToCart(path: string) {
         
         this.router.navigate(['/product', productId, this.dashboardservice.generateSlug(productName)]);
       } else {
-        // Optional: handle no products found
-        // e.g., show a toast message
       }
     } else {
-      // Optional: handle error status from API
     }
   });
 }
@@ -530,7 +521,9 @@ goToCart(path: string) {
       this.searchproduct.patchValue({
         categoryId : categoryId
       })
-      this.userid=localStorage.getItem('id');
+      if (isPlatformBrowser(this.platformId)) {
+        this.userid=localStorage.getItem('id');
+      }
       const slug = this.dashboardservice.generateSlug(categoryName);
       this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize, categoryId,this.userid).subscribe(res => {
           this.data = res;
@@ -538,12 +531,13 @@ goToCart(path: string) {
               this.carttotal = this.data?.response?.dataSet;
               this.router.navigate(['/category', categoryId, slug]);
           } else {
-              // Handle other cases if needed
           }
       });
   }
   getallcount() {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0
     }
@@ -553,13 +547,14 @@ goToCart(path: string) {
             this.wishlist = this.data?.response;
             
         } else {
-            // Handle other cases if needed
         }
     });
 }
 
 getallcart() {
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
   if(this.userid == null){
     this.userid = 0
   }
@@ -569,12 +564,13 @@ getallcart() {
           this.wishcart = this.data?.response;
           
       } else {
-          // Handle other cases if needed
       }
   });
 }
 getallcarttotal(page: number) {
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
   if(this.userid != null ){
     this.userId =this.userid
   }else{
@@ -585,9 +581,6 @@ getallcarttotal(page: number) {
     if (this.data?.status === 0) {
       this.carttotalt = this.data?.response?.total;
     }
-    // else {
-    //   this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
-    // }
   })
 }
 onProductSelected(event: any) {
@@ -596,26 +589,13 @@ onProductSelected(event: any) {
   if (productId) {
     this.router.navigate(['/product', productId, this.dashboardservice.generateSlug('')]);
     this.showDropdown = false;
-    document.body.style.overflow = '';
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = '';
+    }
   }
   
 }
-// getallcarttotal(page: number) {
-//   this.userid=localStorage.getItem('id');
-//   console.log(this.userid,'userid');
-//   if(this.userid == null){
-//     this.userid = 0;
-//   }
-//   this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
-//     this.data =res;
-//     if (this.data.status === 0) {
-//       this.carttotal = this.data.response;
-//     }
-//     else {
-//       // this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
-//     }
-//   })
-// }
+
 keyPressNumbers(event:any) {
   const charCode = event.which ? event.which : event.keyCode;
   if (charCode < 48 || charCode > 57) {
@@ -627,10 +607,8 @@ keyPressNumbers(event:any) {
 }
 specializationSelect(query: string): any[] {
   const result: any[] = [];
-  // Check if this.docSpecializationClone is defined and not null
   if (this.docSpecializationClone) {
     for (const b of this.docSpecializationClone) {
-      // Check if b.name is defined and not null
       if (b.productName && b.productName.toLowerCase().indexOf(query) > -1) {
         result.push(b);
       }
@@ -652,7 +630,9 @@ onButtonClick(): void {
   this.getallcart();
 }
 login() {
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
   if(this.userid == null){
     this.userid = 0
   }
@@ -660,9 +640,10 @@ login() {
       this.data = res;
       if (this.data?.status === 0) {  
           this.logindetail = this.data?.response;
-          localStorage.setItem('UserDetails',JSON.stringify(this.logindetail));
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.setItem('UserDetails',JSON.stringify(this.logindetail));
+          } 
       } else {
-          // Handle other cases if needed
       }
   });
 }
@@ -682,11 +663,6 @@ forgotpassword(){
     if (res.status == 0) {
       this.matsnackbar.open(res.response, 'x', { duration: 2000 });
       this.SignUpForm.reset();
-      // this.router.navigate([''], { relativeTo: this.route.parent });
-      // const dropdownToggle = document.querySelector('.dropdown-toggle');
-      // if (dropdownToggle) {
-      //   dropdownToggle.classList.remove('show');
-      // }
     }
     else {
       this.matsnackbar.open(res.response, 'x', { duration: 2000 });
@@ -702,15 +678,14 @@ clear(){
 }
 handleKeyUp(event: any) {
   this.showDropdown = true;
-  document.body.style.overflow = 'hidden';
+  if (isPlatformBrowser(this.platformId)) {
+    document.body.style.overflow = 'hidden';
+  }
   const input = event.target.value;
 
-  // Remove leading space(s)
   if (input.startsWith(' ')) {
-    event.target.value = input.trimStart(); // or input.replace(/^\s+/, '')
+    event.target.value = input.trimStart(); 
   }
-
-  // Update the flag after trimming
   this.isInputFilled = event.target.value.trim() !== '';
 }
 
@@ -718,23 +693,22 @@ clearr() {
   const inputElement = this.elementRef.nativeElement.querySelector('.form-control');
   if (inputElement) {
     inputElement.value = '';
-    // Clear the search results
     this.product = [];
   }
 }
 onInputBlur() {
-  // Hide dropdown when input field loses focus
   this.showDropdown = false;
-  document.body.style.overflow = '';
+  if (isPlatformBrowser(this.platformId)) {
+    document.body.style.overflow = '';
+  }
 
 }
-// oninputblur()
-// {
-//   this.showDropdown = true;  
-// }
+
 openDropdown() {
   this.showDropdown = true;
-  document.body.style.overflow = 'hidden';
+  if (isPlatformBrowser(this.platformId)) {
+    document.body.style.overflow = 'hidden';
+  }
   setTimeout(() => {
     if (this.listItem && this.listItem.nativeElement) {
       this.listItem.nativeElement.focus();
@@ -744,14 +718,17 @@ openDropdown() {
 
 updateInput(productName: string) {
   this.showDropdown =false
-  document.body.style.overflow = '';
-  // Update the input field value if searchproduct and productname exist
+  if (isPlatformBrowser(this.platformId)) {
+    document.body.style.overflow = '';
+  }
   this.searchproduct?.get('productname')?.setValue(productName);
 }
 getmyorderbyorderid() {
   const serach ='';
   const orderitemid=''
-  this.orderId=localStorage.getItem('orderid');
+  if (isPlatformBrowser(this.platformId)) {
+    this.orderId=localStorage.getItem('orderid');
+  }
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,this.orderId,this.userId,serach,orderitemid).subscribe(res => {
     this.data =res;
     if (this.data?.status === 0) {
@@ -762,15 +739,16 @@ getmyorderbyorderid() {
       this.totalrecordLengthh = this.data?.response?.totalElements;
     }
     else {
-      // this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
     }
   })
 }
 getorderbyorderid() {
 
   const serach ='';
-  this.orderId=localStorage.getItem('orderid');
-  this.orderItemId=localStorage.getItem('orderItemId');
+  if (isPlatformBrowser(this.platformId)) {
+    this.orderId=localStorage.getItem('orderid');
+    this.orderItemId=localStorage.getItem('orderItemId');
+  }
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,this.orderId,this.userId,serach,this.orderItemId).subscribe(res => {
     this.data =res;
     if (this.data?.status === 0) {
@@ -781,7 +759,6 @@ getorderbyorderid() {
       this.totalrecordLengthh = this.data?.response?.totalElements;
     }
     else {
-      // this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
     }
   })
 }
