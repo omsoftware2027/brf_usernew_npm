@@ -50,7 +50,10 @@ export class CategoryDetailComponent {
 
   banners: any[] = [];
   topBanners: any[] = [];
+  bottombanner: any[] = [];
+  rightBanners: any[] = [];
   currentTopBannerIndex: number = 0;
+  currentBottomBannerIndex: number = 0;
   bannerInterval: any;
 
   constructor(
@@ -331,23 +334,38 @@ focusCard(event: MouseEvent,index: number) {
   this.focusedCardIndex = index;
 }
 
- startAutoSlide() {
-  this.bannerInterval = setInterval(() => {
-    if (this.topBanners.length > 0) {
-      this.currentTopBannerIndex = (this.currentTopBannerIndex + 1) % this.topBanners.length;
-    }
-  }, 3000); // Slide every 3 seconds
-}
+  startAutoSlide() {
+    this.bannerInterval = setInterval(() => {
+      // Top Banner
+      if (this.topBanners.length > 1) {
+        this.currentTopBannerIndex =
+          (this.currentTopBannerIndex + 1) % this.topBanners.length;
+      }
+      // Bottom Banner
+      if (this.bottombanner.length > 1) {
+        this.currentBottomBannerIndex =
+          (this.currentBottomBannerIndex + 1) % this.bottombanner.length;
+      }
+    }, 3000);
+  }
 
 
   getBanners() {
     this.bannerService.getBanners().subscribe({
       next: (res) => {
-        if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+        if (res?.status === 0 && Array.isArray(res?.response) && res?.response?.length > 0) {
           this.banners = res.response;
           this.topBanners = this.banners.filter(b =>
             b.bannerPage?.includes('category_page') && b.bannerType === 'top_banner'
           );
+          this.bottombanner = this.banners.filter(b =>
+            b.bannerPage?.includes('category_page') && (b.bannerType === 'bottom_banner' || b.bannerType === 'Bottom_banner')
+          );
+          // right
+          this.rightBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('category_page') && b.bannerType === 'side_banner_right'
+          );
+
           this.startAutoSlide();
         } else {
           this.banners = [];

@@ -1,36 +1,25 @@
-<div class="page-breadcrumb d-md-flex align-items-center mb-3" style="height: 72px;background-color: 
-#F2F4F5;">
-    
-    <div class="ps-4 container ">
-        <nav aria-label="breadcrumb" >
-            <ol class="breadcrumb mb-0 p-0 mt-2" >
-                <li style="cursor:pointer;" class="breadcrumb-item">
-                    <a 
-                        href="#/analytics" routerLink="/analytics" >
-                        <i class='bx bx-home-alt' style="color:#5F6C72"></i>
-                    </a>
-                </li>
-                <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
+<div class="page-breadcrumb d-md-flex align-items-center mb-3" style="height: 72px; background-color: #F2F4F5;">
+  <div class="ps-4 container ">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0 p-0 mt-2">
+        <li style="cursor:pointer;" class="breadcrumb-item">
+          <a href="#/analytics" routerLink="/analytics">
+            <i class='bx bx-home-alt' style="color:#5F6C72"></i>
+          </a>
+        </li>
+        <li style="cursor:pointer;" class="breadcrumb-item active" style="color:#4C7C17;font-size: 14px;font-weight: 500
                 ;line-height: 20px;" aria-current="page">Order Guide</li>
-              
-            </ol>
-        </nav>
-    </div>
+      </ol>
+    </nav>
   </div>
-
-
-
-
-
-
-
+</div>
 
 <div class="container" style="margin-bottom: 10px;">
   <ng-container *ngIf="wishlistTopBanners && wishlistTopBanners.length > 0">
-    <div class="col-md-12 px-5 py-3 pm-2">
+    <div class="col-md-12 py-3 pm-2">
       <div class="custom-banner-wrapper mt-2">
         <div class="custom-banner" *ngFor="let banner of wishlistTopBanners; let i = index"
-          [class.active]="i === currentwishlistBannerIndex">
+          [class.active]="i === currentTopBannerIndex">
           <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
             class="d-block w-100" />
         </div>
@@ -39,45 +28,33 @@
   </ng-container>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="container" >
-
- <div class="col-md-12 px-5 py-3 pm-2">
-  <div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
-    You have not access to change or modify your order guide , Contact  BR Food Admin for the Approval!
-  </div>
-    <div class="col-md-12 card " style="    border-radius: 9px;">
+<div class="container">
+  <div class="row py-3">
+    <div  [ngClass]="leftColumnClass" class="mb-3" *ngIf="hasLeftBanners">
+      <img *ngFor="let banner of leftBanners" [src]="banner.image" [alt]="banner.title || 'Left Banner'"
+        class="img-fluid rounded mb-3">
+    </div>
+    <div [ngClass]="centerColumnClass" class="p-0">
+      <div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
+        You have not access to change or modify your order guide , Contact BR Food Admin for the Approval!
+      </div>
+      <div class="card" style="border-radius: 9px;">
         <div class="card-title d-flex align-items-center">
-            <h5 class="mb-0 main-text p-3"  style="font-weight:600;font-size:20px;line-height:24px; color:
-            #191C1F;">Order Guide</h5>
+          <h5 class="mb-0 main-text p-3" style="font-weight:600;font-size:20px;line-height:24px; color:
+              #191C1F;">Order Guide</h5>
         </div>
         <div class="container">
           <div class="mb-3">
-            <input
-            type="text"
-            [(ngModel)]="searchText"
-            placeholder="Search by product name"
-            class="search-input"
-            (input)="applyFilter()" 
-            />
+            <input type="text" [(ngModel)]="searchText" placeholder="Search by product name" class="search-input"
+              (input)="applyFilter()" />
           </div>
-        <div class="mt-2 cardNA mb-3" *ngIf="!wishlist.length">
+          <div class="mt-2 cardNA mb-3" *ngIf="!wishlist.length">
             <h5 class="mb-1">Data not available</h5>
           </div>
-          <div class="scrollwrapper">
+          <div class="overflow-auto">
             <table class="table mb-3" *ngIf="wishlist.length">
               <thead>
-                <tr >
+                <tr>
                   <th scope="col" style=" color:#475156">PRODUCTS</th>
                   <th scope="col" style=" color:#475156">QUANTITY</th>
                   <th scope="col" style=" color:#475156">PRICE</th>
@@ -85,117 +62,120 @@
                   <th scope="col" style=" color:#475156">ACTIONS</th>
                 </tr>
               </thead>
-              
+
               <tbody>
-              
-                  <ng-container *ngFor="let bulkorder of filteredWishlist;">
-                    <tr>
-                      <td colspan="5">
-                        <div
-                          style="background-color: #D9D9D9;color: #F44C4C;padding: 12px 7px;border-radius: 12px;font-size:14px;font-weight:600;">
-                          {{ bulkorder.categoryName }}</div>
-                      </td>
-                    </tr>
-                    <tr *ngFor="let data of bulkorder?.products">
-                      <th scope="row">
-                        <div class="d-flex align-items-center">
-                          <div class="flex-shrink-0 me-2">
-                            <div class="d-flex">
-                              <img [ngClass]="{'invisible ': data.isCartExist=='false'}" class="me-2 mt-3" width="25px" height="25px"
-                                src="../../../assets/images/addedCart.png">
-                              <img class="avatar-xs  customer-image-elem" alt="" [src]="data?.image|| 'assets/images/download (20).png'"
-                                onerror="this.src='assets/images/download (20).png';" style="width:52px;height:52px">
+
+                <ng-container *ngFor="let bulkorder of filteredWishlist;">
+                  <tr>
+                    <td colspan="5">
+                      <div
+                        style="background-color: #D9D9D9;color: #F44C4C;padding: 12px 7px;border-radius: 12px;font-size:14px;font-weight:600;">
+                        {{ bulkorder.categoryName }}</div>
+                    </td>
+                  </tr>
+                  <tr *ngFor="let data of bulkorder?.products">
+                    <th scope="row">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 me-2">
+                          <div class="d-flex">
+                            <img [ngClass]="{'invisible ': data.isCartExist=='false'}" class="me-2 mt-3" width="25px"
+                              height="25px" src="../../../assets/images/addedCart.png">
+                            <img class="avatar-xs  customer-image-elem" alt=""
+                              [src]="data?.image|| 'assets/images/download (20).png'"
+                              onerror="this.src='assets/images/download (20).png';" style="width:52px;height:52px">
+                          </div>
+                        </div>
+                        <div class="flex-grow-1">
+                          <p class="fs-base mb-0"><a href="javascript:void(0);" class="text-reset customer-name-elem"
+                              style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"
+                              [routerLink]="['/product', data?.productId, dashboardservice.generateSlug(data.productTitle)]">{{data.productTitle}}</a>
+                          </p>
+                        </div>
+                      </div>
+                    </th>
+                    <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">
+                      <div class="d-flex">
+                        <div class="d-flex"
+                          style="border: 1px solid #D9D9D9; border-radius: 6px;width: 148px;height: 48px">
+                          <div class="col-md-12 d-flex">
+                            <div class="col-md-2 mt-3">
+                              <i class="ri-subtract-line ps-2 cursor-pointer" (click)="decrementValue(data);"
+                                style="font-size: 22px;"></i>
+                            </div>
+                            <div class="col-md-7">
+                              <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 6px;padding-left: 14px;"
+                                class="">
+                                <input type="number" min="1" class="form-control" style="height: 34px;"
+                                  [value]="data?.quantity" (input)="updateQuantity($event,data)">
+                              </p>
+                            </div>
+                            <div class="col-md-3 mt-3">
+                              <i class="ri-add-line ps-2 cursor-pointer" (click)="incrementValue(data);"
+                                style="font-size: 22px;padding-left: 40px;"> </i>
                             </div>
                           </div>
-                          <div class="flex-grow-1">
-                            <p class="fs-base mb-0"><a href="javascript:void(0);" class="text-reset customer-name-elem"
-                                style="font-weight: 400;font-size: 14px;line-height: 15px;color:#475156"
-                                [routerLink]="['/product', data?.productId, dashboardservice.generateSlug(data.productTitle)]">{{data.productTitle}}</a>
-                            </p>
-                          </div>
                         </div>
-                      </th>
-                      <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:black">
-                        <div class="d-flex">
-                          <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px;width: 148px;height: 48px">
-                            <div class="col-md-12 d-flex">
-                              <div class="col-md-2 mt-3">
-                                <i class="ri-subtract-line ps-2 cursor-pointer" (click)="decrementValue(data);"
-                                  style="font-size: 22px;"></i>
-                              </div>
-                              <div class="col-md-7">
-                                <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;margin-top: 6px;padding-left: 14px;"
-                                  class="">
-                                  <input type="number" min="1" class="form-control" style="height: 34px;" [value]="data?.quantity"
-                                    (input)="updateQuantity($event,data)">
-                                </p>
-                              </div>
-                              <div class="col-md-3 mt-3">
-                                <i class="ri-add-line ps-2 cursor-pointer" (click)="incrementValue(data);"
-                                  style="font-size: 22px;padding-left: 40px;"> </i>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td style="font-weight: 500; font-size: 14px; line-height: 20px;">
-                        <!-- <div *ngIf="data.specialPrice" style="text-decoration: line-through; color: #6c757d;">
-                                                    ${{ data.price }}
-                                                  </div> -->
-                        <div style="color: black;">
-                          ${{ (data.specialPrice || data.price) | number: '1.2-2' }}
-                        </div>
-                      </td>
-                      <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
-                      <td class="d-flex">
-                        <button [disabled]="data.quantity < 1" type="button"
-                          *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4"
-                          (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)"
-                          style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">
-                          <span *ngIf="data.isCartExist=='false'">ADD TO CART</span>
-                          <span *ngIf="data.isCartExist=='true'">UPDATE CART</span>
-                          <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;">
-                        </button>
-                        <button type="button" *ngIf="userDetails.isLockOrderGuide == 'No'" class="btn btn-primary mt-4"
-                          style="background-color: grey; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">ADD
-                          TO CART <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;"> </button>
-                        <p class="p-4 mt-2" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide"><mat-icon
-                            style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p>
-                      </td>
-                    </tr>
-                  </ng-container>
-              
+                      </div>
+                    </td>
+                    <td style="font-weight: 500; font-size: 14px; line-height: 20px;">
+                      <!-- <div *ngIf="data.specialPrice" style="text-decoration: line-through; color: #6c757d;">
+                                                      ${{ data.price }}
+                                                    </div> -->
+                      <div style="color: black;">
+                        ${{ (data.specialPrice || data.price) | number: '1.2-2' }}
+                      </div>
+                    </td>
+                    <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}
+                    </td>
+                    <td class="d-flex">
+                      <button [disabled]="data.quantity < 1" type="button"
+                        *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide"
+                        class="btn btn-primary mt-4"
+                        (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)"
+                        style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">
+                        <span *ngIf="data.isCartExist=='false'">ADD TO CART</span>
+                        <span *ngIf="data.isCartExist=='true'">UPDATE CART</span>
+                        <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;">
+                      </button>
+                      <button type="button" *ngIf="userDetails.isLockOrderGuide == 'No'" class="btn btn-primary mt-4"
+                        style="background-color: grey; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">ADD
+                        TO CART <img src="../../../assets/images/Add to cart.png" class=""
+                          style="width:24px;height: 24px;">
+                      </button>
+                      <p class="p-4 mt-2"
+                        *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
+                        <mat-icon style="color: #929FA5;"
+                          (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon>
+                      </p>
+                    </td>
+                  </tr>
+                </ng-container>
+
               </tbody>
             </table>
           </div>
-       
-          <!-- <div class="col-sm-auto  mt-3 mt-sm-0">
-            <mat-paginator #paginatorRef (page)="pageChanged($event)" [length]="totalrecordLength" [pageSize]="pageSize"  style="background-color: #bdc3c7;" showFirstLastButtons></mat-paginator>
-          </div> -->
+
+        </div>
+      </div>
     </div>
-
-
-
-
-
- </div>
- 
-
-</div>
-<!-- Wishlist Bottom Banner -->
-<div *ngIf="wishlistBottomBanners.length > 0" class="bottom-banners my-4">
-  <div class="card text-center">
-    <img loading="lazy"
-      *ngIf="wishlistBottomBanners[0].image" 
-      [src]="wishlistBottomBanners[0].image" 
-      class="d-block w-100" 
-      alt="Wishlist Bottom Banner" 
-    >
-    <!-- Optional: Add title or description -->
-    <!--
-    <div class="card-body">
-      <h5 class="card-title">{{ wishlistBottomBanners[0].title }}</h5>
+    <div [ngClass]="rightColumnClass" class="mb-3" *ngIf="hasRightBanners">
+      <img *ngFor="let banner of rightBanners" [src]="banner.image" [alt]="banner.title || 'Right Banner'"
+        class="img-fluid rounded mb-3">
     </div>
-    -->
   </div>
+</div>
+
+<!-- Wishlist Bottom Banner -->
+<div class="container" style="margin-bottom: 10px;">
+  <ng-container *ngIf="wishlistBottomBanners && wishlistBottomBanners.length > 0">
+    <div class="col-md-12 py-3 pm-2">
+      <div class="custom-banner-wrapper mt-2">
+        <div class="custom-banner" *ngFor="let banner of wishlistBottomBanners; let i = index"
+          [class.active]="i === currentBottomBannerIndex">
+          <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
+            class="d-block w-100" />
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>

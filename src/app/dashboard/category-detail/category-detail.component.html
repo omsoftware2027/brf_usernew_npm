@@ -1,32 +1,33 @@
 <div>
   <div class="page-breadcrumb d-md-flex align-items-center mb-3" style="height: 72px;background-color: 
 #F2F4F5;">
-    
+
     <div class="ps-4 container ">
-        <nav aria-label="breadcrumb">
-  <ol class="breadcrumb mb-0 p-0 mt-2">
-    <li class="breadcrumb-item" style="cursor:pointer;">
-      <a routerLink="/analytics">
-        <i class="bx bx-home-alt" style="color:#5F6C72"></i>
-      </a>
-    </li>
-    <li class="breadcrumb-item" style="cursor:pointer;">
-      <a routerLink="/category" style="color:#4C7C17; font-size: 14px; font-weight: 500; line-height: 20px;">
-        Category
-      </a>
-    </li>
-    <li class="breadcrumb-item active" style="color:#4C7C17; font-size: 14px; font-weight: 500; line-height: 20px;" aria-current="page">
-      Product
-    </li>
-  </ol>
-</nav>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 p-0 mt-2">
+          <li class="breadcrumb-item" style="cursor:pointer;">
+            <a routerLink="/analytics">
+              <i class="bx bx-home-alt" style="color:#5F6C72"></i>
+            </a>
+          </li>
+          <li class="breadcrumb-item" style="cursor:pointer;">
+            <a routerLink="/category" style="color:#4C7C17; font-size: 14px; font-weight: 500; line-height: 20px;">
+              Category
+            </a>
+          </li>
+          <li class="breadcrumb-item active"
+            style="color:#4C7C17; font-size: 14px; font-weight: 500; line-height: 20px;" aria-current="page">
+            Product
+          </li>
+        </ol>
+      </nav>
 
     </div>
   </div>
 </div>
 
 <div class="row px-2 px-md-3">
-   <ng-container *ngIf="topBanners && topBanners.length > 0">
+  <ng-container *ngIf="topBanners && topBanners.length > 0">
     <div class="custom-banner-wrapper mt-2">
       <div class="custom-banner" *ngFor="let banner of topBanners; let i = index"
         [class.active]="i === currentTopBannerIndex">
@@ -36,226 +37,276 @@
     </div>
   </ng-container>
 </div>
-    <div class="mt-4 ps-2 ps-md-3">
-        <a class="t1">
-     {{categoryname}}
-          </a>
-      </div>
+<div class="mt-4 ps-2 ps-md-3">
+  <a class="t1">
+    {{categoryname}}
+  </a>
+</div>
 
-      <div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
-        You have not access to change or modify your order guide , Contact  BR Food Admin for the Approval!
-      </div>
+<div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
+  You have not access to change or modify your order guide , Contact BR Food Admin for the Approval!
+</div>
 
-      <div class="mt-2 cardNA" *ngIf="!category?.length">
-        <h5 class="mb-1">product not available</h5>
-      </div>
-  <div class="row px-2 px-md-3">
-    <div class="col-md-12  mt-3 ">
-     <div class="row">
+<div class="mt-2 cardNA" *ngIf="!category?.length">
+  <h5 class="mb-1">product not available</h5>
+</div>
+<div class="row px-2 px-md-3">
+  <div class="col-md-12  mt-3 ">
+    <div class="row">
       <div class="col-md-6 col-lg-8 col-xl-8">
         <div class="row">
-          <div class="col-12 col-md-6 col-lg-3 " *ngFor="let data of category ;let i=index" [ngStyle]="{'margin-top': i < 4 ? '0%' : '-2%'}">
-            <div class="card mt-2" >
+          <div class="col-12 col-md-6 col-lg-3 " *ngFor="let data of category ;let i=index"
+            [ngStyle]="{'margin-top': i < 4 ? '0%' : '-2%'}">
+            <div class="card mt-2">
               <div class="card-contain container col-md-12">
-               <div class="col-md-12">
+                <div class="col-md-12">
                   <div class="img-container">
-                    <img [src]="data.image|| 'assets/images/download (20).png'" 
-                        onerror="this.src='assets/images/download (20).png';" class="category-images"  	[routerLink]="['/product',data.productId, dashboardservice.generateSlug(data?.title)]">
+                    <img [src]="data.image|| 'assets/images/download (20).png'"
+                      onerror="this.src='assets/images/download (20).png';" class="category-images"
+                      [routerLink]="['/product',data.productId, dashboardservice.generateSlug(data?.title)]">
                   </div>
-                 <div class="image-text mt-4">
-                  <p 	[routerLink]="['/product',data?.productId, dashboardservice.generateSlug(data?.title)]" style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050;cursor: pointer;white-space: break-spaces;word-break: break-all;
-              " [innerHTML]="highlightText(data.title, maxCharacters, i)"[innerHTML]="highlightText(data.title, maxCharacters, i)">
-                    
-                  </p>
-                  <a *ngIf="data.title.length > maxCharacters" (click)="toggleShowMore(i)" style="color:#F44C4C;cursor: pointer;margin-left:10px">
-                    {{ showMoreStates[i] ? "Show less" : "Show more" }}
-                  </a>
-              </div>
-            <div class="">
-              <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;line-height: 20px;">${{data.price}}
-              </a>
-            </div>
+                  <div class="image-text mt-4">
+                    <p [routerLink]="['/product',data?.productId, dashboardservice.generateSlug(data?.title)]" style="margin-left: 10px; font-size: 14px; font-weight: 500; line-height: 15px; color: #505050;cursor: pointer;white-space: break-spaces;word-break: break-all;
+              " [innerHTML]="highlightText(data.title, maxCharacters, i)"
+                      [innerHTML]="highlightText(data.title, maxCharacters, i)">
 
-            <div class="col-md-12 mt-2">
-              <div class="d-flex w-100">
-                <div class="d-flex align-items-center" style="border: 1px solid #D9D9D9; border-radius: 6px;max-width:185px">
-            
-                  <i class="ri-subtract-line ps-2" style="font-size: 18px; cursor:pointer;" (click)="decrementQty(data)"></i>
-                  <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;padding-left: 5px;" class="my-1">
-                    <input type="number" min="1" class="quantity-input p-1" style="height: 31px; width: 100%; border: 1px solid #D9D9D9; border-radius: 6px;" [(ngModel)]="data.quantity" (input)="onQuantityChange(data)">
-                  </p>
-                  <i class="ri-add-line ps-2 pe-2" style="font-size: 18px; cursor:pointer;" (click)="incrementQty(data)"> </i>
-            
+                    </p>
+                    <a *ngIf="data.title.length > maxCharacters" (click)="toggleShowMore(i)"
+                      style="color:#F44C4C;cursor: pointer;margin-left:10px">
+                      {{ showMoreStates[i] ? "Show less" : "Show more" }}
+                    </a>
+                  </div>
+                  <div class="">
+                    <a style="margin-left: 10px; font-size:14px; color: #F44C4C;font-weight: 600;line-height: 20px;">${{data.price}}
+                    </a>
+                  </div>
+
+                  <div class="col-md-12 mt-2">
+                    <div class="d-flex w-100">
+                      <div class="d-flex align-items-center"
+                        style="border: 1px solid #D9D9D9; border-radius: 6px;max-width:185px">
+
+                        <i class="ri-subtract-line ps-2" style="font-size: 18px; cursor:pointer;"
+                          (click)="decrementQty(data)"></i>
+                        <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156;padding-left: 5px;"
+                          class="my-1">
+                          <input type="number" min="1" class="quantity-input p-1"
+                            style="height: 31px; width: 100%; border: 1px solid #D9D9D9; border-radius: 6px;"
+                            [(ngModel)]="data.quantity" (input)="onQuantityChange(data)">
+                        </p>
+                        <i class="ri-add-line ps-2 pe-2" style="font-size: 18px; cursor:pointer;"
+                          (click)="incrementQty(data)"> </i>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class=" justify-content-between mb-3">
+                    <div class=" ps-2">
+                      <div class="d-flex">
+                        <button type="button" class="btnn mt-3"
+                          (click)="submitcart(data.productId,data.price, data?.quantity)"
+                          style="background-color: #F44C4C;border-radius: 3px; color: white; width:141px;margin-left:-3px;height: 40px;">
+                          {{ data?.isAddedInCart ? 'UPDATE CART' : 'ADD TO CART' }}
+                          <img src="../../../assets/images/Add to cart.png" class="" style="width:15px;height: 15px;">
+                        </button>
+                        <div class="ps-2 mt-3">
+                          <div class="icon-container"
+                            *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
+                            <i class="ri-heart-fill p-1"
+                              style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
+                              *ngIf="toggleStates[i] && data.isWishlist ==true"
+                              (click)="toggleIcons('second', i);submit(data.productId)"></i>
+                            <i class="ri-heart-line p-1"
+                              style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
+                              *ngIf="toggleStates[i] && data.isWishlist ==false"
+                              (click)="toggleIcons('first', i);submit(data.productId)"></i>
+                          </div>
+                          <div class="icon-container" *ngIf="userDetails.isLockOrderGuide == 'No'">
+                            <i class="ri-heart-fill p-1"
+                              style="font-size: 19px; color:grey;border: 1px solid grey;"></i>
+                          </div>
+
+                        </div>
+
+                        <!-- <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1"> -->
+                      </div>
+
+                    </div>
+
+
+                  </div>
+
+
                 </div>
               </div>
             </div>
-
-            <div class=" justify-content-between mb-3">
-             <div class=" ps-2">
-             <div class="d-flex">
-              <button type="button" class="btnn mt-3" (click)="submitcart(data.productId,data.price, data?.quantity)"
-                style="background-color: #F44C4C;border-radius: 3px; color: white; width:141px;margin-left:-3px;height: 40px;">
-                {{ data?.isAddedInCart ? 'UPDATE CART' : 'ADD TO CART' }}
-                <img src="../../../assets/images/Add to cart.png" class="" style="width:15px;height: 15px;">
-              </button>
-                 <div class="ps-2 mt-3">
-                  <div class="icon-container" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
-                      <i class="ri-heart-fill p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
-                       *ngIf="toggleStates[i] && data.isWishlist ==true"
-                        (click)="toggleIcons('second', i);submit(data.productId)"
-                        ></i>
-                        <i class="ri-heart-line p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
-                        *ngIf="toggleStates[i] && data.isWishlist ==false"
-                        (click)="toggleIcons('first', i);submit(data.productId)"
-                        ></i>
-                  </div>
-                  <div class="icon-container" *ngIf="userDetails.isLockOrderGuide == 'No'">
-                    <i class="ri-heart-fill p-1" style="font-size: 19px; color:grey;border: 1px solid grey;"></i>
-                  </div>
-
-                 </div>
-
-                  <!-- <img src="../../../assets/images/add wishlist logo.png" style="width:36px;   " class="mt-3 ps-1"> -->
-             </div>          
-           
-             </div>
-           
-  
-               </div>
-         
-          
-       </div>
-              </div>
-         </div>
           </div>
-        
+
         </div>
-       </div>
-     
-       <div class="col-md-6 col-lg-4 col-xl-4 mt-2">
+      </div>
+
+      <div class="col-md-6 col-lg-4 col-xl-4 mt-2">
         <div class="panel-group" id="accordion">
           <div class="panel panel-default card">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" >
-                  <div class="p-1 d-flex col-12"style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                  <div class="p-1 d-flex col-12"
+                    style="text-align: center; background-color: #F44C4C; padding-top: 7px;">
                     <div class="col-6 d-flex">
                       <i class="las la-shopping-cart mt-3 "></i>
-                      <span class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill">{{fwishlist}}</span>
-                       <h5 class="t3 text-white mt-4 pl-2">My Cart</h5>
-                     </div>
-                   
-                     <!-- Amount on the right -->
-                     <div class="col-6 d-flex justify-content-end mt-2">
-                       <a class="btn dropdown-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
-                       font-size: 22px;">${{carttotal?.total | number:'1.0-2'}} <i   class='bx bx-chevron-down'></i></a>
-                       <!-- <div class="dropdown-menu">
+                      <span
+                        class="position-absolute topbar-badge fs-3xs translate-middle badge rounded-pill">{{fwishlist}}</span>
+                      <h5 class="t3 text-white mt-4 pl-2">My Cart</h5>
+                    </div>
+
+                    <!-- Amount on the right -->
+                    <div class="col-6 d-flex justify-content-end mt-2">
+                      <a class="btn dropdown-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1"
+                        aria-haspopup="true" style="border: none;" class="text-white mt-2" style="height: 21px;
+                       font-size: 22px;">${{carttotal?.total | number:'1.0-2'}} <i class='bx bx-chevron-down'></i></a>
+                      <!-- <div class="dropdown-menu">
                          <a href="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">Item</a>
                        </div> -->
-                     </div>
-                  </div></a>
+                    </div>
+                  </div>
+                </a>
               </h4>
             </div>
             <div id="collapse1" class="panel-collapse collapse  show p-3">
               <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
                 <div class="d-flex col-md-12 col-lg-12 col-xl-12">
-                 <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
-                   <img [src]="data.image || 'assets/images/download (20).png'" onerror="this.src='assets/images/download (20).png';" style="width:74px; height: 74px; border-radius: 5px;">
-                  
-                 </div>
-                 <div class="col-md-9 col-lg-9 col-xl-9">
-                  <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"[routerLink]="['/product',data?.productId, dashboardservice.generateSlug(data?.productTitle)]">{{data.productTitle}}</p>
-                 </div>
-                 <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
-                  <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon></p>
+                  <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
+                    <img [src]="data.image || 'assets/images/download (20).png'"
+                      onerror="this.src='assets/images/download (20).png';"
+                      style="width:74px; height: 74px; border-radius: 5px;">
 
-                 </div>
+                  </div>
+                  <div class="col-md-9 col-lg-9 col-xl-9">
+                    <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"
+                      [routerLink]="['/product',data?.productId, dashboardservice.generateSlug(data?.productTitle)]">
+                      {{data.productTitle}}</p>
+                  </div>
+                  <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
+                    <p><mat-icon style="color: #929FA5;" (click)="deletewishlist(data.cartId)">highlight_off</mat-icon>
+                    </p>
+
+                  </div>
                 </div>
-                  <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
-                    <div>
-                      <p style="font-size: 15px;
+                <div class="d-flex justify-content-between p-1 mt-3" style="color: red;">
+                  <div>
+                    <p style="font-size: 15px;
                       font-weight: 500;
                       line-height: 14px;">PRICE</p>
-                    </div>
-                    <div style="padding-left: 10px;">
-                      <p style="font-size: 15px;
+                  </div>
+                  <div style="padding-left: 10px;">
+                    <p style="font-size: 15px;
                       font-weight: 500;
-                      line-height: 14px;" >QUANTITY</p>
-                    </div>
-                    <div style="padding-left: 10px;">
-                      <p style="font-size: 15px;
+                      line-height: 14px;">QUANTITY</p>
+                  </div>
+                  <div style="padding-left: 10px;">
+                    <p style="font-size: 15px;
                       font-weight: 500;
                       line-height: 14px;">SUB-TOTAL</p>
-                    </div>
                   </div>
-          
-                  <div class="d-flex justify-content-between p-1 mb-2 col-md-12 col-lg-12 col-xl-12" style="padding-top: 0px;">
-                    <div class="mt-2  col-md-4 col-lg-4 col-xl-4">
-                      <h5 >${{data.price}}</h5>
-                    </div>
-                    <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
-                     <div class="d-flex" style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
-                 
+                </div>
+
+                <div class="d-flex justify-content-between p-1 mb-2 col-md-12 col-lg-12 col-xl-12"
+                  style="padding-top: 0px;">
+                  <div class="mt-2  col-md-4 col-lg-4 col-xl-4">
+                    <h5>${{data.price}}</h5>
+                  </div>
+                  <div class="d-flex  col-md-4 col-lg-4 col-xl-4">
+                    <div class="d-flex"
+                      style="border: 1px solid #D9D9D9; border-radius: 6px; height: 37px;width: 100%;">
+
                       <div class="col-md-3">
-                        <i class="ri-subtract-line ps-1 "   (click)="decrementValue(data);" style="font-size: 22px;"></i>
+                        <i class="ri-subtract-line ps-1 " (click)="decrementValue(data);" style="font-size: 22px;"></i>
                       </div>
-                      <div  class="col-md-6">
-                       <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-4">{{data.quantity || '1' }}</p>
+                      <div class="col-md-6">
+                        <p style="font-weight: 500;font-size: 14px;line-height: 20px;color:#475156" class="mt-2 ps-4">
+                          {{data.quantity || '1' }}</p>
                       </div>
-                       <div class="col-md-3">
-                         <i class="ri-add-line ps-1 " (click)="incrementValue(data);savequantity(data.productId,data.quantity)" style="font-size: 22px;"> </i>
-                       </div>
-                    
-                     </div>
-                    </div>
-                    <div class="mt-2 col-md-4 col-lg-4 col-xl-4" style="text-align: end">
-                      <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
-                    </div>
-                  </div>
-                </div>
-      
-                <div class="card p-4" style=" border-radius: 10px; ">
-                  <div class="align-items-center">
-                    <p style="font-weight: 600;font-size:16px;line-height: 21px;">Card Totals</p>
-                    <div class="row">
-                      <div class="d-flex justify-content-between p-2">
-                        <span  style="color: #5F6C72;">Sub-total</span>
-                        <span class="font-weight-bold">${{carttotal?.subTotal | number:'1.0-2'}}</span>
+                      <div class="col-md-3">
+                        <i class="ri-add-line ps-1 "
+                          (click)="incrementValue(data);savequantity(data.productId,data.quantity)"
+                          style="font-size: 22px;"> </i>
                       </div>
-                      
-                      <div class="d-flex justify-content-between p-2">
-                        <a  style="color: #5F6C72;"> Shipping</a>
-                        <span class="font-weight-bold"> ${{carttotal?.shipping | number:'1.0-2'}}</span>
-                      </div>
-      
-                      <div class="d-flex justify-content-between p-2">
-                         <a style="color: #5F6C72;"> Discount</a>
-                         <span class="font-weight-bold"> ${{carttotal?.discount}}</span>
-                      </div><hr>
-      
-                      <div class="d-flex justify-content-between p-2">
-                        <span class="" style="color: #5F6C72;"> Total</span>
-                        <span  class="font-weight-bold">${{carttotal?.total | number:'1.0-2'}} USD</span>
-                      </div>
-      
-                      <div class="d-flex flex-column">
-                        <button type="button" class="btn btn-secondary mt-4 w-100" [routerLink]="['/checkout-page']">PROCEED TO CHECKOUT
-                          <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                        <button type="button" class="btn  btn-primary w-100 mt-4" [routerLink]="['/all-product']" >CONTINUE SHOPPING CART
-                          <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                      </div>
-                     
-                      
+
                     </div>
                   </div>
+                  <div class="mt-2 col-md-4 col-lg-4 col-xl-4" style="text-align: end">
+                    <h5 style="margin-right:23px;">${{data.subTotal}}</h5>
+                  </div>
                 </div>
+              </div>
+
+              <div class="card p-4" style=" border-radius: 10px; ">
+                <div class="align-items-center">
+                  <p style="font-weight: 600;font-size:16px;line-height: 21px;">Card Totals</p>
+                  <div class="row">
+                    <div class="d-flex justify-content-between p-2">
+                      <span style="color: #5F6C72;">Sub-total</span>
+                      <span class="font-weight-bold">${{carttotal?.subTotal | number:'1.0-2'}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between p-2">
+                      <a style="color: #5F6C72;"> Shipping</a>
+                      <span class="font-weight-bold"> ${{carttotal?.shipping | number:'1.0-2'}}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between p-2">
+                      <a style="color: #5F6C72;"> Discount</a>
+                      <span class="font-weight-bold"> ${{carttotal?.discount}}</span>
+                    </div>
+                    <hr>
+
+                    <div class="d-flex justify-content-between p-2">
+                      <span class="" style="color: #5F6C72;"> Total</span>
+                      <span class="font-weight-bold">${{carttotal?.total | number:'1.0-2'}} USD</span>
+                    </div>
+
+                    <div class="d-flex flex-column">
+                      <button type="button" class="btn btn-secondary mt-4 w-100"
+                        [routerLink]="['/checkout-page']">PROCEED TO CHECKOUT
+                        <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                      <button type="button" class="btn  btn-primary w-100 mt-4" [routerLink]="['/all-product']">CONTINUE
+                        SHOPPING CART
+                        <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          
+          <!-- right banner -->
+          <div *ngIf="rightBanners && rightBanners.length > 0" class="side_banner_right mb-4">
+            <div class="row">
+              <div class="col-md-12 d-flex flex-column" *ngFor="let banner of rightBanners">
+                <div class="card">
+                  <img *ngIf="banner.image" [src]="banner.image" class="card-img-top" alt="Banner">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-       
-     </div>
-   </div>
+
+    </div>
   </div>
-  
+</div>
+
+<div class="row px-2 px-md-3">
+  <ng-container *ngIf="bottombanner && bottombanner.length > 0">
+    <div class="custom-banner-wrapper mt-2">
+      <div class="custom-banner" *ngFor="let banner of bottombanner; let i = index"
+        [class.active]="i === currentBottomBannerIndex">
+        <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
+          class="d-block w-100" />
+      </div>
+    </div>
+  </ng-container>
+</div>

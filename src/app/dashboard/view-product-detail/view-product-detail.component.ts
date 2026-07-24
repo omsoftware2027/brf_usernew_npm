@@ -33,10 +33,11 @@ export class ViewProductDetailComponent implements OnDestroy {
   productid:any;
   slug: string = '';
   banners: any[] = [];
-  productTopBanners: any[] = [];
-  productBottomBanners: any[] = [];
-  currentProductBannerIndex = 0;
-// productTopBanners: any[] = [];
+  topBanners: any[] = [];
+  bottomBanners: any[] = [];
+  rightBanners: any[] = [];
+  currentTopBannerIndex = 0;
+  currentBottomBannerIndex = 0;
 bannerInterval: any;
 
   constructor(public dashboardservice:DashboardService,
@@ -69,39 +70,48 @@ bannerInterval: any;
     // this.getAllcategoryproduct();
   }
 
- startAutoSlide() {
+startAutoSlide() {
   this.bannerInterval = setInterval(() => {
-    if (this.productTopBanners.length > 0) {
-      this.currentProductBannerIndex = (this.currentProductBannerIndex + 1) % this.productTopBanners.length;
+    // Top Banner
+    if (this.topBanners.length > 1) {
+      this.currentTopBannerIndex =
+        (this.currentTopBannerIndex + 1) % this.topBanners.length;
     }
-  }, 3000); // Slide every 3 seconds
+    // Bottom Banner
+    if (this.bottomBanners.length > 1) {
+      this.currentBottomBannerIndex =
+        (this.currentBottomBannerIndex + 1) % this.bottomBanners.length;
+    }
+  }, 3000);
 }
 
 
+  getBanners() {
+    this.bannerService.getBanners().subscribe({
+      next: (res) => {
+        if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
+          this.banners = res.response;
+          this.topBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('product') && b.bannerType?.includes('top_banner')
+          );
 
-getBanners() {
-  this.bannerService.getBanners().subscribe({
-    next: (res) => {
-      if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
-        this.banners = res.response;
-       this.productTopBanners = this.banners.filter(b =>
-  b.bannerPage?.includes('product') && b.bannerType?.includes('top_banner')
-);
-
-       this.productBottomBanners = this.banners.filter(b =>
-  b.bannerPage?.includes('product') && b.bannerType?.includes('bottom_banner')
-);
-      } else {
-        this.banners = [];
-        // this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+          this.bottomBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('product') && (b.bannerType?.includes('bottom_banner') || b.bannerType?.includes('Bottom_banner'))
+          );
+          
+          // right
+          this.rightBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('product') && b.bannerType === 'side_banner_right'
+          );
+        } else {
+          this.banners = [];
+        }
+      },
+      error: (err) => {
+        this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
       }
-    },
-    error: (err) => {
-      console.error('Banner fetch failed:', err);
-      this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
-    }
-  });
-}
+    });
+  }
 
 
 

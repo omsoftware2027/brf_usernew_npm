@@ -122,7 +122,10 @@ driver=''
 
   banners: any[] = [];
   topBanners: any[] = [];
+  bottomBanners: any[] = [];
+  rightBanners: any[] = [];
   currentTopBannerIndex: number = 0;
+  currentBottomBannerIndex: number = 0;
   bannerInterval: any;
 
  @ViewChild('confirmDialog') confirmDialog!: TemplateRef<any>;
@@ -136,7 +139,8 @@ driver=''
     }
   }
   ngOnInit() {
-    this.getBanners()
+    this.getBanners();
+    this.startAutoSlide();
     this.getallbulkorder(0);
     this.getalldropdown('PRODUCTNAME')
     this.getalldropdown('CODE')
@@ -1735,12 +1739,19 @@ cancelorder(orderid:any){
   });
 }
 
- startAutoSlide() {
+startAutoSlide() {
   this.bannerInterval = setInterval(() => {
-    if (this.topBanners.length > 0) {
-      this.currentTopBannerIndex = (this.currentTopBannerIndex + 1) % this.topBanners.length;
+    // Top Banner
+    if (this.topBanners.length > 1) {
+      this.currentTopBannerIndex =
+        (this.currentTopBannerIndex + 1) % this.topBanners.length;
     }
-  }, 3000); // Slide every 3 seconds
+    // Bottom Banner
+    if (this.bottomBanners.length > 1) {
+      this.currentBottomBannerIndex =
+        (this.currentBottomBannerIndex + 1) % this.bottomBanners.length;
+    }
+  }, 3000);
 }
 
   getBanners() {
@@ -1749,13 +1760,24 @@ cancelorder(orderid:any){
         if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
           this.banners = res.response;
           this.topBanners = this.banners.filter(b =>
-            b.bannerPage?.includes('category_page') && b.bannerType === 'top_banner'
+            b.bannerPage?.includes('my_account_page') && b.bannerType === 'top_banner'
           );
-          this.startAutoSlide();
+          // bottom
+          this.bottomBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('my_account_page') && (b.bannerType === 'bottom_banner' || b.bannerType === 'Bottom_banner')
+          );
+          // right
+          this.rightBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('my_account_page') && b.bannerType === 'side_banner_right'
+          );
         } else {
           this.banners = [];
         }
       }
     });
+  }
+
+  get hasRightBanners(): boolean {
+    return this.rightBanners && this.rightBanners.length > 0;
   }
 }

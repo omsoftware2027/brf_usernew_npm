@@ -35,7 +35,8 @@ export class AnalyticsComponent implements OnInit {
 public productTopBanners: any[] = [];
 public homeBottomBanners: any[] = [];
 public homeRightBanners: any[] = [];
-currentHomeBannerIndex: number = 0;
+currentTopBannerIndex: number = 0;
+currentBottomBannerIndex: number = 0;
 bannerInterval: any;
 firstTimeLogin: string | null = null;
 
@@ -58,6 +59,7 @@ firstTimeLogin: string | null = null;
     this.cardload(0);
     this.getallcount()
     this.getBanners();
+    this.startAutoSlide();
     // this.reloadCommonService.sendUpdate('reloadWalletDetail');
     this.reloadCommonService.sendUpdate('reloadNavbar');
     
@@ -76,12 +78,19 @@ firstTimeLogin: string | null = null;
    
     
   }
- startAutoSlide() {
+startAutoSlide() {
   this.bannerInterval = setInterval(() => {
-    if (this.homeTopBanners.length > 0) {
-      this.currentHomeBannerIndex = (this.currentHomeBannerIndex + 1) % this.homeTopBanners.length;
+    // Top Banner
+    if (this.homeTopBanners.length > 1) {
+      this.currentTopBannerIndex =
+        (this.currentTopBannerIndex + 1) % this.homeTopBanners.length;
     }
-  }, 3000); // Slide every 3 seconds
+    // Bottom Banner
+    if (this.homeBottomBanners.length > 1) {
+      this.currentBottomBannerIndex =
+        (this.currentBottomBannerIndex + 1) % this.homeBottomBanners.length;
+    }
+  }, 3000);
 }
   
   tabelLoad(page: number) {
@@ -110,16 +119,13 @@ getBanners() {
         );
 
         this.homeBottomBanners = this.banners.filter(b =>
-          b.bannerPage?.includes('home_page') && b.bannerType === 'Bottom_banner'
+          b.bannerPage?.includes('home_page') && (b.bannerType === 'bottom_banner' || b.bannerType === 'Bottom_banner')
         );
 
         this.homeRightBanners = this.banners.filter(b =>
           b.bannerPage?.includes('home_page') && b.bannerType === 'side_banner_right'
         );
- this.homeBannersLoaded = true;
-        // 🔁 Start rotating banners after they are loaded
-        this.startAutoSlide();
-
+        this.homeBannersLoaded = true;
       } else {
         this.banners = [];
         this.homeBannersLoaded = true;

@@ -29,7 +29,10 @@ filteredWishlist: any[] = [];
   banners: any[] = [];
   wishlistTopBanners: any[] = [];
   wishlistBottomBanners: any[] = [];
-  currentwishlistBannerIndex = 0;
+  rightBanners: any[] = [];
+  leftBanners: any[] = [];
+  currentTopBannerIndex = 0;
+  currentBottomBannerIndex = 0;
   wishlistBannersLoaded: boolean = false;
 
   displayedColumns: string[] = ['productTitle']; // Add more columns as needed
@@ -53,6 +56,7 @@ filteredWishlist: any[] = [];
     this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
     this.tabelLoad(0);
     this.getBanners();          // <-- Fetch banners on init
+    this.startAutoSlide();
   }
 
   ngOnDestroy(): void {
@@ -97,10 +101,17 @@ filteredWishlist: any[] = [];
 
 startAutoSlide() {
   this.bannerInterval = setInterval(() => {
-    if (this.wishlistTopBanners.length > 0) {
-      this.currentwishlistBannerIndex = (this.currentwishlistBannerIndex + 1) % this.wishlistTopBanners.length;
+    // Top Banner
+    if (this.wishlistTopBanners.length > 1) {
+      this.currentTopBannerIndex =
+        (this.currentTopBannerIndex + 1) % this.wishlistTopBanners.length;
     }
-  }, 3000); // Slide every 3 seconds
+    // Bottom Banner
+    if (this.wishlistBottomBanners.length > 1) {
+      this.currentBottomBannerIndex =
+        (this.currentBottomBannerIndex + 1) % this.wishlistBottomBanners.length;
+    }
+  }, 3000);
 }
 
 
@@ -115,19 +126,24 @@ startAutoSlide() {
           );
 
           this.wishlistBottomBanners = this.banners.filter(b =>
-            b.bannerPage?.includes('order_guide') && b.bannerType === 'Bottom_banner'
+            b.bannerPage?.includes('order_guide') && (b.bannerType === 'bottom_banner' || b.bannerType === 'Bottom_banner')
           );
-        this.wishlistBannersLoaded = true;
-          this.startAutoSlide();
-  
+
+          this.rightBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('order_guide') && b.bannerType === 'side_banner_right'
+          );
+
+          // DEAR DEVELOPER- RIGHT N LEFT BANNER IMPLEMENTATION IS COMPLETED...JUST UNCOMMENT BELOW LEFTBANNERs[] CODE FOR SHOWING LEFT BANNER...HTML OK HAI
+
+          // this.leftBanners = this.banners.filter(b =>
+          //   b.bannerPage?.includes('order_guide') && b.bannerType === 'side_banner_left'
+          // );
+
         } else {
           this.banners = [];
-          this.wishlistBannersLoaded = true;
-          // this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
         }
       },
       error: (err) => {
-        this.wishlistBannersLoaded = true;
         this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
       }
     });
@@ -232,5 +248,28 @@ applyFilter() {
     this.pageSize = event.pageSize;
     this.currentPage = event.pageIndex;
     this.tabelLoad(this.currentPage);
+  }
+
+
+  get hasLeftBanners(): boolean {
+    return this.leftBanners?.length > 0;
+  }
+  get hasRightBanners(): boolean {
+    return this.rightBanners?.length > 0;
+  }
+  get leftColumnClass(): string {
+    return this.hasRightBanners ? 'col-lg-3' : 'col-lg-4';
+  }
+  get rightColumnClass(): string {
+    return this.hasLeftBanners ? 'col-lg-3' : 'col-lg-4';
+  }
+  get centerColumnClass(): string {
+    if (this.hasLeftBanners && this.hasRightBanners) {
+      return 'col-lg-6';
+    }
+    if (this.hasLeftBanners || this.hasRightBanners) {
+      return 'col-lg-8';
+    }
+    return 'col-lg-12';
   }
 }

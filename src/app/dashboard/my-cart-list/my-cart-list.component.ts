@@ -25,7 +25,9 @@ export class MyCartListComponent {
   banners: any[] = [];
   cartTopBanners: any[] = [];
   cartBottomBanners: any[] = [];
+  rightBanners: any[] = [];
   currentcartBannerIndex = 0;
+  currentCartBottomBannerIndex = 0;
   bannerInterval: any;
 
  constructor(public dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,private bannerService: BannerService, public authService: AuthService, private router: Router){
@@ -69,12 +71,19 @@ export class MyCartListComponent {
   }
 
 
-  startAutoSlide() {
+startAutoSlide() {
   this.bannerInterval = setInterval(() => {
-    if (this.cartTopBanners.length > 0) {
-      this.currentcartBannerIndex = (this.currentcartBannerIndex + 1) % this.cartTopBanners.length;
+    // Top Banner
+    if (this.cartTopBanners.length > 1) {
+      this.currentcartBannerIndex =
+        (this.currentcartBannerIndex + 1) % this.cartTopBanners.length;
     }
-  }, 3000); // Slide every 3 seconds
+    // Bottom Banner
+    if (this.cartBottomBanners.length > 1) {
+      this.currentCartBottomBannerIndex =
+        (this.currentCartBottomBannerIndex + 1) % this.cartBottomBanners.length;
+    }
+  }, 3000);
 }
 
 
@@ -89,7 +98,11 @@ export class MyCartListComponent {
           );
 
           this.cartBottomBanners = this.banners.filter(b =>
-            b.bannerPage?.includes('my_cart') && b.bannerType === 'bottom_banner'
+            b.bannerPage?.includes('my_cart') && (b.bannerType === 'bottom_banner' || b.bannerType === 'Bottom_banner')
+          );
+
+          this.rightBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('my_cart') && b.bannerType === 'side_banner_right'
           );
         } else {
           this.banners = [];

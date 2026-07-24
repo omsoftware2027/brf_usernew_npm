@@ -32,10 +32,10 @@
 
 
 <div class="container" style="margin-bottom: 10px; ">
-  <ng-container *ngIf="productTopBanners && productTopBanners.length > 0">
+  <ng-container *ngIf="topBanners && topBanners.length > 0">
     <div class="custom-banner-wrapper mt-2">
-      <div class="custom-banner" *ngFor="let banner of productTopBanners; let i = index"
-        [class.active]="i === currentProductBannerIndex">
+      <div class="custom-banner" *ngFor="let banner of topBanners; let i = index"
+        [class.active]="i === currentTopBannerIndex">
         <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner?.title || 'Banner Image' }}"
           class="d-block w-100" />
       </div>
@@ -276,7 +276,15 @@
             </div>
           </div>
         </div>
-
+        <div *ngIf="rightBanners && rightBanners.length > 0" class="side_banner_right mb-4">
+          <div class="row">
+            <div class="col-md-12 d-flex flex-column" *ngFor="let banner of rightBanners">
+              <div class="card">
+                <img *ngIf="banner.image" [src]="banner.image" class="card-img-top" alt="Banner">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -285,19 +293,17 @@
 
 
 
-
-  <div *ngIf="productBottomBanners.length > 0" class="bottom-banners my-4">
-    <div class="card text-center">
-      <img loading="lazy" *ngIf="productBottomBanners[0]?.image" [src]="productBottomBanners[0]?.image"
-        class="d-block w-100" alt="Product Bottom Banner">
-      <!-- Optional: Add title or content below -->
-      <!--
-    <div class="card-body">
-      <h5 class="card-title">{{ productBottomBanners[0].title }}</h5>
+<div class="container" style="margin-bottom: 10px; ">
+  <ng-container *ngIf="bottomBanners && bottomBanners.length > 0">
+    <div class="custom-banner-wrapper mt-2">
+      <div class="custom-banner" *ngFor="let banner of bottomBanners; let i = index"
+        [class.active]="i === currentBottomBannerIndex">
+        <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner?.title || 'Banner Image' }}"
+          class="d-block w-100" />
+      </div>
     </div>
-    -->
-    </div>
-  </div>
+  </ng-container>
+</div>
 
 
 

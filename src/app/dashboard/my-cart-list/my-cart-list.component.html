@@ -162,74 +162,75 @@
             <button class="btn btn-outline-success mb-2" [routerLink]="['/']"> <i class="ri-arrow-left-line"></i> Return to shop</button>
            </div>
                </div>
-               <div class="col-md-12 col-lg-4 col-xl-4 mt-3" *ngIf="isLogin">
-                <mat-card-body >
-                    <div class="card card-t p-4">
-                      <div class="align-items-center">
-                        <h5 class="font-weight-bold">Cart Totals</h5>
-                        <div class="row">
-                          <div class="d-flex justify-content-between p-2">
-                            <span>Sub-total</span>
-                            <span class="font-weight-bold">${{carttotal?.subTotal | number:'1.0-2'}}</span>
-                          </div>
-                          
-                          <div class="d-flex justify-content-between p-2">
-                            <a> Shipping</a>
-                            <span class="font-weight-bold"> ${{carttotal?.shipping | number:'1.0-2'}}</span>
-                          </div>
-          
-                          <div class="d-flex justify-content-between p-2">
-                             <a> Discount</a>
-                             <span class="font-weight-bold"> ${{carttotal?.discount}}</span>
-                          </div><hr>
-          
-                          <div class="d-flex justify-content-between p-2">
-                            <span class="font-weight-bold"> Total</span>
-                            <span  class="font-weight-bold">${{carttotal?.total | number:'1.0-2'}} USD</span>
-                          </div>
-          
-                          <div class="d-flex flex-column">
-                            <button type="button" class="btn mt-4 w-100 red-btn" [routerLink]="['/checkout-page']">PROCEED TO CHECKOUT
-                              <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
-                          
-                          </div>
-                         
-                          
+              <div class="col-md-12 col-lg-4 col-xl-4 mt-3" *ngIf="isLogin">
+                <mat-card-body>
+                  <div class="card card-t p-4">
+                    <div class="align-items-center">
+                      <h5 class="font-weight-bold">Cart Totals</h5>
+                      <div class="row">
+                        <div class="d-flex justify-content-between p-2">
+                          <span>Sub-total</span>
+                          <span class="font-weight-bold">${{carttotal?.subTotal | number:'1.0-2'}}</span>
                         </div>
+              
+                        <div class="d-flex justify-content-between p-2">
+                          <a> Shipping</a>
+                          <span class="font-weight-bold"> ${{carttotal?.shipping | number:'1.0-2'}}</span>
+                        </div>
+              
+                        <div class="d-flex justify-content-between p-2">
+                          <a> Discount</a>
+                          <span class="font-weight-bold"> ${{carttotal?.discount}}</span>
+                        </div>
+                        <hr>
+              
+                        <div class="d-flex justify-content-between p-2">
+                          <span class="font-weight-bold"> Total</span>
+                          <span class="font-weight-bold">${{carttotal?.total | number:'1.0-2'}} USD</span>
+                        </div>
+              
+                        <div class="d-flex flex-column">
+                          <button type="button" class="btn mt-4 w-100 red-btn" [routerLink]="['/checkout-page']">PROCEED TO CHECKOUT
+                            <i class="ri-arrow-right-line" style="font-weight: 500;"></i></button>
+              
+                        </div>
+              
+              
                       </div>
                     </div>
-                  </mat-card-body>
-                  <div class="card card-t">
-                    <div class="align-items-center">
-                      <p class="font-weight-bold">Coupon Code</p>
+                  </div>
+                </mat-card-body>
+                <div class="card card-t">
+                  <div class="align-items-center">
+                    <p class="font-weight-bold">Coupon Code</p>
                     <hr>
-                    <input class="form-control"type="text" placeholder="coupon code"><br>
+                    <input class="form-control" type="text" placeholder="coupon code"><br>
                     <button class="mt-3 btn text-white btn-success">Apply Coupon</button>
+                  </div>
+                </div>
+                
+                <div *ngIf="rightBanners && rightBanners.length > 0" class="side_banner_right mt-4">
+                  <div class="row">
+                    <div class="col-md-12 d-flex flex-column" *ngFor="let banner of rightBanners">
+                      <div class="card card-t" style="padding: 0">
+                        <img *ngIf="banner.image" [src]="banner.image" class="" alt="Banner">
+                      </div>
                     </div>
                   </div>
-                  <mat-card-body >
-                  
-                  </mat-card-body>
-               </div>
+                </div>
+              </div>
         </div>
 
-<!-- My Cart Bottom Banner -->
-<div *ngIf="cartBottomBanners.length > 0" class="bottom-banners my-4">
-  <div class="card text-center">
-    <img loading="lazy"
-      *ngIf="cartBottomBanners[0].image" 
-      [src]="cartBottomBanners[0].image" 
-      class="d-block w-100" 
-      alt="Cart Bottom Banner" 
-    >
-    <!-- Optional: Add title or description -->
-    <!--
-    <div class="card-body">
-      <h5 class="card-title">{{ cartBottomBanners[0].title }}</h5>
+    <!-- My Cart Bottom Banner -->
+    <div *ngIf="cartBottomBanners.length > 0" class="bottom-banners my-4">
+      <div class="custom-banner-wrapper">
+        <div class="custom-banner" *ngFor="let banner of cartBottomBanners; let i = index"
+          [class.active]="i === currentCartBottomBannerIndex">
+          <img loading="lazy" *ngIf="banner.image" [src]="banner.image" class="d-block w-100"
+            [alt]="banner.title || 'Cart Bottom Banner'">
+        </div>
+      </div>
     </div>
-    -->
-  </div>
-</div>
 
     </div>
    </div>

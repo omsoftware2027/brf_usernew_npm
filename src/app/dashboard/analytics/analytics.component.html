@@ -3,13 +3,12 @@
   <ng-container *ngIf="homeTopBanners && homeTopBanners.length > 0">
     <div class="custom-banner-wrapper mt-2">
       <div class="custom-banner" *ngFor="let banner of homeTopBanners; let i = index"
-        [class.active]="i === currentHomeBannerIndex">
+        [class.active]="i === currentTopBannerIndex">
         <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner.title || 'Banner Image' }}"
           class="d-block w-100" />
       </div>
     </div>
   </ng-container>
-
 
   <div>
     <div class="mt-4">
@@ -28,10 +27,13 @@
             <div class="row">
               <div class="col-6 col-md-4 col-xl-3" *ngFor="let data of category ;let i = index">
                 <div class="p-2 border bg-white cursor-pointer card-container">
-                  <img [src]="data?.image|| 'assets/images/download (20).png'" onerror="this.src='assets/images/download (20).png';" class="card-image"
+                  <img [src]="data?.image|| 'assets/images/download (20).png'"
+                    onerror="this.src='assets/images/download (20).png';" class="card-image"
                     [routerLink]="['/category', data?.categoryId, dashboardservice.generateSlug(data?.categoryName)]">
                 </div>
-                <p class="mt-2 t2" [routerLink]="['/category', data?.categoryId, dashboardservice.generateSlug(data?.categoryName)]">{{data?.categoryName}}</p>
+                <p class="mt-2 t2"
+                  [routerLink]="['/category', data?.categoryId, dashboardservice.generateSlug(data?.categoryName)]">
+                  {{data?.categoryName}}</p>
               </div>
             </div>
 
@@ -102,13 +104,15 @@
                   <div class="card" style="padding: 8px; border-radius: 10px; " *ngFor="let data of  wishlist">
                     <div class="d-flex col-md-12 col-lg-12 col-xl-12">
                       <div class="d-flex align-items-center col-md-2 col-lg-2 col-xl-2">
-                        <img [src]="data?.image || 'assets/images/download (20).png'" onerror="this.src='assets/images/download (20).png';"
+                        <img [src]="data?.image || 'assets/images/download (20).png'"
+                          onerror="this.src='assets/images/download (20).png';"
                           style="width:74px; height: 74px; border-radius: 5px;">
 
                       </div>
                       <div class="col-md-9 col-lg-9 col-xl-9">
                         <p style="padding-top: 10px; padding-left: 25px; color:#475156;font-size:14px;font-weight:500;line-height: 15px;cursor: pointer;"
-                          [routerLink]="['/product', data?.productId, dashboardservice.generateSlug(data?.productTitle)]">{{data?.productTitle}}</p>
+                          [routerLink]="['/product', data?.productId, dashboardservice.generateSlug(data?.productTitle)]">
+                          {{data?.productTitle}}</p>
                       </div>
                       <div class="justify-content-end col-md-1 col-lg-1 col-xl-1">
                         <p><mat-icon style="color: #929FA5;"
@@ -230,40 +234,20 @@
 
 
 
-
-
-        <!-- <div *ngIf="homeBottomBanners.length > 0" class="bottom-banners my-4">
-  <h4>Bottom Banners</h4>
-  <div class="row">
-    <div class="col-md-4" *ngFor="let banner of homeBottomBanners">
-      <div class="card">
-        <img *ngIf="banner.image" [src]="banner.image" class="card-img-top" alt="Banner">
-        <div class="card-body">
-          <h5 class="card-title">{{ banner.title }}</h5>
-        </div>
       </div>
     </div>
   </div>
-</div> -->
 
-        <div *ngIf="homeBottomBanners&&homeBottomBanners.length > 0" class="bottom-banners my-4">
-          <div class="card text-center">
-            <img *ngIf="homeBottomBanners[0].image" [src]="homeBottomBanners[0].image" class="d-block w-100"
-              alt="Banner">
-            <!-- Optional: Add title or content below -->
-            <!--
-    <div class="card-body">
-      <h5 class="card-title">{{ homeBottomBanners[0].title }}</h5>
-    </div>
-    -->
-          </div>
+  <div class="container" style="margin-bottom: 10px; ">
+    <ng-container *ngIf="homeBottomBanners && homeBottomBanners.length > 0">
+      <div class="custom-banner-wrapper mt-2">
+        <div class="custom-banner" *ngFor="let banner of homeBottomBanners; let i = index"
+          [class.active]="i === currentBottomBannerIndex">
+          <img loading="lazy" *ngIf="banner?.image" [src]="banner?.image" alt="{{ banner?.title || 'Banner Image' }}"
+            class="d-block w-100" />
         </div>
-
-
-
-
       </div>
-    </div>
+    </ng-container>
   </div>
 
 </div>
