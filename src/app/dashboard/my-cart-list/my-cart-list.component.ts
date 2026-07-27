@@ -6,6 +6,7 @@ import { MasterService } from 'src/app/services/master-service/master.service';
 import { BannerService } from 'src/app/banner.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
+import { SeoService } from 'src/app/services/seo/seo.service';
 
 @Component({
   selector: 'app-my-cart-list',
@@ -28,12 +29,22 @@ export class MyCartListComponent {
   currentcartBannerIndex = 0;
   bannerInterval: any;
 
- constructor(public dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private reloadCommonService:MasterService,private bannerService: BannerService, public authService: AuthService, private router: Router){
+ constructor(
+  public dashboardservice:DashboardService,
+  private matSnackBar:MatSnackBar,
+  private reloadCommonService:MasterService,
+  private bannerService: BannerService,
+  public authService: AuthService,
+  private router: Router,
+  private seoService: SeoService
+){
 
  }
  ngOnInit(){
   // var token = localStorage.getItem('token');
   // if(token){ this.isLogin = true; }
+
+  this.seoService.setDefaultSeo();
 
   this.authService.token$.subscribe(token => {
     if (token) {

@@ -1,8 +1,9 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { Observable, shareReplay } from 'rxjs';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +12,13 @@ export class SeoService {
 
   private defaultSeo: any = null;
   private defaultSeoRequest$?: Observable<any>;
+  private readonly siteUrl = environment.siteUrl;
 
   constructor(
     private title: Title,
     private meta: Meta,
     @Inject(DOCUMENT) private document: Document,
     private dashboardService: DashboardService,
-    @Inject(PLATFORM_ID) private platformId: Object,
   ) { }
 
 
@@ -59,7 +60,7 @@ export class SeoService {
       title,
       description,
       keywords,
-      canonical: isPlatformBrowser(this.platformId)? window.location.origin + '/' : 'https://brfood.us/',
+      canonical: `${this.siteUrl}/`,
       image: 'https://assets.brfood.us/1692711907309_logo.png'
     });
   }
@@ -71,7 +72,7 @@ export class SeoService {
       title: `${categoryName} | Wholesale Restaurant Supplies | B&R Food Services Inc.`,
       description: `Shop wholesale ${categoryName} products from B&R Food Services Inc. Browse premium restaurant supplies with competitive pricing and fast delivery across the USA.`,
       keywords: this.getDefaultKeywords(),
-      canonical: isPlatformBrowser(this.platformId) ? `${window.location.origin}/category/${categoryId}/${slug}` : 'https://brfood.us/',
+      canonical: `${this.siteUrl}/category/${categoryId}/${slug}`,
       image: image || 'https://assets.brfood.us/1692711907309_logo.png',
       ogTitle: `${categoryName} Food Packaging | Wholesale Restaurant Supplies`,
       twitterTitle: `${categoryName} Food Packaging`
@@ -86,7 +87,7 @@ export class SeoService {
       title: `${productName} | B&R Food Services Inc.`,
       description: `Buy ${productName} from B&R Food Services Inc. Premium restaurant supplies with fast delivery across the USA.`,
       keywords: this.getDefaultKeywords(),
-      canonical: isPlatformBrowser(this.platformId) ? `${window.location.origin}/product/${productId}/${slug}` : 'https://brfood.us/',
+      canonical: `${this.siteUrl}/product/${productId}/${slug}`,
       image: image || 'https://assets.brfood.us/1692711907309_logo.png'
     });
   }
@@ -97,10 +98,14 @@ export class SeoService {
     this.meta.updateTag({ name: 'title', content: data.title });
     this.meta.updateTag({ name: 'description', content: data.description });
     this.meta.updateTag({ name: 'keywords', content: data.keywords });
+    this.meta.updateTag({ name: 'robots', content: data.robots || 'index, follow'});
+
     this.meta.updateTag({ property: 'og:title', content: data.ogTitle || data.title });
     this.meta.updateTag({ property: 'og:description', content: data.description });
     this.meta.updateTag({ property: 'og:url', content: data.canonical });
     this.meta.updateTag({ property: 'og:image', content: data.image });
+    this.meta.updateTag({ property: 'og:site_name', content: 'B&R Food Services Inc.' });
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image'});
     this.meta.updateTag({ name: 'twitter:title', content: data.twitterTitle || data.title });
     this.meta.updateTag({ name: 'twitter:description', content: data.description });
     this.meta.updateTag({ name: 'twitter:image', content: data.image });

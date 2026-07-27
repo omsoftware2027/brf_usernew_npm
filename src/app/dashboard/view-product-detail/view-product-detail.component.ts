@@ -112,8 +112,6 @@ goBack(): void {
 }
 
   ngOnDestroy() {
-    // metadata is incomplete for other multiple component, setDefault before dynamic applied seo page destroy 
-    this.seoService.setDefaultSeo();
     // Unsubscribe to avoid memory leaks
     this.routeSubscription.unsubscribe();
      if (this.bannerInterval) {

@@ -7,6 +7,7 @@ import { MasterService } from 'src/app/services/master-service/master.service';
 import { BannerService } from 'src/app/banner.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
+import { SeoService } from 'src/app/services/seo/seo.service';
 
 @Component({
   selector: 'app-add-wishlist',
@@ -40,7 +41,8 @@ filteredWishlist: any[] = [];
     private reloadCommonService: MasterService,
     private bannerService: BannerService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public seoService: SeoService
   ) { 
     this.authService.token$.subscribe(token => {
       if (!token || token.length<1) {
@@ -50,6 +52,7 @@ filteredWishlist: any[] = [];
   }
 
   ngOnInit(): void {
+    this.seoService.setDefaultSeo();
     this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
     this.tabelLoad(0);
     this.getBanners();          // <-- Fetch banners on init
