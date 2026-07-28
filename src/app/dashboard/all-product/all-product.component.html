@@ -76,7 +76,7 @@
 
                           <div class="ps-2 mt-3">
                             <div class="icon-container"
-                              *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
+                              *ngIf="userDetails?.isLockOrderGuide == 'Yes' || !userDetails?.isLockOrderGuide">
                               <i *ngIf="toggleStates[i]== true  && data.isWishlist == 'true'" class="ri-heart-fill p-1"
                                 style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
                                 (click)=" preventScrollToTop = true; toggleIcons('second', i);submit(data.productId)">
@@ -86,7 +86,7 @@
                                 (click)=" preventScrollToTop = true; toggleIcons('first', i);submit(data.productId)">
                               </i>
                             </div>
-                            <div class="icon-container" *ngIf="userDetails.isLockOrderGuide == 'No'">
+                            <div class="icon-container" *ngIf="userDetails?.isLockOrderGuide == 'No'">
                               <i class="ri-heart-fill p-1"
                                 style="font-size: 19px; color:grey;border: 1px solid grey;"></i>
                             </div>

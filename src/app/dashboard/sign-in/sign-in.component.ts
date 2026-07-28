@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +12,13 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class SignInComponent {
   formGroup!:FormGroup;
-  constructor(private formBuilder:FormBuilder, private dialogRef: MatDialogRef<SignInComponent>,private router: Router, public authService: AuthService){
+  constructor(
+    private formBuilder:FormBuilder,
+    private dialogRef: MatDialogRef<SignInComponent>,
+    private router: Router,
+    public authService: AuthService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ){
 
   }
   ngOnInit() {
@@ -28,12 +35,20 @@ closeDialog(){
 }
 logout(){
   this.dialogRef.close();
-  localStorage.removeItem('token');
+  if (isPlatformBrowser(this.platformId)) {
+    localStorage.removeItem('token');
+  }
   this.authService.clearToken();
-  localStorage.removeItem('id');
-  localStorage.removeItem('userType');
+  if (isPlatformBrowser(this.platformId)) {
+    localStorage.removeItem('id');
+  }
+  if (isPlatformBrowser(this.platformId)) {
+    localStorage.removeItem('userType');
+  }
   this.authService.clearUserType();
-  localStorage.removeItem('firstTimeLogin')
+  if (isPlatformBrowser(this.platformId)) {
+    localStorage.removeItem('firstTimeLogin')
+  }
   this.dialogRef.close();
   this.router.navigate(['/email-signup']);
   }

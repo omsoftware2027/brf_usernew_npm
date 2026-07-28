@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from '../dashboard.service';
+import { isPlatformBrowser } from '@angular/common';
 
 export function onlyLettersValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -23,7 +24,7 @@ export class AddNewUserPopupComponent {
   SignUpForm!:FormGroup;
   userId:any;
   submitted:boolean=false;
-  constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<AddNewUserPopupComponent>,private matsnackbar:MatSnackBar,private dashboardservice :DashboardService){
+  constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<AddNewUserPopupComponent>,private matsnackbar:MatSnackBar,private dashboardservice :DashboardService,   @Inject(PLATFORM_ID) private platformId: Object){
 
   }
   ngOnInit(){
@@ -62,7 +63,9 @@ export class AddNewUserPopupComponent {
     this.dialogRef.close();
   }
   submit(){
-    this.userId=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userId=localStorage.getItem('id');
+    }
     this.submitted=true;
     if(this.SignUpForm.valid){
       let data = {

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -7,6 +7,7 @@ import { BannerService } from 'src/app/banner.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { SeoService } from 'src/app/services/seo/seo.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-my-cart-list',
@@ -36,7 +37,8 @@ export class MyCartListComponent {
   private bannerService: BannerService,
   public authService: AuthService,
   private router: Router,
-  private seoService: SeoService
+  private seoService: SeoService,
+  @Inject(PLATFORM_ID) private platformId: Object
 ){
 
  }
@@ -61,7 +63,9 @@ export class MyCartListComponent {
   currentValue: number = 22;
   
   tabelLoad(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0 ;
      }
@@ -140,7 +144,9 @@ export class MyCartListComponent {
     }
   }
   getallcarttotal(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0 ;
      }
@@ -168,7 +174,9 @@ export class MyCartListComponent {
       quantity.target.value = quan;
       return
     } else {
-    this.userid=localStorage.getItem('id');
+      if (isPlatformBrowser(this.platformId)) {
+        this.userid=localStorage.getItem('id');
+      }
     this.dashboardservice.savequtanity( this.userid,product?.productId,quan).subscribe((res:any) => {
       if (res.status == 0) {
         this.reloadCommonService.sendUpdate('reloadWalletDetail');
@@ -190,7 +198,9 @@ export class MyCartListComponent {
       this.matSnackBar.open('Minimum quantity should be 1', 'x', { duration: 2000 });
       return
     } else {
-    this.userid=localStorage.getItem('id');
+      if (isPlatformBrowser(this.platformId)) {
+        this.userid=localStorage.getItem('id');
+      }
     this.dashboardservice.savequtanity( this.userid,data.productId,data.quantity).subscribe((res:any) => {
       if (res.status == 0) {
         this.matSnackBar.open("Quantity Removed", 'x', { duration: 2000 });

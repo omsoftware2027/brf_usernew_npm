@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from '../dashboard.service';
 import { MatSort } from '@angular/material/sort';
@@ -8,6 +8,7 @@ import { BannerService } from 'src/app/banner.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { SeoService } from 'src/app/services/seo/seo.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-add-wishlist',
@@ -42,7 +43,8 @@ filteredWishlist: any[] = [];
     private bannerService: BannerService,
     private authService: AuthService,
     private router: Router,
-    public seoService: SeoService
+    public seoService: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { 
     this.authService.token$.subscribe(token => {
       if (!token || token.length<1) {
@@ -53,7 +55,9 @@ filteredWishlist: any[] = [];
 
   ngOnInit(): void {
     this.seoService.setDefaultSeo();
-    this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
+    }
     this.tabelLoad(0);
     this.getBanners();          // <-- Fetch banners on init
   }
@@ -65,9 +69,10 @@ filteredWishlist: any[] = [];
 }
 
  tabelLoad(page: number): void {
-  const userIdFromStorage = localStorage.getItem('id');
-  this.userid = userIdFromStorage !== null ? userIdFromStorage : 0;
-
+  if (isPlatformBrowser(this.platformId)) {
+    const userIdFromStorage = localStorage.getItem('id');
+    this.userid = userIdFromStorage !== null ? userIdFromStorage : 0;
+  }
   this.dashboardservice.getallwishlist(this.currentPage, this.pageSize, this.userid, '').subscribe({
     next: (res: any) => {
       if (res.status === 0) {

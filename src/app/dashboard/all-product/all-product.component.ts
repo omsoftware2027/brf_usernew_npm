@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DashboardService } from '../dashboard.service';
@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-all-product',
@@ -43,18 +44,29 @@ export class AllProductComponent implements OnInit, OnDestroy {
   userDetails: any;
  preventScrollToTop: boolean = false
   
-  constructor(public dashboardservice:DashboardService,private router: Router,
-    private route: ActivatedRoute,private matSnackBar:MatSnackBar,private formBuilder :FormBuilder,public dashboardService: DashboardService, private reloadCommonService:MasterService ) {
-      this.searchproduct = this.formBuilder.group({
-        name: [''],
-      });
-     }
+  constructor(
+    public dashboardservice: DashboardService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private matSnackBar: MatSnackBar,
+    private formBuilder: FormBuilder,
+    public dashboardService: DashboardService,
+    private reloadCommonService: MasterService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.searchproduct = this.formBuilder.group({
+      name: [''],
+    });
+  }
    ngOnInit(): void {
-     this.userDetails = localStorage.getItem('UserDetails');
-     this.userDetails = JSON.parse(this.userDetails);
+     if (isPlatformBrowser(this.platformId)) {
+       this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
+     }
      this.categoryid = this.route.snapshot.params['id'];
      this.productname = this.route.snapshot.params['name'];
-     this.userid=localStorage.getItem('id');
+     if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+     }
     this.tabelLoad(0);
     this.getallcount();
     // this.getallcarttotal(0);
@@ -82,7 +94,9 @@ export class AllProductComponent implements OnInit, OnDestroy {
       this.data =res;
       if (this.data.status === 0) {
         if (!this.preventScrollToTop) {
-          window.scrollTo(0, 0);
+           if (isPlatformBrowser(this.platformId)) {
+             window.scrollTo(0, 0);
+            }
         }
 
         this.totalrecordLength = this.data.response.totalElements;
@@ -159,7 +173,9 @@ export class AllProductComponent implements OnInit, OnDestroy {
   
   }
   getallcarttotal(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if (this.userid) {
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
@@ -173,14 +189,18 @@ export class AllProductComponent implements OnInit, OnDestroy {
   }
   }
   cardload(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
 
     if (this.userid) {
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
         if(!this.preventScrollToTop){
-        window.scrollTo(0, 0);
+           if (isPlatformBrowser(this.platformId)) {
+              window.scrollTo(0, 0);
+           }
         }
         this.totalrecordLength = this.data.response.totalElements;
         this.wishlist = this.data.response.dataSet;
@@ -226,7 +246,9 @@ export class AllProductComponent implements OnInit, OnDestroy {
   // }
   getallproduct() {
     const name =  (this.productname || '').trim();
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name, this.userid || '').subscribe(res => {
       this.data =res;
       if (this.data.status === 0) {
@@ -235,7 +257,9 @@ export class AllProductComponent implements OnInit, OnDestroy {
     })
   }
   savequantity(productId:any,quantity:any){
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
         this.matSnackBar.open("Quantity Update ", 'x', { duration: 2000 });
@@ -250,7 +274,10 @@ export class AllProductComponent implements OnInit, OnDestroy {
   
   }
   getallcart() {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
+
     this.dashboardservice.getcartcount(this.userid).subscribe(res => {
         this.data = res;
         if (this.data.status === 0) {  
@@ -262,7 +289,9 @@ export class AllProductComponent implements OnInit, OnDestroy {
     });
   }
   getallcount() {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0;
     }

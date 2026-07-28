@@ -1,10 +1,10 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, PLATFORM_ID, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
-import { Location } from '@angular/common';
+import { isPlatformBrowser, Location } from '@angular/common';
 import { BannerService } from 'src/app/banner.service';
 import { SeoService } from 'src/app/services/seo/seo.service';
 
@@ -47,61 +47,73 @@ bannerInterval: any;
     private location: Location,
     private bannerService: BannerService,
     public seoService: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object
    ){
 
   }
 
   ngOnInit(): void {
-    this.userDetails = localStorage.getItem('UserDetails');
-    this.userDetails = JSON.parse(this.userDetails);
+    if (isPlatformBrowser(this.platformId)) {
+      this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
+    }
     this.productid = this.route.snapshot.params['id'];
     this.slug = this.route.snapshot.params['slug'] || 'product name';
-    this.userid=localStorage.getItem('id');
-    this.routeSubscription = this.route.params.subscribe(params => {
-      this.productid = params['id'];
-      this.getproductById();
-      this.getBanners();
-       this.startAutoSlide();
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
+
+    this.productid = this.route.snapshot.params['id'];
+    this.getproductById();
+    this.getBanners();
    this.getallcarttotal(0);
    this.cardload(0);
    this.getallcount();
     // this.getAllcategoryproduct();
   }
 
- startAutoSlide() {
-  this.bannerInterval = setInterval(() => {
-    if (this.productTopBanners.length > 0) {
-      this.currentProductBannerIndex = (this.currentProductBannerIndex + 1) % this.productTopBanners.length;
+  startAutoSlide() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
     }
-  }, 3000); // Slide every 3 seconds
-}
 
+    if (this.bannerInterval) {
+      clearInterval(this.bannerInterval);
+    }
 
-
-getBanners() {
-  this.bannerService.getBanners().subscribe({
-    next: (res) => {
-      if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
-        this.banners = res.response;
-       this.productTopBanners = this.banners.filter(b =>
-  b.bannerPage?.includes('product') && b.bannerType?.includes('top_banner')
-);
-
-       this.productBottomBanners = this.banners.filter(b =>
-  b.bannerPage?.includes('product') && b.bannerType?.includes('bottom_banner')
-);
-      } else {
-        this.banners = [];
-        // this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+    this.bannerInterval = setInterval(() => {
+      if (this.productTopBanners.length > 0) {
+        this.currentProductBannerIndex =
+          (this.currentProductBannerIndex + 1) % this.productTopBanners.length;
       }
-    },
-    error: (err) => {
-      console.error('Banner fetch failed:', err);
-      this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
-    }
-  });
-}
+    }, 3000);
+  }
+
+
+
+  getBanners() {
+    this.bannerService.getBanners().subscribe({
+      next: (res) => {
+        if (res?.status === 0 && Array.isArray(res?.response) && res?.response?.length > 0) {
+          this.banners = res?.response;
+          this.productTopBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('product') && b.bannerType?.includes('top_banner')
+          );
+
+          this.productBottomBanners = this.banners.filter(b =>
+            b.bannerPage?.includes('product') && b.bannerType?.includes('bottom_banner')
+          );
+          this.startAutoSlide();
+        } else {
+          this.banners = [];
+          // this.matSnackBar.open("No banners found!", 'x', { duration: 2000 });
+        }
+      },
+      error: (err) => {
+        console.error('Banner fetch failed:', err);
+        this.matSnackBar.open("Error fetching banners!", 'x', { duration: 2000 });
+      }
+    });
+  }
 
 
 
@@ -111,12 +123,14 @@ goBack(): void {
   this.location.back();
 }
 
-  ngOnDestroy() {
-    // Unsubscribe to avoid memory leaks
-    this.routeSubscription.unsubscribe();
-     if (this.bannerInterval) {
-    clearInterval(this.bannerInterval);
-  }
+  ngOnDestroy(): void {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+
+    if (this.bannerInterval) {
+      clearInterval(this.bannerInterval);
+    }
   }
   toggleIcons(iconClicked: string) {
     if (iconClicked === 'first') {
@@ -175,7 +189,9 @@ goBack(): void {
             this.getallcarttotal(0);
             this.getallcount();
             this.getallcart();
-            window.location.reload();
+            if (isPlatformBrowser(this.platformId)) {
+              window.location.reload();
+            }
           }
           else {
             this.matSnackBar.open("Error while updating", 'x', { duration: 2000 });
@@ -217,8 +233,9 @@ goBack(): void {
   
   }
   getallcarttotal(page: number) {
-   
-    this.userid=localStorage.getItem('id');
+   if (isPlatformBrowser(this.platformId)) {
+     this.userid=localStorage.getItem('id');
+   }
     if(this.userid == null){
       this.userid = 0;
     }
@@ -233,7 +250,9 @@ goBack(): void {
     })
   }
   cardload(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0;
     }
@@ -301,7 +320,9 @@ goBack(): void {
     }
   }
   savequantity(productId:any,quantity:any){
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
         this.matSnackBar.open("Quantity Update ", 'x', { duration: 2000 });
@@ -318,7 +339,9 @@ goBack(): void {
   
   }
   getallcart() {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0;
     }
@@ -334,7 +357,9 @@ goBack(): void {
   }
   
   getallcount() {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0;
     }

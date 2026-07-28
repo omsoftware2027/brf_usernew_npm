@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SigninPopupComponent } from 'src/app/shared/signin-popup/signin-popup.component';
@@ -13,6 +13,7 @@ import { ChangeProductPopupComponent } from '../change-product-popup/change-prod
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/auth/auth.service';
 import { BannerService } from 'src/app/banner.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-account-detail',
@@ -129,19 +130,24 @@ driver=''
   cartItemsCount = 0;
   private dialogRef!: MatDialogRef<any>;
 
-  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar, public dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService, public authService: AuthService, public bannerService: BannerService){
-    this.firstTimeLogin =localStorage.getItem('firstTimeLogin');
-    if (this.firstTimeLogin == 'true') {
-      this.showpassword()
-    }
+  constructor(private formBuilder:FormBuilder, private dialog:MatDialog,private snackBar:MatSnackBar, public dashboardservice:DashboardService,private route:Router,private reloadCommonService:MasterService, public authService: AuthService, public bannerService: BannerService,   @Inject(PLATFORM_ID) private platformId: Object){
+
   }
   ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
+      if (this.firstTimeLogin === 'true') {
+        this.showpassword();
+      }
+    }
     this.getBanners()
     this.getallbulkorder(0);
     this.getalldropdown('PRODUCTNAME')
     this.getalldropdown('CODE')
     this.getalldropdown('BIN')
+    if (isPlatformBrowser(this.platformId)) {
     this.userId=localStorage.getItem('id');
+    }
     // this.usertype=localStorage.getItem('usertype')
     this.authService.userType$.subscribe(userType=>{
       this.usertype = userType;
@@ -546,8 +552,10 @@ changepassword(){
       if (res.status == 0) {
         this.snackBar.open(res.response ,'x', { duration: 2000 });
         if (this.firstTimeLogin == 'true') {
-          localStorage.removeItem('firstTimeLogin');
-          this.route.navigateByUrl('');
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.removeItem('firstTimeLogin');
+            this.route.navigateByUrl('');
+          }
         }
       }
       else {
@@ -590,7 +598,9 @@ getaccountdetailById(){
   })
 }
 getalladdress(page:number){
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
   this.dashboardservice.getalladdress(this.currentPage, this.pageSize,this.userid).subscribe((res:any)=>{
    if(res.status==0){
     this.address=res.response.dataSet
@@ -605,7 +615,9 @@ getalladdress(page:number){
 }
 getallbulkorder(page:number){
   const categoryid =this.selectcategoryid ||''
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
   if(this.userid == null){
     this.userid = 0
   }
@@ -624,7 +636,9 @@ getallbulkorder(page:number){
   )
 }
 getallorder(page:number){
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
   if(this.userid == null){
     this.userid = 0
   }
@@ -660,7 +674,9 @@ pageChangeddd(event: any) {
   // this.getorderbyorderid();
 }
 getallstaff(page:number){
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
   if(this.userid == null){
     this.userid = 0
   }
@@ -822,7 +838,9 @@ submitcart(productId:any,price:any,quantity:any){
 }
 
   getallreorder(orderid: any) {
-    this.userid = localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid = localStorage.getItem('id');
+    }
     this.dashboardservice.getallcart(this.currentPage, this.pageSize, this.userid).subscribe(res => {
       this.cartItemsCount = res?.response?.totalElements || 0;
       if (this.cartItemsCount > 0) {
@@ -1033,7 +1051,9 @@ openeinventorydialog(productName: any, totalPrice: any, productId: any, orderIte
 downoladinvoice(orderid:any){
   this.dashboardservice.downloadprintinvoice(orderid).subscribe( res =>{
     this.data =res.response;
-    window.open(this.data, '_blank');
+     if (isPlatformBrowser(this.platformId)) {
+      window.open(this.data, '_blank');
+    }
   })
 }
 getallexpandorder(selectedButton: string) {

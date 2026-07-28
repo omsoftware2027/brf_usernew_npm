@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -15,29 +15,30 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Injectable()
 export class AuthErrorInterceptor implements HttpInterceptor {
 
-  constructor(private router: Router ,
-    @Inject(DOCUMENT) private document: Document, public authService: AuthService) {}
+  constructor(private router: Router,
+    @Inject(DOCUMENT) private document: Document,
+    public authService: AuthService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    return next.handle(request).pipe(catchError(err => {
-      if (err.status === 401) { 
-        // auto logout if 401 response returned from api
-        localStorage.removeItem('id');
-        // localStorage.removeItem('token');
-        this.authService.clearToken();
-        this.router.navigate(['/email-signup']);
-        if (document.referrer.toString().includes('/email-signup')) {
-          return throwError('Not Authorized');
-        } else {
-        // this.document.location.href = `${environment.website}/home`;
+    return next.handle(request).pipe(catchError(
+      err => {
+        if (err.status === 401) {
+          this.authService.clearToken();
+          if (isPlatformBrowser(this.platformId)) {
+            localStorage.removeItem('id');
+            this.router.navigate(['/email-signup']);
+            if (document.referrer.includes('/email-signup')) {
+              return throwError(() => new Error('Not Authorized'));
+            }
+            // window.location.href = `${environment.website}/home`;
+          }
+          return throwError(() => err);
         }
-      }
-      const error = err?.error?.message || err?.statusText;
-      return throwError(error);
-     }
-
-
-    ));
+        return throwError(() => err);
+      })
+    );
   }
 }

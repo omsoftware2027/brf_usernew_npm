@@ -53,7 +53,7 @@
 <div class="container" >
 
  <div class="col-md-12 px-5 py-3 pm-2">
-  <div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
+  <div class="alert alert-warning" role="alert" *ngIf="userDetails?.isLockOrderGuide == 'No'">
     You have not access to change or modify your order guide , Contact  BR Food Admin for the Approval!
   </div>
     <div class="col-md-12 card " style="    border-radius: 9px;">
@@ -149,17 +149,17 @@
                       <td style="font-weight: 500;font-size: 14px;line-height: 20px;color:#2DB224">{{data.productStatus}}</td>
                       <td class="d-flex">
                         <button [disabled]="data.quantity < 1" type="button"
-                          *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide" class="btn btn-primary mt-4"
+                          *ngIf="userDetails?.isLockOrderGuide == 'Yes' || !userDetails?.isLockOrderGuide" class="btn btn-primary mt-4"
                           (click)="submitcart(data.productId,data.price,data.quantity,data.wishlistId)"
                           style="background-color: #F44C4C; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">
                           <span *ngIf="data.isCartExist=='false'">ADD TO CART</span>
                           <span *ngIf="data.isCartExist=='true'">UPDATE CART</span>
                           <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;">
                         </button>
-                        <button type="button" *ngIf="userDetails.isLockOrderGuide == 'No'" class="btn btn-primary mt-4"
+                        <button type="button" *ngIf="userDetails?.isLockOrderGuide == 'No'" class="btn btn-primary mt-4"
                           style="background-color: grey; color: white; width:160px ;height: 41px;border-radius: 2px;font-weight: 700;font-size: 14px;line-height: 28px;">ADD
                           TO CART <img src="../../../assets/images/Add to cart.png" class="" style="width:24px;height: 24px;"> </button>
-                        <p class="p-4 mt-2" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide"><mat-icon
+                        <p class="p-4 mt-2" *ngIf="userDetails?.isLockOrderGuide == 'Yes' || !userDetails?.isLockOrderGuide"><mat-icon
                             style="color: #929FA5;" (click)="deletewishlist(data.wishlistId)">highlight_off</mat-icon></p>
                       </td>
                     </tr>

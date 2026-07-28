@@ -49,7 +49,7 @@
 <div class="container">
 
   <div class="col-12">
-    <div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
+    <div class="alert alert-warning" role="alert" *ngIf="userDetails?.isLockOrderGuide == 'No'">
       You have not access to change or modify your order guide , Contact BR Food Admin for the Approval!
     </div>
   </div>
@@ -114,7 +114,7 @@
                       <img loading="lazy" src="../../../assets/images/Add to cart.png" class=""
                         style="width:24px;height: 24px;letter-spacing: 0.5px;"> </button>
                     <div class="d-flex mt-2 pt-2 ps-3 psm-0"
-                      *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
+                      *ngIf="userDetails?.isLockOrderGuide == 'Yes' || !userDetails?.isLockOrderGuide">
                       <!-- <img src="../../../assets/images/add wishlist icon2 (1).png" style="width:25px;height:25px;"> -->
                       <div class="icon-container">
                         <i class="ri-heart-line" style="cursor: pointer;"

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup , Validators} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from 'src/app/dashboard/dashboard.service';
@@ -32,7 +33,12 @@ export class FooterComponent implements OnInit{
 
     footerDetails: any;
 
-  constructor(private dashboardservice:DashboardService,private snackBar:MatSnackBar,private formBuilder:FormBuilder){
+  constructor(
+    private dashboardservice:DashboardService,
+    private snackBar:MatSnackBar,
+    private formBuilder:FormBuilder,
+    @Inject(PLATFORM_ID) private platformId: Object,
+  ){
     this.footeremailform=this.formBuilder.group({
       email:['',[Validators.required, Validators.email]],
     })
@@ -82,7 +88,9 @@ export class FooterComponent implements OnInit{
     
     } 
     openurl(url:any){
-      window.open(url, '_blank');
+      if (isPlatformBrowser(this.platformId)) {
+        window.open(url, '_blank');
+      }
     }
     submitcart(){
       this.submitted=true;

@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SigninPopupComponent } from 'src/app/shared/signin-popup/signin-popup.component';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { DatePipe, isPlatformBrowser } from '@angular/common';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { Location } from '@angular/common';
 
@@ -27,7 +27,15 @@ export class CheckoutPageComponent {
   currentPage=0;
   pageSize=30;
   now:any;
-constructor( private dialog:MatDialog,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,private formBuilder:FormBuilder,private route:Router,private reloadCommonService:MasterService, private location: Location){
+constructor( private dialog:MatDialog,
+  private dashboardservice:DashboardService,
+  private matSnackBar:MatSnackBar,
+  private formBuilder:FormBuilder,
+  private route:Router,
+  private reloadCommonService:MasterService, 
+  private location: Location,
+    @Inject(PLATFORM_ID) private platformId: Object
+){
 
 }
 ngOnInit(): void {
@@ -69,8 +77,10 @@ dateValidator(control: AbstractControl): { [key: string]: boolean } | null {
   //   });
   // }
   getallcarttotal(page: number) {
-    this.userid=localStorage.getItem('id');
-    console.log(this.userid,'userid');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
+    
     if(this.userid == null){
       this.userid = 0;
     }
@@ -85,7 +95,9 @@ dateValidator(control: AbstractControl): { [key: string]: boolean } | null {
     })
   }
   shippingcard(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     console.log(this.userid,'userid');
     if(this.userid == null){
       this.userid = 0;

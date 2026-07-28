@@ -42,7 +42,7 @@
           </a>
       </div>
 
-      <div class="alert alert-warning" role="alert" *ngIf="userDetails.isLockOrderGuide == 'No'">
+      <div class="alert alert-warning" role="alert" *ngIf="userDetails?.isLockOrderGuide == 'No'">
         You have not access to change or modify your order guide , Contact  BR Food Admin for the Approval!
       </div>
 
@@ -99,7 +99,7 @@
                 <img src="../../../assets/images/Add to cart.png" class="" style="width:15px;height: 15px;">
               </button>
                  <div class="ps-2 mt-3">
-                  <div class="icon-container" *ngIf="userDetails.isLockOrderGuide == 'Yes' || !userDetails.isLockOrderGuide">
+                  <div class="icon-container" *ngIf="userDetails?.isLockOrderGuide == 'Yes' || !userDetails?.isLockOrderGuide">
                       <i class="ri-heart-fill p-1" style="font-size: 19px; color:red; cursor: pointer;border: 1px solid #e6b2b2;"
                        *ngIf="toggleStates[i] && data.isWishlist ==true"
                         (click)="toggleIcons('second', i);submit(data.productId)"
@@ -109,7 +109,7 @@
                         (click)="toggleIcons('first', i);submit(data.productId)"
                         ></i>
                   </div>
-                  <div class="icon-container" *ngIf="userDetails.isLockOrderGuide == 'No'">
+                  <div class="icon-container" *ngIf="userDetails?.isLockOrderGuide == 'No'">
                     <i class="ri-heart-fill p-1" style="font-size: 19px; color:grey;border: 1px solid grey;"></i>
                   </div>
 

@@ -1,4 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,7 +18,14 @@ export class SigninPopupComponent {
   accountTypeRes:any;
   submitted:boolean=false;
 
-  constructor( private formBuilder:FormBuilder,private dialogRef: MatDialogRef<SigninPopupComponent>,private dashboardservice:DashboardService,private matSnackBar:MatSnackBar,@Inject(MAT_DIALOG_DATA) public data: any){
+  constructor(
+    private formBuilder:FormBuilder,
+    private dialogRef: MatDialogRef<SigninPopupComponent>,
+    private dashboardservice:DashboardService,
+    private matSnackBar:MatSnackBar,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ){
 
   }
   ngOnInit(){
@@ -39,7 +47,9 @@ export class SigninPopupComponent {
   this.dialogRef.close();
 }
 shppingaddress(){
-  this.userid=localStorage.getItem('id');
+  if (isPlatformBrowser(this.platformId)) {
+    this.userid=localStorage.getItem('id');
+  }
 
   if(this.formGroup.valid){
     if(this.submitted){

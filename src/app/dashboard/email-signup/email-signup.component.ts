@@ -1,10 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DashboardService } from '../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-email-signup',
@@ -27,7 +28,15 @@ export class EmailSignupComponent {
   loginToken: string = '';
   redirectUrl: string = '';
 
-constructor(private formBuilder:FormBuilder,private dashboardservice:DashboardService,private router:Router,    private matsnackbar:MatSnackBar,private route:ActivatedRoute, public authService: AuthService, private reloadCommonService:MasterService){
+constructor(private formBuilder:FormBuilder,
+  private dashboardservice:DashboardService,
+  private router:Router,
+  private matsnackbar:MatSnackBar,
+  private route:ActivatedRoute,
+  public authService: AuthService,
+  private reloadCommonService:MasterService,
+    @Inject(PLATFORM_ID) private platformId: Object
+){
 
 }
 ngOnInit() {;
@@ -95,10 +104,14 @@ ngOnInit() {;
           this.dashboardservice.login(loginpayload).subscribe(data => {
             this.loginData = data;
             if (this.loginData.status === 0) {
-              localStorage.setItem('id', this.loginData.response.id);
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem('id', this.loginData.response.id);
+              }
               this.authService.setToken(this.loginData.response.token)
               this.authService.setUserType(this.loginData.response.userType)
-              localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin);
+              }
               this.router.navigate([`${path}`]);
               this.reloadCommonService.sendUpdate('reloadNavbar');
             } else if (res.status === -1) {
@@ -169,14 +182,14 @@ if(this.formGroup.valid){
 
     if (this.loginData.status === 0) {
       this.router.navigate(['/']);
-      localStorage.setItem('id', this.loginData.response.id);
-      // localStorage.setItem('token', this.loginData.response.token);
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('id', this.loginData.response.id);
+      }
       this.authService.setToken(this.loginData.response.token)
-      // localStorage.setItem('userType', this.loginData.response.userType);
-      this.authService.setUserType(this.loginData.response.userType)
-      localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
-      console.log(this.loginData.response.id, 'loginData');
-      // window.location.reload();
+      this.authService.setUserType(this.loginData.response.userType);
+      if (isPlatformBrowser(this.platformId)) {
+        localStorage.setItem('firstTimeLogin', this.loginData.response.firstTimeLogin)
+      }
       this.matsnackbar.open("Login Successfully", 'x', { duration: 2000 });
       this.router.navigate(['/'], { relativeTo: this.route.parent });
     

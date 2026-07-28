@@ -1,10 +1,11 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DashboardService } from '../../dashboard.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
+import { isPlatformBrowser } from '@angular/common';
 interface InventoryItem {
   isSold: boolean;
   // other properties of the object
@@ -44,7 +45,7 @@ export class InventoryPopupComponent {
   totalrecordLengthh:any;
   inventorylist:any;
   checkInventoryStatus:any
-  constructor(public domSanitizer:DomSanitizer,public dialogRef: MatDialogRef<InventoryPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private service:DashboardService,private snackBar:MatSnackBar,private reloadCommonService:MasterService){
+  constructor(public domSanitizer:DomSanitizer,public dialogRef: MatDialogRef<InventoryPopupComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private service:DashboardService,private snackBar:MatSnackBar,private reloadCommonService:MasterService,   @Inject(PLATFORM_ID) private platformId: Object){
 
   }
   ngOnInit(): void{
@@ -52,10 +53,11 @@ export class InventoryPopupComponent {
     console.log('t',this.data.orderId);
     this.orderId=this.data.orderId;
     this.orderItemId =  this.data.orderItemId;
-    this.userId=localStorage.getItem('id');
-    this.orderId=localStorage.setItem('orderid',this.orderId);
-    this.orderItemId=localStorage.setItem('orderItemId',this.orderItemId);
-
+    if (isPlatformBrowser(this.platformId)) {
+      this.userId=localStorage.getItem('id');
+      this.orderId=localStorage.setItem('orderid',this.orderId);
+      this.orderItemId=localStorage.setItem('orderItemId',this.orderItemId);
+    }
 
     this.Orderedit();
   }

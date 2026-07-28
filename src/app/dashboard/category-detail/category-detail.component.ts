@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, Output, PLATFORM_ID, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { BannerService } from 'src/app/banner.service';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { SeoService } from 'src/app/services/seo/seo.service';
 
 @Component({
@@ -61,15 +61,19 @@ export class CategoryDetailComponent {
     private reloadCommonService: MasterService,
     public bannerService: BannerService,
     public seoService: SeoService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
    ngOnInit(): void {
     this.getBanners();
-    this.userDetails = localStorage.getItem('UserDetails');
-    this.userDetails = JSON.parse(this.userDetails);
+    if (isPlatformBrowser(this.platformId)) {
+      this.userDetails = JSON.parse(localStorage.getItem('UserDetails') || '{}');
+    }
      this.categoryid = this.route.snapshot.params['id'];
      this.slug = this.route.snapshot.params['slug'] || 'Category';
-     this.userid=localStorage.getItem('id');
+     if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+     }
      this.routeSubscription = this.route.params.subscribe(params => {
       this.categoryid = params['id'];
       this.tabelLoad(0);
@@ -195,7 +199,9 @@ export class CategoryDetailComponent {
     } 
   }
   getallcarttotal(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0;
     }
@@ -210,7 +216,9 @@ export class CategoryDetailComponent {
     })
   }
   cardload(page: number) {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0;
     }
@@ -262,7 +270,9 @@ export class CategoryDetailComponent {
   }
   
   savequantity(productId:any,quantity:any){
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
       if (res.status == 0) {
         this.reloadCommonService.sendUpdate('reloadWalletDetail');
@@ -278,7 +288,9 @@ export class CategoryDetailComponent {
   
   }
   getallcart() {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     this.dashboardservice.getcartcount(this.userid).subscribe(res => {
         this.data = res;
         if (this.data.status === 0) {  
@@ -290,7 +302,9 @@ export class CategoryDetailComponent {
     });
   }
   getallcount() {
-    this.userid=localStorage.getItem('id');
+    if (isPlatformBrowser(this.platformId)) {
+      this.userid=localStorage.getItem('id');
+    }
     if(this.userid == null){
       this.userid = 0;
     }
