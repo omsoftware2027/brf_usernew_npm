@@ -1,8 +1,11 @@
 pipeline {
+
     agent any
 
     environment {
-        NODE_OPTIONS = '--max_old_space_size=4096'
+        IMAGE_NAME = 'brfood_user_live'
+        CONTAINER_NAME = 'brfood_user_live'
+        HOST_PORT = '8083'
     }
 
     stages {
@@ -13,40 +16,60 @@ pipeline {
             }
         }
 
-        stage('Node Version') {
+        stage('Build Docker Image') {
             steps {
-                sh 'node -v'
-                sh 'npm -v'
+                sh 'docker build -t ${IMAGE_NAME}:latest .'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Stop Existing Container') {
             steps {
-                sh 'npm install'
+                sh '''
+                docker rm -f ${CONTAINER_NAME} || true
+                '''
             }
         }
 
-        stage('Build Angular') {
+        stage('Run Container') {
             steps {
-                sh 'npm run build'
+                sh '''
+                docker run -d \
+                  --restart unless-stopped \
+                  --name ${CONTAINER_NAME} \
+                  -p ${HOST_PORT}:80 \
+                  ${IMAGE_NAME}:latest
+                '''
             }
         }
 
-        stage('Verify Build') {
+        stage('Health Check') {
             steps {
-                sh 'ls -lah dist'
-                sh 'ls -lah dist/brfoodmain'
+                sh '''
+                sleep 10
+                curl -I http://localhost:${HOST_PORT}
+                '''
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+                sh 'docker image prune -f'
             }
         }
     }
 
     post {
+
         success {
-            echo 'Angular Build Successful'
+            echo '=========================================='
+            echo 'BR Food User deployed successfully!'
+            echo '=========================================='
         }
 
         failure {
-            echo 'Angular Build Failed'
+            echo '=========================================='
+            echo 'Deployment Failed!'
+            echo '=========================================='
         }
     }
 }
