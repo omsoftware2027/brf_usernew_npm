@@ -698,12 +698,13 @@ export class NavbarComponent implements OnInit {
     this.showDropdown = true;
     if (isPlatformBrowser(this.platformId)) {
       document.body.style.overflow = 'hidden';
-    }
+    
     setTimeout(() => {
       if (this.listItem && this.listItem.nativeElement) {
         this.listItem.nativeElement.focus();
       }
     });
+  }
   }
 
   updateInput(productName: string) {

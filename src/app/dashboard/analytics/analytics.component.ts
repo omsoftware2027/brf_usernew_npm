@@ -30,7 +30,6 @@ export class AnalyticsComponent implements OnInit {
   pageSize = 100;
   totalrecordLength:any;
   banners: any[] = [];
-  showNoBanner: boolean = false;
  public homeTopBanners: any[] = [];
  homeBannersLoaded: boolean = false;
 public productTopBanners: any[] = [];
@@ -64,24 +63,23 @@ firstTimeLogin: string | null = null;
     // this.reloadCommonService.sendUpdate('reloadWalletDetail');
     this.reloadCommonService.sendUpdate('reloadNavbar');
     
- setTimeout(() => {
-    if (!this.homeTopBanners || this.homeTopBanners.length === 0) {
-      this.showNoBanner = true;
-    }
-  }, 1050);
-
+    if (isPlatformBrowser(this.platformId)) {
       setTimeout(() => {
-      if (isPlatformBrowser(this.platformId)) {
-        this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
-      }
-      if (this.firstTimeLogin == 'true') {
-        this.router.navigateByUrl('/account-detail');
-      }
-    }, 6000);
+        if (isPlatformBrowser(this.platformId)) {
+          this.firstTimeLogin = localStorage.getItem('firstTimeLogin');
+        }
+        if (this.firstTimeLogin == 'true') {
+          this.router.navigateByUrl('/account-detail');
+        }
+      }, 6000);
+    }
    
     
   }
  startAutoSlide() {
+    if (!isPlatformBrowser(this.platformId)) {
+    return;
+  }
   this.bannerInterval = setInterval(() => {
     if (this.homeTopBanners.length > 0) {
       this.currentHomeBannerIndex = (this.currentHomeBannerIndex + 1) % this.homeTopBanners.length;
@@ -110,8 +108,8 @@ firstTimeLogin: string | null = null;
 getBanners() {
   this.bannerService.getBanners().subscribe({
     next: (res) => {
-      if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
-        this.banners = res.response;
+      if (res?.status === 0 && Array.isArray(res?.response) && res?.response.length > 0) {
+        this.banners = res?.response;
         this.homeTopBanners = this.banners.filter(b =>
           b.bannerPage?.includes('home_page') && b.bannerType === 'top_banner'
         );
@@ -153,8 +151,8 @@ getBanners() {
     }
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userId).subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
-        this.carttotal = this.data.response;
+      if (this.data?.status === 0) {
+        this.carttotal = this.data?.response;
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -220,14 +218,14 @@ getBanners() {
       this.userid=localStorage.getItem('id');
     }
     this.dashboardservice.savequtanity( this.userid,productId,quantity).subscribe((res:any) => {
-      if (res.status == 0) {
+      if (res?.status == 0) {
         this.reloadCommonService.sendUpdate('reloadWalletDetail');
         this.matSnackBar.open("Quantity Update ", 'x', { duration: 2000 });
         this.getallcarttotal(0);
         this.cardload(0);
       }
       else {
-        this.matSnackBar.open(res.response, 'x', { duration: 2000 });
+        this.matSnackBar.open(res?.response, 'x', { duration: 2000 });
       }
     })
   
@@ -241,8 +239,8 @@ getBanners() {
     }
     this.dashboardservice.getcountcart(this.userid).subscribe(res => {
         this.data = res;
-        if (this.data.status === 0) {  
-            this.fwishlist = this.data.response;
+        if (this.data?.status === 0) {  
+            this.fwishlist = this.data?.response;
             
         } else {
             // Handle other cases if needed
@@ -255,8 +253,8 @@ getallcart() {
   }
   this.dashboardservice.getcartcount(this.userid).subscribe(res => {
       this.data = res;
-      if (this.data.status === 0) {  
-          this.fwishcart = this.data.response;
+      if (this.data?.status === 0) {  
+          this.fwishcart = this.data?.response;
           
       } else {
           // Handle other cases if needed

@@ -92,17 +92,17 @@ export class AllProductComponent implements OnInit, OnDestroy {
    const categoryid=this.categoryid || '';
     this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,categoryid,this.userid).subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
+      if (this.data?.status === 0) {
         if (!this.preventScrollToTop) {
            if (isPlatformBrowser(this.platformId)) {
              window.scrollTo(0, 0);
             }
         }
 
-        this.totalrecordLength = this.data.response.totalElements;
-        this.category = this.data.response.projectResponse.dataSet;
-        this.categoryname=this.data.response.category;
-        this.toggleStates = new Array(this.category.length).fill(true);
+        this.totalrecordLength = this.data?.response?.totalElements;
+        this.category = this.data?.response?.projectResponse?.dataSet;
+        this.categoryname=this.data?.response?.category;
+        this.toggleStates = new Array(this.category?.length).fill(true);
         this.getallcarttotal(0);
         this.cardload(0);
       }
@@ -179,8 +179,8 @@ export class AllProductComponent implements OnInit, OnDestroy {
     if (this.userid) {
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
-        this.carttotal = this.data.response;
+      if (this.data?.status === 0) {
+        this.carttotal = this.data?.response;
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -196,17 +196,19 @@ export class AllProductComponent implements OnInit, OnDestroy {
     if (this.userid) {
     this.dashboardservice.getallcart(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
+      if (this.data?.status === 0) {
         if(!this.preventScrollToTop){
            if (isPlatformBrowser(this.platformId)) {
               window.scrollTo(0, 0);
            }
         }
-        this.totalrecordLength = this.data.response.totalElements;
-        this.wishlist = this.data.response.dataSet;
+        this.totalrecordLength = this.data?.response?.totalElements;
+        this.wishlist = this.data?.response?.dataSet;
+        if (isPlatformBrowser(this.platformId)) {
         setTimeout(()=>{
           this.preventScrollToTop = false
         }, 3000)
+      }
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -251,8 +253,8 @@ export class AllProductComponent implements OnInit, OnDestroy {
     }
     this.dashboardservice.getallproduct(this.currentPage, this.pageSize, name, this.userid || '').subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
-        this.productt = this.data.response.dataSet;
+      if (this.data?.status === 0) {
+        this.productt = this.data?.response?.dataSet;
       }
     })
   }
@@ -280,8 +282,8 @@ export class AllProductComponent implements OnInit, OnDestroy {
 
     this.dashboardservice.getcartcount(this.userid).subscribe(res => {
         this.data = res;
-        if (this.data.status === 0) {  
-            this.fwishcart = this.data.response;
+        if (this.data?.status === 0) {  
+            this.fwishcart = this.data?.response;
             
         } else {
             // Handle other cases if needed
@@ -297,8 +299,8 @@ export class AllProductComponent implements OnInit, OnDestroy {
     }
     this.dashboardservice.getcountcart(this.userid).subscribe(res => {
         this.data = res;
-        if (this.data.status === 0) {  
-            this.fwishlist = this.data.response;
+        if (this.data?.status === 0) {  
+            this.fwishlist = this.data?.response;
             
         } else {
             // Handle other cases if needed

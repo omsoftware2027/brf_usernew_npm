@@ -6,7 +6,6 @@ import { AddNewUserPopupComponent } from '../add-new-user-popup/add-new-user-pop
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DashboardService } from '../dashboard.service';
 import { Router } from '@angular/router';
-import { MatPaginator } from '@angular/material/paginator';
 import { MasterService } from 'src/app/services/master-service/master.service';
 import { InventoryPopupComponent } from './inventory-popup/inventory-popup.component';
 import { ChangeProductPopupComponent } from '../change-product-popup/change-product-popup.component';
@@ -21,7 +20,6 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./account-detail.component.scss']
 })
 export class AccountDetailComponent {
-  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild('ProductModal', { static: false }) ProductModal?: ModalDirective;
   formGroup!:FormGroup;
   quantity1:any;
@@ -603,13 +601,9 @@ getalladdress(page:number){
   }
   this.dashboardservice.getalladdress(this.currentPage, this.pageSize,this.userid).subscribe((res:any)=>{
    if(res.status==0){
-    this.address=res.response.dataSet
-    this.totalrecordLength =res.response.totalElements;
+    this.address=res?.response?.dataSet
+    this.totalrecordLength =res?.response?.totalElements;
    console.log( this.totalrecordLength,'totalrecordlength')
-    setTimeout(() => {
-      this.paginator.pageIndex = this.currentPage;
-      this.paginator.length = this.totalrecordLength;
-    });
    }
   })
 }
@@ -625,12 +619,7 @@ getallbulkorder(page:number){
     if(res.status ==0){
     this.bulkorderguide=res?.response || [];
     // console.log(this.bulkorderguide,'bulkorderguideeeeeee')
-    this.totalrecordLength = this.data.response.totalElements;
-     
-    setTimeout(() => {
-      this.paginator.pageIndex = this.currentPage;
-      this.paginator.length = this.totalrecordLength;
-    });
+    this.totalrecordLength = this.data?.response?.totalElements;     
     }
   }
   )
@@ -643,14 +632,9 @@ getallorder(page:number){
     this.userid = 0
   }
   this.dashboardservice.getallorder(this.userid).subscribe((res:any)=>{
-    if(res.status ==0){
-      this.allorder=res.response.dataSet
-      this.totalrecordLength = this.data.response.totalElements;
-     
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if(res?.status ==0){
+      this.allorder=res?.response?.dataSet
+      this.totalrecordLength = this.data?.response?.totalElements;
     }
   }
   )
@@ -681,13 +665,9 @@ getallstaff(page:number){
     this.userid = 0
   }
   this.dashboardservice.getallstaff(this.currentPage,this.pageSize,this.userid).subscribe((res:any)=>{
-    if(res.status==0){
-      this.getallstafff=res.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if(res?.status==0){
+      this.getallstafff=res?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
     }
   })
 }
@@ -695,8 +675,8 @@ getallcategory(page: number) {
   
   this.dashboardservice.getAllcategoryy().subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -708,13 +688,9 @@ getallmyorder() {
   const search = this.searchText;
   this.dashboardservice.getAllBrfoodUserOrder(this.currentPage, this.pageSize,search,vender).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.myorderdata = this.data.response.dataSet;
-      this.totalrecordLengthh = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLengthh;
-      });
+    if (this.data?.status === 0) {
+      this.myorderdata = this.data?.response?.dataSet;
+      this.totalrecordLengthh = res?.response?.totalElements;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -726,17 +702,13 @@ getorderbyorderid(orderid:any,orderitemid:any,) {
   console.log('hksk')
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.customerdetail=this.data.response.dataSet.customerDetails;
-      this.addressdetail=this.data.response.dataSet.shippingDetails;
-      this.productDetails=this.data.response.dataSet.productDetails;
-      this.orderDetails=this.data.response.dataSet.orderDetails;
-      this.totalrecordLengthh = this.data.response.totalElements;
+    if (this.data?.status === 0) {
+      this.customerdetail=this.data?.response?.dataSet?.customerDetails;
+      this.addressdetail=this.data?.response?.dataSet?.shippingDetails;
+      this.productDetails=this.data?.response?.dataSet?.productDetails;
+      this.orderDetails=this.data?.response?.dataSet?.orderDetails;
+      this.totalrecordLengthh = this.data?.response?.totalElements;
       console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLengthh;
-      });
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -752,16 +724,13 @@ getmyorderbyorderid(orderid:any) {
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
     this.data =res;
     if (this.data.status === 0) {
-      this.customerdetail=this.data.response.dataSet.customerDetails;
-      this.addressdetail=this.data.response.dataSet.shippingDetails;
-      this.productDetails=this.data.response.dataSet.productDetails;
-      this.orderDetails=this.data.response.dataSet.orderDetails;
-      this.totalrecordLengthh = this.data.response.totalElements;
+      this.customerdetail=this.data?.response?.dataSet?.customerDetails;
+      this.addressdetail=this.data?.response?.dataSet?.shippingDetails;
+      this.productDetails=this.data?.response?.dataSet?.productDetails;
+      this.orderDetails=this.data?.response?.dataSet?.orderDetails;
+      this.totalrecordLengthh = this.data?.response?.totalElements;
       console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLengthh;
-      });
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -773,17 +742,14 @@ getmyorderbyorderidandorderitemid(orderid:any,orderitemid:any) {
   console.log('hksk')
   this.dashboardservice.getorderbyorderid(this.currentPage, this.pageSize,orderid,this.userId,serach,orderitemid).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.customerdetail=this.data.response.dataSet.customerDetails;
-      this.addressdetail=this.data.response.dataSet.shippingDetails;
-      this.productDetails=this.data.response.dataSet.productDetails;
-      this.orderDetails=this.data.response.dataSet.orderDetails;
-      this.totalrecordLengthh = this.data.response.totalElements;
+    if (this.data?.status === 0) {
+      this.customerdetail=this.data?.response?.dataSet?.customerDetails;
+      this.addressdetail=this.data?.response?.dataSet?.shippingDetails;
+      this.productDetails=this.data?.response?.dataSet?.productDetails;
+      this.orderDetails=this.data?.response?.dataSet?.orderDetails;
+      this.totalrecordLengthh = this.data?.response?.totalElements;
       console.log(this.totalrecordLengthh,'this.totalrecordLengthh')
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLengthh;
-      });
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1073,13 +1039,10 @@ getallexpandorder(selectedButton: string) {
   const routee=''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,selectedButton,productname,code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
       this.productname = '';
       this.code='';
       this.bin='';
@@ -1116,13 +1079,10 @@ getallexpandorderr(productName:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1146,13 +1106,10 @@ getallexpandordercode(code:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1176,13 +1133,10 @@ getallexpandorderbin(bin:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1206,13 +1160,10 @@ getallexpandordervender(vender:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1236,13 +1187,10 @@ getallexpandorderqutanity(qutanity:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1266,13 +1214,10 @@ getallexpandorderprice(price:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1296,13 +1241,10 @@ getallexpandordertotal(total:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1326,13 +1268,10 @@ getallexpandordercustomer(customername:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1356,13 +1295,10 @@ getallexpandorderref(ref:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1386,13 +1322,10 @@ getallexpandorderstatus(orderStatus:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,driver,transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1416,13 +1349,10 @@ getallexpandordertransationdate(transationdate:any) {
   const routee=this.routee || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,driver,Transationdate,routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1446,13 +1376,10 @@ getallexpandorderdriver(data1:any) {
   const Routee=data1 || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,driver,Transationdate,Routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1476,13 +1403,10 @@ getallexpandorderroute(data1:any) {
   const Routee=data1 || ''
   this.dashboardservice.getBrFoodUserOrderProduct(this.currentPage, this.pageSize,serach,this.type,productname,Code,Bin,Vender,Qutanity,Price,Total,Customername,Ref,Status,driver,Transationdate,Routee).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.category = this.data.response.dataSet;
-      this.totalrecordLength = res.response.totalElements;
-      setTimeout(() => {
-        this.paginator.pageIndex = this.currentPage;
-        this.paginator.length = this.totalrecordLength;
-      });
+    if (this.data?.status === 0) {
+      this.category = this.data?.response?.dataSet;
+      this.totalrecordLength = res?.response?.totalElements;
+      
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1566,8 +1490,8 @@ getalldropdown(type:any) {
  getalldropdown1(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata1 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata1 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1577,8 +1501,8 @@ getalldropdown(type:any) {
 getalldropdown2(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata2 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata2 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1588,8 +1512,8 @@ getalldropdown2(type:any) {
 getalldropdown3(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata3 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata3 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1599,8 +1523,8 @@ getalldropdown3(type:any) {
 getalldropdown4(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata4 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata4 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1610,8 +1534,8 @@ getalldropdown4(type:any) {
 getalldropdown5(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata5 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata5 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1621,8 +1545,8 @@ getalldropdown5(type:any) {
 getalldropdown6(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata6 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata6 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1632,8 +1556,8 @@ getalldropdown6(type:any) {
 getalldropdown7(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata7 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata7 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1643,8 +1567,8 @@ getalldropdown7(type:any) {
 getalldropdown8(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata8 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata8 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1654,8 +1578,8 @@ getalldropdown8(type:any) {
 getalldropdown9(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata9 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata9 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1665,8 +1589,8 @@ getalldropdown9(type:any) {
 getalldropdown10(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata10 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata10 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1676,8 +1600,8 @@ getalldropdown10(type:any) {
 getalldropdown11(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata11 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata11 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1687,8 +1611,8 @@ getalldropdown11(type:any) {
 getalldropdown12(type:any) {
   this.dashboardservice.getalldropdowndata(type).subscribe(res => {
     this.data =res;
-    if (this.data.status === 0) {
-      this.dropdowndata12 = this.data.response.dataSet;
+    if (this.data?.status === 0) {
+      this.dropdowndata12 = this.data?.response?.dataSet;
     }
     else {
       this.snackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -1756,6 +1680,9 @@ cancelorder(orderid:any){
 }
 
  startAutoSlide() {
+    if (!isPlatformBrowser(this.platformId)) {
+    return;
+  }
   this.bannerInterval = setInterval(() => {
     if (this.topBanners.length > 0) {
       this.currentTopBannerIndex = (this.currentTopBannerIndex + 1) % this.topBanners.length;

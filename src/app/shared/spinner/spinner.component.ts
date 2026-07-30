@@ -27,6 +27,8 @@ export class SpinnerComponent implements OnInit {
     );
   }
   ngOnDestroy() {
-    this.loadingSubscription.unsubscribe();
+    if(this.loadingSubscription){
+      this.loadingSubscription.unsubscribe();
+    }
   }
 }

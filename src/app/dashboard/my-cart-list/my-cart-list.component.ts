@@ -85,6 +85,9 @@ export class MyCartListComponent {
 
 
   startAutoSlide() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
   this.bannerInterval = setInterval(() => {
     if (this.cartTopBanners.length > 0) {
       this.currentcartBannerIndex = (this.currentcartBannerIndex + 1) % this.cartTopBanners.length;

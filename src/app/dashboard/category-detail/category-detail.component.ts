@@ -88,7 +88,9 @@ export class CategoryDetailComponent {
    }
   ngOnDestroy() {
     // Unsubscribe to avoid memory leaks
-    this.routeSubscription?.unsubscribe();
+    if(this.routeSubscription) {
+      this.routeSubscription?.unsubscribe();
+    }
   }
   toggleIcons(iconClicked: string, index: number) {
     if (iconClicked === 'first') {
@@ -103,11 +105,11 @@ export class CategoryDetailComponent {
     }
     this.dashboardservice.getAllProductByCategoryId(this.currentPage, this.pageSize,this.categoryid,this.userid).subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
+      if (this.data?.status === 0) {
 
-        this.totalrecordLength = this.data.response.totalElements;
-        this.category = this.data.response.projectResponse.dataSet || [];
-        this.categoryname=this.data.response.category || '';
+        this.totalrecordLength = this.data?.response?.totalElements;
+        this.category = this.data?.response?.projectResponse?.dataSet || [];
+        this.categoryname=this.data?.response?.category || '';
 
         const convertedSlug = this.dashboardservice.generateSlug(this.categoryname);
         this.slug !== convertedSlug ? this.router.navigate(
@@ -207,8 +209,8 @@ export class CategoryDetailComponent {
     }
     this.dashboardservice.getallcardtotal(this.currentPage, this.pageSize,this.userid).subscribe(res => {
       this.data =res;
-      if (this.data.status === 0) {
-        this.carttotal = this.data.response;
+      if (this.data?.status === 0) {
+        this.carttotal = this.data?.response;
       }
       else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 })
@@ -310,8 +312,8 @@ export class CategoryDetailComponent {
     }
     this.dashboardservice.getcountcart(this.userid).subscribe(res => {
         this.data = res;
-        if (this.data.status === 0) {  
-            this.fwishlist = this.data.response;
+        if (this.data?.status === 0) {  
+            this.fwishlist = this.data?.response;
             
         } else {
             // Handle other cases if needed
@@ -344,6 +346,9 @@ focusCard(event: MouseEvent,index: number) {
 }
 
  startAutoSlide() {
+   if (!isPlatformBrowser(this.platformId)) {
+     return;
+   }
   this.bannerInterval = setInterval(() => {
     if (this.topBanners.length > 0) {
       this.currentTopBannerIndex = (this.currentTopBannerIndex + 1) % this.topBanners.length;
@@ -355,8 +360,8 @@ focusCard(event: MouseEvent,index: number) {
   getBanners() {
     this.bannerService.getBanners().subscribe({
       next: (res) => {
-        if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
-          this.banners = res.response;
+        if (res?.status === 0 && Array.isArray(res?.response) && res?.response?.length > 0) {
+          this.banners = res?.response;
           this.topBanners = this.banners.filter(b =>
             b.bannerPage?.includes('category_page') && b.bannerType === 'top_banner'
           );

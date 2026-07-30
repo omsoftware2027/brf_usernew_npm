@@ -85,13 +85,14 @@ filteredWishlist: any[] = [];
         if (this.searchText?.trim()) {
           this.applyFilter();
         }
-
-        setTimeout(() => {
-          if (this.paginator) {
-            this.paginator.pageIndex = this.currentPage;
-            this.paginator.length = this.totalrecordLength;
-          }
-        });
+        if (isPlatformBrowser(this.platformId)) {
+          setTimeout(() => {
+            if (this.paginator) {
+              this.paginator.pageIndex = this.currentPage;
+              this.paginator.length = this.totalrecordLength;
+            }
+          });
+        }
       } else {
         this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 });
       }
@@ -104,6 +105,9 @@ filteredWishlist: any[] = [];
 
 
 startAutoSlide() {
+  if (!isPlatformBrowser(this.platformId)) {
+    return;
+  }
   this.bannerInterval = setInterval(() => {
     if (this.wishlistTopBanners.length > 0) {
       this.currentwishlistBannerIndex = (this.currentwishlistBannerIndex + 1) % this.wishlistTopBanners.length;
@@ -116,8 +120,8 @@ startAutoSlide() {
   getBanners() {
     this.bannerService.getBanners().subscribe({
       next: (res) => {
-        if (res.status === 0 && Array.isArray(res.response) && res.response.length > 0) {
-          this.banners = res.response;
+        if (res?.status === 0 && Array.isArray(res?.response) && res?.response?.length > 0) {
+          this.banners = res?.response;
           this.wishlistTopBanners = this.banners.filter(b =>
             b.bannerPage?.includes('order_guide') && b.bannerType === 'top_banner'
           );
@@ -145,17 +149,18 @@ startAutoSlide() {
   getWishlist() {
     this.dashboardservice.getallwishlist(this.currentPage, this.pageSize, this.userid, '').subscribe({
       next: (res: any) => {
-        if (res.status === 0) {
-          this.totalrecordLength = res.response.totalElements;
-          this.wishlist = res.response.dataSet || [];
+        if (res?.status === 0) {
+          this.totalrecordLength = res?.response?.totalElements;
+          this.wishlist = res?.response?.dataSet || [];
           this.filteredWishlist = [...this.wishlist];
-
-          setTimeout(() => {
-            if (this.paginator) {
-              this.paginator.pageIndex = this.currentPage;
-              this.paginator.length = this.totalrecordLength;
-            }
-          });
+          if (isPlatformBrowser(this.platformId)) {
+            setTimeout(() => {
+              if (this.paginator) {
+                this.paginator.pageIndex = this.currentPage;
+                this.paginator.length = this.totalrecordLength;
+              }
+            });
+          }
         } else {
           this.matSnackBar.open("Something went wrong!", 'x', { duration: 2000 });
         }
@@ -173,8 +178,8 @@ applyFilter() {
   }
   this.dashboardservice.searchWishlist(this.userid, this.searchText.trim()).subscribe({
     next: (res: any) => {
-      if (res.status === 0) {
-        this.filteredWishlist = res.response.dataSet || [];
+      if (res?.status === 0) {
+        this.filteredWishlist = res?.response?.dataSet || [];
       }
     },
     error: () => {
