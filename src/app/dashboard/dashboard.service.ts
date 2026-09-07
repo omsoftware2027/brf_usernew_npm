@@ -49,7 +49,7 @@ export class DashboardService {
     return this.http.post<any>(`${environment.baseurl}/wishlistCart/saveCart`, data);
   }
   getAllcategoryy(){ 
-    return this.http.get<any>(`${environment.baseurl}/category/getAllCategory`)
+    return this.http.get<any>(`${environment.baseurl}/category/getAllCategory?pageSize=3000`)
   }
   getAllProductByCategoryId(no:any,size:any,categoryId:any,userId:any){
     return this.http.get<any>(`${environment.baseurl}/category/getAllProductByCategoryId?pageNo=${no}&pageSize=${size}&categoryId=${categoryId}&userId=${userId}`)
